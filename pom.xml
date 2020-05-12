@@ -273,7 +273,7 @@
 		</dependency>
 
 		<!--部署成war包时开启↓↓↓↓ -->
-        <dependency>
+      <!--  <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
@@ -282,7 +282,7 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>-->
 		<!--部署成war包时开启↑↑↑↑ -->
 
 

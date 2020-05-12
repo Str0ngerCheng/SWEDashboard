@@ -89,7 +89,7 @@ public class SummaryController {
 	}
 	
 	@GetMapping("/review/{id}")
-	String reiview(@PathVariable("id") Long id,Model model){
+	String review(@PathVariable("id") Long id,Model model){
 		
 		SummaryDO summary = summaryService.selectById(id);
 		model.addAttribute("summary", summary);

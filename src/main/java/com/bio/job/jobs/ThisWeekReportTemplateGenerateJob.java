@@ -103,8 +103,8 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 				reportDO.setDeptId(userDO.getDeptId());
 
 				reportDO.setDeptName(deptName);
-				Long deptId = deptService.getParentDept(userDO.getDeptId()).getId();
-				reportDO.setParentDeptId(deptId);
+				//Long deptId = deptService.getParentDept(userDO.getDeptId()).getId();
+				reportDO.setParentDeptId(0L);
 
 				reportDO.setTitle(title);
 
