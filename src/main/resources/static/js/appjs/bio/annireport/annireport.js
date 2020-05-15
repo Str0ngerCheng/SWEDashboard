@@ -88,15 +88,18 @@ function load() {
 //								},
 																{
 									field : 'title', 
-									title : '总结题目' 
+									title : '总结题目' ,
+									align : 'center',
 								},
 																{
 									field : 'content', 
-									title : '总结内容' 
+									title : '总结内容' ,
+									align : 'center',
 								},
 																{
 									field : 'status', 
 									title : '完成状态',
+									align : 'center',
 									formatter:function(value,row,index){ 
 						            	var value="";
 						            	if(row.status=="0"){
@@ -111,11 +114,13 @@ function load() {
 								},
 																{
 									field : 'rcreateDate', 
-									title : '创建时间' 
+									title : '创建时间' ,
+									align : 'center',
 								},
 																{
 									field : 'rchgDate', 
-									title : '修改时间' 
+									title : '修改时间' ,
+									align : 'center',
 								},
 																{
 									title : '操作',

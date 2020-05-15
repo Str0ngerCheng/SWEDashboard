@@ -47,7 +47,7 @@ public class BuildTree {
 			root.setChildren(true);
 			root.setChecked(true);
 			root.setChildren(topNodes);
-			root.setText("顶级节点");
+			root.setText("智慧地球小组");
 			Map<String, Object> state = new HashMap<>(16);
 			state.put("opened", true);
 			root.setState(state);

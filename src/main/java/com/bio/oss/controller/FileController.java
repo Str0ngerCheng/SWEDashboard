@@ -40,7 +40,7 @@ public class FileController extends BaseController {
     private FileService sysFileService;
 
     @GetMapping()
-    @RequiresPermissions("common:sysFile:sysFile")
+    //@RequiresPermissions("common:sysFile:sysFile")
     String sysFile(Model model) {
         return "common/file/file";
     }

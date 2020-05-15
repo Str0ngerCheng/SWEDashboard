@@ -65,7 +65,8 @@ function load() {
 //								},
 																{
 									field : 'deptName', 
-									title : '部门名称' 
+									title : '部门名称' ,
+									align : 'center',
 								},
 //																{
 //									field : 'rFromDate', 
@@ -78,6 +79,7 @@ function load() {
 																{
 									field : 'title', 
 									title : '周报题目',
+									align : 'center',
 									formatter : function(value, row, index) {
 										href = prefix + '/review/' + row.id;
 										var f = '<a class="btn btn-link btn-sm" href="'+ href + '" target="_blank">' + row.title+ '</a>';
@@ -86,11 +88,13 @@ function load() {
 								},
 																{
 									field : 'count', 
-									title : '浏览次数' 
+									title : '浏览次数' ,
+									align : 'center',
 								},
 																{
 									field : 'rcreateDate', 
-									title : '创建时间' 
+									title : '创建时间' ,
+									align : 'center',
 								}
 //																{
 //									title : '操作',

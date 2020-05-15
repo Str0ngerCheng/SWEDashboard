@@ -172,6 +172,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<!--为了解决thymeleaf模板中,对html标签要求太严格的问题!-->
+		<dependency>
+			<groupId>net.sourceforge.nekohtml</groupId>
+			<artifactId>nekohtml</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
@@ -285,17 +290,16 @@
 		</dependency>-->
 		<!--部署成war包时开启↑↑↑↑ -->
 
-
 	</dependencies>
 	<build>
 		<finalName>biodashboard</finalName>
-
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<executable>true</executable>
+					<fork>true</fork>
 				</configuration>
 			</plugin>
 		</plugins>
