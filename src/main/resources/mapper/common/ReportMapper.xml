@@ -46,6 +46,14 @@
 		AND status = #{status} GROUP BY dept_id
 	</select>
 
-
+	<select id="getThisWeekReportByDept" resultType="com.bio.sys.domain.ReportDO">
+		SELECT *
+		FROM
+		report
+		WHERE
+		dept_id = #{deptId}
+		AND YEARWEEK(date_format(r_from_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
+		AND YEARWEEK(date_format(r_to_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
+	</select>
 
 </mapper>

@@ -54,6 +54,8 @@ public class UserDO implements Serializable {
     //是否毕业
     private Integer statusGraduate;
 
+    //排序
+    private Integer orderNum;
 
 
     /**
@@ -212,6 +214,11 @@ public class UserDO implements Serializable {
         this.statusGraduate = statusGraduate;
     }
 
+    public Integer getOrderNum() {
+        return orderNum;
+    }
 
-    
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
+    }
 }

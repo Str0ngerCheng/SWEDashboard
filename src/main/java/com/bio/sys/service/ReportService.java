@@ -6,6 +6,7 @@ import java.util.List;
 import com.bio.common.base.CoreService;
 import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 
@@ -24,5 +25,6 @@ public interface ReportService extends CoreService<ReportDO> {
 	
 	public List<ReportCountDO> getReportsCount(Date fromDate, Date toDate, Integer status);
 
+	public  List<ReportDO> getThisWeekReportByDeptAndStatusLSub(Long deptId,Integer status);
 	
 }

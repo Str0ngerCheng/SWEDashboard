@@ -1,10 +1,7 @@
 var prefix = document.getElementsByTagName('meta')['ctx'].content + "/bio/report"
 
 $().ready(function() {
-	//获取输入内容
-	var len = $('#summary').val().length;
-	//显示字数
-	$('#textarea-tip').html('已输入'+len+'个字');
+	setSummaryContent()
 	validateRule();
 });
 
@@ -71,13 +68,7 @@ function clearAll(){
 }
 
 $('#summary').on('input propertychange', function () {
-	//获取输入内容
-	var len = $(this).val().length;
-	console.log($(this).css("border-color"))
-	if(len<50)
-		$(this).css("border-color","red")
-	//显示字数
-	$('#textarea-tip').html('已输入'+len+'个字');
+	setSummaryContent()
 });
 function saveReport() {
 	$.ajax({
@@ -111,32 +102,65 @@ function saveReport() {
 	})
 }
 function submitReport() {
-	$.ajax({
-		cache : true,
-		type : "POST",
-		url : prefix + "/saveContent",
-		data : {reportId:$('#reportId').val(),
-			statusMSub:1,//表示已提交
-			lastPlan:$('#lastPlan').val(),
-			summary:$('#summary').val(),
-			nextPlan:$('#nextPlan').val(),
-			problem:$('#problem').val(),
-			other:$('#other').val()},
-		async : false,
-		error : function(request) {
-			parent.layer.alert("Connection error");
-		},
-		success : function(data) {
-			if (data.code == 0) {
-				parent.layer.msg("提交成功");
-				parent.reLoad();
-				var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
-				parent.layer.close(index);
+	if(getSummaryLength()<50)
+		layer.alert('总结字数不能少于50字哦', {
+			icon:0,
+			});
+	else
+		layer.alert('周报提交后无法修改，确定提交吗？', {
+			icon:3,
+			btn: ['确定', '取消']
+			,yes: function(){
+				$.ajax({
+					cache : true,
+					type : "POST",
+					url : prefix + "/saveContent",
+					data : {reportId:$('#reportId').val(),
+						statusMSub:1,//表示已提交
+						lastPlan:$('#lastPlan').val(),
+						summary:$('#summary').val(),
+						nextPlan:$('#nextPlan').val(),
+						problem:$('#problem').val(),
+						other:$('#other').val()},
+					async : false,
+					error : function(request) {
+						parent.layer.alert("Connection error");
+					},
+					success : function(data) {
+						if (data.code == 0) {
+							parent.layer.msg("提交成功",{icon: 1});
+							parent.reLoad();
+							var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+							parent.layer.close(index);
 
-			} else {
-				parent.layer.alert(data.msg)
+						} else {
+							parent.layer.alert(data.msg)
+						}
+					}
+				});
+
 			}
-		}
-	});
+		});
 
+
+}
+function setSummaryContent(){
+    var len=getSummaryLength();
+	if(len<50)
+		$('#summary').css("border-color","red")
+	else $('#summary').css("border-color","#e5e6e7")
+	//显示字数
+	$('#textarea-tip').html('已输入'+len+'个字');
+
+}
+
+function getSummaryLength() {
+	//获取输入内容
+	var len = 0; //初始定义长度为0
+	var txtval = $.trim($("#summary").val());
+	for(var i =0;i<txtval.length;i++)
+		if(txtval.charAt(i)!=" ")
+			len = len + 1;
+
+	return len;
 }

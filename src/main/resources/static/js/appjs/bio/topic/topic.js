@@ -8,7 +8,7 @@ function load() {
         .bootstrapTable(
             {
                 method : 'get', // 服务器数据的请求方式 get or post
-                url : prefix + "/bio/topic/weekList", // 服务器数据的加载地址
+                url : prefix + "/bio/topic/weekList",
                 reorderableRows: true,
                 striped: true,
                 useRowAttrFunc: true,
@@ -23,7 +23,7 @@ function load() {
                 singleSelect : false, // 设置为true将禁止多选
                 // contentType : "application/x-www-form-urlencoded",
                 // //发送到服务器的数据编码类型
-                pageSize : 10, // 如果设置了分页，每页数据条数
+                pageSize : 15, // 如果设置了分页，每页数据条数
                 pageNumber : 1, // 如果设置了分布，首页页码
                 //search : true, // 是否显示搜索框
                 showColumns : false, // 是否显示内容下拉框（选择显示的列）
@@ -34,9 +34,8 @@ function load() {
                     return {
                         //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
                         pageNumber : params.pageNumber,
-                        pageSize : params.pageSize
-                        // name:$('#searchName').val(),
-                        // username:$('#searchName').val()
+                        pageSize : params.pageSize,
+                        statusLSub: -1 // 获取所有专题本周提交的周报
                     };
                 },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -46,21 +45,9 @@ function load() {
                 // sortOrder.
                 // 返回false将会终止请求
                 responseHandler : function(res){
-                    console.log(res);
                     return {
-                        "total": 2,//res.data.total,//总数
-                        "rows":[{name:'程博文',
-                            title:'2020/05/11-2020/05/17-张翔专题-程博文-周报',
-                            submitTime:'2020/02/16',
-                            status: 0,
-                            id:0
-                        },
-                            {name:'陈栋',
-                                title:'2020/05/11-2020/05/17-张翔专题-陈栋-周报',
-                                submitTime:'2020/02/17',
-                                status: 0,
-                                id:1
-                            }] //res.data.records   //数据
+                        "total": res.data.total,//总数
+                        "rows":res.data.records   //数据
                     };
                 },
                 columns : [
@@ -68,7 +55,7 @@ function load() {
                         checkbox : true
                     },
                     {
-                        field : 'name',
+                        field : 'authorName',
                         title : '姓名',
                         align : 'center',
                     },
@@ -77,26 +64,26 @@ function load() {
                         title : '周报题目',
                         align : 'center',
                         formatter : function(value, row, index) {
-                            return  '<a class="btn btn-link btn-sm" onclick="getReportContent(\'' + index + '\')" target="_blank">' + row.title+ '</a>';
+                            return  '<a class="btn btn-link btn-sm" onclick="getReportContent(\'' + row.id + '\')" target="_blank">' + row.title+ '</a>';
                         }
                     },
                     {
-                        field : 'submitTime',
+                        field : 'rchgDate',
                         title : '提交时间',
                         align : 'center',
                     },
                     {
-                        field : 'status',
-                        title : '状态',
+                        field : 'statusLSub',
+                        title : '审阅状态',
                         align : 'center',
                         formatter:function(value,row,index){
                             var value="";
-                            if(row.status=="0"){
+                            if(row.statusLSub=="0"){
                                 value = ' <a class="btn btn-danger btn-sm"  title="未审阅"><i class="fa fa-clock-o"></i></a>';
-                            }else if(row.status=="1"){
+                            }else if(row.statusLSub=="1"){
                                 value = ' <a class="btn btn-success btn-sm"  title="已审阅"><i class="fa fa-check-circle"></i></a> ';
                             }else{
-                                value = row.status ;
+                                value = row.statusLSub ;
                             }
                             return value;
                         }
@@ -104,7 +91,7 @@ function load() {
                     {
                         field : 'comment',
                         title : '评价',
-                        width:250,
+                        width:   250,
                         align : 'center',
                     },
                     {
@@ -131,7 +118,7 @@ function load() {
 function reLoad() {
     $('#topicTable').bootstrapTable('refresh');
 }
-function getReportContent(row) {
+function getReportContent(id) {
     console.log($('#topicTable').bootstrapTable('getData'))
     layer.open({
         type : 2,
@@ -139,19 +126,59 @@ function getReportContent(row) {
         maxmin : true,
         shadeClose : false, // 点击遮罩关闭层
         area : [ '800px', '520px' ],
-        content : prefix + '/bio/report/reportContent'
+        content : prefix + '/bio/report/reportContent/'+ id
     });
 }
 
-function setCommentAndScore(comment,score,index){
-    console.log([comment,score,index])
-    $('#topicTable').bootstrapTable('updateRow', {
-        index:index,
-        replace:false,
-        row: {
-            comment: comment,
-            score:score,
-            status:1
+function selectStatus(status){
+    var icon='<i class="fa fa-caret-down" aria-hidden="true"></i>';
+    if(status==-1)
+    $('#status_read').html("全部 "+icon)
+    else if(status==1) {
+        $('#status_read').html('已阅 '+icon)
+    }
+    else {
+        $('#status_read').html('未阅 '+icon)
+    }
+    $.ajax({
+        type: "get",
+        url: prefix + "/bio/topic/weekList",
+        data: {  pageNumber : 1,
+            pageSize : 15,
+            statusLSub: status },// 获取所有专题本周提交的周报
+        dataType:"json",
+        success : function(res) {
+            $("#topicTable").bootstrapTable('load', {
+                "total": res.data.total,//总数
+                "rows":res.data.records   //数据
+            });
+        }
+    });
+}
+
+function  submit(){
+    var allTableData = $('#topicTable').bootstrapTable('getData');
+    for(var i=0;i<allTableData.length;i++){
+        allTableData[i].orderNum=i
+    }
+    $.ajax({
+        cache : true,
+        type : "POST",
+        url : prefix + "/sys/user/batchUpdateOrderNum",
+        dataType: 'json',
+        contentType : 'application/json',
+        data : JSON.stringify(allTableData),
+        async : false,
+        error : function(request) {
+            parent.layer.alert("Connection error");
+        },
+        success : function(data) {
+            if (data.code == 0) {
+                layer.alert("已提交",{icon:1})
+
+            } else {
+                layer.alert(data.msg)
+            }
         }
     });
 }

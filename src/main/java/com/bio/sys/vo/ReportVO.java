@@ -1,41 +1,26 @@
-package com.bio.sys.domain;
+package com.bio.sys.vo;
+
+import com.bio.sys.domain.ReportDO;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-
-/**
- * 
- * <pre>
- * 周报
- * </pre>
- * <small> 2019-12-15 10:18:15 | chenx</small>
- */
- @TableName("report")
-public class ReportDO implements Serializable {
-	 
-    @TableField(exist = false)
+public class ReportVO implements Serializable ,Comparable<ReportVO> {
     private static final long serialVersionUID = 1L;
-    
-    /** ID */
-    @TableId
     private Long id;
     /** 作者ID */
     private Long authorId;
     /** 作者姓名 */
     private String authorName;
-    
+
     /** 所属部门ID */
     private Long deptId;
     /** 所属部门名称 */
     private String deptName;
-    
+
     /** 部门所属上级部门ID */
     private Long parentDeptId;
-    
+
     /** 起始时间 */
     private Date rFromDate;
     /** 终止时间 */
@@ -63,6 +48,31 @@ public class ReportDO implements Serializable {
     private Integer statusMSub;
     /** 状态0: 组长未提交, 1:组长已提交 */
     private Integer statusLSub;
+
+    private Integer orderNum;
+    public ReportVO() {}
+
+    public ReportVO(ReportDO reportDO, Integer orderNum) {
+        this.id=reportDO.getId();
+        this.authorId=reportDO.getAuthorId();
+        this.authorName=reportDO.getAuthorName();
+        this.deptId=reportDO.getDeptId();
+        this.deptName=reportDO.getDeptName();
+        this.parentDeptId=reportDO.getParentDeptId();
+        this.rFromDate=reportDO.getRFromDate();
+        this.rToDate=reportDO.getRToDate();
+        this.title=reportDO.getTitle();
+        this.contentId=reportDO.getContentId();
+        this.comment=reportDO.getComment();
+        this.score=reportDO.getScore();
+        this.rCreateDate=reportDO.getRCreateDate();
+        this.rChgDate=reportDO.getRChgDate();
+        this.statusMod=reportDO.getStatusMod();
+        this.statusMSub=reportDO.getStatusMSub();
+        this.statusLSub=reportDO.getStatusLSub();
+        this.orderNum = orderNum;
+    }
+
     /**
      * 设置：ID
      */
@@ -99,28 +109,28 @@ public class ReportDO implements Serializable {
     public String getAuthorName() {
         return authorName;
     }
-    
+
     public Long getDeptId() {
-		return deptId;
-	}
-	public void setDeptId(Long deptId) {
-		this.deptId = deptId;
-	}
-	
-	public String getDeptName() {
-		return deptName;
-	}
-	public void setDeptName(String deptName) {
-		this.deptName = deptName;
-	}
-	
+        return deptId;
+    }
+    public void setDeptId(Long deptId) {
+        this.deptId = deptId;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
     public Long getParentDeptId() {
-		return parentDeptId;
-	}
-	public void setParentDeptId(Long parentDeptId) {
-		this.parentDeptId = parentDeptId;
-	}
-	/**
+        return parentDeptId;
+    }
+    public void setParentDeptId(Long parentDeptId) {
+        this.parentDeptId = parentDeptId;
+    }
+    /**
      * 设置：起始时间
      */
     public void setRFromDate(Date rFromDate) {
@@ -234,19 +244,19 @@ public class ReportDO implements Serializable {
         this.statusLSub = statusLSub;
     }
 
+    public Integer getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
+    }
+
     @Override
-    public String toString() {
-        return "ReportDO{" +
-                "ide='" + id + '\'' +
-                "authorName='" + authorName + '\'' +
-                ", deptName='" + deptName + '\'' +
-                ", title='" + title + '\'' +
-                ", contentId='" + contentId + '\'' +
-                ", comment='" + comment + '\'' +
-                ", score='" + score + '\'' +
-                ", statusMod=" + statusMod +
-                ", statusMSub=" + statusMSub +
-                ", statusLSub=" + statusLSub +
-                '}';
+    public int compareTo(ReportVO o) {
+        if (this.orderNum > o.orderNum) return 1;
+        else if (this.orderNum < o.orderNum) return -1;
+        else return this.authorName.compareTo(o.authorName) == 0 ? 0 : -this.authorName.compareTo(o.authorName);
+
     }
 }

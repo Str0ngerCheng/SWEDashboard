@@ -5,18 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bio.sys.vo.ReportVO;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -133,6 +129,22 @@ public class UserController extends BaseController {
     @ResponseBody
     Result<String> updatePeronal(UserDO user) {
         userService.updatePersonal(user);
+        return Result.ok();
+    }
+
+    @RequiresPermissions("bio:topic:topic")
+    @Log("更新用户排序")
+    @PostMapping("/batchUpdateOrderNum")
+    @ResponseBody
+    Result<String> batchUpdateOrderNum(@RequestBody List<ReportVO> reportVOList) {
+        for(int i=0;i<reportVOList.size();i++){
+            ReportVO reportVO=reportVOList.get(i);
+            UserDO user=new UserDO();
+            user.setId(reportVO.getAuthorId());
+            System.out.println(reportVO.getAuthorId());
+            user.setOrderNum(reportVO.getOrderNum());
+            userService.updateById(user);
+        }
         return Result.ok();
     }
 

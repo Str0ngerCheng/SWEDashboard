@@ -139,8 +139,8 @@ function load() {
 						align : 'center',
 						formatter : function(value, row, index) {
 							var disabled=""
-							/*if(row.statusMSub==1)
-								disabled="disabled "*/
+							if(row.statusMSub==1)
+								disabled="disabled "
 
 							var e = '<a class="btn btn-primary btn-sm '+disabled+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
 								+ row.id
@@ -198,8 +198,6 @@ function remove(id) {
 	})
 }
 
-function resetPwd(id) {
-}
 function batchRemove() {
 	var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	if (rows.length == 0) {
@@ -233,4 +231,8 @@ function batchRemove() {
 	}, function() {
 
 	});
+}
+
+function  searchByKey(){
+
 }

@@ -1,6 +1,7 @@
 package com.bio.sys.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -57,5 +58,22 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 			}
 		}
 		return reportCountDOs;
+	}
+
+
+	@Override
+	public List<ReportDO> getThisWeekReportByDeptAndStatusLSub(Long deptId,Integer status) {
+		List<ReportDO> reportListAll=baseMapper.getThisWeekReportByDept(deptId);
+		//-1表示获取上周所有的专题内周报,0表示未提交（专题组长未审阅）的周报，1表示已审阅的周报
+		if(status==-1) return reportListAll;
+		else {
+			List<ReportDO> reportList=new ArrayList<>();
+			for (int i = 0; i < reportListAll.size(); i++) {
+				ReportDO report=reportListAll.get(i);
+				if (report.getStatusLSub() == status)
+					reportList.add(report);
+			}
+			return reportList;
+		}
 	}
 }

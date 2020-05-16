@@ -12,12 +12,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
@@ -146,7 +141,8 @@ public class ReportController {
 									   String lastPlan,String summary,String nextPlan,String problem,String other){
 		ReportDO report=reportService.selectById(reportId);
 		if(report!=null) {
-			report.setStatusMSub(statusMSub);//表示提交周报，提交后不能修改
+			if(statusMSub==1)
+				report.setStatusMSub(statusMSub);//表示提交周报，提交后不能修改
 			if (report.getStatusMod() == 1) {//周报草稿已修改（代表已保存），此时只用更新周报内容
 				ReportContentDO reportContent = new ReportContentDO(report.getContentId(), lastPlan, summary, nextPlan, problem, other);
 				if (reportContentService.updateByUUID(reportContent)) {
@@ -175,12 +171,8 @@ public class ReportController {
 	@ResponseBody
 	@RequestMapping("/update")
 	@RequiresPermissions("bio:report:edit")
-	public Result<String>  update( ReportDO report){
-		
-		//判断如果有修改，则修改最后时间和 Status
-		report.setRChgDate(new Date());
-		report.setStatusMod(1);
-		
+	public Result<String>  update(@RequestBody ReportDO report){
+		report.setStatusLSub(1);
 		reportService.updateById(report);
 		return Result.ok();
 	}
@@ -212,9 +204,13 @@ public class ReportController {
 	/**
 	 * 显示周报内容
 	 */
-	@GetMapping("/reportContent")
+	@GetMapping("/reportContent/{id}")
 	@RequiresPermissions("bio:report:report")
-	String reportContent(){
+	String getReportContent(@PathVariable("id") Integer id,Model model){
+		ReportDO report = reportService.selectById(id);
+		ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
+		model.addAttribute("reportContent", reportContent);
+		model.addAttribute("report", report);
 		return "bio/report/reportContent";
 	}
 	

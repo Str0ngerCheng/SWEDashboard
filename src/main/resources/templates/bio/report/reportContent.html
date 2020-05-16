@@ -35,7 +35,7 @@
         box-shadow: 0 1px 3px rgba(0,0,0,.1);
         cursor: pointer;
     }
-    #reportContent .form-group{
+    #myContent .form-group{
         padding: 20px 20px 0 20px;
         margin: 0;
         display: grid;
@@ -48,33 +48,47 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-content" id="reportContent">
-                    <h2 style="text-align: center">2020/05/11-2020/05/17-张翔专题-程博文-周报</h2>
+                <div class="ibox-content" id="myContent">
+                    <h3 style="text-align: center" th:utext="${report.title}"></h3>
                     <div class="form-group">
-                        <h3>上周计划</h3>
-                        <p>周报具体内容，包含每学期目标、每月目标、上周计划、上周总结、本周计划和其他情况等几个部分。其中，每学期目标、每月目标和上周计划，是自动生成的，不必从之前的周报中复制或填写</p>
+                        <span>
+                            <a id="upload" onclick="downlandFiles()" type="" class="btn btn-primary" style="float: right"><i class="fa fa-cloud"></i>下载附件</a>
+                            <h3>上周计划</h3>
+
+                        </span>
+
+                        <textarea class="col-sm-12 form-control"  rows="3" readonly="readonly" id="lastPlan" th:text="${reportContent.lastPlan}"></textarea>
                     </div>
                     <div class="form-group">
-                        <h3>上周总结</h3>
-                        <p>周报具体内容，包含每学期目标、每月目标、上周计划、上周总结、本周计划和其他情况等几个部分。其中，每学期目标、每月目标和上周计划，是自动生成的，不必从之前的周报中复制或填写</p>
+                        <h3>本周总结</h3>
+                        <textarea class="col-sm-12 form-control" rows="5"  readonly="readonly" id="summary"  th:text="${reportContent.summary}"></textarea>
                     </div>
-                    <div  class="form-group">
-                        <h3>本周计划</h3>
-                        <p>周报具体内容，包含每学期目标、每月目标、上周计划、上周总结、本周计划和其他情况等几个部分。其中，每学期目标、每月目标和上周计划，是自动生成的，不必从之前的周报中复制或填写</p>
+                    <div class="form-group">
+                        <h3>下周计划</h3>
+                        <textarea class="col-sm-12 form-control" rows="3"  readonly="readonly" id="nextPlan" th:text="${reportContent.nextPlan}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <h3>问题反馈</h3>
+                        <textarea class="col-sm-12 form-control" rows="3" readonly="readonly" id="problem" th:text="${reportContent.problem}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <h3>其他情况</h3>
+                        <textarea class="col-sm-12 form-control" rows="3"  readonly="readonly" id="other" th:text="${reportContent.other}"></textarea>
                     </div>
                     <div class="form-group">
                         <h3><label style="color: red">*</label>
                             请给出评价
                             <label style="color: red">（必须填写，否则无法提交）</label>
                         </h3>
-                        <textarea class="col-sm-12 form-control" rows="3" id="comment"></textarea>
+                        <textarea class="col-sm-12 form-control" rows="3" id="comment" th:text="${report.comment}"></textarea>
                     </div>
                     <div class="form-group" style="display: block">
                         <h3 style="padding-bottom: 10px">请给这周表现打分 <label style="color: red">（默认是90分）</label></h3>
                         <span>
                              <button type="button" class="btn btn-primary" style="float: right" onclick="submitContent()">完成</button>
-                        <input type="text" oninput="getVal(this.value)"  class="form-control" placeholder="90" id="result" style="width: 40px;float: left;margin-right: 20px;padding: 6px 6px;font-weight: bold;border-radius: 5px">
-                        <input type="range" id="score" value="90" min="0" max="100" step="1" class="slider2" >
+                        <input type="text" oninput="getVal(this.value)"  th:value="${report.score}"
+                               class="form-control" id="result" style="width: 40px;float: left;margin-right: 20px;padding: 6px 6px;font-weight: bold;border-radius: 5px">
+                        <input type="range" id="score"  min="0" max="100" step="1" class="slider2" th:value="${report.score}">
 
                         </span>
 
@@ -89,8 +103,8 @@
 
 <div th:include="include :: footer"></div>
 <script type="text/javascript" src="/js/appjs/bio/report/reportContent.js" th:src="@{/js/appjs/bio/report/reportContent.js}"></script>
-<script>
-
+<script th:inline="javascript">
+    var report=[[${report}]]
 </script>
 </body>
 </html>
