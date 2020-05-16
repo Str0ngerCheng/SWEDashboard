@@ -170,5 +170,13 @@ public class ReportController {
 		reportService.deleteBatchIds(Arrays.asList(ids));
 		return Result.ok();
 	}
+	/**
+	 * 显示周报内容
+	 */
+	@GetMapping("/reportContent")
+	@RequiresPermissions("bio:report:report")
+	String reportContent(){
+		return "bio/report/reportContent";
+	}
 	
 }

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="ibox-body">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#person" data-toggle="tab">个人</a></li>
+                    <li role="presentation"><a href="#topic" data-toggle="tab">专题</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="person" style="padding: 15px 0 15px 0px">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label >人员：</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="姓名" id="userName">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default btn-outline" onclick="selectUser()" type="button">
+                                            <i class="glyphicon glyphicon-th icon-th"></i>
+                                        </button>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label>开始日期：</label>
+                                    <!--指定 date标记-->
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input type='text' class="form-control" />
+                                        <span class="input-group-addon btn-default btn-outline">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label class="form-inline">结束日期：</label>
+                                    <!--指定 date标记-->
+                                    <div class='input-group date' id='datetimepicker2'>
+                                        <input type='text' class="form-control" />
+                                        <span class="input-group-addon btn-default btn-outline">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <label>类型：</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-outline dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#">周报</a></li>
+                                            <li><a href="#">月报</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="padding-top: 22px">
+                                <div class="columns pull-left">
+                                    <button class="btn  btn-success" onclick="query()" type="button">
+                                        <i aria-hidden="true" class="fa fa-search"></i>查询
+                                    </button>
+                                    <button class="btn  btn-primary" onclick="batchExport()" type="button">
+                                        <i aria-hidden="true" class="fa fa-download"></i>批量导出
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 0">
+                            <table id="queryTable" data-mobile-responsive="true">
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="topic"  style="padding: 15px 0 15px 0px">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label >专题：</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="topicName">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-outline dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#">智慧地球小组</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">张翔专题</a></li>
+                                            <li><a href="#">杜文英专题</a></li>
+                                            <li><a href="#">陈泽强专题</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label>开始日期：</label>
+                                    <!--指定 date标记-->
+                                    <div class='input-group date' id='datetimepicker_t1'>
+                                        <input type='text' class="form-control" />
+                                        <span class="input-group-addon btn-default btn-outline">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label class="form-inline">结束日期：</label>
+                                    <!--指定 date标记-->
+                                    <div class='input-group date' id='datetimepicker_t2'>
+                                        <input type='text' class="form-control" />
+                                        <span class="input-group-addon btn-default btn-outline">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <label>类型：</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default btn-outline dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#">周报</a></li>
+                                            <li><a href="#">月报</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="padding-top: 22px">
+                                <div class="columns pull-left">
+                                    <button class="btn  btn-success" onclick="query()" type="button">
+                                        <i aria-hidden="true" class="fa fa-search" style="padding-right: 5px"></i>查询
+                                    </button>
+                                    <button class="btn  btn-primary" onclick="batchExport()" type="button">
+                                        <i aria-hidden="true" class="fa fa-download" style="padding-right: 5px"></i>批量导出
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <blockquote style="background: #d2e4e8;margin: 10px 0 10px 0">
+                            <h4>此处导出的是专题（或整个小组）的周报汇总表</h4>
+                        </blockquote>
+                        <div class="row" style="margin: 0">
+                            <table id="queryTable_t" data-mobile-responsive="true">
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+
+
+<script src="https://cdn.bootcss.com/moment.js/2.22.0/moment-with-locales.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/js/appjs/bio/query/query.js" th:src="@{/js/appjs/bio/query/query.js}"></script>
+</body>
+</html>

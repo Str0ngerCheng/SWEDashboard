@@ -88,15 +88,18 @@ function load() {
 //								},
 																{
 									field : 'title', 
-									title : '周报题目' 
+									title : '周报题目',
+									align : 'center',
 								},
 																{
 									field : 'content', 
-									title : '周报内容' 
+									title : '周报内容',
+									align : 'center',
 								},
 																{
 									field : 'status', 
 									title : '完成状态',
+									align : 'center',
 									formatter:function(value,row,index){ 
 						            	var value="";
 						            	if(row.status=="0"){
@@ -111,11 +114,13 @@ function load() {
 								},
 																{
 									field : 'rcreateDate', 
-									title : '创建时间' 
+									title : '创建时间' ,
+									align : 'center',
 								},
 																{
 									field : 'rchgDate', 
-									title : '修改时间' 
+									title : '修改时间' ,
+									align : 'center',
 								},
 																{
 									title : '操作',
@@ -155,7 +160,7 @@ function edit(id) {
 		title : '编辑',
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
-		area : [ '950px', '650px' ],
+		area : [ '800px', '520px' ],
 		content : prefix + '/edit/' + id // iframe的url
 	});
 }

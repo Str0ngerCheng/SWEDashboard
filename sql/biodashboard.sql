@@ -1,34 +1,35 @@
-/*
- Navicat Premium Data Transfer
+-- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+--
+-- Host: localhost    Database: ifast
+-- ------------------------------------------------------
+-- Server version	8.0.19
 
- Source Server         : Local
- Source Server Type    : MySQL
- Source Server Version : 80018
- Source Host           : localhost:3306
- Source Schema         : ifast
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
- Target Server Type    : MySQL
- Target Server Version : 80018
- File Encoding         : 65001
+--
+-- Table structure for table `oa_notify`
+--
 
- Date: 23/12/2019 10:58:58
-*/
-use ifast;
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for oa_notify
--- ----------------------------
 DROP TABLE IF EXISTS `oa_notify`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oa_notify` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
   `type` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '类型',
   `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '标题',
   `content` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '内容',
   `files` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '附件',
   `status` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '状态',
-  `create_by` bigint(20) DEFAULT NULL COMMENT '创建者',
+  `create_by` bigint DEFAULT NULL COMMENT '创建者',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '更新者',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
@@ -37,29 +38,29 @@ CREATE TABLE `oa_notify` (
   PRIMARY KEY (`id`),
   KEY `oa_notify_del_flag` (`del_flag`)
 ) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='通知通告';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of oa_notify
--- ----------------------------
-BEGIN;
-INSERT INTO `oa_notify` VALUES (41, '3', '十九大召开了nian', '十九大召开了，竟然没邀请我', '', '1', 1, NULL, NULL, '2017-10-10 17:21:11', '', NULL);
-INSERT INTO `oa_notify` VALUES (42, '3', '苹果发布新手机了', '有全面屏的iphoneX', '', '1', 1, NULL, NULL, '2017-10-10 18:51:14', '', NULL);
-INSERT INTO `oa_notify` VALUES (43, '3', '十九大要消灭贫困人口', '我还只有两三年的活头了', '', '1', 1, NULL, NULL, '2017-10-11 09:56:35', '', NULL);
-INSERT INTO `oa_notify` VALUES (44, '3', '骑士又输了', '捉急', '', '1', 1, NULL, NULL, '2017-10-26 13:59:34', '', NULL);
-INSERT INTO `oa_notify` VALUES (52, '2', '1', '1', '1', '1', 1, NULL, NULL, '2018-01-05 14:05:47', '12', '0');
-INSERT INTO `oa_notify` VALUES (53, '1', '2', '2', '2', '1', 1, NULL, NULL, '2018-01-05 14:06:17', '2', '0');
-INSERT INTO `oa_notify` VALUES (54, '1', '3', '3', '3', NULL, 1, NULL, NULL, '2018-01-05 14:24:27', '3', '0');
-INSERT INTO `oa_notify` VALUES (55, '3', '明天周末', '明天放假', NULL, '1', 1, NULL, NULL, '2018-01-05 14:31:50', '222', '0');
-COMMIT;
+--
+-- Dumping data for table `oa_notify`
+--
 
--- ----------------------------
--- Table structure for oa_notify_record
--- ----------------------------
+LOCK TABLES `oa_notify` WRITE;
+/*!40000 ALTER TABLE `oa_notify` DISABLE KEYS */;
+INSERT INTO `oa_notify` VALUES (41,'3','十九大召开了nian','十九大召开了，竟然没邀请我','','1',1,NULL,NULL,'2017-10-10 17:21:11','',NULL),(42,'3','苹果发布新手机了','有全面屏的iphoneX','','1',1,NULL,NULL,'2017-10-10 18:51:14','',NULL),(43,'3','十九大要消灭贫困人口','我还只有两三年的活头了','','1',1,NULL,NULL,'2017-10-11 09:56:35','',NULL),(44,'3','骑士又输了','捉急','','1',1,NULL,NULL,'2017-10-26 13:59:34','',NULL),(52,'2','1','1','1','1',1,NULL,NULL,'2018-01-05 14:05:47','12','0'),(53,'1','2','2','2','1',1,NULL,NULL,'2018-01-05 14:06:17','2','0'),(54,'1','3','3','3',NULL,1,NULL,NULL,'2018-01-05 14:24:27','3','0'),(55,'3','明天周末','明天放假',NULL,'1',1,NULL,NULL,'2018-01-05 14:31:50','222','0');
+/*!40000 ALTER TABLE `oa_notify` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `oa_notify_record`
+--
+
 DROP TABLE IF EXISTS `oa_notify_record`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oa_notify_record` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `notify_id` bigint(20) DEFAULT NULL COMMENT '通知通告ID',
-  `user_id` bigint(20) DEFAULT NULL COMMENT '接受人',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `notify_id` bigint DEFAULT NULL COMMENT '通知通告ID',
+  `user_id` bigint DEFAULT NULL COMMENT '接受人',
   `is_read` tinyint(1) DEFAULT '0' COMMENT '阅读标记',
   `read_date` date DEFAULT NULL COMMENT '阅读时间',
   PRIMARY KEY (`id`),
@@ -67,188 +68,214 @@ CREATE TABLE `oa_notify_record` (
   KEY `oa_notify_record_user_id` (`user_id`),
   KEY `oa_notify_record_read_flag` (`is_read`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='通知通告发送记录';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of oa_notify_record
--- ----------------------------
-BEGIN;
-INSERT INTO `oa_notify_record` VALUES (18, 41, 1, 1, '2017-10-26');
-INSERT INTO `oa_notify_record` VALUES (19, 42, 1, 1, '2017-10-26');
-INSERT INTO `oa_notify_record` VALUES (20, 43, 136, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (21, 43, 133, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (22, 43, 130, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (23, 43, 1, 1, '2017-10-26');
-INSERT INTO `oa_notify_record` VALUES (24, 44, 1, 1, '2017-12-24');
-INSERT INTO `oa_notify_record` VALUES (25, 53, 134, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (26, 53, 1, 1, '2018-01-05');
-INSERT INTO `oa_notify_record` VALUES (27, 53, 2, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (28, 53, 36, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (29, 53, 123, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (30, 53, 124, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (31, 53, 131, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (32, 53, 135, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (33, 53, 130, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (34, 53, 136, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (35, 53, 132, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (36, 53, 11, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (37, 54, 134, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (38, 54, 1, 1, '2018-01-05');
-INSERT INTO `oa_notify_record` VALUES (39, 54, 2, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (40, 54, 36, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (41, 54, 123, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (42, 54, 124, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (43, 54, 131, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (44, 54, 135, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (45, 54, 130, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (46, 54, 136, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (47, 54, 132, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (48, 54, 11, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (49, 55, 134, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (50, 55, 1, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (51, 55, 2, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (52, 55, 36, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (53, 55, 123, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (54, 55, 124, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (55, 55, 131, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (56, 55, 135, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (57, 55, 130, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (58, 55, 136, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (59, 55, 132, 0, NULL);
-INSERT INTO `oa_notify_record` VALUES (60, 55, 11, 0, NULL);
-COMMIT;
+--
+-- Dumping data for table `oa_notify_record`
+--
 
--- ----------------------------
--- Table structure for placeholder
--- ----------------------------
+LOCK TABLES `oa_notify_record` WRITE;
+/*!40000 ALTER TABLE `oa_notify_record` DISABLE KEYS */;
+INSERT INTO `oa_notify_record` VALUES (18,41,1,1,'2017-10-26'),(19,42,1,1,'2017-10-26'),(20,43,136,0,NULL),(21,43,133,0,NULL),(22,43,130,0,NULL),(23,43,1,1,'2017-10-26'),(24,44,1,1,'2017-12-24'),(25,53,134,0,NULL),(26,53,1,1,'2018-01-05'),(27,53,2,0,NULL),(28,53,36,0,NULL),(29,53,123,0,NULL),(30,53,124,0,NULL),(31,53,131,0,NULL),(32,53,135,0,NULL),(33,53,130,0,NULL),(34,53,136,0,NULL),(35,53,132,0,NULL),(36,53,11,0,NULL),(37,54,134,0,NULL),(38,54,1,1,'2018-01-05'),(39,54,2,0,NULL),(40,54,36,0,NULL),(41,54,123,0,NULL),(42,54,124,0,NULL),(43,54,131,0,NULL),(44,54,135,0,NULL),(45,54,130,0,NULL),(46,54,136,0,NULL),(47,54,132,0,NULL),(48,54,11,0,NULL),(49,55,134,0,NULL),(50,55,1,0,NULL),(51,55,2,0,NULL),(52,55,36,0,NULL),(53,55,123,0,NULL),(54,55,124,0,NULL),(55,55,131,0,NULL),(56,55,135,0,NULL),(57,55,130,0,NULL),(58,55,136,0,NULL),(59,55,132,0,NULL),(60,55,11,0,NULL);
+/*!40000 ALTER TABLE `oa_notify_record` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `placeholder`
+--
+
 DROP TABLE IF EXISTS `placeholder`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `placeholder` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键 ID',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键 ID',
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `contributor` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of placeholder
--- ----------------------------
-BEGIN;
-INSERT INTO `placeholder` VALUES (1, '科研虐我千百遍，我待科研如初恋!', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (2, '人生苦短，除了 Python还该写点什么', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (3, '这位大爷，您又来了，一日不见如隔三秋', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (4, '衣带渐宽终不悔，沉迷科研不觉累', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (5, '转眼一想，也就是三五年，在人生中也只是一瞬', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (6, '不要嘲笑我，正在通往 Nature 的道路上猥琐发育ing', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (7, '那天阳光正好，微风和煦，一位白球鞋的男生笑容好灿烂', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (8, '春困秋乏夏打盹，睡不醒的冬三月', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (9, '实验室的网络贼鸡儿慢，各种 404，Google也打不开，我好难啊！', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (10, '炼丹炉好用论文好发毕业快，DeepLearning真TA喵香！', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (11, '要不是老板要看，我真的不想写这个XX周报', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (12, '摸鱼时风光无限，周报时如坐针毡', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (13, '不吃学习的苦，就要吃生活的苦', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (14, '求抱抱，求摸头，好运即将来临！', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (15, '2020 年即将来临，贫困科研民工听说要被消灭了，真的慌', 'Bot机器人');
-INSERT INTO `placeholder` VALUES (16, '实验结果又不太好，先投个 Bioinformatics 压（zhuang）压（bi）惊（gou）吧', 'Bot 机器人');
-INSERT INTO `placeholder` VALUES (17, '究天人之际，通古今之变，成一家之言', 'Bot 机器人');
-INSERT INTO `placeholder` VALUES (18, '虽然看了这么多文献，写了这么多批注，似乎仍然写不好这一篇论文', 'Bot 机器人');
-INSERT INTO `placeholder` VALUES (19, '老板很久没跟我聊过往了，看到TA心很慌，欲言却又止啊', 'Bot 机器人');
-INSERT INTO `placeholder` VALUES (20, '老板又找我聊读博的事情，我要不要上钩呢？', 'Bot 机器人');
-INSERT INTO `placeholder` VALUES (21, '这个月我要是再喝奶茶我就不是人了，我发 shi', 'Bot 机器人');
-INSERT INTO `placeholder` VALUES (22, '科研搞不动，头发还蹭蹭掉，真是惨淡的人生呢', 'Bot 机器人');
-INSERT INTO `placeholder` VALUES (23, '编辑什么时候给答复啊，真是等不及了', 'Bot 机器人');
-INSERT INTO `placeholder` VALUES (24, '锦鲤保佑我投稿百发百中吧', 'Bot 机器人');
-COMMIT;
+--
+-- Dumping data for table `placeholder`
+--
 
--- ----------------------------
--- Table structure for report
--- ----------------------------
+LOCK TABLES `placeholder` WRITE;
+/*!40000 ALTER TABLE `placeholder` DISABLE KEYS */;
+INSERT INTO `placeholder` VALUES (1,'科研虐我千百遍，我待科研如初恋!','Bot机器人'),(2,'人生苦短，除了 Python还该写点什么','Bot机器人'),(3,'这位大爷，您又来了，一日不见如隔三秋','Bot机器人'),(4,'衣带渐宽终不悔，沉迷科研不觉累','Bot机器人'),(5,'转眼一想，也就是三五年，在人生中也只是一瞬','Bot机器人'),(6,'不要嘲笑我，正在通往 Nature 的道路上猥琐发育ing','Bot机器人'),(7,'那天阳光正好，微风和煦，一位白球鞋的男生笑容好灿烂','Bot机器人'),(8,'春困秋乏夏打盹，睡不醒的冬三月','Bot机器人'),(9,'实验室的网络贼鸡儿慢，各种 404，Google也打不开，我好难啊！','Bot机器人'),(10,'炼丹炉好用论文好发毕业快，DeepLearning真TA喵香！','Bot机器人'),(11,'要不是老板要看，我真的不想写这个XX周报','Bot机器人'),(12,'摸鱼时风光无限，周报时如坐针毡','Bot机器人'),(13,'不吃学习的苦，就要吃生活的苦','Bot机器人'),(14,'求抱抱，求摸头，好运即将来临！','Bot机器人'),(15,'2020 年即将来临，贫困科研民工听说要被消灭了，真的慌','Bot机器人'),(16,'实验结果又不太好，先投个 Bioinformatics 压（zhuang）压（bi）惊（gou）吧','Bot 机器人'),(17,'究天人之际，通古今之变，成一家之言','Bot 机器人'),(18,'虽然看了这么多文献，写了这么多批注，似乎仍然写不好这一篇论文','Bot 机器人'),(19,'老板很久没跟我聊过往了，看到TA心很慌，欲言却又止啊','Bot 机器人'),(20,'老板又找我聊读博的事情，我要不要上钩呢？','Bot 机器人'),(21,'这个月我要是再喝奶茶我就不是人了，我发 shi','Bot 机器人'),(22,'科研搞不动，头发还蹭蹭掉，真是惨淡的人生呢','Bot 机器人'),(23,'编辑什么时候给答复啊，真是等不及了','Bot 机器人'),(24,'锦鲤保佑我投稿百发百中吧','Bot 机器人');
+/*!40000 ALTER TABLE `placeholder` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `report`
+--
+
 DROP TABLE IF EXISTS `report`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `report` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `author_id` bigint(20) NOT NULL COMMENT '作者ID',
-  `author_name` varchar(100) DEFAULT NULL COMMENT '作者姓名',
-  `parent_dept_id` bigint(20) NOT NULL COMMENT '上级部门 ID',
-  `dept_id` bigint(20) NOT NULL COMMENT '部门ID',
-  `dept_name` varchar(100) DEFAULT NULL COMMENT '部门名称',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `author_id` bigint NOT NULL COMMENT '作者ID',
+  `author_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '作者姓名',
+  `parent_dept_id` bigint NOT NULL COMMENT '上级部门 ID',
+  `dept_id` bigint NOT NULL COMMENT '部门ID',
+  `dept_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '部门名称',
   `r_from_date` datetime NOT NULL COMMENT '起始时间',
   `r_to_date` datetime NOT NULL COMMENT '终止时间',
   `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '周报题目',
-  `content` text COMMENT '周报内容',
-  `status` tinyint(255) NOT NULL DEFAULT '0' COMMENT '状态0：系统生成，1：人工修改',
+  `content_id` bigint DEFAULT NULL,
   `r_create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `r_chg_date` datetime DEFAULT NULL COMMENT '修改时间',
+  `status_mod` tinyint NOT NULL DEFAULT '0' COMMENT '是否修改周报草稿，修改后草稿可以保存',
+  `status_m_sub` tinyint NOT NULL DEFAULT '0' COMMENT '本人是否提交周报，提交后周报无法修改',
+  `status_l_sub` tinyint NOT NULL DEFAULT '0' COMMENT '组长是否提交周报，提交后周报对所有人可见',
   PRIMARY KEY (`id`),
   KEY `idx_author_id` (`author_id`),
-  KEY `idx_title` (`title`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='周报';
+  KEY `idx_title` (`title`) USING BTREE /*!80000 INVISIBLE */,
+  KEY `idx_content_id` (`content_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='周报';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for report_summary
--- ----------------------------
+--
+-- Dumping data for table `report`
+--
+
+LOCK TABLES `report` WRITE;
+/*!40000 ALTER TABLE `report` DISABLE KEYS */;
+INSERT INTO `report` VALUES (93,153,'程博文',0,24,'张翔专题','2020-05-11 00:00:00','2020-05-17 23:59:59','2020/05/11-2020/05/17-张翔专题-程博文 周报',NULL,'2020-05-13 23:30:00',NULL,0,0,0);
+/*!40000 ALTER TABLE `report` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `report_content`
+--
+
+DROP TABLE IF EXISTS `report_content`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `report_content` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `last_plan` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '上周计划',
+  `last_summary` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '上周总结',
+  `plan` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '本周计划',
+  `problem` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '问题反馈',
+  `other` varchar(2000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '其他情况',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='周报内容';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `report_content`
+--
+
+LOCK TABLES `report_content` WRITE;
+/*!40000 ALTER TABLE `report_content` DISABLE KEYS */;
+/*!40000 ALTER TABLE `report_content` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `report_summary`
+--
+
 DROP TABLE IF EXISTS `report_summary`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `report_summary` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `dept_id` bigint(20) NOT NULL COMMENT '部门ID',
-  `dept_name` varchar(100) DEFAULT NULL COMMENT '部门名称',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `dept_id` bigint NOT NULL COMMENT '部门ID',
+  `dept_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '部门名称',
   `r_from_date` datetime NOT NULL COMMENT '起始时间',
   `r_to_date` datetime NOT NULL COMMENT '终止时间',
-  `title` varchar(100) DEFAULT NULL COMMENT '周报题目',
-  `count` bigint(20) NOT NULL DEFAULT '0' COMMENT '浏览次数',
+  `title` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '周报题目',
+  `count` bigint NOT NULL DEFAULT '0' COMMENT '浏览次数',
   `r_create_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`),
   KEY `idx_author_id` (`dept_id`),
   KEY `idx_title` (`title`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='周报汇总';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='周报汇总';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `report_summary`
+--
 
--- ----------------------------
--- Table structure for sys_config
--- ----------------------------
+LOCK TABLES `report_summary` WRITE;
+/*!40000 ALTER TABLE `report_summary` DISABLE KEYS */;
+INSERT INTO `report_summary` VALUES (28,24,'张翔专题','2020-05-11 00:00:00','2020-05-17 23:59:59','2020/05/11-2020/05/17-张翔专题 周报',41,'2020-05-12 15:42:00');
+/*!40000 ALTER TABLE `report_summary` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_config`
+--
+
 DROP TABLE IF EXISTS `sys_config`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_config` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
   `k` varchar(100) DEFAULT NULL COMMENT '键',
   `v` varchar(1000) DEFAULT NULL COMMENT '值',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of sys_config
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_config` VALUES (2, 'oss_qiniu', '{\n\"AccessKey\" : \"8-HMj9EgGNIP-xuOCpSzTn-OMyGOFtR3TxLdn4Uu\",\n\"SecretKey\" : \"SjpGg3V6PsMdJgn42PeEd5Ik-6aNyuwdqV5CPM6A\",\n\"bucket\" : \"ifast\",\n\"AccessUrl\" : \"http://p6r7ke2jc.bkt.clouddn.com/\"\n}', '七牛对象存储配置', '2018-04-06 14:31:26');
-COMMIT;
+--
+-- Dumping data for table `sys_config`
+--
 
--- ----------------------------
--- Table structure for sys_dept
--- ----------------------------
+LOCK TABLES `sys_config` WRITE;
+/*!40000 ALTER TABLE `sys_config` DISABLE KEYS */;
+INSERT INTO `sys_config` VALUES (2,'oss_qiniu','{\n\"AccessKey\" : \"8-HMj9EgGNIP-xuOCpSzTn-OMyGOFtR3TxLdn4Uu\",\n\"SecretKey\" : \"SjpGg3V6PsMdJgn42PeEd5Ik-6aNyuwdqV5CPM6A\",\n\"bucket\" : \"ifast\",\n\"AccessUrl\" : \"http://p6r7ke2jc.bkt.clouddn.com/\"\n}','七牛对象存储配置','2018-04-06 14:31:26');
+/*!40000 ALTER TABLE `sys_config` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_dept`
+--
+
 DROP TABLE IF EXISTS `sys_dept`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_dept` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `parent_id` bigint(20) DEFAULT NULL COMMENT '上级部门ID，一级部门为0',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `parent_id` bigint DEFAULT NULL COMMENT '上级部门ID，一级部门为0',
   `name` varchar(50) DEFAULT NULL COMMENT '部门名称',
-  `order_num` int(11) DEFAULT NULL COMMENT '排序',
-  `del_flag` tinyint(4) DEFAULT '0' COMMENT '是否删除  -1：已删除  0：正常',
+  `order_num` int DEFAULT NULL COMMENT '排序',
+  `del_flag` tinyint DEFAULT '0' COMMENT '是否删除  -1：已删除  0：正常',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='部门管理';
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='部门管理';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `sys_dept`
+--
 
--- ----------------------------
--- Table structure for sys_dict
--- ----------------------------
+LOCK TABLES `sys_dept` WRITE;
+/*!40000 ALTER TABLE `sys_dept` DISABLE KEYS */;
+INSERT INTO `sys_dept` VALUES (24,0,'张翔专题',1,1),(25,0,'杜文英专题',2,1),(26,0,'陈泽强专题',3,1);
+/*!40000 ALTER TABLE `sys_dept` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_dict`
+--
+
 DROP TABLE IF EXISTS `sys_dict`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_dict` (
-  `id` bigint(64) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '标签名',
   `value` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '数据值',
   `type` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '类型',
   `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '描述',
   `sort` decimal(10,0) DEFAULT NULL COMMENT '排序（升序）',
-  `parent_id` bigint(64) DEFAULT '0' COMMENT '父级编号',
-  `create_by` int(64) DEFAULT NULL COMMENT '创建者',
+  `parent_id` bigint DEFAULT '0' COMMENT '父级编号',
+  `create_by` int DEFAULT NULL COMMENT '创建者',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` bigint(64) DEFAULT NULL COMMENT '更新者',
+  `update_by` bigint DEFAULT NULL COMMENT '更新者',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '备注信息',
   `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT '0' COMMENT '删除标记',
@@ -257,359 +284,170 @@ CREATE TABLE `sys_dict` (
   KEY `sys_dict_label` (`name`),
   KEY `sys_dict_del_flag` (`del_flag`)
 ) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='字典表';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of sys_dict
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_dict` VALUES (1, '正常', '0', 'del_flag', '删除标记', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (3, '显示', '1', 'show_hide', '显示/隐藏', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (4, '隐藏', '0', 'show_hide', '显示/隐藏', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (5, '是', '1', 'yes_no', '是/否', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (6, '否', '0', 'yes_no', '是/否', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (7, '红色', 'red', 'color', '颜色值', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (8, '绿色', 'green', 'color', '颜色值', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (9, '蓝色', 'blue', 'color', '颜色值', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (10, '黄色', 'yellow', 'color', '颜色值', 40, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (11, '橙色', 'orange', 'color', '颜色值', 50, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (12, '默认主题', 'default', 'theme', '主题方案', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (13, '天蓝主题', 'cerulean', 'theme', '主题方案', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (14, '橙色主题', 'readable', 'theme', '主题方案', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (15, '红色主题', 'united', 'theme', '主题方案', 40, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (16, 'Flat主题', 'flat', 'theme', '主题方案', 60, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (17, '国家', '1', 'sys_area_type', '区域类型', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (18, '省份、直辖市', '2', 'sys_area_type', '区域类型', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (19, '地市', '3', 'sys_area_type', '区域类型', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (20, '区县', '4', 'sys_area_type', '区域类型', 40, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (21, '公司', '1', 'sys_office_type', '机构类型', 60, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (22, '部门', '2', 'sys_office_type', '机构类型', 70, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (23, '小组', '3', 'sys_office_type', '机构类型', 80, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (24, '其它', '4', 'sys_office_type', '机构类型', 90, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (25, '综合部', '1', 'sys_office_common', '快捷通用部门', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (26, '开发部', '2', 'sys_office_common', '快捷通用部门', 40, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (27, '人力部', '3', 'sys_office_common', '快捷通用部门', 50, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (28, '一级', '1', 'sys_office_grade', '机构等级', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (29, '二级', '2', 'sys_office_grade', '机构等级', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (30, '三级', '3', 'sys_office_grade', '机构等级', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (31, '四级', '4', 'sys_office_grade', '机构等级', 40, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (32, '所有数据', '1', 'sys_data_scope', '数据范围', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (33, '所在公司及以下数据', '2', 'sys_data_scope', '数据范围', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (34, '所在公司数据', '3', 'sys_data_scope', '数据范围', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (35, '所在部门及以下数据', '4', 'sys_data_scope', '数据范围', 40, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (36, '所在部门数据', '5', 'sys_data_scope', '数据范围', 50, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (37, '仅本人数据', '8', 'sys_data_scope', '数据范围', 90, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (38, '按明细设置', '9', 'sys_data_scope', '数据范围', 100, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (39, '系统管理', '1', 'sys_user_type', '用户类型', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (40, '部门经理', '2', 'sys_user_type', '用户类型', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (41, '普通用户', '3', 'sys_user_type', '用户类型', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (42, '基础主题', 'basic', 'cms_theme', '站点主题', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (43, '蓝色主题', 'blue', 'cms_theme', '站点主题', 20, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (44, '红色主题', 'red', 'cms_theme', '站点主题', 30, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (45, '文章模型', 'article', 'cms_module', '栏目模型', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (46, '图片模型', 'picture', 'cms_module', '栏目模型', 20, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (47, '下载模型', 'download', 'cms_module', '栏目模型', 30, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (48, '链接模型', 'link', 'cms_module', '栏目模型', 40, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (49, '专题模型', 'special', 'cms_module', '栏目模型', 50, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (50, '默认展现方式', '0', 'cms_show_modes', '展现方式', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (51, '首栏目内容列表', '1', 'cms_show_modes', '展现方式', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (52, '栏目第一条内容', '2', 'cms_show_modes', '展现方式', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (53, '发布', '0', 'cms_del_flag', '内容状态', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (54, '删除', '1', 'cms_del_flag', '内容状态', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (55, '审核', '2', 'cms_del_flag', '内容状态', 15, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (56, '首页焦点图', '1', 'cms_posid', '推荐位', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (57, '栏目页文章推荐', '2', 'cms_posid', '推荐位', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (58, '咨询', '1', 'cms_guestbook', '留言板分类', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (59, '建议', '2', 'cms_guestbook', '留言板分类', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (60, '投诉', '3', 'cms_guestbook', '留言板分类', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (61, '其它', '4', 'cms_guestbook', '留言板分类', 40, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (62, '公休', '1', 'oa_leave_type', '请假类型', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (63, '病假', '2', 'oa_leave_type', '请假类型', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (64, '事假', '3', 'oa_leave_type', '请假类型', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (65, '调休', '4', 'oa_leave_type', '请假类型', 40, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (66, '婚假', '5', 'oa_leave_type', '请假类型', 60, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (67, '接入日志', '1', 'sys_log_type', '日志类型', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (68, '异常日志', '2', 'sys_log_type', '日志类型', 40, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (69, '请假流程', 'leave', 'act_type', '流程类型', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (70, '审批测试流程', 'test_audit', 'act_type', '流程类型', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (71, '分类1', '1', 'act_category', '流程分类', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (72, '分类2', '2', 'act_category', '流程分类', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (73, '增删改查', 'crud', 'gen_category', '代码生成分类', 10, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (74, '增删改查（包含从表）', 'crud_many', 'gen_category', '代码生成分类', 20, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (75, '树结构', 'tree', 'gen_category', '代码生成分类', 30, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (76, '=', '=', 'gen_query_type', '查询方式', 10, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (77, '!=', '!=', 'gen_query_type', '查询方式', 20, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (78, '&gt;', '&gt;', 'gen_query_type', '查询方式', 30, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (79, '&lt;', '&lt;', 'gen_query_type', '查询方式', 40, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (80, 'Between', 'between', 'gen_query_type', '查询方式', 50, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (81, 'Like', 'like', 'gen_query_type', '查询方式', 60, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (82, 'Left Like', 'left_like', 'gen_query_type', '查询方式', 70, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (83, 'Right Like', 'right_like', 'gen_query_type', '查询方式', 80, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (84, '文本框', 'input', 'gen_show_type', '字段生成方案', 10, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (85, '文本域', 'textarea', 'gen_show_type', '字段生成方案', 20, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (86, '下拉框', 'select', 'gen_show_type', '字段生成方案', 30, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (87, '复选框', 'checkbox', 'gen_show_type', '字段生成方案', 40, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (88, '单选框', 'radiobox', 'gen_show_type', '字段生成方案', 50, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (89, '日期选择', 'dateselect', 'gen_show_type', '字段生成方案', 60, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (90, '人员选择', 'userselect', 'gen_show_type', '字段生成方案', 70, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (91, '部门选择', 'officeselect', 'gen_show_type', '字段生成方案', 80, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (92, '区域选择', 'areaselect', 'gen_show_type', '字段生成方案', 90, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (93, 'String', 'String', 'gen_java_type', 'Java类型', 10, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (94, 'Long', 'Long', 'gen_java_type', 'Java类型', 20, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (95, '仅持久层', 'dao', 'gen_category', '代码生成分类\0\0', 40, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (96, '男', '1', 'sex', '性别', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (97, '女', '2', 'sex', '性别', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (98, 'Integer', 'Integer', 'gen_java_type', 'Java类型', 30, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (99, 'Double', 'Double', 'gen_java_type', 'Java类型', 40, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (100, 'Date', 'java.util.Date', 'gen_java_type', 'Java类型', 50, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (104, 'Custom', 'Custom', 'gen_java_type', 'Java类型', 90, 0, 1, NULL, 1, NULL, NULL, '1');
-INSERT INTO `sys_dict` VALUES (105, '会议通告', '1', 'oa_notify_type', '通知通告类型', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (106, '奖惩通告', '2', 'oa_notify_type', '通知通告类型', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (107, '活动通告', '3', 'oa_notify_type', '通知通告类型', 30, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (108, '草稿', '0', 'oa_notify_status', '通知通告状态', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (109, '发布', '1', 'oa_notify_status', '通知通告状态', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (110, '未读', '0', 'oa_notify_read', '通知通告状态', 10, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (111, '已读', '1', 'oa_notify_read', '通知通告状态', 20, 0, 1, NULL, 1, NULL, NULL, '0');
-INSERT INTO `sys_dict` VALUES (112, '草稿', '0', 'oa_notify_status', '通知通告状态', 10, 0, 1, NULL, 1, NULL, '', '0');
-INSERT INTO `sys_dict` VALUES (113, '删除', '0', 'del_flag', '删除标记', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
-INSERT INTO `sys_dict` VALUES (118, '关于', 'about', 'blog_type', '博客类型', NULL, NULL, NULL, NULL, NULL, NULL, '全url是:/blog/open/page/about', '');
-INSERT INTO `sys_dict` VALUES (119, '交流', 'communication', 'blog_type', '博客类型', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
-INSERT INTO `sys_dict` VALUES (120, '文章', 'article', 'blog_type', '博客类型', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
-COMMIT;
+--
+-- Dumping data for table `sys_dict`
+--
 
--- ----------------------------
--- Table structure for sys_file
--- ----------------------------
+LOCK TABLES `sys_dict` WRITE;
+/*!40000 ALTER TABLE `sys_dict` DISABLE KEYS */;
+INSERT INTO `sys_dict` VALUES (1,'正常','0','del_flag','删除标记',10,0,1,NULL,1,NULL,NULL,'0'),(3,'显示','1','show_hide','显示/隐藏',10,0,1,NULL,1,NULL,NULL,'0'),(4,'隐藏','0','show_hide','显示/隐藏',20,0,1,NULL,1,NULL,NULL,'0'),(5,'是','1','yes_no','是/否',10,0,1,NULL,1,NULL,NULL,'0'),(6,'否','0','yes_no','是/否',20,0,1,NULL,1,NULL,NULL,'0'),(7,'红色','red','color','颜色值',10,0,1,NULL,1,NULL,NULL,'0'),(8,'绿色','green','color','颜色值',20,0,1,NULL,1,NULL,NULL,'0'),(9,'蓝色','blue','color','颜色值',30,0,1,NULL,1,NULL,NULL,'0'),(10,'黄色','yellow','color','颜色值',40,0,1,NULL,1,NULL,NULL,'0'),(11,'橙色','orange','color','颜色值',50,0,1,NULL,1,NULL,NULL,'0'),(12,'默认主题','default','theme','主题方案',10,0,1,NULL,1,NULL,NULL,'0'),(13,'天蓝主题','cerulean','theme','主题方案',20,0,1,NULL,1,NULL,NULL,'0'),(14,'橙色主题','readable','theme','主题方案',30,0,1,NULL,1,NULL,NULL,'0'),(15,'红色主题','united','theme','主题方案',40,0,1,NULL,1,NULL,NULL,'0'),(16,'Flat主题','flat','theme','主题方案',60,0,1,NULL,1,NULL,NULL,'0'),(17,'国家','1','sys_area_type','区域类型',10,0,1,NULL,1,NULL,NULL,'0'),(18,'省份、直辖市','2','sys_area_type','区域类型',20,0,1,NULL,1,NULL,NULL,'0'),(19,'地市','3','sys_area_type','区域类型',30,0,1,NULL,1,NULL,NULL,'0'),(20,'区县','4','sys_area_type','区域类型',40,0,1,NULL,1,NULL,NULL,'0'),(21,'公司','1','sys_office_type','机构类型',60,0,1,NULL,1,NULL,NULL,'0'),(22,'部门','2','sys_office_type','机构类型',70,0,1,NULL,1,NULL,NULL,'0'),(23,'小组','3','sys_office_type','机构类型',80,0,1,NULL,1,NULL,NULL,'0'),(24,'其它','4','sys_office_type','机构类型',90,0,1,NULL,1,NULL,NULL,'0'),(25,'综合部','1','sys_office_common','快捷通用部门',30,0,1,NULL,1,NULL,NULL,'0'),(26,'开发部','2','sys_office_common','快捷通用部门',40,0,1,NULL,1,NULL,NULL,'0'),(27,'人力部','3','sys_office_common','快捷通用部门',50,0,1,NULL,1,NULL,NULL,'0'),(28,'一级','1','sys_office_grade','机构等级',10,0,1,NULL,1,NULL,NULL,'0'),(29,'二级','2','sys_office_grade','机构等级',20,0,1,NULL,1,NULL,NULL,'0'),(30,'三级','3','sys_office_grade','机构等级',30,0,1,NULL,1,NULL,NULL,'0'),(31,'四级','4','sys_office_grade','机构等级',40,0,1,NULL,1,NULL,NULL,'0'),(32,'所有数据','1','sys_data_scope','数据范围',10,0,1,NULL,1,NULL,NULL,'0'),(33,'所在公司及以下数据','2','sys_data_scope','数据范围',20,0,1,NULL,1,NULL,NULL,'0'),(34,'所在公司数据','3','sys_data_scope','数据范围',30,0,1,NULL,1,NULL,NULL,'0'),(35,'所在部门及以下数据','4','sys_data_scope','数据范围',40,0,1,NULL,1,NULL,NULL,'0'),(36,'所在部门数据','5','sys_data_scope','数据范围',50,0,1,NULL,1,NULL,NULL,'0'),(37,'仅本人数据','8','sys_data_scope','数据范围',90,0,1,NULL,1,NULL,NULL,'0'),(38,'按明细设置','9','sys_data_scope','数据范围',100,0,1,NULL,1,NULL,NULL,'0'),(39,'系统管理','1','sys_user_type','用户类型',10,0,1,NULL,1,NULL,NULL,'0'),(40,'部门经理','2','sys_user_type','用户类型',20,0,1,NULL,1,NULL,NULL,'0'),(41,'普通用户','3','sys_user_type','用户类型',30,0,1,NULL,1,NULL,NULL,'0'),(42,'基础主题','basic','cms_theme','站点主题',10,0,1,NULL,1,NULL,NULL,'0'),(43,'蓝色主题','blue','cms_theme','站点主题',20,0,1,NULL,1,NULL,NULL,'1'),(44,'红色主题','red','cms_theme','站点主题',30,0,1,NULL,1,NULL,NULL,'1'),(45,'文章模型','article','cms_module','栏目模型',10,0,1,NULL,1,NULL,NULL,'0'),(46,'图片模型','picture','cms_module','栏目模型',20,0,1,NULL,1,NULL,NULL,'1'),(47,'下载模型','download','cms_module','栏目模型',30,0,1,NULL,1,NULL,NULL,'1'),(48,'链接模型','link','cms_module','栏目模型',40,0,1,NULL,1,NULL,NULL,'0'),(49,'专题模型','special','cms_module','栏目模型',50,0,1,NULL,1,NULL,NULL,'1'),(50,'默认展现方式','0','cms_show_modes','展现方式',10,0,1,NULL,1,NULL,NULL,'0'),(51,'首栏目内容列表','1','cms_show_modes','展现方式',20,0,1,NULL,1,NULL,NULL,'0'),(52,'栏目第一条内容','2','cms_show_modes','展现方式',30,0,1,NULL,1,NULL,NULL,'0'),(53,'发布','0','cms_del_flag','内容状态',10,0,1,NULL,1,NULL,NULL,'0'),(54,'删除','1','cms_del_flag','内容状态',20,0,1,NULL,1,NULL,NULL,'0'),(55,'审核','2','cms_del_flag','内容状态',15,0,1,NULL,1,NULL,NULL,'0'),(56,'首页焦点图','1','cms_posid','推荐位',10,0,1,NULL,1,NULL,NULL,'0'),(57,'栏目页文章推荐','2','cms_posid','推荐位',20,0,1,NULL,1,NULL,NULL,'0'),(58,'咨询','1','cms_guestbook','留言板分类',10,0,1,NULL,1,NULL,NULL,'0'),(59,'建议','2','cms_guestbook','留言板分类',20,0,1,NULL,1,NULL,NULL,'0'),(60,'投诉','3','cms_guestbook','留言板分类',30,0,1,NULL,1,NULL,NULL,'0'),(61,'其它','4','cms_guestbook','留言板分类',40,0,1,NULL,1,NULL,NULL,'0'),(62,'公休','1','oa_leave_type','请假类型',10,0,1,NULL,1,NULL,NULL,'0'),(63,'病假','2','oa_leave_type','请假类型',20,0,1,NULL,1,NULL,NULL,'0'),(64,'事假','3','oa_leave_type','请假类型',30,0,1,NULL,1,NULL,NULL,'0'),(65,'调休','4','oa_leave_type','请假类型',40,0,1,NULL,1,NULL,NULL,'0'),(66,'婚假','5','oa_leave_type','请假类型',60,0,1,NULL,1,NULL,NULL,'0'),(67,'接入日志','1','sys_log_type','日志类型',30,0,1,NULL,1,NULL,NULL,'0'),(68,'异常日志','2','sys_log_type','日志类型',40,0,1,NULL,1,NULL,NULL,'0'),(69,'请假流程','leave','act_type','流程类型',10,0,1,NULL,1,NULL,NULL,'0'),(70,'审批测试流程','test_audit','act_type','流程类型',20,0,1,NULL,1,NULL,NULL,'0'),(71,'分类1','1','act_category','流程分类',10,0,1,NULL,1,NULL,NULL,'0'),(72,'分类2','2','act_category','流程分类',20,0,1,NULL,1,NULL,NULL,'0'),(73,'增删改查','crud','gen_category','代码生成分类',10,0,1,NULL,1,NULL,NULL,'1'),(74,'增删改查（包含从表）','crud_many','gen_category','代码生成分类',20,0,1,NULL,1,NULL,NULL,'1'),(75,'树结构','tree','gen_category','代码生成分类',30,0,1,NULL,1,NULL,NULL,'1'),(76,'=','=','gen_query_type','查询方式',10,0,1,NULL,1,NULL,NULL,'1'),(77,'!=','!=','gen_query_type','查询方式',20,0,1,NULL,1,NULL,NULL,'1'),(78,'&gt;','&gt;','gen_query_type','查询方式',30,0,1,NULL,1,NULL,NULL,'1'),(79,'&lt;','&lt;','gen_query_type','查询方式',40,0,1,NULL,1,NULL,NULL,'1'),(80,'Between','between','gen_query_type','查询方式',50,0,1,NULL,1,NULL,NULL,'1'),(81,'Like','like','gen_query_type','查询方式',60,0,1,NULL,1,NULL,NULL,'1'),(82,'Left Like','left_like','gen_query_type','查询方式',70,0,1,NULL,1,NULL,NULL,'1'),(83,'Right Like','right_like','gen_query_type','查询方式',80,0,1,NULL,1,NULL,NULL,'1'),(84,'文本框','input','gen_show_type','字段生成方案',10,0,1,NULL,1,NULL,NULL,'1'),(85,'文本域','textarea','gen_show_type','字段生成方案',20,0,1,NULL,1,NULL,NULL,'1'),(86,'下拉框','select','gen_show_type','字段生成方案',30,0,1,NULL,1,NULL,NULL,'1'),(87,'复选框','checkbox','gen_show_type','字段生成方案',40,0,1,NULL,1,NULL,NULL,'1'),(88,'单选框','radiobox','gen_show_type','字段生成方案',50,0,1,NULL,1,NULL,NULL,'1'),(89,'日期选择','dateselect','gen_show_type','字段生成方案',60,0,1,NULL,1,NULL,NULL,'1'),(90,'人员选择','userselect','gen_show_type','字段生成方案',70,0,1,NULL,1,NULL,NULL,'1'),(91,'部门选择','officeselect','gen_show_type','字段生成方案',80,0,1,NULL,1,NULL,NULL,'1'),(92,'区域选择','areaselect','gen_show_type','字段生成方案',90,0,1,NULL,1,NULL,NULL,'1'),(93,'String','String','gen_java_type','Java类型',10,0,1,NULL,1,NULL,NULL,'1'),(94,'Long','Long','gen_java_type','Java类型',20,0,1,NULL,1,NULL,NULL,'1'),(95,'仅持久层','dao','gen_category','代码生成分类\0\0',40,0,1,NULL,1,NULL,NULL,'1'),(96,'男','1','sex','性别',10,0,1,NULL,1,NULL,NULL,'0'),(97,'女','2','sex','性别',20,0,1,NULL,1,NULL,NULL,'0'),(98,'Integer','Integer','gen_java_type','Java类型',30,0,1,NULL,1,NULL,NULL,'1'),(99,'Double','Double','gen_java_type','Java类型',40,0,1,NULL,1,NULL,NULL,'1'),(100,'Date','java.util.Date','gen_java_type','Java类型',50,0,1,NULL,1,NULL,NULL,'1'),(104,'Custom','Custom','gen_java_type','Java类型',90,0,1,NULL,1,NULL,NULL,'1'),(105,'会议通告','1','oa_notify_type','通知通告类型',10,0,1,NULL,1,NULL,NULL,'0'),(106,'奖惩通告','2','oa_notify_type','通知通告类型',20,0,1,NULL,1,NULL,NULL,'0'),(107,'活动通告','3','oa_notify_type','通知通告类型',30,0,1,NULL,1,NULL,NULL,'0'),(108,'草稿','0','oa_notify_status','通知通告状态',10,0,1,NULL,1,NULL,NULL,'0'),(109,'发布','1','oa_notify_status','通知通告状态',20,0,1,NULL,1,NULL,NULL,'0'),(110,'未读','0','oa_notify_read','通知通告状态',10,0,1,NULL,1,NULL,NULL,'0'),(111,'已读','1','oa_notify_read','通知通告状态',20,0,1,NULL,1,NULL,NULL,'0'),(112,'草稿','0','oa_notify_status','通知通告状态',10,0,1,NULL,1,NULL,'','0'),(113,'删除','0','del_flag','删除标记',NULL,NULL,NULL,NULL,NULL,NULL,'',''),(118,'关于','about','blog_type','博客类型',NULL,NULL,NULL,NULL,NULL,NULL,'全url是:/blog/open/page/about',''),(119,'交流','communication','blog_type','博客类型',NULL,NULL,NULL,NULL,NULL,NULL,'',''),(120,'文章','article','blog_type','博客类型',NULL,NULL,NULL,NULL,NULL,NULL,'','');
+/*!40000 ALTER TABLE `sys_dict` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_file`
+--
+
 DROP TABLE IF EXISTS `sys_file`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_file` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `type` int(11) DEFAULT NULL COMMENT '文件类型',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `type` int DEFAULT NULL COMMENT '文件类型',
   `url` varchar(200) DEFAULT NULL COMMENT 'URL地址',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8 COMMENT='文件上传';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of sys_file
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_file` VALUES (140, 0, 'http://p6r7ke2jc.bkt.clouddn.com/ifast/20180406/cat003.jpeg', '2018-04-06 17:58:03');
-INSERT INTO `sys_file` VALUES (141, 0, 'http://p6r7ke2jc.bkt.clouddn.com/ifast/20180406/cat002-1523009188140.jpeg', '2018-04-06 18:06:28');
-INSERT INTO `sys_file` VALUES (148, 0, 'http://p6r7ke2jc.bkt.clouddn.com/ifast/20180406/cd09920f-7d51-4c60-a3a1-c36c83b3dfb4-1523028484072.png', '2018-04-06 23:28:05');
-COMMIT;
+--
+-- Dumping data for table `sys_file`
+--
 
--- ----------------------------
--- Table structure for sys_log
--- ----------------------------
+LOCK TABLES `sys_file` WRITE;
+/*!40000 ALTER TABLE `sys_file` DISABLE KEYS */;
+INSERT INTO `sys_file` VALUES (140,0,'http://p6r7ke2jc.bkt.clouddn.com/ifast/20180406/cat003.jpeg','2018-04-06 17:58:03'),(141,0,'http://p6r7ke2jc.bkt.clouddn.com/ifast/20180406/cat002-1523009188140.jpeg','2018-04-06 18:06:28'),(148,0,'http://p6r7ke2jc.bkt.clouddn.com/ifast/20180406/cd09920f-7d51-4c60-a3a1-c36c83b3dfb4-1523028484072.png','2018-04-06 23:28:05');
+/*!40000 ALTER TABLE `sys_file` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_log`
+--
+
 DROP TABLE IF EXISTS `sys_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` bigint DEFAULT NULL COMMENT '用户id',
   `username` varchar(50) DEFAULT NULL COMMENT '用户名',
   `operation` varchar(50) DEFAULT NULL COMMENT '用户操作',
-  `time` int(11) DEFAULT NULL COMMENT '响应时间',
+  `time` int DEFAULT NULL COMMENT '响应时间',
   `method` varchar(200) DEFAULT NULL COMMENT '请求方法',
   `params` varchar(5000) DEFAULT NULL COMMENT '请求参数',
   `ip` varchar(64) DEFAULT NULL COMMENT 'IP地址',
   `gmt_create` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1248 DEFAULT CHARSET=utf8 COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=1899 DEFAULT CHARSET=utf8 COMMENT='系统日志';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for sys_menu
--- ----------------------------
+--
+-- Dumping data for table `sys_log`
+--
+
+LOCK TABLES `sys_log` WRITE;
+/*!40000 ALTER TABLE `sys_log` DISABLE KEYS */;
+INSERT INTO `sys_log` VALUES (1249,1,'admin','请求访问主页',209,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-11 20:54:30'),(1250,1,'admin','登录',9,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-11 20:56:27'),(1251,1,'admin','请求访问主页',23,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-11 20:56:27'),(1252,1,'admin','更新用户',167,'com.bio.sys.controller.UserController.updatePeronal()',NULL,'127.0.0.1','2020-05-11 21:11:52'),(1253,1,'admin','登录',27,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 13:55:51'),(1254,1,'admin','请求访问主页',189,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 13:55:53'),(1255,152,'cbw','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:03:14'),(1256,152,'cbw','请求访问主页',17,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:03:14'),(1257,152,'cbw','请求访问主页',13,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:05:27'),(1258,152,'cbw','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:08:34'),(1259,1,'admin','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:08:44'),(1260,1,'admin','请求访问主页',15,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:08:44'),(1261,1,'admin','添加用户',4,'com.bio.sys.controller.UserController.add()',NULL,'127.0.0.1','2020-05-12 14:10:36'),(1262,1,'admin','保存用户',313,'com.bio.sys.controller.UserController.save()',NULL,'127.0.0.1','2020-05-12 14:11:05'),(1263,1,'admin','删除用户',387,'com.bio.sys.controller.UserController.remove()',NULL,'127.0.0.1','2020-05-12 14:11:15'),(1264,1,'admin','删除用户',390,'com.bio.sys.controller.UserController.remove()',NULL,'127.0.0.1','2020-05-12 14:11:15'),(1265,1,'admin','删除用户',390,'com.bio.sys.controller.UserController.remove()',NULL,'127.0.0.1','2020-05-12 14:11:15'),(1266,1,'admin','删除用户',391,'com.bio.sys.controller.UserController.remove()',NULL,'127.0.0.1','2020-05-12 14:11:15'),(1267,1,'admin','编辑角色',8,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-12 14:11:59'),(1268,-1,'获取用户信息为空','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:13:07'),(1269,-1,'获取用户信息为空','登录',2,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:13:11'),(1270,1,'admin','登录',2,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:13:25'),(1271,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:13:25'),(1272,1,'admin','编辑用户',15,'com.bio.sys.controller.UserController.edit()',NULL,'127.0.0.1','2020-05-12 14:13:32'),(1273,-1,'获取用户信息为空','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:14:05'),(1274,-1,'获取用户信息为空','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:14:06'),(1275,153,'4mE','登录',2,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:14:13'),(1276,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:14:13'),(1277,153,'4mE','登录',0,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:15:02'),(1278,153,'4mE','登录',0,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:15:02'),(1279,153,'4mE','登录',56,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:15:09'),(1280,153,'4mE','登录',2,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:15:19'),(1281,153,'4mE','请求访问主页',354,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:15:19'),(1282,1,'admin','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:17:46'),(1283,1,'admin','请求访问主页',83,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:17:46'),(1284,1,'admin','编辑用户',30,'com.bio.sys.controller.UserController.edit()',NULL,'127.0.0.1','2020-05-12 14:21:19'),(1285,1,'admin','更新用户',407,'com.bio.sys.controller.UserController.update()',NULL,'127.0.0.1','2020-05-12 14:21:30'),(1286,1,'admin','添加用户',4,'com.bio.sys.controller.UserController.add()',NULL,'127.0.0.1','2020-05-12 14:22:05'),(1287,1,'admin','保存用户',273,'com.bio.sys.controller.UserController.save()',NULL,'127.0.0.1','2020-05-12 14:22:55'),(1288,1,'admin','编辑菜单',7,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 14:25:33'),(1289,153,'4mE','登录',19,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:41:32'),(1290,153,'4mE','请求访问主页',42,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:41:33'),(1291,153,'4mE','请求访问主页',15,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:44:59'),(1292,153,'4mE','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:45:04'),(1293,153,'4mE','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:45:41'),(1294,153,'4mE','请求访问主页',13,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:45:42'),(1295,1,'admin','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:46:22'),(1296,1,'admin','请求访问主页',27,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:46:22'),(1297,1,'admin','登录',11,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 14:59:19'),(1298,1,'admin','请求访问主页',61,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 14:59:19'),(1299,1,'admin','登录',11,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 15:40:07'),(1300,1,'admin','请求访问主页',62,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 15:40:08'),(1301,153,'4mE','登录',6,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 15:43:55'),(1302,153,'4mE','请求访问主页',18,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 15:43:56'),(1303,1,'admin','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 15:46:23'),(1304,1,'admin','请求访问主页',59,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 15:46:23'),(1305,154,'swe123','登录',6,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 15:54:17'),(1306,154,'swe123','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 15:54:17'),(1307,154,'swe123','请求访问主页',52,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 15:57:57'),(1308,1,'admin','登录',26,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 16:22:49'),(1309,1,'admin','请求访问主页',157,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 16:22:49'),(1310,154,'swe123','登录',70,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 16:24:46'),(1311,154,'swe123','登录',1672,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 16:24:47'),(1312,154,'swe123','请求访问主页',589,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 16:24:50'),(1313,154,'swe123','请求访问主页',2114,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 16:24:52'),(1314,154,'swe123','登录',15,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 16:29:59'),(1315,154,'swe123','请求访问主页',104,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 16:30:00'),(1316,153,'4mE','登录',10,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 16:50:36'),(1317,153,'4mE','请求访问主页',120,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 16:50:37'),(1318,154,'swe123','登录',6,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 16:51:47'),(1319,154,'swe123','请求访问主页',15,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 16:51:48'),(1320,1,'admin','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 16:53:03'),(1321,1,'admin','请求访问主页',24,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 16:53:03'),(1322,153,'4mE','登录',12,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 17:14:57'),(1323,153,'4mE','请求访问主页',14,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 17:14:57'),(1324,154,'swe123','登录',6,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 17:16:09'),(1325,154,'swe123','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 17:16:10'),(1326,1,'admin','登录',9,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 17:17:35'),(1327,1,'admin','请求访问主页',18,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 17:17:35'),(1328,1,'admin','添加用户',3,'com.bio.sys.controller.UserController.add()',NULL,'127.0.0.1','2020-05-12 17:18:59'),(1329,154,'swe123','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 17:20:20'),(1330,154,'swe123','请求访问主页',17,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 17:20:20'),(1331,154,'swe123','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 17:21:35'),(1332,154,'swe123','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 17:21:35'),(1333,1,'admin','登录',41,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 20:51:02'),(1334,1,'admin','请求访问主页',430,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 20:51:03'),(1335,154,'swe123','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 20:51:11'),(1336,154,'swe123','请求访问主页',150,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 20:51:12'),(1337,153,'4mE','登录',6,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 21:04:43'),(1338,153,'4mE','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 21:04:43'),(1339,154,'swe123','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 21:06:27'),(1340,154,'swe123','请求访问主页',79,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 21:06:28'),(1341,1,'admin','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 21:15:35'),(1342,1,'admin','登录',303,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 21:15:39'),(1343,1,'admin','请求访问主页',433,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 21:15:40'),(1344,1,'admin','请求访问主页',1270,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 21:15:41'),(1345,153,'4mE','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 21:27:52'),(1346,153,'4mE','请求访问主页',48,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 21:27:53'),(1347,1,'admin','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 21:40:56'),(1348,1,'admin','请求访问主页',13,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 21:40:56'),(1349,153,'4mE','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 22:10:53'),(1350,153,'4mE','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 22:10:53'),(1351,1,'admin','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 22:12:03'),(1352,1,'admin','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 22:12:04'),(1353,1,'admin','添加菜单',0,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-12 22:12:14'),(1354,1,'admin','添加菜单',91,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-12 22:12:45'),(1355,1,'admin','添加菜单',2,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-12 22:14:06'),(1356,1,'admin','保存菜单',439,'com.bio.sys.controller.MenuController.save()',NULL,'127.0.0.1','2020-05-12 22:16:57'),(1357,1,'admin','编辑菜单',4,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:17:53'),(1358,1,'admin','编辑菜单',3,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:19:36'),(1359,1,'admin','编辑菜单',3,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:19:41'),(1360,1,'admin','编辑菜单',3,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:19:47'),(1361,1,'admin','编辑菜单',3,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:19:50'),(1362,1,'admin','编辑菜单',4,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:20:25'),(1363,1,'admin','编辑菜单',3,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:20:26'),(1364,1,'admin','编辑菜单',4,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:20:42'),(1365,1,'admin','编辑菜单',41,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:20:43'),(1366,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 22:20:46'),(1367,1,'admin','编辑菜单',5,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:21:06'),(1368,1,'admin','编辑菜单',3,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-12 22:21:09'),(1369,1,'admin','删除菜单',227,'com.bio.sys.controller.MenuController.remove()',NULL,'127.0.0.1','2020-05-12 22:21:22'),(1370,1,'admin','添加菜单',3,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-12 22:21:30'),(1371,1,'admin','保存菜单',348,'com.bio.sys.controller.MenuController.save()',NULL,'127.0.0.1','2020-05-12 22:21:58'),(1372,1,'admin','编辑角色',254,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-12 22:22:55'),(1373,1,'admin','更新角色',856,'com.bio.sys.controller.RoleController.update()',NULL,'127.0.0.1','2020-05-12 22:23:09'),(1374,1,'admin','编辑角色',5,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-12 22:23:13'),(1375,1,'admin','更新角色',1031,'com.bio.sys.controller.RoleController.update()',NULL,'127.0.0.1','2020-05-12 22:23:38'),(1376,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 22:23:41'),(1377,1,'admin','登录',300,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 22:29:42'),(1378,1,'admin','请求访问主页',81,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 22:29:42'),(1379,1,'admin','请求访问主页',218,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 22:30:20'),(1380,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 22:30:34'),(1381,1,'admin','编辑角色',4,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-12 22:33:10'),(1382,1,'admin','更新角色',787,'com.bio.sys.controller.RoleController.update()',NULL,'127.0.0.1','2020-05-12 22:33:30'),(1383,1,'admin','请求访问主页',13,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 22:33:35'),(1384,1,'admin','编辑角色',4,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-12 22:33:59'),(1385,153,'4mE','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 22:34:24'),(1386,153,'4mE','请求访问主页',61,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 22:34:25'),(1387,1,'admin','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-12 22:34:58'),(1388,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-12 22:34:58'),(1389,1,'admin','登录',13,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 12:16:44'),(1390,1,'admin','请求访问主页',195,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 12:16:45'),(1391,1,'admin','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 13:18:27'),(1392,1,'admin','请求访问主页',104,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:18:28'),(1393,154,'swe123','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 13:21:05'),(1394,154,'swe123','请求访问主页',20,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:21:05'),(1395,153,'4mE','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 13:21:21'),(1396,153,'4mE','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:21:21'),(1397,1,'admin','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 13:22:30'),(1398,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:22:31'),(1399,1,'admin','请求访问主页',14,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:31:42'),(1400,1,'admin','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 13:31:58'),(1401,1,'admin','请求访问主页',14,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:31:58'),(1402,1,'admin','登录',17,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 13:37:11'),(1403,1,'admin','请求访问主页',141,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:37:12'),(1404,1,'admin','请求访问主页',19,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:40:49'),(1405,1,'admin','登录',13,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 13:51:57'),(1406,1,'admin','请求访问主页',2647,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:52:03'),(1407,1,'admin','请求访问主页',25,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:55:40'),(1408,1,'admin','请求访问主页',19,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 13:56:50'),(1409,1,'admin','添加用户',19,'com.bio.sys.controller.UserController.add()',NULL,'127.0.0.1','2020-05-13 14:02:04'),(1410,1,'admin','添加菜单',0,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-13 14:02:12'),(1411,1,'admin','添加菜单',11,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-13 14:06:12'),(1412,1,'admin','添加菜单',5,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-13 14:06:21'),(1413,1,'admin','编辑角色',4,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-13 14:07:09'),(1414,1,'admin','请求访问主页',16,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:27:18'),(1415,1,'admin','请求访问主页',13,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:29:40'),(1416,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:30:14'),(1417,1,'admin','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:33:27'),(1418,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:34:18'),(1419,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:35:59'),(1420,1,'admin','请求访问主页',13,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:41:40'),(1421,1,'admin','请求访问主页',121,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:42:37'),(1422,1,'admin','请求访问主页',43,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:45:54'),(1423,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:46:28'),(1424,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:48:31'),(1425,1,'admin','请求访问主页',96,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 14:50:29'),(1426,1,'admin','添加角色',0,'com.bio.sys.controller.RoleController.add()',NULL,'127.0.0.1','2020-05-13 14:54:45'),(1427,1,'admin','添加菜单',0,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-13 14:54:57'),(1428,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:00:53'),(1429,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:02:07'),(1430,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:02:42'),(1431,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:05:19'),(1432,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:06:06'),(1433,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:06:51'),(1434,1,'admin','请求访问主页',27542,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:11:38'),(1435,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:12:46'),(1436,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:13:10'),(1437,1,'admin','请求访问主页',35,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:18:46'),(1438,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:19:26'),(1439,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:22:14'),(1440,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:22:16'),(1441,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:22:56'),(1442,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:23:28'),(1443,1,'admin','请求访问主页',20,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:25:23'),(1444,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:29:39'),(1445,1,'admin','请求访问主页',79,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:30:02'),(1446,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:31:09'),(1447,1,'admin','请求访问主页',30,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:34:48'),(1448,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:34:58'),(1449,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:36:41'),(1450,1,'admin','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:39:05'),(1451,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:40:14'),(1452,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:41:35'),(1453,1,'admin','请求访问主页',29,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:44:33'),(1454,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:46:43'),(1455,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:48:43'),(1456,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:49:25'),(1457,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:51:03'),(1458,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:53:18'),(1459,1,'admin','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:53:47'),(1460,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:54:56'),(1461,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:55:19'),(1462,1,'admin','请求访问主页',43,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 15:57:53'),(1463,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:02:10'),(1464,1,'admin','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:03:54'),(1465,1,'admin','请求访问主页',42,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:05:19'),(1466,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:07:23'),(1467,1,'admin','请求访问主页',22,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:08:46'),(1468,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:10:27'),(1469,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:12:50'),(1470,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:13:36'),(1471,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:16:41'),(1472,1,'admin','请求访问主页',13,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:18:23'),(1473,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:18:55'),(1474,1,'admin','请求访问主页',15,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:20:41'),(1475,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:21:50'),(1476,1,'admin','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:23:08'),(1477,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:23:36'),(1478,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:25:45'),(1479,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:26:28'),(1480,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:26:50'),(1481,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:27:47'),(1482,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:28:13'),(1483,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:31:36'),(1484,1,'admin','登录',87,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 16:38:01'),(1485,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:38:01'),(1486,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:38:57'),(1487,1,'admin','请求访问主页',38,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:44:16'),(1488,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:55:27'),(1489,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:56:32'),(1490,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:57:09'),(1491,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:57:41'),(1492,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:58:31'),(1493,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:58:58'),(1494,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 16:59:43'),(1495,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 17:02:37'),(1496,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 17:06:44'),(1497,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 17:13:04'),(1498,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 17:16:28'),(1499,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 17:43:59'),(1500,1,'admin','登录',83,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 18:44:28'),(1501,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 18:44:29'),(1502,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 18:52:11'),(1503,1,'admin','登录',95,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 18:55:24'),(1504,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 18:55:24'),(1505,1,'admin','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 18:56:53'),(1506,1,'admin','请求访问主页',196,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 18:56:53'),(1507,1,'admin','登录',124,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 18:58:32'),(1508,1,'admin','请求访问主页',372,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 18:58:35'),(1509,1,'admin','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 19:13:15'),(1510,1,'admin','请求访问主页',100,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 19:13:16'),(1511,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 19:25:41'),(1512,1,'admin','请求访问主页',64,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 19:31:13'),(1513,1,'admin','请求访问主页',13,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 19:31:24'),(1514,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 19:37:44'),(1515,1,'admin','请求访问主页',128,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 19:59:32'),(1516,1,'admin','请求访问主页',61,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:05:41'),(1517,1,'admin','请求访问主页',203,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:06:03'),(1518,1,'admin','请求访问主页',53,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:10:52'),(1519,1,'admin','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 20:12:06'),(1520,1,'admin','请求访问主页',184,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:12:06'),(1521,1,'admin','请求访问主页',27,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:23:58'),(1522,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:25:27'),(1523,1,'admin','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:35:59'),(1524,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:36:27'),(1525,1,'admin','请求访问主页',115,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:37:13'),(1526,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:44:54'),(1527,1,'admin','请求访问主页',311,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:52:20'),(1528,1,'admin','请求访问主页',24,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:55:08'),(1529,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:58:01'),(1530,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:58:16'),(1531,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:58:30'),(1532,1,'admin','请求访问主页',42,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:58:40'),(1533,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 20:59:11'),(1534,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:04:26'),(1535,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:04:35'),(1536,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:05:11'),(1537,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:05:26'),(1538,1,'admin','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:05:50'),(1539,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:07:22'),(1540,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:07:34'),(1541,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:08:21'),(1542,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:08:48'),(1543,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:16:48'),(1544,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:19:48'),(1545,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:20:37'),(1546,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:23:44'),(1547,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:25:14'),(1548,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:26:21'),(1549,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:27:44'),(1550,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:28:06'),(1551,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:28:42'),(1552,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:29:08'),(1553,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:30:08'),(1554,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:31:38'),(1555,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:31:48'),(1556,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:32:45'),(1557,1,'admin','请求访问主页',14,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:34:11'),(1558,1,'admin','请求访问主页',67,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:35:00'),(1559,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:35:28'),(1560,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:37:18'),(1561,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:40:30'),(1562,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:40:44'),(1563,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:44:39'),(1564,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:45:28'),(1565,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:46:49'),(1566,153,'4mE','登录',317,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 21:47:26'),(1567,153,'4mE','请求访问主页',127,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:47:26'),(1568,153,'4mE','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 21:53:46'),(1569,153,'4mE','请求访问主页',23,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:53:46'),(1570,153,'4mE','请求访问主页',13,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:59:07'),(1571,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 21:59:57'),(1572,153,'4mE','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 22:10:40'),(1573,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 22:24:27'),(1574,153,'4mE','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 22:25:53'),(1575,153,'4mE','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 22:27:28'),(1576,153,'4mE','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 22:35:53'),(1577,153,'4mE','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:01:08'),(1578,153,'4mE','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:08:33'),(1579,153,'4mE','请求访问主页',0,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:11:54'),(1580,153,'4mE','请求访问主页',23,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:22:27'),(1581,153,'4mE','登录',0,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 23:24:00'),(1582,153,'4mE','请求访问主页',199,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:24:00'),(1583,153,'4mE','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:25:52'),(1584,153,'4mE','请求访问主页',52,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:26:27'),(1585,1,'admin','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 23:27:22'),(1586,1,'admin','请求访问主页',72,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:27:23'),(1587,1,'admin','请求访问主页',54,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:32:34'),(1588,153,'4mE','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-13 23:33:00'),(1589,153,'4mE','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:33:00'),(1590,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:35:27'),(1591,153,'4mE','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:40:52'),(1592,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:43:07'),(1593,153,'4mE','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:44:06'),(1594,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:44:21'),(1595,153,'4mE','请求访问主页',16,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:47:39'),(1596,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:51:56'),(1597,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:54:32'),(1598,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:57:06'),(1599,153,'4mE','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:59:19'),(1600,153,'4mE','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-13 23:59:46'),(1601,153,'4mE','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:15:18'),(1602,153,'4mE','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:16:22'),(1603,153,'4mE','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:17:34'),(1604,153,'4mE','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:27:39'),(1605,153,'4mE','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:30:29'),(1606,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:31:33'),(1607,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:33:06'),(1608,153,'4mE','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:34:30'),(1609,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:36:51'),(1610,153,'4mE','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:37:51'),(1611,153,'4mE','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:42:54'),(1612,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:44:25'),(1613,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:47:07'),(1614,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:50:03'),(1615,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:51:25'),(1616,153,'4mE','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 00:54:24'),(1617,1,'admin','登录',61,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 13:25:14'),(1618,1,'admin','请求访问主页',619,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:25:16'),(1619,153,'4mE','登录',824,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 13:25:17'),(1620,154,'swe123','登录',136,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 13:25:33'),(1621,154,'swe123','请求访问主页',287,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:25:34'),(1622,153,'4mE','登录',2,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 13:26:14'),(1623,153,'4mE','请求访问主页',266,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:26:14'),(1624,153,'4mE','请求访问主页',50,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:29:04'),(1625,153,'4mE','请求访问主页',66,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:31:23'),(1626,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:39:12'),(1627,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:42:27'),(1628,153,'4mE','登录',110,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 13:44:02'),(1629,153,'4mE','请求访问主页',106,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:44:04'),(1630,153,'4mE','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:44:49'),(1631,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:47:13'),(1632,153,'4mE','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:51:41'),(1633,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:52:16'),(1634,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:54:37'),(1635,153,'4mE','请求访问主页',44,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:56:28'),(1636,153,'4mE','请求访问主页',16,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 13:59:17'),(1637,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 14:02:08'),(1638,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 14:03:40'),(1639,153,'4mE','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 14:05:17'),(1640,153,'4mE','请求访问主页',4,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 14:07:14'),(1641,153,'4mE','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 14:14:11'),(1642,153,'4mE','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 14:15:39'),(1643,153,'4mE','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 14:16:25'),(1644,153,'4mE','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 14:19:50'),(1645,1,'admin','登录',5,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 14:32:10'),(1646,1,'admin','请求访问主页',52,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 14:32:11'),(1647,1,'admin','编辑角色',3,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-14 14:34:29'),(1648,1,'admin','添加菜单',4,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-14 15:04:59'),(1649,1,'admin','保存菜单',275,'com.bio.sys.controller.MenuController.save()',NULL,'127.0.0.1','2020-05-14 15:11:14'),(1650,1,'admin','编辑菜单',37,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:12:44'),(1651,1,'admin','编辑菜单',2,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:13:00'),(1652,1,'admin','编辑菜单',2,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:13:02'),(1653,1,'admin','编辑菜单',2,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:13:07'),(1654,1,'admin','编辑菜单',2,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:13:23'),(1655,1,'admin','编辑菜单',2,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:13:25'),(1656,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 15:13:35'),(1657,1,'admin','编辑菜单',2,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:13:43'),(1658,1,'admin','编辑菜单',1,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:13:51'),(1659,1,'admin','编辑菜单',1,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:13:53'),(1660,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 15:20:47'),(1661,1,'admin','编辑菜单',4,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:21:24'),(1662,1,'admin','更新菜单',602,'com.bio.sys.controller.MenuController.update()',NULL,'127.0.0.1','2020-05-14 15:21:35'),(1663,1,'admin','编辑菜单',3,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 15:41:49'),(1664,1,'admin','更新菜单',353,'com.bio.sys.controller.MenuController.update()',NULL,'127.0.0.1','2020-05-14 15:41:56'),(1665,1,'admin','登录',0,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 15:43:50'),(1666,1,'admin','请求访问主页',267,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 15:43:51'),(1667,1,'admin','编辑角色',4,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-14 15:44:04'),(1668,1,'admin','更新角色',2251,'com.bio.sys.controller.RoleController.update()',NULL,'127.0.0.1','2020-05-14 15:45:29'),(1669,1,'admin','编辑角色',2,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-14 15:45:52'),(1670,1,'admin','添加角色',1,'com.bio.sys.controller.RoleController.add()',NULL,'127.0.0.1','2020-05-14 15:45:55'),(1671,1,'admin','添加角色',0,'com.bio.sys.controller.RoleController.add()',NULL,'127.0.0.1','2020-05-14 15:46:39'),(1672,1,'admin','添加角色',0,'com.bio.sys.controller.RoleController.add()',NULL,'127.0.0.1','2020-05-14 15:48:37'),(1673,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 15:53:06'),(1674,1,'admin','添加角色',0,'com.bio.sys.controller.RoleController.add()',NULL,'127.0.0.1','2020-05-14 15:53:33'),(1675,1,'admin','添加角色',0,'com.bio.sys.controller.RoleController.add()',NULL,'127.0.0.1','2020-05-14 15:53:38'),(1676,1,'admin','请求访问主页',15,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 15:55:49'),(1677,1,'admin','添加角色',0,'com.bio.sys.controller.RoleController.add()',NULL,'127.0.0.1','2020-05-14 15:55:57'),(1678,1,'admin','保存角色',666,'com.bio.sys.controller.RoleController.save()',NULL,'127.0.0.1','2020-05-14 15:59:27'),(1679,1,'admin','编辑角色',2,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-14 15:59:53'),(1680,1,'admin','更新角色',482,'com.bio.sys.controller.RoleController.update()',NULL,'127.0.0.1','2020-05-14 16:00:05'),(1681,1,'admin','请求访问主页',29,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:00:14'),(1682,1,'admin','编辑角色',2,'com.bio.sys.controller.RoleController.edit()',NULL,'127.0.0.1','2020-05-14 16:00:43'),(1683,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:05:06'),(1684,1,'admin','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:05:11'),(1685,1,'admin','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 16:06:07'),(1686,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:06:07'),(1687,1,'admin','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 16:09:10'),(1688,1,'admin','请求访问主页',174,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:09:11'),(1689,1,'admin','编辑菜单',4,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 16:09:56'),(1690,1,'admin','更新菜单',459,'com.bio.sys.controller.MenuController.update()',NULL,'127.0.0.1','2020-05-14 16:10:00'),(1691,1,'admin','编辑菜单',5,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 16:10:04'),(1692,1,'admin','更新菜单',540,'com.bio.sys.controller.MenuController.update()',NULL,'127.0.0.1','2020-05-14 16:10:15'),(1693,1,'admin','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:10:21'),(1694,1,'admin','请求访问主页',153,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:12:33'),(1695,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:14:16'),(1696,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:15:48'),(1697,1,'admin','请求访问主页',24,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:22:50'),(1698,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:24:30'),(1699,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:26:20'),(1700,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:28:41'),(1701,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:30:53'),(1702,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:31:48'),(1703,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:32:21'),(1704,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:33:36'),(1705,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:34:05'),(1706,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:36:06'),(1707,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:38:19'),(1708,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:40:21'),(1709,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:40:45'),(1710,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 16:41:37'),(1711,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 17:00:03'),(1712,1,'admin','登录',0,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 17:53:08'),(1713,1,'admin','请求访问主页',1374,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 17:53:10'),(1714,1,'admin','登录',10,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 18:01:19'),(1715,1,'admin','请求访问主页',125,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:01:23'),(1716,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:02:31'),(1717,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:04:55'),(1718,1,'admin','登录',12,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 18:05:57'),(1719,1,'admin','请求访问主页',184,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:05:57'),(1720,1,'admin','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 18:08:11'),(1721,1,'admin','请求访问主页',107,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:08:12'),(1722,1,'admin','请求访问主页',58,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:11:23'),(1723,1,'admin','请求访问主页',26,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:13:30'),(1724,1,'admin','请求访问主页',118,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:14:23'),(1725,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:14:47'),(1726,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:17:34'),(1727,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:18:04'),(1728,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:19:55'),(1729,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:21:17'),(1730,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:24:39'),(1731,1,'admin','请求访问主页',33,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:27:26'),(1732,1,'admin','请求访问主页',36,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:39:13'),(1733,1,'admin','请求访问主页',1798,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:40:11'),(1734,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:41:57'),(1735,1,'admin','请求访问主页',148,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:44:44'),(1736,1,'admin','请求访问主页',44,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:45:46'),(1737,1,'admin','请求访问主页',177,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:46:15'),(1738,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:47:18'),(1739,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:48:24'),(1740,1,'admin','请求访问主页',65,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:55:00'),(1741,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:56:35'),(1742,1,'admin','请求访问主页',34,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:57:36'),(1743,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 18:58:32'),(1744,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:00:56'),(1745,1,'admin','请求访问主页',30,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:01:39'),(1746,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:07:38'),(1747,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:09:26'),(1748,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:10:18'),(1749,1,'admin','编辑菜单',3,'com.bio.sys.controller.MenuController.edit()',NULL,'127.0.0.1','2020-05-14 19:10:55'),(1750,1,'admin','添加菜单',17,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-14 19:11:07'),(1751,1,'admin','添加角色',0,'com.bio.sys.controller.RoleController.add()',NULL,'127.0.0.1','2020-05-14 19:11:21'),(1752,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:12:58'),(1753,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:14:04'),(1754,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:14:59'),(1755,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:16:15'),(1756,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:17:36'),(1757,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:20:10'),(1758,1,'admin','请求访问主页',168,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:20:55'),(1759,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:23:39'),(1760,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:24:37'),(1761,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:25:10'),(1762,1,'admin','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:25:55'),(1763,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:27:03'),(1764,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:33:04'),(1765,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:34:57'),(1766,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 19:36:26'),(1767,1,'admin','登录',190,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-14 20:10:25'),(1768,1,'admin','请求访问主页',1147,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:10:31'),(1769,1,'admin','请求访问主页',38,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:17:44'),(1770,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:18:41'),(1771,1,'admin','请求访问主页',34,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:20:05'),(1772,1,'admin','请求访问主页',158,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:22:09'),(1773,1,'admin','请求访问主页',83,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:28:25'),(1774,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:29:20'),(1775,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:30:07'),(1776,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:30:55'),(1777,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:31:12'),(1778,1,'admin','请求访问主页',11,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:31:33'),(1779,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:32:10'),(1780,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:35:48'),(1781,1,'admin','请求访问主页',233,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:42:42'),(1782,1,'admin','请求访问主页',13,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:46:16'),(1783,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:52:11'),(1784,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:54:16'),(1785,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:55:01'),(1786,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:56:31'),(1787,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 20:57:01'),(1788,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:00:06'),(1789,1,'admin','请求访问主页',14,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:01:24'),(1790,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:02:36'),(1791,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:09:20'),(1792,1,'admin','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:10:01'),(1793,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:10:39'),(1794,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:10:53'),(1795,1,'admin','请求访问主页',43,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:11:18'),(1796,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:11:32'),(1797,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:14:04'),(1798,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:22:17'),(1799,1,'admin','请求访问主页',43,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:24:02'),(1800,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:31:48'),(1801,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:33:05'),(1802,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:40:37'),(1803,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:40:59'),(1804,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:46:24'),(1805,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:48:27'),(1806,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:49:44'),(1807,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:51:40'),(1808,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:54:10'),(1809,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:55:29'),(1810,1,'admin','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:55:59'),(1811,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:57:04'),(1812,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 21:59:48'),(1813,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:01:31'),(1814,1,'admin','请求访问主页',117,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:02:06'),(1815,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:02:33'),(1816,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:03:18'),(1817,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:03:46'),(1818,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:04:09'),(1819,1,'admin','请求访问主页',45,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:07:33'),(1820,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:09:23'),(1821,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:13:18'),(1822,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:13:47'),(1823,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:14:11'),(1824,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:18:12'),(1825,1,'admin','请求访问主页',4,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:18:38'),(1826,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:19:21'),(1827,1,'admin','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:19:59'),(1828,1,'admin','请求访问主页',10,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:21:48'),(1829,1,'admin','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:22:19'),(1830,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:23:39'),(1831,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:24:01'),(1832,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:27:03'),(1833,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:29:21'),(1834,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:30:34'),(1835,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:30:47'),(1836,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:35:23'),(1837,1,'admin','请求访问主页',37,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:37:42'),(1838,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:44:05'),(1839,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:44:57'),(1840,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:48:47'),(1841,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:50:17'),(1842,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:50:28'),(1843,1,'admin','请求访问主页',4,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 22:50:45'),(1844,1,'admin','请求访问主页',19,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:23:25'),(1845,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:25:03'),(1846,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:26:31'),(1847,1,'admin','请求访问主页',9,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:29:40'),(1848,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:40:26'),(1849,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:41:37'),(1850,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:41:59'),(1851,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:50:56'),(1852,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:51:48'),(1853,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:54:04'),(1854,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:56:11'),(1855,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-14 23:59:13'),(1856,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:01:39'),(1857,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:01:49'),(1858,1,'admin','请求访问主页',26,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:12:13'),(1859,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:13:14'),(1860,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:13:36'),(1861,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:14:42'),(1862,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:16:24'),(1863,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:17:57'),(1864,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:19:02'),(1865,1,'admin','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:19:47'),(1866,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:21:12'),(1867,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:22:31'),(1868,1,'admin','请求访问主页',12,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 00:26:43'),(1869,1,'admin','登录',101,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 01:05:55'),(1870,1,'admin','请求访问主页',50,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 01:05:55'),(1871,1,'admin','请求访问主页',28,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 01:07:45'),(1872,1,'admin','请求访问主页',87,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 01:08:59'),(1873,1,'admin','请求访问主页',6,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 01:10:02'),(1874,1,'admin','登录',35,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 10:03:44'),(1875,1,'admin','请求访问主页',571,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 10:03:45'),(1876,153,'4mE','登录',130,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 10:04:20'),(1877,153,'4mE','请求访问主页',141,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 10:04:21'),(1878,154,'swe123','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 10:17:59'),(1879,154,'swe123','请求访问主页',55,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 10:18:00'),(1880,153,'4mE','登录',2,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 10:18:29'),(1881,153,'4mE','请求访问主页',4,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 10:18:29'),(1882,154,'swe123','登录',140,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 10:28:07'),(1883,154,'swe123','请求访问主页',5,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 10:28:07'),(1884,154,'swe123','编辑用户',391,'com.bio.sys.controller.UserController.edit()',NULL,'127.0.0.1','2020-05-15 10:45:51'),(1885,154,'swe123','请求更改用户密码',0,'com.bio.sys.controller.UserController.resetPwd()',NULL,'127.0.0.1','2020-05-15 10:46:31'),(1886,1,'admin','登录',2,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 10:47:26'),(1887,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 10:47:26'),(1888,1,'admin','添加菜单',3,'com.bio.sys.controller.MenuController.add()',NULL,'127.0.0.1','2020-05-15 10:50:02'),(1889,1,'admin','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 11:26:30'),(1890,1,'admin','请求访问主页',90,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 11:26:30'),(1891,153,'4mE','登录',3,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 11:40:19'),(1892,153,'4mE','请求访问主页',8,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 11:40:19'),(1893,1,'admin','登录',4,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 11:44:59'),(1894,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 11:44:59'),(1895,1,'admin','登录',44,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 11:45:43'),(1896,1,'admin','请求访问主页',7,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 11:45:43'),(1897,1,'admin','登录',2,'com.bio.sys.controller.LoginController.ajaxLogin()',NULL,'127.0.0.1','2020-05-15 14:52:32'),(1898,1,'admin','请求访问主页',317,'com.bio.sys.controller.LoginController.index()',NULL,'127.0.0.1','2020-05-15 14:52:33');
+/*!40000 ALTER TABLE `sys_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_menu`
+--
+
 DROP TABLE IF EXISTS `sys_menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_menu` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `parent_id` bigint(20) DEFAULT NULL COMMENT '父菜单ID，一级菜单为0',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `parent_id` bigint DEFAULT NULL COMMENT '父菜单ID，一级菜单为0',
   `name` varchar(50) DEFAULT NULL COMMENT '菜单名称',
   `url` varchar(200) DEFAULT NULL COMMENT '菜单URL',
   `perms` varchar(500) DEFAULT NULL COMMENT '授权(多个用逗号分隔，如：user:list,user:create)',
-  `type` int(11) DEFAULT NULL COMMENT '类型   0：目录   1：菜单   2：按钮',
+  `type` int DEFAULT NULL COMMENT '类型   0：目录   1：菜单   2：按钮',
   `icon` varchar(50) DEFAULT NULL COMMENT '菜单图标',
-  `order_num` int(11) DEFAULT NULL COMMENT '排序',
+  `order_num` int DEFAULT NULL COMMENT '排序',
   `gmt_create` datetime DEFAULT NULL COMMENT '创建时间',
   `gmt_modified` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8 COMMENT='菜单管理';
+) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8 COMMENT='菜单管理';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of sys_menu
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_menu` VALUES (2, 3, '系统菜单', 'sys/menu/', 'sys:menu:menu', 1, 'fa fa-th-list', 2, '2017-08-09 22:55:15', NULL);
-INSERT INTO `sys_menu` VALUES (3, 0, '系统管理', NULL, NULL, 0, 'fa fa-desktop', 1, '2017-08-09 23:06:55', '2017-08-14 14:13:43');
-INSERT INTO `sys_menu` VALUES (6, 3, '用户管理', 'sys/user/', 'sys:user:user', 1, 'fa fa-user', 0, '2017-08-10 14:12:11', NULL);
-INSERT INTO `sys_menu` VALUES (7, 3, '角色管理', 'sys/role', 'sys:role:role', 1, 'fa fa-paw', 1, '2017-08-10 14:13:19', NULL);
-INSERT INTO `sys_menu` VALUES (12, 6, '新增', '', 'sys:user:add', 2, '', 0, '2017-08-14 10:51:35', NULL);
-INSERT INTO `sys_menu` VALUES (13, 6, '编辑', '', 'sys:user:edit', 2, '', 0, '2017-08-14 10:52:06', NULL);
-INSERT INTO `sys_menu` VALUES (14, 6, '删除', NULL, 'sys:user:remove', 2, NULL, 0, '2017-08-14 10:52:24', NULL);
-INSERT INTO `sys_menu` VALUES (15, 7, '新增', '', 'sys:role:add', 2, '', 0, '2017-08-14 10:56:37', NULL);
-INSERT INTO `sys_menu` VALUES (20, 2, '新增', '', 'sys:menu:add', 2, '', 0, '2017-08-14 10:59:32', NULL);
-INSERT INTO `sys_menu` VALUES (21, 2, '编辑', '', 'sys:menu:edit', 2, '', 0, '2017-08-14 10:59:56', NULL);
-INSERT INTO `sys_menu` VALUES (22, 2, '删除', '', 'sys:menu:remove', 2, '', 0, '2017-08-14 11:00:26', NULL);
-INSERT INTO `sys_menu` VALUES (24, 6, '批量删除', '', 'sys:user:batchRemove', 2, '', 0, '2017-08-14 17:27:18', NULL);
-INSERT INTO `sys_menu` VALUES (25, 6, '停用', NULL, 'sys:user:disable', 2, NULL, 0, '2017-08-14 17:27:43', NULL);
-INSERT INTO `sys_menu` VALUES (26, 6, '重置密码', '', 'sys:user:resetPwd', 2, '', 0, '2017-08-14 17:28:34', NULL);
-INSERT INTO `sys_menu` VALUES (27, 91, '系统日志', 'common/log', 'common:log', 1, 'fa fa-warning', 0, '2017-08-14 22:11:53', NULL);
-INSERT INTO `sys_menu` VALUES (28, 27, '刷新', NULL, 'sys:log:list', 2, NULL, 0, '2017-08-14 22:30:22', NULL);
-INSERT INTO `sys_menu` VALUES (29, 27, '删除', NULL, 'sys:log:remove', 2, NULL, 0, '2017-08-14 22:30:43', NULL);
-INSERT INTO `sys_menu` VALUES (30, 27, '清空', NULL, 'sys:log:clear', 2, NULL, 0, '2017-08-14 22:31:02', NULL);
-INSERT INTO `sys_menu` VALUES (48, 77, '代码生成', 'common/generator', 'common:generator', 1, 'fa fa-code', 3, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (55, 7, '编辑', '', 'sys:role:edit', 2, '', NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (56, 7, '删除', '', 'sys:role:remove', 2, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (57, 91, '运行监控', 'druid/index.html', '', 1, 'fa fa-caret-square-o-right', 1, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (61, 2, '批量删除', '', 'sys:menu:batchRemove', 2, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (62, 7, '批量删除', '', 'sys:role:batchRemove', 2, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (72, 77, '计划任务', 'common/job', 'common:taskScheduleJob', 1, 'fa fa-hourglass-1', 4, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (73, 3, '部门管理', 'sys/dept', 'system:sysDept:sysDept', 1, 'fa fa-users', 3, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (74, 73, '增加', 'sys/dept/add', 'system:sysDept:add', 2, NULL, 1, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (75, 73, '刪除', 'sys/dept/remove', 'system:sysDept:remove', 2, NULL, 2, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (76, 73, '编辑', 'sys/dept/edit', 'system:sysDept:edit', 2, NULL, 3, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (77, 0, '系统工具', '', '', 0, 'fa fa-gear', 4, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (91, 0, '系统监控', '', '', 0, 'fa fa-video-camera', 5, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (92, 91, '在线用户', 'sys/online', '', 1, 'fa fa-user', NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (97, 0, '图表管理', '', '', 0, 'fa fa-bar-chart', 7, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (98, 97, '百度chart', 'chart/graph_echarts.html', '', 1, 'fa fa-area-chart', NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (181, 193, '我的周报', 'bio/report/', 'bio:report:report', 1, 'fa fa-inbox', NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (183, 181, '新增', NULL, 'bio:report:add', 2, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (184, 181, '编辑', NULL, 'bio:report:edit', 2, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (185, 181, '删除', NULL, 'bio:report:remove', 2, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (186, 181, '批量删除', NULL, 'bio:report:batchRemove', 2, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (187, 3, 'Placeholder', 'bio/placeholder', NULL, 1, 'fa fa-file-code-o', 6, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (188, 187, '查看', NULL, 'bio:placeholder:placeholder', 2, NULL, 6, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (189, 187, '新增', NULL, 'bio:placeholder:add', 2, NULL, 6, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (190, 187, '修改', NULL, 'bio:placeholder:edit', 2, NULL, 6, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (191, 187, '删除', NULL, 'bio:placeholder:remove', 2, NULL, 6, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (192, 187, '批量删除', NULL, 'bio:placeholder:batchRemove', 2, NULL, 6, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (193, 0, '周报', NULL, NULL, 0, 'fa fa-newspaper-o', NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (194, 193, '组内周报', 'bio/summary', 'bio:summary:summary', 1, 'fa fa-bars', NULL, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (195, 194, '查看', NULL, 'bio:summary:summary', 2, NULL, 6, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (196, 194, '新增', NULL, 'bio:summary:add', 2, NULL, 6, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (197, 194, '修改', NULL, 'bio:summary:edit', 2, NULL, 6, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (198, 194, '删除', NULL, 'bio:summary:remove', 2, NULL, 6, NULL, NULL);
-INSERT INTO `sys_menu` VALUES (199, 194, '批量删除', NULL, 'bio:summary:batchRemove', 2, NULL, 6, NULL, NULL);
-COMMIT;
+--
+-- Dumping data for table `sys_menu`
+--
 
--- ----------------------------
--- Table structure for sys_role
--- ----------------------------
+LOCK TABLES `sys_menu` WRITE;
+/*!40000 ALTER TABLE `sys_menu` DISABLE KEYS */;
+INSERT INTO `sys_menu` VALUES (2,3,'系统菜单','sys/menu/','sys:menu:menu',1,'fa fa-th-list',2,'2017-08-09 22:55:15',NULL),(3,0,'系统管理',NULL,NULL,0,'fa fa-desktop',1,'2017-08-09 23:06:55','2017-08-14 14:13:43'),(6,3,'用户管理','sys/user/','sys:user:user',1,'fa fa-user',0,'2017-08-10 14:12:11',NULL),(7,3,'角色管理','sys/role','sys:role:role',1,'fa fa-paw',1,'2017-08-10 14:13:19',NULL),(12,6,'新增','','sys:user:add',2,'',0,'2017-08-14 10:51:35',NULL),(13,6,'编辑','','sys:user:edit',2,'',0,'2017-08-14 10:52:06',NULL),(14,6,'删除',NULL,'sys:user:remove',2,NULL,0,'2017-08-14 10:52:24',NULL),(15,7,'新增','','sys:role:add',2,'',0,'2017-08-14 10:56:37',NULL),(20,2,'新增','','sys:menu:add',2,'',0,'2017-08-14 10:59:32',NULL),(21,2,'编辑','','sys:menu:edit',2,'',0,'2017-08-14 10:59:56',NULL),(22,2,'删除','','sys:menu:remove',2,'',0,'2017-08-14 11:00:26',NULL),(24,6,'批量删除','','sys:user:batchRemove',2,'',0,'2017-08-14 17:27:18',NULL),(25,6,'停用',NULL,'sys:user:disable',2,NULL,0,'2017-08-14 17:27:43',NULL),(26,6,'重置密码','','sys:user:resetPwd',2,'',0,'2017-08-14 17:28:34',NULL),(27,91,'系统日志','common/log','common:log',1,'fa fa-warning',0,'2017-08-14 22:11:53',NULL),(28,27,'刷新',NULL,'sys:log:list',2,NULL,0,'2017-08-14 22:30:22',NULL),(29,27,'删除',NULL,'sys:log:remove',2,NULL,0,'2017-08-14 22:30:43',NULL),(30,27,'清空',NULL,'sys:log:clear',2,NULL,0,'2017-08-14 22:31:02',NULL),(48,77,'代码生成','common/generator','common:generator',1,'fa fa-code',3,NULL,NULL),(55,7,'编辑','','sys:role:edit',2,'',NULL,NULL,NULL),(56,7,'删除','','sys:role:remove',2,NULL,NULL,NULL,NULL),(57,91,'运行监控','druid/index.html','',1,'fa fa-caret-square-o-right',1,NULL,NULL),(61,2,'批量删除','','sys:menu:batchRemove',2,NULL,NULL,NULL,NULL),(62,7,'批量删除','','sys:role:batchRemove',2,NULL,NULL,NULL,NULL),(72,77,'计划任务','common/job','common:taskScheduleJob',1,'fa fa-hourglass-1',4,NULL,NULL),(73,3,'部门管理','sys/dept','system:sysDept:sysDept',1,'fa fa-users',3,NULL,NULL),(74,73,'增加','sys/dept/add','system:sysDept:add',2,NULL,1,NULL,NULL),(75,73,'刪除','sys/dept/remove','system:sysDept:remove',2,NULL,2,NULL,NULL),(76,73,'编辑','sys/dept/edit','system:sysDept:edit',2,NULL,3,NULL,NULL),(77,0,'系统工具','','',0,'fa fa-gear',4,NULL,NULL),(91,0,'系统监控','','',0,'fa fa-video-camera',5,NULL,NULL),(92,91,'在线用户','sys/online','',1,'fa fa-user',NULL,NULL,NULL),(97,0,'图表管理','','',0,'fa fa-bar-chart',7,NULL,NULL),(98,97,'百度chart','chart/graph_echarts.html','',1,'fa fa-area-chart',NULL,NULL,NULL),(181,193,'我的周报','bio/report/','bio:report:report',1,'fa fa-inbox',NULL,NULL,NULL),(183,181,'新增',NULL,'bio:report:add',2,NULL,NULL,NULL,NULL),(184,181,'编辑',NULL,'bio:report:edit',2,NULL,NULL,NULL,NULL),(185,181,'删除',NULL,'bio:report:remove',2,NULL,NULL,NULL,NULL),(186,181,'批量删除',NULL,'bio:report:batchRemove',2,NULL,NULL,NULL,NULL),(187,3,'Placeholder','bio/placeholder',NULL,1,'fa fa-file-code-o',6,NULL,NULL),(188,187,'查看',NULL,'bio:placeholder:placeholder',2,NULL,6,NULL,NULL),(189,187,'新增',NULL,'bio:placeholder:add',2,NULL,6,NULL,NULL),(190,187,'修改',NULL,'bio:placeholder:edit',2,NULL,6,NULL,NULL),(191,187,'删除',NULL,'bio:placeholder:remove',2,NULL,6,NULL,NULL),(192,187,'批量删除',NULL,'bio:placeholder:batchRemove',2,NULL,6,NULL,NULL),(193,0,'周报',NULL,NULL,0,'fa fa-newspaper-o',NULL,NULL,NULL),(194,193,'组内周报','bio/summary','bio:summary:summary',1,'fa fa-bars',NULL,NULL,NULL),(195,194,'查看',NULL,'bio:summary:summary',2,NULL,6,NULL,NULL),(196,194,'新增',NULL,'bio:summary:add',2,NULL,6,NULL,NULL),(197,194,'修改',NULL,'bio:summary:edit',2,NULL,6,NULL,NULL),(198,194,'删除',NULL,'bio:summary:remove',2,NULL,6,NULL,NULL),(199,194,'批量删除',NULL,'bio:summary:batchRemove',2,NULL,6,NULL,NULL),(201,193,'查询','bio/query','bio:query:query',1,'fa fa-search',4,NULL,NULL),(202,193,'专题周报','bio/topic','bio:topic:topic',1,'fa fa-users',3,NULL,NULL);
+/*!40000 ALTER TABLE `sys_menu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_role`
+--
+
 DROP TABLE IF EXISTS `sys_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_role` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `role_name` varchar(100) DEFAULT NULL COMMENT '角色名称',
   `role_sign` varchar(100) DEFAULT NULL COMMENT '角色标识',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
-  `user_id_create` bigint(255) DEFAULT NULL COMMENT '创建用户id',
+  `user_id_create` bigint DEFAULT NULL COMMENT '创建用户id',
   `gmt_create` datetime DEFAULT NULL COMMENT '创建时间',
   `gmt_modified` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COMMENT='角色';
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COMMENT='角色';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of sys_role
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_role` VALUES (1, '超级管理员', 'admin', '系统开发人员', 2, '2017-08-12 00:43:52', '2017-08-12 19:14:59');
-INSERT INTO `sys_role` VALUES (2, 'PI', NULL, '实验室负责人', NULL, NULL, NULL);
-INSERT INTO `sys_role` VALUES (3, '学生', NULL, ' 学生', NULL, NULL, NULL);
-COMMIT;
+--
+-- Dumping data for table `sys_role`
+--
 
--- ----------------------------
--- Table structure for sys_role_menu
--- ----------------------------
+LOCK TABLES `sys_role` WRITE;
+/*!40000 ALTER TABLE `sys_role` DISABLE KEYS */;
+INSERT INTO `sys_role` VALUES (1,'超级管理员','admin','系统开发人员',2,'2017-08-12 00:43:52','2017-08-12 19:14:59'),(2,'专题组长',NULL,'智慧地球小组专题负责人',NULL,NULL,NULL),(3,'学生',NULL,' 学生',NULL,NULL,NULL),(4,'小组组长',NULL,'智慧地球小组总负责人、周报会议负责人',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_role_menu`
+--
+
 DROP TABLE IF EXISTS `sys_role_menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_role_menu` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
-  `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单ID',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `role_id` bigint DEFAULT NULL COMMENT '角色ID',
+  `menu_id` bigint DEFAULT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=829 DEFAULT CHARSET=utf8 COMMENT='角色与菜单对应关系';
+) ENGINE=InnoDB AUTO_INCREMENT=1069 DEFAULT CHARSET=utf8 COMMENT='角色与菜单对应关系';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of sys_role_menu
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_role_menu` VALUES (721, 1, 20);
-INSERT INTO `sys_role_menu` VALUES (722, 1, 21);
-INSERT INTO `sys_role_menu` VALUES (723, 1, 22);
-INSERT INTO `sys_role_menu` VALUES (724, 1, 61);
-INSERT INTO `sys_role_menu` VALUES (725, 1, 12);
-INSERT INTO `sys_role_menu` VALUES (726, 1, 13);
-INSERT INTO `sys_role_menu` VALUES (727, 1, 14);
-INSERT INTO `sys_role_menu` VALUES (728, 1, 24);
-INSERT INTO `sys_role_menu` VALUES (729, 1, 25);
-INSERT INTO `sys_role_menu` VALUES (730, 1, 26);
-INSERT INTO `sys_role_menu` VALUES (731, 1, 15);
-INSERT INTO `sys_role_menu` VALUES (732, 1, 55);
-INSERT INTO `sys_role_menu` VALUES (733, 1, 56);
-INSERT INTO `sys_role_menu` VALUES (734, 1, 62);
-INSERT INTO `sys_role_menu` VALUES (735, 1, 74);
-INSERT INTO `sys_role_menu` VALUES (736, 1, 75);
-INSERT INTO `sys_role_menu` VALUES (737, 1, 76);
-INSERT INTO `sys_role_menu` VALUES (738, 1, 188);
-INSERT INTO `sys_role_menu` VALUES (739, 1, 189);
-INSERT INTO `sys_role_menu` VALUES (740, 1, 190);
-INSERT INTO `sys_role_menu` VALUES (741, 1, 191);
-INSERT INTO `sys_role_menu` VALUES (742, 1, 192);
-INSERT INTO `sys_role_menu` VALUES (743, 1, 48);
-INSERT INTO `sys_role_menu` VALUES (744, 1, 72);
-INSERT INTO `sys_role_menu` VALUES (745, 1, 28);
-INSERT INTO `sys_role_menu` VALUES (746, 1, 29);
-INSERT INTO `sys_role_menu` VALUES (747, 1, 30);
-INSERT INTO `sys_role_menu` VALUES (748, 1, 57);
-INSERT INTO `sys_role_menu` VALUES (749, 1, 92);
-INSERT INTO `sys_role_menu` VALUES (750, 1, 98);
-INSERT INTO `sys_role_menu` VALUES (751, 1, 185);
-INSERT INTO `sys_role_menu` VALUES (752, 1, 186);
-INSERT INTO `sys_role_menu` VALUES (753, 1, 2);
-INSERT INTO `sys_role_menu` VALUES (754, 1, 6);
-INSERT INTO `sys_role_menu` VALUES (755, 1, 7);
-INSERT INTO `sys_role_menu` VALUES (756, 1, 73);
-INSERT INTO `sys_role_menu` VALUES (757, 1, 187);
-INSERT INTO `sys_role_menu` VALUES (758, 1, 3);
-INSERT INTO `sys_role_menu` VALUES (759, 1, 77);
-INSERT INTO `sys_role_menu` VALUES (760, 1, 27);
-INSERT INTO `sys_role_menu` VALUES (761, 1, 91);
-INSERT INTO `sys_role_menu` VALUES (762, 1, 97);
-INSERT INTO `sys_role_menu` VALUES (763, 1, 194);
-INSERT INTO `sys_role_menu` VALUES (764, 1, 195);
-INSERT INTO `sys_role_menu` VALUES (765, 1, 196);
-INSERT INTO `sys_role_menu` VALUES (766, 1, 197);
-INSERT INTO `sys_role_menu` VALUES (767, 1, 198);
-INSERT INTO `sys_role_menu` VALUES (768, 1, 199);
-INSERT INTO `sys_role_menu` VALUES (769, 1, -1);
-INSERT INTO `sys_role_menu` VALUES (770, 1, 193);
-INSERT INTO `sys_role_menu` VALUES (771, 1, 181);
-INSERT INTO `sys_role_menu` VALUES (772, 3, 184);
-INSERT INTO `sys_role_menu` VALUES (773, 3, 195);
-INSERT INTO `sys_role_menu` VALUES (774, 3, -1);
-INSERT INTO `sys_role_menu` VALUES (775, 3, 193);
-INSERT INTO `sys_role_menu` VALUES (776, 3, 181);
-INSERT INTO `sys_role_menu` VALUES (777, 3, 194);
-INSERT INTO `sys_role_menu` VALUES (813, 2, 12);
-INSERT INTO `sys_role_menu` VALUES (814, 2, 13);
-INSERT INTO `sys_role_menu` VALUES (815, 2, 14);
-INSERT INTO `sys_role_menu` VALUES (816, 2, 24);
-INSERT INTO `sys_role_menu` VALUES (817, 2, 25);
-INSERT INTO `sys_role_menu` VALUES (818, 2, 26);
-INSERT INTO `sys_role_menu` VALUES (819, 2, 75);
-INSERT INTO `sys_role_menu` VALUES (820, 2, 76);
-INSERT INTO `sys_role_menu` VALUES (821, 2, 195);
-INSERT INTO `sys_role_menu` VALUES (822, 2, 6);
-INSERT INTO `sys_role_menu` VALUES (823, 2, 74);
-INSERT INTO `sys_role_menu` VALUES (824, 2, 73);
-INSERT INTO `sys_role_menu` VALUES (825, 2, -1);
-INSERT INTO `sys_role_menu` VALUES (826, 2, 3);
-INSERT INTO `sys_role_menu` VALUES (827, 2, 193);
-INSERT INTO `sys_role_menu` VALUES (828, 2, 194);
-COMMIT;
+--
+-- Dumping data for table `sys_role_menu`
+--
 
--- ----------------------------
--- Table structure for sys_task
--- ----------------------------
+LOCK TABLES `sys_role_menu` WRITE;
+/*!40000 ALTER TABLE `sys_role_menu` DISABLE KEYS */;
+INSERT INTO `sys_role_menu` VALUES (830,3,184),(831,3,195),(832,3,201),(833,3,-1),(834,3,193),(835,3,181),(836,3,194),(943,2,12),(944,2,13),(945,2,14),(946,2,24),(947,2,25),(948,2,26),(949,2,74),(950,2,75),(951,2,76),(952,2,195),(953,2,6),(954,2,73),(955,2,202),(956,2,201),(957,2,181),(958,2,183),(959,2,184),(960,2,185),(961,2,186),(962,2,-1),(963,2,3),(964,2,193),(965,2,194),(966,60,72),(967,60,92),(968,60,27),(969,60,28),(970,60,29),(971,60,30),(972,60,57),(973,60,91),(974,60,97),(975,60,98),(976,60,201),(977,60,202),(978,60,194),(979,60,195),(980,60,196),(981,60,197),(982,60,198),(983,60,199),(984,60,181),(985,60,183),(986,60,184),(987,60,185),(988,60,186),(989,60,193),(990,60,12),(991,60,25),(992,60,26),(993,60,15),(994,60,55),(995,60,74),(996,60,76),(997,60,188),(998,60,189),(999,60,190),(1000,60,191),(1001,60,192),(1002,60,187),(1003,60,48),(1004,60,77),(1005,60,13),(1006,60,-1),(1007,60,3),(1008,60,6),(1009,60,7),(1010,60,73),(1011,1,20),(1012,1,21),(1013,1,22),(1014,1,61),(1015,1,12),(1016,1,13),(1017,1,14),(1018,1,24),(1019,1,25),(1020,1,26),(1021,1,15),(1022,1,55),(1023,1,56),(1024,1,62),(1025,1,74),(1026,1,75),(1027,1,76),(1028,1,188),(1029,1,189),(1030,1,190),(1031,1,191),(1032,1,192),(1033,1,48),(1034,1,72),(1035,1,28),(1036,1,29),(1037,1,30),(1038,1,57),(1039,1,92),(1040,1,98),(1041,1,183),(1042,1,184),(1043,1,185),(1044,1,186),(1045,1,195),(1046,1,196),(1047,1,197),(1048,1,198),(1049,1,199),(1050,1,201),(1051,1,2),(1052,1,6),(1053,1,7),(1054,1,73),(1055,1,187),(1056,1,3),(1057,1,77),(1058,1,27),(1059,1,91),(1060,1,97),(1061,1,181),(1062,1,194),(1063,1,202),(1064,1,193),(1065,1,-1),(1066,1,202),(1067,2,202),(1068,4,202);
+/*!40000 ALTER TABLE `sys_role_menu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_task`
+--
+
 DROP TABLE IF EXISTS `sys_task`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_task` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `cron_expression` varchar(255) DEFAULT NULL COMMENT 'cron表达式',
   `method_name` varchar(255) DEFAULT NULL COMMENT '任务调用的方法名',
   `is_concurrent` varchar(255) DEFAULT NULL COMMENT '任务是否有状态',
@@ -625,59 +463,84 @@ CREATE TABLE `sys_task` (
   `job_name` varchar(255) DEFAULT NULL COMMENT '任务名',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of sys_task
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_task` VALUES (2, '0 0 7 ? * MON', 'run1', '1', '每周一七点给老师生成统计信息和周报总表，并邮件通知给老师', '4028ea815a3d2a8c015a3d2f8d2a0002', 'com.bio.job.jobs.ThisWeekReportTemplateGenerateJob', '2017-05-19 18:30:56', '1', 'group1', '2017-05-19 18:31:07', NULL, '', 'ThisWeekReportTemplateGenerateJob');
-INSERT INTO `sys_task` VALUES (11, '0 0  19 ? * SUN', NULL, NULL, '周报完成提示定时任务', NULL, 'com.bio.job.jobs.WeekReportNotFinishedNotificationJob', NULL, '1', 'group1', NULL, NULL, NULL, 'WeekReportNotFinishedNotificationJob');
-INSERT INTO `sys_task` VALUES (12, '0 30 7 ? * MON', NULL, NULL, '上周周报完成情况统计定时任务', NULL, 'com.bio.job.jobs.LastWeekReportStatisticsJob', NULL, '1', 'group1', NULL, NULL, NULL, 'LastWeekReportStatisticsJob');
-COMMIT;
+--
+-- Dumping data for table `sys_task`
+--
 
--- ----------------------------
--- Table structure for sys_user
--- ----------------------------
+LOCK TABLES `sys_task` WRITE;
+/*!40000 ALTER TABLE `sys_task` DISABLE KEYS */;
+INSERT INTO `sys_task` VALUES (2,'0 30 23 ? * WED','run1','1','周报草稿发送','4028ea815a3d2a8c015a3d2f8d2a0002','com.bio.job.jobs.ThisWeekReportTemplateGenerateJob','2017-05-19 18:30:56','1','group1','2017-05-19 18:31:07',NULL,'','ThisWeekReportTemplateGenerateJob'),(11,'0 51 15 ? * TUE',NULL,NULL,'周报完成提示定时任务',NULL,'com.bio.job.jobs.WeekReportNotFinishedNotificationJob',NULL,'1','group1',NULL,NULL,NULL,'WeekReportNotFinishedNotificationJob'),(12,'0 52 15 ? * TUE',NULL,NULL,'上周周报完成情况统计定时任务',NULL,'com.bio.job.jobs.LastWeekReportStatisticsJob',NULL,'1','group1',NULL,NULL,NULL,'LastWeekReportStatisticsJob');
+/*!40000 ALTER TABLE `sys_task` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_user`
+--
+
 DROP TABLE IF EXISTS `sys_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL COMMENT '用户名',
   `name` varchar(100) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL COMMENT '密码',
-  `dept_id` bigint(20) DEFAULT NULL,
+  `dept_id` bigint DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL COMMENT '邮箱',
   `mobile` varchar(100) DEFAULT NULL COMMENT '手机号',
-  `status` tinyint(255) DEFAULT NULL COMMENT '状态 0:禁用，1:正常',
-  `user_id_create` bigint(255) DEFAULT NULL COMMENT '创建用户id',
+  `status` tinyint DEFAULT NULL COMMENT '状态 0:禁用，1:正常',
+  `user_id_create` bigint DEFAULT NULL COMMENT '创建用户id',
   `gmt_create` datetime DEFAULT NULL COMMENT '创建时间',
   `gmt_modified` datetime DEFAULT NULL COMMENT '修改时间',
-  `pic_id` bigint(32) DEFAULT NULL,
+  `pic_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of sys_user
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_user` VALUES (1, 'admin', '超级管理员', '33808479d49ca8a3cdc93d4f976d1e3d', 0, 'chenxofhit@gmail.com', '15277778888', 1, 1, '2017-08-15 21:40:39', '2017-08-15 21:41:00', 151);
-COMMIT;
+--
+-- Dumping data for table `sys_user`
+--
 
--- ----------------------------
--- Table structure for sys_user_role
--- ----------------------------
+LOCK TABLES `sys_user` WRITE;
+/*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
+INSERT INTO `sys_user` VALUES (1,'admin','超级管理员','33808479d49ca8a3cdc93d4f976d1e3d',0,'2442799764@qq.com','15277778888',1,1,'2017-08-15 21:40:39','2017-08-15 21:41:00',151),(153,'4mE','程博文','c8cebd754c2d77913da303850e0ff8aa',24,'2442799764@qq.com',NULL,1,NULL,NULL,NULL,NULL),(154,'swe123','张翔','d3c66c5ac9afe2c3efc4da6110d4cfdb',24,'2442799764@qq.com',NULL,1,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_user_role`
+--
+
 DROP TABLE IF EXISTS `sys_user_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sys_user_role` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL COMMENT '用户ID',
-  `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` bigint DEFAULT NULL COMMENT '用户ID',
+  `role_id` bigint DEFAULT NULL COMMENT '角色ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8 COMMENT='用户与角色对应关系';
+) ENGINE=InnoDB AUTO_INCREMENT=171 DEFAULT CHARSET=utf8 COMMENT='用户与角色对应关系';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of sys_user_role
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_user_role` VALUES (1, 1, 1);
-COMMIT;
+--
+-- Dumping data for table `sys_user_role`
+--
 
-SET FOREIGN_KEY_CHECKS = 1;
+LOCK TABLES `sys_user_role` WRITE;
+/*!40000 ALTER TABLE `sys_user_role` DISABLE KEYS */;
+INSERT INTO `sys_user_role` VALUES (168,153,3),(169,1,1),(170,154,2);
+/*!40000 ALTER TABLE `sys_user_role` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-05-15 15:21:29

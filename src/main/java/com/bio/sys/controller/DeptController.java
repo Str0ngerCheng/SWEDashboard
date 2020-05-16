@@ -167,6 +167,13 @@ public class DeptController extends BaseController {
         return tree;
     }
 
+    @GetMapping("/allTree")
+    @ResponseBody
+    public Tree<DeptDO> allTree() {
+        //返回所有部门（小组）数据
+        return sysDeptService.getTree(0L);
+    }
+
     @GetMapping("/treeView")
     String treeView() {
         return prefix + "/deptTree";

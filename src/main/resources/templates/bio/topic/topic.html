@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<link href="/css/plugins/bootstrap-table/extensions/bootstrap-table-reorder-rows.css" th:href="@{/css/plugins/bootstrap-table/extensions/bootstrap-table-reorder-rows.css}"
+      rel="stylesheet">
+<head th:include="include :: header">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="ibox-body">
+                <div class="fixed-table-toolbar">
+                    <div class="columns pull-left">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                全部 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                            </button>
+                            <ul class="dropdown-menu" style="left: 0">
+                                <li><a href="#">全部</a></li>
+                                <li><a href="#">未阅</a></li>
+                                <li><a href="#">已阅</a></li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-primary">
+                            批量下载附件</span>
+                        </button>
+                    </div>
+                    <div class="columns pull-right">
+                        <button type="button" class="btn btn-primary">提交</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin: 0">
+                <table id="topicTable" data-mobile-responsive="true">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/bio/topic/topic.js" th:src="@{/js/appjs/bio/topic/topic.js}"></script>
+<script src="/js/plugins/bootstrap-table/extensions/jquery.tablednd.min.js"  th:src="@{/js/plugins/bootstrap-table/extensions/jquery.tablednd.min.js}"></script>
+<script src="/js/plugins/bootstrap-table/extensions/bootstrap-table-reorder-rows.js" th:src="@{/js/plugins/bootstrap-table/extensions/bootstrap-table-reorder-rows.js}"></script>
+
+</body>
+</html>
