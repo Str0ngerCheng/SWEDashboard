@@ -43,14 +43,17 @@ public class ReportDO implements Serializable {
     /** 周报题目 */
     private String title;
     /** 周报内容 */
-    private String content;
-    /** 状态0: 系统生成, 1:人工修改 */
-    private Integer status;
+    private String contentId;
     /** 创建时间 */
     private Date rCreateDate;
     /** 修改时间 */
     private Date rChgDate;
-
+    /** 状态0: 系统生成, 1:人工修改 */
+    private Integer statusMod;
+    /** 状态0: 本人未提交, 1:本人已提交 */
+    private Integer statusMSub;
+    /** 状态0: 组长未提交, 1:组长已提交 */
+    private Integer statusLSub;
     /**
      * 设置：ID
      */
@@ -145,29 +148,18 @@ public class ReportDO implements Serializable {
         return title;
     }
     /**
-     * 设置：周报内容
+     * 获取：周报内容ID
      */
-    public void setContent(String content) {
-        this.content = content;
+    public String getContentId() {
+        return contentId;
     }
     /**
-     * 获取：周报内容
+     * 设置：周报内容ID
      */
-    public String getContent() {
-        return content;
+    public void setContentId(String contentId) {
+        this.contentId = contentId;
     }
-    /**
-     * 设置：状态0: 系统生成, 1:人工修改
-     */
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-    /**
-     * 获取：状态0: 系统生成, 1:人工修改
-     */
-    public Integer getStatus() {
-        return status;
-    }
+
     /**
      * 设置：创建时间
      */
@@ -191,5 +183,29 @@ public class ReportDO implements Serializable {
      */
     public Date getRChgDate() {
         return rChgDate;
+    }
+
+    public Integer getStatusMod() {
+        return statusMod;
+    }
+
+    public void setStatusMod(Integer statusMod) {
+        this.statusMod = statusMod;
+    }
+
+    public Integer getStatusMSub() {
+        return statusMSub;
+    }
+
+    public void setStatusMSub(Integer statusMSub) {
+        this.statusMSub = statusMSub;
+    }
+
+    public Integer getStatusLSub() {
+        return statusLSub;
+    }
+
+    public void setStatusLSub(Integer statusLSub) {
+        this.statusLSub = statusLSub;
     }
 }
