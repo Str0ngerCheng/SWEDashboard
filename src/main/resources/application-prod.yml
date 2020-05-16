@@ -22,7 +22,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/ifast?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true
     username: root
-    password: 2442799764
+    password: 1234567
     initialSize: 1
     minIdle: 3
     maxActive: 20
