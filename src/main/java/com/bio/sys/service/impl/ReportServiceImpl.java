@@ -64,16 +64,32 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 	@Override
 	public List<ReportDO> getThisWeekReportByDeptAndStatusLSub(Long deptId,Integer status) {
 		List<ReportDO> reportListAll=baseMapper.getThisWeekReportByDept(deptId);
-		//-1表示获取上周所有的专题内周报,0表示未提交（专题组长未审阅）的周报，1表示已审阅的周报
-		if(status==-1) return reportListAll;
-		else {
-			List<ReportDO> reportList=new ArrayList<>();
-			for (int i = 0; i < reportListAll.size(); i++) {
-				ReportDO report=reportListAll.get(i);
-				if (report.getStatusLSub() == status)
+		//-1表示获取上周所有提交的的专题内的周报,0表示提交了但专题组长未审阅的周报，1表示已审阅的周报
+		List<ReportDO> reportList=new ArrayList<>();
+		for (int i = 0; i < reportListAll.size(); i++) {
+			ReportDO report=reportListAll.get(i);
+			if(report.getStatusMSub()==1){//表示学生已提交周报
+				if(status==-1)//获取所有
+					reportList.add(report);
+				else  if (report.getStatusLSub() == status)
 					reportList.add(report);
 			}
-			return reportList;
 		}
+		return reportList;
+	}
+
+	@Override
+	public List<ReportDO> getThisWeekReportByDeptAndStatusMSub(Long deptId, Integer status) {
+		//获取专题内所有的本周周报
+		List<ReportDO> reportListAll=baseMapper.getThisWeekReportByDept(deptId);
+		//status：0表示未提交，1表示已提交
+		List<ReportDO> reportList=new ArrayList<>();
+		for (int i = 0; i < reportListAll.size(); i++) {
+			ReportDO report=reportListAll.get(i);
+			if(report.getStatusMSub()==status){
+				reportList.add(report);
+			}
+		}
+		return reportList;
 	}
 }

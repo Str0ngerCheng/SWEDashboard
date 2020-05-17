@@ -56,4 +56,6 @@
 		AND YEARWEEK(date_format(r_to_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
 	</select>
 
+
+
 </mapper>

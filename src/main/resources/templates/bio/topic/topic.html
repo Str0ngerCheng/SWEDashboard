@@ -23,9 +23,17 @@
                                 <li><a href="#" onclick="selectStatus(1)">已阅</a></li>
                             </ul>
                         </div>
-                        <button type="button" class="btn btn-primary">
-                            批量下载附件</span>
-                        </button>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-outline" type="button" name="refresh" title="刷新表格" onclick="reLoad()">
+                                <i class="glyphicon glyphicon-refresh icon-refresh"></i>
+                            </a>
+                            <a class="btn btn-default btn-outline" type="button" name="toggle" title="专题周报详情" onclick="getTopicView()">
+                                <i class="glyphicon glyphicon-list-alt icon-list-alt"></i>
+                            </a>
+                            <a class="btn btn-default btn-outline" type="button" name="toggle" title="批量下载附件">
+                                <i class="glyphicon  glyphicon-download-alt icon-download-alt"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="columns pull-right">
                         <button type="button" class="btn btn-primary" onclick="submit()">提交</span>

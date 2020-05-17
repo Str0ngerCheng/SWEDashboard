@@ -100,7 +100,7 @@ function load() {
 							if(row.statusMSub=="0"){
 								value = ' <a class="btn btn-danger btn-sm"  title="未完成"><i class="fa fa-clock-o"></i></a>';
 							}else if(row.statusMSub=="1"){
-								value = ' <a class="btn btn-success btn-sm"  title="已完成"><i class="fa fa-check-circle"></i></a> ';
+								value = ' <a class="btn btn-primary btn-sm"  title="已完成"><i class="fa fa-check-circle"></i></a> ';
 							}else{
 								value = row.statusMSub ;
 							}
@@ -116,7 +116,7 @@ function load() {
 							if(row.statusLSub=="0"){
 								value = ' <a class="btn btn-danger btn-sm"  title="未审核"><i class="fa fa-clock-o"></i></a>';
 							}else if(row.statusLSub=="1"){
-								value = ' <a class="btn btn-success btn-sm"  title="已审核"><i class="fa fa-check-circle"></i></a> ';
+								value = ' <a class="btn btn-primary btn-sm"  title="已审核"><i class="fa fa-check-circle"></i></a> ';
 							}else{
 								value = row.statusLSub ;
 							}
@@ -142,7 +142,7 @@ function load() {
 							if(row.statusMSub==1)
 								disabled="disabled "
 
-							var e = '<a class="btn btn-primary btn-sm '+disabled+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
+							var e = '<a class="btn btn-success btn-sm '+disabled+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
 								+ row.id
 								+ '\')"><i class="fa fa-edit"></i></a> ';
 							var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''

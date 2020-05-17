@@ -143,7 +143,7 @@ public class UserController extends BaseController {
             user.setId(reportVO.getAuthorId());
             System.out.println(reportVO.getAuthorId());
             user.setOrderNum(reportVO.getOrderNum());
-            userService.updateById(user);
+            userService.updatePersonal(user);
         }
         return Result.ok();
     }
