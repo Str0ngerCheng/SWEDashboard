@@ -72,6 +72,7 @@ public class TopicController {
         return Result.fail();
     }
 
+    //获取本周的专题周报信息
     @GetMapping("/weekInfo")
     @RequiresPermissions("bio:topic:topic")
     public String getWeekInfo(Model model){
@@ -114,5 +115,15 @@ public class TopicController {
         model.addAttribute("topicReportDetailsList", topicReportDetailsList);
 
         return "bio/topic/weekInfo";
+    }
+    //获取本周学生专题周报提交的状况
+    @ResponseBody
+    @GetMapping("/submitInfo")
+    @RequiresPermissions("bio:topic:topic")
+    public Result<List<ReportDO>> getSubmitInfo(){
+        UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
+        Long deptId = userDO.getDeptId();
+        List<ReportDO> reportList=reportService.getThisWeekReportByDept(deptId);
+        return Result.ok(reportList);
     }
 }

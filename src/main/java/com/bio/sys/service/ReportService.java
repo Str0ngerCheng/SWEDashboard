@@ -25,6 +25,8 @@ public interface ReportService extends CoreService<ReportDO> {
 	
 	public List<ReportCountDO> getReportsCount(Date fromDate, Date toDate, Integer status);
 
+	public  List<ReportDO> getThisWeekReportByDept(Long deptId);
+
 	public  List<ReportDO> getThisWeekReportByDeptAndStatusLSub(Long deptId,Integer status);
 
 	public  List<ReportDO> getThisWeekReportByDeptAndStatusMSub(Long deptId,Integer status);

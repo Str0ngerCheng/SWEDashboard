@@ -10,7 +10,6 @@ function load() {
                 method : 'get', // 服务器数据的请求方式 get or post
                 url : prefix + "/bio/topic/weekList/-1",
                 reorderableRows: true,
-                striped: true,
                 useRowAttrFunc: true,
                 //	showRefresh : true,
                 //	showToggle : true,
@@ -143,7 +142,75 @@ function getTopicView(){
     //layer.full(index)
 }
 function  submit(){
-    var allTableData = $('#topicTable').bootstrapTable('getData');
+    $.ajax({
+        cache : true,
+        type : "GET",
+        url : prefix + "/bio/topic/submitInfo",
+        dataType: 'json',
+        async : false,
+        error : function(request) {
+            parent.layer.alert("Connection error");
+        },
+        success : function(res) {
+            if (res.code == 0) {
+                var data=res.data;
+                var unMSubList=[];
+                var unLSubList=[];
+                var unMSubUsers='';
+                var unLSubUsers='';
+                for(var i=0;i<data.length;i++){
+                    if(data[i].statusMSub==0) {
+                        unMSubList.push(data[i])
+                        unMSubUsers+=data[i].authorName+'，'
+                    }
+                    else  if(data[i].statusLSub==0) {
+                        unLSubList.push(data[i])
+                        unLSubUsers+=data[i].authorName+'，'
+                    }
+                }
+                if(unLSubList.length>0) {
+                    layer.alert('专题内<label style="color:red">'+unLSubUsers+'</label>本周的周报还未审阅，请完成审阅再提交！', {icon: 2})
+                }
+                else if(unMSubList.length>0){
+                    layer.alert('专题内<label style="color:red">'+unMSubUsers+'</label>本周的周报还未完成，确定要提交吗？', {
+                        icon: 0,
+                        btn: ['确定', '取消'],
+                        yes: function(index){
+                        layer.close(index);
+                            var allTableData = $('#topicTable').bootstrapTable('getData');
+                            for(var i=0;i<allTableData.length;i++){
+                                allTableData[i].orderNum=i
+                            }
+                            $.ajax({
+                                cache : true,
+                                type : "POST",
+                                url : prefix + "/sys/user/batchUpdateOrderNum",
+                                dataType: 'json',
+                                contentType : 'application/json',
+                                data : JSON.stringify(allTableData),
+                                async : false,
+                                error : function(request) {
+                                    parent.layer.alert("Connection error");
+                                },
+                                success : function(data) {
+                                    if (data.code == 0) {
+                                        layer.alert("已提交",{icon:1})
+
+                                    } else {
+                                        layer.alert(data.msg)
+                                    }
+                                }
+                            });
+                    }
+                    })
+                }
+
+            } else {
+                layer.alert(res.msg)
+            }
+        }
+    });
+   /* var allTableData = $('#topicTable').bootstrapTable('getData');
     for(var i=0;i<allTableData.length;i++){
         allTableData[i].orderNum=i
     }
@@ -166,6 +233,6 @@ function  submit(){
                 layer.alert(data.msg)
             }
         }
-    });
+    });*/
 }
 

@@ -55,7 +55,7 @@ public class ReportController {
 	
 	@ResponseBody
 	@GetMapping("/latest/{id}")
-//	@RequiresPermissions("bio:report:latest")
+	@RequiresPermissions("bio:report:report")
 	public Result<ReportDO>  getLatestReport(@PathVariable("id") Integer id){
 		
 		UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());

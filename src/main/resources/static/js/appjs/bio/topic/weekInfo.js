@@ -49,7 +49,7 @@ function load() {
                         align : 'center',
                     },
                     {
-                        field : 'unMSubMitUsers',
+                        field : 'unMSubmitUsers',
                         title : '未交名单',
                         align : 'center'
                     },

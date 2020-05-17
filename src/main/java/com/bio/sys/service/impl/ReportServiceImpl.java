@@ -60,6 +60,11 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 		return reportCountDOs;
 	}
 
+	@Override
+	public List<ReportDO> getThisWeekReportByDept(Long deptId) {
+		return baseMapper.getThisWeekReportByDept(deptId);
+	}
+
 
 	@Override
 	public List<ReportDO> getThisWeekReportByDeptAndStatusLSub(Long deptId,Integer status) {
