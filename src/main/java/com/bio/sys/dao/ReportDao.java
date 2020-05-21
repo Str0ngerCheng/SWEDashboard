@@ -26,4 +26,6 @@ public interface ReportDao extends BaseDao<ReportDO> {
 	public List<ReportCountDO> getReportsCount(@Param("fromdate") String fromDate,@Param("todate") String toDate, @Param("status") Integer status);
 
 	public  List<ReportDO> getThisWeekReportByDept(@Param("deptId") Long deptId);
+
+	public Boolean updateBatch(@Param("reportDOList") List<ReportDO> reportDOList);
 }

@@ -97,4 +97,9 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 		}
 		return reportList;
 	}
+
+	@Override
+	public Boolean updateBatch(List<ReportDO> reportDOList) {
+		return baseMapper.updateBatch(reportDOList);
+	}
 }

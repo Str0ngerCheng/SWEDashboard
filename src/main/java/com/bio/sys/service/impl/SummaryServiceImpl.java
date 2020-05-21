@@ -11,13 +11,6 @@ import com.bio.sys.domain.ReportDO;
 import com.bio.sys.domain.SummaryDO;
 import com.bio.sys.service.SummaryService;
 
-/**
- * 
- * <pre>
- * 周报汇总
- * </pre>
- * <small> 2019-12-18 15:03:07 | chenx</small>
- */
 @Service
 public class SummaryServiceImpl extends CoreServiceImpl<SummaryDao, SummaryDO> implements SummaryService {
 
@@ -33,6 +26,11 @@ public class SummaryServiceImpl extends CoreServiceImpl<SummaryDao, SummaryDO> i
 		
 		return baseMapper.getSummaryCountByTitle(title);
 	
+	}
+
+	@Override
+	public List<SummaryDO> getThisWeekSummary() {
+		return baseMapper.getThisWeekSummary();
 	}
 
 }

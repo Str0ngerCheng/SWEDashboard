@@ -52,44 +52,27 @@ function load() {
 				},
 				columns : [
 					{
-						checkbox : true
-					},
-//																{
-//									field : 'id',
-//									title : 'ID'
-//								},
-//																{
-//									field : 'authorId',
-//									title : '作者ID'
-//								},
-//																{
-//									field : 'authorName',
-//									title : '作者姓名'
-//								},
-//																{
-//									field : 'parentDeptId',
-//									title : '上级部门 ID'
-//								},
-//																{
-//									field : 'deptId',
-//									title : '部门ID'
-//								},
-//																{
-//									field : 'deptName',
-//									title : '部门名称'
-//								},
-//																{
-//									field : 'rFromDate',
-//									title : '起始时间'
-//								},
-//																{
-//									field : 'rToDate',
-//									title : '终止时间'
-//								},
-					{
 						field : 'title',
 						title : '周报题目',
+						align : 'center', formatter : function(value, row, index) {
+							return  '<a class="btn btn-link btn-sm" onclick="getReportContent(\'' + row.id + '\')" target="_blank">' + row.title+ '</a>';
+						}
+					},
+					{
+						field : 'comment',
+						title : '组长评价' ,
 						align : 'center',
+					},
+					{
+						field : 'suggest',
+						title : '老师意见' ,
+						align : 'center',
+					},
+					{
+						field : 'rchgDate',
+						title : '修改时间' ,
+						align : 'center',
+						width: 150
 					},
 					{
 						field : 'statusMSub',
@@ -124,17 +107,7 @@ function load() {
 						}
 					},
 					{
-						field : 'rcreateDate',
-						title : '创建时间' ,
-						align : 'center',
-					},
-					{
-						field : 'rchgDate',
-						title : '修改时间' ,
-						align : 'center',
-					},
-					{
-						title : '操作',
+						title : '  操作  ',
 						field : 'id',
 						align : 'center',
 						formatter : function(value, row, index) {
@@ -155,6 +128,17 @@ function load() {
 }
 function reLoad() {
 	$('#exampleTable').bootstrapTable('refresh');
+}
+
+function getReportContent(id) {
+	layer.open({
+		type : 2,
+		title : '周报详情',
+		maxmin : true,
+		shadeClose : false, // 点击遮罩关闭层
+		area : [ '800px', '520px' ],
+		content : prefix + '/reportContent/'+ id
+	});
 }
 function add() {
 	layer.open({

@@ -51,6 +51,17 @@ function load() {
                         }
                     },
                     {
+                        field : 'comment',
+                        title : '评价',
+                        width:   250,
+                        align : 'center',
+                    },
+                    {
+                        field : 'score',
+                        title : '评分',
+                        align : 'center',
+                    },
+                    {
                         field : 'rchgDate',
                         title : '提交时间',
                         align : 'center',
@@ -70,17 +81,6 @@ function load() {
                             }
                             return value;
                         }
-                    },
-                    {
-                        field : 'comment',
-                        title : '评价',
-                        width:   250,
-                        align : 'center',
-                    },
-                    {
-                        field : 'score',
-                        title : '评分',
-                        align : 'center',
                     },
                     {
                         title : '操作',
@@ -108,7 +108,7 @@ function getReportContent(id) {
         maxmin : true,
         shadeClose : false, // 点击遮罩关闭层
         area : [ '800px', '520px' ],
-        content : prefix + '/bio/report/reportContent/'+ id
+        content : prefix + '/bio/report/markReportContent/'+ id
     });
 }
 
@@ -137,18 +137,22 @@ function getTopicView(){
         maxmin : true,
         shadeClose : false, // 点击遮罩关闭层
         area : [ '800px', '520px' ],
-        content : prefix + '/bio/topic/weekInfo',
+        content : prefix + '/bio/topic/weekInfo/-1',
     });
     //layer.full(index)
 }
 function  submit(){
+    var loadIndex=layer.load(1,{
+        shade: [0.2,'#fff'] //0.1透明度的白色背景
+    });
     $.ajax({
         cache : true,
         type : "GET",
         url : prefix + "/bio/topic/submitInfo",
         dataType: 'json',
-        async : false,
+        async : true,
         error : function(request) {
+            layer.close(loadIndex)
             parent.layer.alert("Connection error");
         },
         success : function(res) {
@@ -176,56 +180,39 @@ function  submit(){
                         icon: 0,
                         btn: ['确定', '取消'],
                         yes: function(index){
-                        layer.close(index);
-                            var allTableData = $('#topicTable').bootstrapTable('getData');
-                            for(var i=0;i<allTableData.length;i++){
-                                allTableData[i].orderNum=i
-                            }
-                            $.ajax({
-                                cache : true,
-                                type : "POST",
-                                url : prefix + "/sys/user/batchUpdateOrderNum",
-                                dataType: 'json',
-                                contentType : 'application/json',
-                                data : JSON.stringify(allTableData),
-                                async : false,
-                                error : function(request) {
-                                    parent.layer.alert("Connection error");
-                                },
-                                success : function(data) {
-                                    if (data.code == 0) {
-                                        layer.alert("已提交",{icon:1})
-
-                                    } else {
-                                        layer.alert(data.msg)
-                                    }
-                                }
-                            });
-                    }
+                            layer.close(index);
+                            resetUserOrder(loadIndex);
+                        }
                     })
                 }
+                else  resetUserOrder(loadIndex);
 
             } else {
                 layer.alert(res.msg)
             }
         }
     });
-   /* var allTableData = $('#topicTable').bootstrapTable('getData');
+}
+
+function  resetUserOrder(loadIndex) {
+    var allTableData = $('#topicTable').bootstrapTable('getData');
     for(var i=0;i<allTableData.length;i++){
         allTableData[i].orderNum=i
     }
     $.ajax({
         cache : true,
         type : "POST",
-        url : prefix + "/sys/user/batchUpdateOrderNum",
+        url : prefix + "/bio/topic/submitTopicReports",
         dataType: 'json',
         contentType : 'application/json',
         data : JSON.stringify(allTableData),
         async : false,
         error : function(request) {
+            layer.close(loadIndex)
             parent.layer.alert("Connection error");
         },
         success : function(data) {
+            layer.close(loadIndex)
             if (data.code == 0) {
                 layer.alert("已提交",{icon:1})
 
@@ -233,6 +220,7 @@ function  submit(){
                 layer.alert(data.msg)
             }
         }
-    });*/
+    });
+
 }
 

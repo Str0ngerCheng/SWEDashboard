@@ -23,5 +23,14 @@
 	<select id="getSummaryCountByTitle" resultType="int">
 		select count(*) from report_summary where title = #{value}
 	</select>
+
+	<select id="getThisWeekSummary" resultType="com.bio.sys.domain.SummaryDO">
+		SELECT *
+		FROM
+		report_summary
+		WHERE
+	 YEARWEEK(date_format(r_from_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
+		AND YEARWEEK(date_format(r_to_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
+	</select>
 	
 </mapper>

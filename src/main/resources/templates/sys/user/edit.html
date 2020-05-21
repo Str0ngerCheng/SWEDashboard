@@ -52,31 +52,14 @@
 								</label>
 							</div>
 						</div>
-						<input type="hidden" name="roleIds" id="roleIds"
-							th:value="${roleIds}">
 						<div class="form-group">
 							<label class="col-sm-3 control-label">角色</label>
-<!-- 							<div class="col-sm-8">
+							<div class="col-sm-8">
 								<label th:each="role:${roles}" class="checkbox-inline">
-									<input name="role" type="checkbox" th:value="${role.id}"
-									th:text="${role.roleName}" th:checked="${role.roleSign}">
-								</label>
-							</div> -->
-							
-														<div class="col-sm-8">
-								<label class="radio-inline"> <input
-									th:field="*{user.roleId}" type="radio" name="roleId" value="1" />
-									超级管理员
-								</label> <label class="radio-inline"> <input
-									th:field="*{user.roleId}" type="radio" name="roleId" value="2" />
-									PI
-								</label>
-								<label class="radio-inline"> <input
-									th:field="*{user.roleId}" type="radio" name="roleId" value="3" />
-									学生
+									<input name="roleId" type="radio" th:value="${role.id}"
+										   th:text="${role.roleName}">
 								</label>
 							</div>
-							
 						</div>
 						<div class="form-group">
 							<div class="col-sm-8 col-sm-offset-3">

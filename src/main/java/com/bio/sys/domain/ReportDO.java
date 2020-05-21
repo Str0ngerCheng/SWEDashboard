@@ -51,6 +51,8 @@ public class ReportDO implements Serializable {
     /** 分数*/
     private String score;
 
+    /** 意见*/
+    private String suggest;
 
     /** 创建时间 */
     private Date rCreateDate;
@@ -185,6 +187,14 @@ public class ReportDO implements Serializable {
         this.score = score;
     }
 
+    public String getSuggest() {
+        return suggest;
+    }
+
+    public void setSuggest(String suggest) {
+        this.suggest = suggest;
+    }
+
     /**
      * 设置：创建时间
      */
@@ -242,7 +252,6 @@ public class ReportDO implements Serializable {
                 ", deptName='" + deptName + '\'' +
                 ", title='" + title + '\'' +
                 ", contentId='" + contentId + '\'' +
-                ", comment='" + comment + '\'' +
                 ", score='" + score + '\'' +
                 ", statusMod=" + statusMod +
                 ", statusMSub=" + statusMSub +

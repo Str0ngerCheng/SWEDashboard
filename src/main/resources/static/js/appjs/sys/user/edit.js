@@ -1,4 +1,4 @@
-// 以下为官方示例
+
 $().ready(function() {
 	validateRule();
 	// $("#signupForm").validate();

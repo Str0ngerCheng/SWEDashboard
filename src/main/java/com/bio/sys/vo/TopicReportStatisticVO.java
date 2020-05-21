@@ -3,7 +3,7 @@ package com.bio.sys.vo;
 
 import java.io.Serializable;
 
-public class TopicReportStatisticVO implements Serializable {
+public class TopicReportStatisticVO implements Serializable,Comparable<TopicReportStatisticVO> {
 
     private static final long serialVersionUID = 1L;
 
@@ -15,6 +15,9 @@ public class TopicReportStatisticVO implements Serializable {
 
     private String unMSubmitUsers;
 
+    private Integer orderNum;
+
+    private Integer isLSubmit;
     public String getDeptName() {
         return deptName;
     }
@@ -45,5 +48,28 @@ public class TopicReportStatisticVO implements Serializable {
 
     public void setUnMSubmitUsers(String unMSubmitUsers) {
         this.unMSubmitUsers = unMSubmitUsers;
+    }
+
+    public Integer getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
+    }
+
+    public Integer getIsLSubmit() {
+        return isLSubmit;
+    }
+
+    public void setIsLSubmit(Integer isSubmit) {
+        this.isLSubmit = isSubmit;
+    }
+
+    @Override
+    public int compareTo(TopicReportStatisticVO o) {
+        if(this.orderNum>o.orderNum) return  1;
+        else if(this.orderNum<o.orderNum) return -1;
+        else return 0;
     }
 }

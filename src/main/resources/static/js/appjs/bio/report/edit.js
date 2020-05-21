@@ -71,6 +71,9 @@ $('#summary').on('input propertychange', function () {
 	setSummaryContent()
 });
 function saveReport() {
+	var loadIndex=layer.load(1,{
+		shade: [0.2,'#fff'] //0.1透明度的白色背景
+	});
 	$.ajax({
 		cache: true,
 		type: "POST",
@@ -82,13 +85,14 @@ function saveReport() {
 			summary: $('#summary').val(),
 			nextPlan: $('#nextPlan').val(),
 			problem: $('#problem').val(),
-			other: $('#other').val()
 		},
-		async: false,
+		async: true,
 		error: function (request) {
+			layer.close(loadIndex);
 			parent.layer.alert("Connection error");
 		},
 		success: function (data) {
+			layer.close(loadIndex);
 			if (data.code == 0) {
 				parent.layer.msg("已保存");
 				parent.reLoad();
@@ -120,8 +124,7 @@ function submitReport() {
 						lastPlan:$('#lastPlan').val(),
 						summary:$('#summary').val(),
 						nextPlan:$('#nextPlan').val(),
-						problem:$('#problem').val(),
-						other:$('#other').val()},
+						problem:$('#problem').val()},
 					async : false,
 					error : function(request) {
 						parent.layer.alert("Connection error");

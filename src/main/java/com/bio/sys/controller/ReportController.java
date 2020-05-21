@@ -1,12 +1,17 @@
 package com.bio.sys.controller;
 
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.UUID;
-
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.bio.common.service.ContextService;
+import com.bio.common.utils.Result;
 import com.bio.sys.domain.ReportContentDO;
+import com.bio.sys.domain.ReportDO;
+import com.bio.sys.domain.UserDO;
+import com.bio.sys.service.PlaceholderService;
 import com.bio.sys.service.ReportContentService;
+import com.bio.sys.service.ReportService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.bio.common.service.ContextService;
-import com.bio.common.utils.Result;
-import com.bio.sys.domain.PlaceholderDO;
-import com.bio.sys.domain.ReportDO;
-import com.bio.sys.domain.UserDO;
-import com.bio.sys.service.PlaceholderService;
-import com.bio.sys.service.ReportService;
+import java.util.Arrays;
+import java.util.Date;
 
 /**
  * 
@@ -71,6 +68,9 @@ public class ReportController {
 		return Result.fail();
 	}
 
+	/*
+	* 显示自己的周报列表，按时间排序。超级管理员和陈老师不显示
+	* */
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("bio:report:report")
@@ -81,14 +81,8 @@ public class ReportController {
 		if(userDO.getroleId().intValue() == 1) { // 超级管理员，默认所有的报告
 			//TODO: 不做处理
 		}
-		
-		if(userDO.getroleId().intValue() == 2) { // 专题组长，只显示负责的学生 的报告
-			reportDTO.setParentDeptId(userDO.getDeptId());
-		}
-		
-		if(userDO.getroleId().intValue() == 3) { // 学生，只显示自己的报告
+		else
 			reportDTO.setAuthorId(userDO.getId());
-		}
 		
 		// 查询列表数据
         Page<ReportDO> page = new Page<>(pageNumber, pageSize);
@@ -111,10 +105,11 @@ public class ReportController {
 	@RequiresPermissions("bio:report:edit")
 	String edit(@PathVariable("id") Integer id,Model model){
 		ReportDO report = reportService.selectById(id);
-		if(report.getStatusMod()==1) {//表示已修改周报草稿，此时周报内容已添加
-			ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
-			model.addAttribute("reportContent", reportContent);
-		}
+		ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
+
+		UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
+
+		model.addAttribute("reportContent", reportContent);
 		model.addAttribute("report", report);
 	    return "bio/report/edit";
 	}
@@ -138,29 +133,18 @@ public class ReportController {
 	@PostMapping("/saveContent")
 	@RequiresPermissions("bio:report:edit")
 	public Result<String> saveContent( Integer reportId,Integer statusMSub,
-									   String lastPlan,String summary,String nextPlan,String problem,String other){
+									   String lastPlan,String summary,String nextPlan,String problem){
 		ReportDO report=reportService.selectById(reportId);
 		if(report!=null) {
 			if(statusMSub==1)
 				report.setStatusMSub(statusMSub);//表示提交周报，提交后不能修改
-			if (report.getStatusMod() == 1) {//周报草稿已修改（代表已保存），此时只用更新周报内容
-				ReportContentDO reportContent = new ReportContentDO(report.getContentId(), lastPlan, summary, nextPlan, problem, other);
-				if (reportContentService.updateByUUID(reportContent)) {
-					report.setRChgDate(new Date());
-					reportService.updateById(report);
-					return Result.ok();
-				}
-			} else {//周报草稿未修改，需要新建并插入周报内容
-				String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
-				ReportContentDO reportContent = new ReportContentDO(uuid, lastPlan, summary, nextPlan, problem, other);
-				if (reportContentService.insert(reportContent)) {
-					report.setRChgDate(new Date());
-					report.setContentId(uuid);
-					report.setStatusMod(1);
-					reportService.updateById(report);
-					return Result.ok();
-				}
+			ReportContentDO reportContent = new ReportContentDO(report.getContentId(), lastPlan, summary, nextPlan, problem);
+			if (reportContentService.updateByUUID(reportContent)) {
+				report.setRChgDate(new Date());
+				report.setStatusMod(1);
+				reportService.updateById(report);
 			}
+			return Result.ok();
 		}
 		return Result.fail();
 	}
@@ -211,6 +195,21 @@ public class ReportController {
 		ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
 		model.addAttribute("reportContent", reportContent);
 		model.addAttribute("report", report);
+		model.addAttribute("mark", false);
+		return "bio/report/reportContent";
+	}
+
+	/**
+	 * 显示周报内容
+	 */
+	@GetMapping("/markReportContent/{id}")
+	@RequiresPermissions("bio:report:report")
+	String getMarkReportContent(@PathVariable("id") Integer id,Model model){
+		ReportDO report = reportService.selectById(id);
+		ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
+		model.addAttribute("reportContent", reportContent);
+		model.addAttribute("report", report);
+		model.addAttribute("mark", true);
 		return "bio/report/reportContent";
 	}
 	

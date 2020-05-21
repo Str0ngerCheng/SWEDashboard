@@ -51,21 +51,18 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, RoleDO> implements Rol
 	    Long rolesIds = userRoleMapper.findRoleId(id);
 	    return rolesIds;
 	}
-	
+
+	//查找权限低于该用户的角色列表
     @Override
     public List<RoleDO> findListByUserId(Serializable userId) {
-        Long rolesId = userRoleMapper.findRoleId(userId);
+        RoleDO role=userRoleMapper.findRoleByUserId(userId);
         List<RoleDO> roles = selectList(null);
+        List<RoleDO> lowerRoles=new ArrayList<>();
         for (RoleDO roleDO : roles) {
-            roleDO.setRoleSign("false");
-//            for (Long roleId : rolesIds) {
-                if (Objects.equals(roleDO.getId(), rolesId)) {
-                    roleDO.setRoleSign("true");
-                    break;
-                }
-//            }
+            if(roleDO.getRoleLevel()>role.getRoleLevel())
+                lowerRoles.add(roleDO);
         }
-        return roles;
+        return lowerRoles;
     }
 
     @CacheEvict(value = DEMO_CACHE_NAME, key = ROLE_ALL_KEY)

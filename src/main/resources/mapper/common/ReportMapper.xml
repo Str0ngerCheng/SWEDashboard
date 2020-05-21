@@ -56,6 +56,69 @@
 		AND YEARWEEK(date_format(r_to_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
 	</select>
 
+	<update id="updateBatch" parameterType="java.util.List" >
+		<foreach collection="reportDOList" item="item" index="index" open="" close="" separator=";">
+			update report
+			<set >
+				<if test="item.authorId != null" >
+					author_id = #{item.authorId},
+				</if>
+				<if test="item.authorName != null" >
+					author_name = #{item.authorName},
+				</if>
+				<if test="item.deptId != null" >
+					dept_id = #{item.deptId},
+				</if>
+				<if test="item.deptName != null" >
+					dept_name = #{item.deptName},
+				</if>
+				<if test="item.parentDeptId != null" >
+					parent_dept_id = #{item.parentDeptId},
+			</if>
+				<if test="item.rFromDate != null" >
+					r_from_date = #{item.rFromDate},
+				</if>
+				<if test="item.rToDate != null" >
+					r_to_date = #{item.rToDate},
+				</if>
+
+				<if test="item.title != null" >
+					title = #{item.title},
+				</if>
+				<if test="item.contentId != null" >
+					content_id = #{item.contentId},
+				</if>
+				<if test="item.comment != null" >
+					comment = #{item.comment},
+				</if>
+				<if test="item.score != null" >
+					score = #{item.score},
+				</if>
+
+				<if test="item.suggest != null" >
+					suggest = #{item.suggest},
+				</if>
+				<if test="item.rCreateDate != null" >
+					r_create_date = #{item.rCreateDate},
+				</if>
+				<if test="item.rChgDate != null" >
+					r_chg_date = #{item.rChgDate},
+				</if>
+
+				<if test="item.statusMod != null" >
+					status_mod = #{item.statusMod},
+				</if>
+				<if test="item.statusMSub != null" >
+					status_m_sub = #{item.statusMSub},
+				</if>
+				<if test="item.statusLSub != null" >
+					status_l_sub = #{item.statusLSub},
+				</if>
+			</set>
+			where id = #{item.id}
+		</foreach>
+	</update>
+
 
 
 </mapper>

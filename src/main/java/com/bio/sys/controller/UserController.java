@@ -88,7 +88,8 @@ public class UserController extends BaseController {
     @Log("添加用户")
     @GetMapping("/add")
     String add(Model model) {
-        List<RoleDO> roles = roleService.selectList(null);
+        UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
+        List<RoleDO> roles = roleService.findListByUserId(userDO.getId());
         model.addAttribute("roles", roles);
         return prefix + "/add";
     }
@@ -99,7 +100,8 @@ public class UserController extends BaseController {
     String edit(Model model, @PathVariable("id") Long id) {
         UserDO userDO = userService.selectById(id);
         model.addAttribute("user", userDO);
-        List<RoleDO> roles = roleService.findListByUserId(id);
+        UserDO leaderDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
+        List<RoleDO> roles = roleService.findListByUserId(leaderDO.getId());
         model.addAttribute("roles", roles);
         return prefix + "/edit";
     }
@@ -132,21 +134,6 @@ public class UserController extends BaseController {
         return Result.ok();
     }
 
-    @RequiresPermissions("bio:topic:topic")
-    @Log("更新用户排序")
-    @PostMapping("/batchUpdateOrderNum")
-    @ResponseBody
-    Result<String> batchUpdateOrderNum(@RequestBody List<ReportVO> reportVOList) {
-        for(int i=0;i<reportVOList.size();i++){
-            ReportVO reportVO=reportVOList.get(i);
-            UserDO user=new UserDO();
-            user.setId(reportVO.getAuthorId());
-            System.out.println(reportVO.getAuthorId());
-            user.setOrderNum(reportVO.getOrderNum());
-            userService.updatePersonal(user);
-        }
-        return Result.ok();
-    }
 
     @RequiresPermissions("sys:user:remove")
     @Log("删除用户")

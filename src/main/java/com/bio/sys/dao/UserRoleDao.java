@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.bio.common.base.BaseDao;
+import com.bio.sys.domain.RoleDO;
 import com.bio.sys.domain.UserRoleDO;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <pre>
@@ -15,6 +17,8 @@ import com.bio.sys.domain.UserRoleDO;
 public interface UserRoleDao extends BaseDao<UserRoleDO> {
 
 	Long findRoleId(Serializable userId);
+
+	RoleDO findRoleByUserId(@Param("userId")Serializable userId);
 
 	int removeByUserId(Serializable userId);
 

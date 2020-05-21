@@ -36,6 +36,8 @@ public class ReportVO implements Serializable ,Comparable<ReportVO> {
     /** 分数*/
     private String score;
 
+    /** 意见*/
+    private String suggest;
 
     /** 创建时间 */
     private Date rCreateDate;
@@ -65,6 +67,7 @@ public class ReportVO implements Serializable ,Comparable<ReportVO> {
         this.contentId=reportDO.getContentId();
         this.comment=reportDO.getComment();
         this.score=reportDO.getScore();
+        this.suggest=reportDO.getSuggest();
         this.rCreateDate=reportDO.getRCreateDate();
         this.rChgDate=reportDO.getRChgDate();
         this.statusMod=reportDO.getStatusMod();
@@ -193,6 +196,14 @@ public class ReportVO implements Serializable ,Comparable<ReportVO> {
 
     public void setScore(String score) {
         this.score = score;
+    }
+
+    public String getSuggest() {
+        return suggest;
+    }
+
+    public void setSuggest(String suggest) {
+        this.suggest = suggest;
     }
 
     /**
