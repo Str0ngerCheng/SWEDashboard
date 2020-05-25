@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="ibox-content">
+					<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${userPlan.id}"
+							type="hidden">
+						<input id="authorId" name="authorId" th:value="${user.id}"
+							   type="hidden">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">姓名：</label>
+							<div class="col-sm-8">
+								<input id="authorName" name="authorName" class="form-control" type="text"
+									th:value="${user.name}" readonly>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">本月目标：</label>
+							<div class="col-sm-8">
+								<textarea id="monthPlan" name="monthPlan" class="form-control"
+										  type="text" rows="5" th:text="${userPlan.monthPlan}" ></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">本学期目标：</label>
+							<div class="col-sm-8">
+								<textarea id="termPlan" name="termPlan" class="form-control"
+									   type="text" rows="5" th:text="${userPlan.termPlan}"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-8 col-sm-offset-3">
+								<button type="submit" class="btn btn-primary" onclick="update()">提交</button>
+							</div>
+						</div>
+					</form>
+				</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/sys/user/setPlan.js" th:src="@{/js/appjs/sys/user/setPlan.js}">
+	</script>
+</body>
+</html>

@@ -8,4 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserPlanServiceImpl extends ServiceImpl<UserPlanDao, UserPlanDO> implements UserPlanService {
+
+    @Override
+    public UserPlanDO getByAuthorId(Long authorId) {
+        return baseMapper.getByAuthorId(authorId);
+    }
 }

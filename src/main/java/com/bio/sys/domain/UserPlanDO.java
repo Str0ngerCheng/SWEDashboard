@@ -3,7 +3,7 @@ package com.bio.sys.domain;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 @TableName("user_plan")
 public class UserPlanDO implements Serializable {
@@ -18,10 +18,10 @@ public class UserPlanDO implements Serializable {
     private String authorName;
 
     /** 起始时间 */
-    private Date pFromDate;
+    //rivate Date pFromDate;
 
     /** 终止时间 */
-    private Date pToDate;
+    //private Date pToDate;
 
     /** 月度计划 */
     private String monthPlan;
@@ -30,10 +30,10 @@ public class UserPlanDO implements Serializable {
     private String termPlan;
 
     /** 创建时间 */
-    private Date pCreateDate;
+   // private Date pCreateDate;
     /** 修改时间 */
 
-    private Date pChgDate;
+    //private Date pChgDate;
 
     public Long getId() {
         return id;
@@ -59,21 +59,6 @@ public class UserPlanDO implements Serializable {
         this.authorName = authorName;
     }
 
-    public Date getPFromDate() {
-        return pFromDate;
-    }
-
-    public void setPFromDate(Date pFromDate) {
-        this.pFromDate = pFromDate;
-    }
-
-    public Date getPToDate() {
-        return pToDate;
-    }
-
-    public void setPToDate(Date pToDate) {
-        this.pToDate = pToDate;
-    }
 
     public String getMonthPlan() {
         return monthPlan;
@@ -91,19 +76,4 @@ public class UserPlanDO implements Serializable {
         this.termPlan = termPlan;
     }
 
-    public Date getPCreateDate() {
-        return pCreateDate;
-    }
-
-    public void setPCreateDate(Date pCreateDate) {
-        this.pCreateDate = pCreateDate;
-    }
-
-    public Date getPChgDate() {
-        return pChgDate;
-    }
-
-    public void setPChgDate(Date pChgDate) {
-        this.pChgDate = pChgDate;
-    }
 }

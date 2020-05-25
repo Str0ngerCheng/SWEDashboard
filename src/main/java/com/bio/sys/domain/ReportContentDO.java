@@ -31,6 +31,9 @@ public class ReportContentDO implements Serializable {
     /** 问题反馈*/
     private String problem;
 
+    /** 月目标 */
+    private String monthPlan;
+
 
 
     public ReportContentDO(String uuid, String lastPlan, String summary, String nextPlan, String problem) {
@@ -91,10 +94,18 @@ public class ReportContentDO implements Serializable {
         this.problem = problem;
     }
 
+    public String getMonthPlan() {
+        return monthPlan;
+    }
+
+    public void setMonthPlan(String monthPlan) {
+        this.monthPlan = monthPlan;
+    }
 
     @Override
     public String toString() {
         return "ReportContentDO{" +
+                "monthPlan='" + monthPlan + '\'' +
                 "lastPlan='" + lastPlan + '\'' +
                 ", summary='" + summary + '\'' +
                 ", nextPlan='" + nextPlan + '\'' +

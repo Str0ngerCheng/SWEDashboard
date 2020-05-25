@@ -61,6 +61,11 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 	}
 
 	@Override
+	public ReportDO getThisWeekReportByAuthorId(Long authorId) {
+		return baseMapper.getThisWeekReportByAuthorId(authorId);
+	}
+
+	@Override
 	public List<ReportDO> getThisWeekReportByDept(Long deptId) {
 		return baseMapper.getThisWeekReportByDept(deptId);
 	}

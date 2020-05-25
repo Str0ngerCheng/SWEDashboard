@@ -123,16 +123,16 @@ function load() {
                             }
                         },
                         {
-                            field : 'nextPlan',
-                            title : '下周计划',
+                            field : 'problem',
+                            title : '问题反馈',
                             align : 'center',
                             formatter:function(value,row,index){
                                 return '<textarea class="col-sm-5 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
                             }
                         },
                         {
-                            field : 'problem',
-                            title : '问题反馈',
+                            field : 'nextPlan',
+                            title : '下周计划',
                             align : 'center',
                             formatter:function(value,row,index){
                                 return '<textarea class="col-sm-5 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';

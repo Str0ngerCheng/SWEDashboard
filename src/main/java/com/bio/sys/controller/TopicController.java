@@ -108,7 +108,7 @@ public class TopicController {
             topicReportDetails.setUserOrder(userService.selectById(report.getAuthorId()).getOrderNum());
             topicReportDetails.setAuthorName(report.getAuthorName());
             ReportContentDO reportContent=reportContentService.getByUUID(report.getContentId());
-            topicReportDetails.setMonthPlan("");
+            topicReportDetails.setMonthPlan(reportContent.getMonthPlan());
             topicReportDetails.setSummary(reportContent.getSummary());
             topicReportDetails.setNextPlan(reportContent.getNextPlan());
             topicReportDetails.setProblem(reportContent.getProblem());

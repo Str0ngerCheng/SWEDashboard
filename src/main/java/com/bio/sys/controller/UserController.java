@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.bio.sys.vo.ReportVO;
+import com.bio.sys.domain.*;
+import com.bio.sys.service.*;
+
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -24,19 +26,8 @@ import com.bio.common.domain.Tree;
 import com.bio.common.service.ContextService;
 import com.bio.common.utils.MD5Utils;
 import com.bio.common.utils.Result;
-import com.bio.sys.domain.DeptDO;
-import com.bio.sys.domain.RoleDO;
-import com.bio.sys.domain.UserDO;
-import com.bio.sys.service.DeptService;
-import com.bio.sys.service.RoleService;
-import com.bio.sys.service.UserService;
 import com.bio.sys.vo.UserVO;
 
-/**
- * 
- * @author chenx
- *
- */
 @RequestMapping("/sys/user")
 @Controller
 public class UserController extends BaseController {
@@ -49,8 +40,18 @@ public class UserController extends BaseController {
     private RoleService roleService;
     @Autowired
     private ContextService contextService;
+
     @Autowired 
     private DeptService deptService;
+
+    @Autowired
+    private UserPlanService userPlanService;
+
+    @Autowired
+    private ReportService reportService;
+
+    @Autowired
+    private ReportContentService reportContentService;
     
     @RequiresPermissions("sys:user:user")
     @GetMapping("")
@@ -65,19 +66,38 @@ public class UserController extends BaseController {
         Page<UserDO> page = new Page<>(pageNumber, pageSize);
 
         Wrapper<UserDO> wrapper = new EntityWrapper<UserDO>(userDTO);
-        
+
 		UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
-		
+
 		String inDeptIds = "";
-		if(userDO.getroleId().intValue() == 2) { // PI
-			inDeptIds = userDO.getDeptId().toString();
-			List<DeptDO> deptDOs = deptService.getSubDepts(userDO.getDeptId());
-			for(DeptDO deptDO : deptDOs) {
-				inDeptIds +="," + deptDO.getId();
-			}
-	        wrapper.in("dept_id", inDeptIds);
-		}
-        
+
+        page = userService.selectPage(page, wrapper);
+        int total = userService.selectCount(wrapper);
+        page.setTotal(total);
+        return Result.ok(page);
+    }
+
+    @GetMapping("/topicList")
+    @ResponseBody
+    public Result<Page<UserDO>> topicList(Integer pageNumber, Integer pageSize, UserDO userDTO) {//专题组长和杜师姐
+        // 查询列表数据
+        Page<UserDO> page = new Page<>(pageNumber, pageSize);
+
+        Wrapper<UserDO> wrapper = new EntityWrapper<UserDO>(userDTO);
+
+        UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
+
+        String inDeptIds = "";
+        if(userDO.getroleId().intValue() == 2||userDO.getroleId().intValue() == 4)//专题组长和杜师姐
+        {
+            inDeptIds = userDO.getDeptId().toString();
+            List<DeptDO> deptDOs = deptService.getSubDepts(userDO.getDeptId());
+            for(DeptDO deptDO : deptDOs) {
+                inDeptIds +="," + deptDO.getId();
+            }
+            wrapper.in("dept_id", inDeptIds);
+        }
+
         page = userService.selectPage(page, wrapper);
         int total = userService.selectCount(wrapper);
         page.setTotal(total);
@@ -105,6 +125,8 @@ public class UserController extends BaseController {
         model.addAttribute("roles", roles);
         return prefix + "/edit";
     }
+
+
 
     @RequiresPermissions("sys:user:add")
     @Log("保存用户")
@@ -217,4 +239,38 @@ public class UserController extends BaseController {
         result = userService.updatePersonalImg(file, avatar_data, getUserId());
         return Result.ok(result);
     }
+
+    @RequiresPermissions("sys:user:edit")
+    @Log("给用户设定目标")
+    @GetMapping("/userPlan/{id}")
+    String userPlan(Model model, @PathVariable("id") Long id) {
+        UserDO userDO = userService.selectById(id);
+        model.addAttribute("user", userDO);
+
+        UserPlanDO userPlan=userPlanService.getByAuthorId(id);
+        if(userPlan==null) userPlan=new UserPlanDO();
+        UserDO leaderDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
+        List<RoleDO> roles = roleService.findListByUserId(leaderDO.getId());
+        model.addAttribute("userPlan", userPlan);
+        return prefix + "/setPlan";
+    }
+
+    @RequiresPermissions("sys:user:edit")
+    @Log("更新目标")
+    @PostMapping("/updateUserPlan")
+    @ResponseBody
+    Result updateUserPlan( UserPlanDO userPlan) {
+        //更新user_plan表
+       if(userPlan.getId()==null)
+           userPlanService.insert(userPlan);
+       else
+           userPlanService.updateById(userPlan);
+       //同时更新该用户本周周报里的本月目标
+       ReportDO reportDO=reportService.getThisWeekReportByAuthorId(userPlan.getAuthorId());
+       ReportContentDO reportContentDO=reportContentService.getByUUID(reportDO.getContentId());
+       reportContentDO.setMonthPlan(userPlan.getMonthPlan());
+       reportContentService.updateById(reportContentDO);
+       return Result.ok();
+    }
+
 }

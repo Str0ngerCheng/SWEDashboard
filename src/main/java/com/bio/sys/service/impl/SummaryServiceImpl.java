@@ -33,4 +33,14 @@ public class SummaryServiceImpl extends CoreServiceImpl<SummaryDao, SummaryDO> i
 		return baseMapper.getThisWeekSummary();
 	}
 
+	@Override
+	public Boolean getThisWeekSummaryByDeptId(Long deptId) {
+		List<SummaryDO> summaryDOList=baseMapper.getThisWeekSummary();
+		for(SummaryDO summaryDO:summaryDOList){
+			if(summaryDO.getDeptId()==deptId)
+				return true;
+		}
+		return false;
+	}
+
 }

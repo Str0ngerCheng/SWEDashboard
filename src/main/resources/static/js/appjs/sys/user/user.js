@@ -10,7 +10,7 @@ function load(deptId) {
 		.bootstrapTable(
 			{
 				method : 'get', // 服务器数据的请求方式 get or post
-				url : prefix + "/list", // 服务器数据的加载地址
+				url : prefix + "/topicList", // 服务器数据的加载地址
 				// showRefresh : true,
 				// showToggle : true,
 				// showColumns : true,
@@ -88,16 +88,21 @@ function load(deptId) {
 						field : 'id',
 						align : 'center',
 						formatter : function(value, row, index) {
-							var e = '<a  class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
+							var p = '<a  class="btn btn-primary btn-sm '  + '" href="#" mce_href="#" title="设定目标" onclick="setPlan(\''
+								+ row.id
+								+ '\')"><i class="fa fa-paper-plane "></i></a> ';
+							var e = '<a  class="btn btn-success btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
 								+ row.id
 								+ '\')"><i class="fa fa-edit "></i></a> ';
-							var d = '<a class="btn btn-warning btn-sm ' + s_remove_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
-								+ row.id
-								+ '\')"><i class="fa fa-remove"></i></a> ';
-							var f = '<a class="btn btn-success btn-sm ' + s_resetPwd_h + '" href="#" title="重置密码"  mce_href="#" onclick="resetPwd(\''
+
+							var f = '<a class="btn btn-warning btn-sm ' + s_resetPwd_h + '" href="#" title="重置密码"  mce_href="#" onclick="resetPwd(\''
 								+ row.id
 								+ '\')"><i class="fa fa-key"></i></a> ';
-							return e + d + f;
+
+							var d = '<a class="btn  btn-danger btn-sm ' + s_remove_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
+								+ row.id
+								+ '\')"><i class="fa fa-remove"></i></a> ';
+							return p+ e + f + d;
 						}
 					} ]
 			});
@@ -136,6 +141,16 @@ function remove(id) {
 			}
 		});
 	})
+}
+function setPlan(id) {
+	layer.open({
+		type : 2,
+		title : '设定目标',
+		maxmin : true,
+		shadeClose : false,
+		area : [ '800px', '520px' ],
+		content : prefix + '/userPlan/' + id // iframe的url
+	});
 }
 function edit(id) {
 	layer.open({

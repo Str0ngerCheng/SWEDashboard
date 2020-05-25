@@ -4,10 +4,7 @@
 <head th:include="include :: header"></head>
 <body class="gray-bg">
 	<div class="wrapper wrapper-content ">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="ibox float-e-margins">
-					<div class="ibox-content">
+		<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
 						<input id="id" name="id" th:value="${summary.id}"  type="hidden">
 							<div class="form-group">	
@@ -59,9 +56,7 @@
 							</div>
 						</form>
 					</div>
-				</div>
-			</div>
-	</div>
+
 	</div>
 	<div th:include="include::footer"></div>
 	<script type="text/javascript" src="/js/appjs/bio/summary/edit.js" th:src="@{/js/appjs/bio/summary/edit.js}">

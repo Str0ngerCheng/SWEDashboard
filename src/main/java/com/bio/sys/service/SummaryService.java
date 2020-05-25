@@ -37,5 +37,7 @@ public interface SummaryService extends CoreService<SummaryDO> {
 
 	public List<SummaryDO> getThisWeekSummary();
 
+	public Boolean getThisWeekSummaryByDeptId(Long deptId);
+
 	
 }

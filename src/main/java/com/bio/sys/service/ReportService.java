@@ -7,6 +7,7 @@ import com.bio.common.base.CoreService;
 import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
 
+
 /**
  * 
  * <pre>
@@ -23,6 +24,8 @@ public interface ReportService extends CoreService<ReportDO> {
 	public List<ReportDO> getReports(Date fromDate, Date toDate, Integer status);
 	
 	public List<ReportCountDO> getReportsCount(Date fromDate, Date toDate, Integer status);
+
+	public ReportDO getThisWeekReportByAuthorId(Long authorId);
 
 	public  List<ReportDO> getThisWeekReportByDept(Long deptId);
 

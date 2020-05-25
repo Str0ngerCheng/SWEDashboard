@@ -17,7 +17,7 @@ import com.bio.sys.domain.ReportDO;
  */
 public interface ReportDao extends BaseDao<ReportDO> {
 
-	public  ReportDO getLatestReport(@Param("authorid") Long authorid, @Param("rfromdate") String rToDate);
+	public  ReportDO getLatestReport(@Param("authorid") Long authorid, @Param("rfromdate") String rfromdate);
 
 	public Integer getReportCountByTitle(String title);
 	
@@ -26,6 +26,8 @@ public interface ReportDao extends BaseDao<ReportDO> {
 	public List<ReportCountDO> getReportsCount(@Param("fromdate") String fromDate,@Param("todate") String toDate, @Param("status") Integer status);
 
 	public  List<ReportDO> getThisWeekReportByDept(@Param("deptId") Long deptId);
+
+	public ReportDO getThisWeekReportByAuthorId(@Param("authorId") Long authorId);
 
 	public Boolean updateBatch(@Param("reportDOList") List<ReportDO> reportDOList);
 }

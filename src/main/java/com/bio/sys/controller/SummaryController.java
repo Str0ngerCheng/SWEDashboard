@@ -106,7 +106,7 @@ public class SummaryController {
 				//查看该专题周报汇总是否提交
 				Map<String, Object> columnMap = new HashMap<>();
 				columnMap.put("dept_id", deptId);
-				if(summaryService.selectByMap(columnMap).size()==0) {
+				if(!summaryService.getThisWeekSummaryByDeptId(deptId)) {
 					topicReportStatistic.setIsLSubmit(0);
 				}
 				else {
@@ -137,7 +137,7 @@ public class SummaryController {
 
 						topicReportDetails.setAuthorName(report.getAuthorName());
 						ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
-						topicReportDetails.setMonthPlan("");
+						topicReportDetails.setMonthPlan(reportContent.getMonthPlan());
 						topicReportDetails.setSummary(reportContent.getSummary());
 						topicReportDetails.setNextPlan(reportContent.getNextPlan());
 						topicReportDetails.setProblem(reportContent.getProblem());
@@ -231,8 +231,7 @@ public class SummaryController {
 
 		try {
 			MailBean mailBean = new MailBean();
-
-			UserDO userDO=userService.selectById(1);
+			UserDO userDO=userService.selectById(5);
 			String recipient=  userDO.getEmail();
 			mailBean.setSubject("【SWEDashboard】本周的swe小组周报已提交！");
 			mailBean.setRecipient(recipient);
@@ -261,13 +260,9 @@ public class SummaryController {
 				Long deptId = deptDO.getId();
 				String deptName = deptDO.getName();
 				Integer deptOrder=deptDO.getOrderNum();
-				TopicReportStatisticVO topicReportStatistic = new TopicReportStatisticVO();
-				topicReportStatistic.setDeptName(deptName);
-				topicReportStatistic.setOrderNum(deptOrder);
+
 				//查看该专题周报汇总是否提交
-				Map<String, Object> columnMap = new HashMap<>();
-				columnMap.put("dept_id", deptId);
-				if(summaryService.selectByMap(columnMap).size()>0) {
+				if(summaryService.getThisWeekSummaryByDeptId(deptId)) {
 					List<ReportDO> lSubmitReportList = reportService.getThisWeekReportByDeptAndStatusLSub(deptId, 1);
 					/*获取专题周报详细信息*/
 					for (ReportDO report:lSubmitReportList) {
@@ -279,7 +274,7 @@ public class SummaryController {
 						topicReportDetails.setUserOrder(userService.selectById(report.getAuthorId()).getOrderNum());
 						topicReportDetails.setAuthorName(report.getAuthorName());
 						ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
-						topicReportDetails.setMonthPlan("");
+						topicReportDetails.setMonthPlan(reportContent.getMonthPlan());
 						topicReportDetails.setSummary(reportContent.getSummary());
 						topicReportDetails.setNextPlan(reportContent.getNextPlan());
 						topicReportDetails.setProblem(reportContent.getProblem());
@@ -315,6 +310,12 @@ public class SummaryController {
 		}
 		reportService.updateBatch(reportDOList);
 		return Result.ok();
+	}
+
+	@RequiresPermissions("bio:summary:chart")
+	@GetMapping("/chart")
+	String chart() {
+		return "bio/summary/chart";
 	}
 
 }
