@@ -22,6 +22,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: com.openhtmltopdf:openhtmltopdf-core:0.0.1-RC9" level="project" />
+    <orderEntry type="library" name="Maven: com.github.pagehelper:pagehelper:5.1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.github.jsqlparser:jsqlparser:0.9.5" level="project" />
     <orderEntry type="library" name="Maven: com.qiniu:qiniu-java-sdk:7.2.29" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.squareup.okhttp3:okhttp:3.14.4" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.squareup.okio:okio:1.17.2" level="project" />
@@ -97,7 +100,6 @@
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus:2.1.6" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-support:2.1.6" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-core:2.1.6" level="project" />
-    <orderEntry type="library" name="Maven: com.github.jsqlparser:jsqlparser:1.1" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-generate:2.1.6" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatisplus-spring-boot-starter:1.0.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-configuration-processor:1.5.6.RELEASE" level="project" />
@@ -239,5 +241,8 @@
     <orderEntry type="library" name="Maven: redis.clients:jedis:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.22" level="project" />
+    <orderEntry type="library" name="Maven: com.openhtmltopdf:openhtmltopdf-core:0.0.1-RC9" level="project" />
+    <orderEntry type="library" name="Maven: com.github.pagehelper:pagehelper:5.1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.github.jsqlparser:jsqlparser:0.9.5" level="project" />
   </component>
 </module>

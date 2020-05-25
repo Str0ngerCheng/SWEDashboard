@@ -50,16 +50,11 @@ public class UserDO implements Serializable {
 //    private Date birth;
     //图片ID
     private Long picId;
-//    //现居住地
-//    private String liveAddress;
-//    //爱好
-//    private String hobby;
-//    //省份
-//    private String province;
-//    //所在城市
-//    private String city;
-//    //所在地区
-//    private String district;
+
+    //是否毕业
+    private Integer statusGraduate;
+
+
 
     /**
      * 设置：用户名
@@ -208,6 +203,14 @@ public class UserDO implements Serializable {
 	public void setPicId(Long picId) {
 		this.picId = picId;
 	}
+
+    public Integer getStatusGraduate() {
+        return statusGraduate;
+    }
+
+    public void setStatusGraduate(Integer statusGraduate) {
+        this.statusGraduate = statusGraduate;
+    }
 
 
     

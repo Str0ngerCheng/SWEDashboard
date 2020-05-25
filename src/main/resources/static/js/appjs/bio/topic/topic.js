@@ -48,19 +48,8 @@ function load() {
                 responseHandler : function(res){
                     console.log(res);
                     return {
-                        "total": 2,//res.data.total,//总数
-                        "rows":[{name:'程博文',
-                            title:'2020/05/11-2020/05/17-张翔专题-程博文-周报',
-                            submitTime:'2020/02/16',
-                            status: 0,
-                            id:0
-                        },
-                            {name:'陈栋',
-                                title:'2020/05/11-2020/05/17-张翔专题-陈栋-周报',
-                                submitTime:'2020/02/17',
-                                status: 0,
-                                id:1
-                            }] //res.data.records   //数据
+                        "total": res.data.total,//总数
+                        "rows": res.data.records   //数据
                     };
                 },
                 columns : [
@@ -153,6 +142,41 @@ function setCommentAndScore(comment,score,index){
             score:score,
             status:1
         }
+    });
+}
+
+function btnExcelSubject() {
+    var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    if (rows.length == 0) {
+        layer.msg("请选择要删除的数据");
+        return;
+    }
+    layer.confirm("确认要删除选中的'" + rows.length + "'条数据吗?", {
+        btn : [ '确定', '取消' ]
+        // 按钮
+    }, function() {
+        var ids = new Array();
+        // 遍历所有选择的行数据，取每条数据对应的ID
+        $.each(rows, function(i, row) {
+            ids[i] = row['id'];
+        });
+        $.ajax({
+            type : 'POST',
+            data : {
+                "ids" : ids
+            },
+            url : prefix + '/batchRemove',
+            success : function(r) {
+                if (r.code == 0) {
+                    layer.msg(r.msg);
+                    reLoad();
+                } else {
+                    layer.msg(r.msg);
+                }
+            }
+        });
+    }, function() {
+
     });
 }
 

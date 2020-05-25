@@ -81,10 +81,11 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 				ReportDO reportDO = new ReportDO();
 
 				reportDO.setAuthorId(userDO.getId());
-				reportDO.setStatus(0); // 标识 Bot 生成的
+				reportDO.setStatusMod(0); // 标识 Bot 生成的
 
 				reportDO.setAuthorName(userDO.getName());
-				reportDO.setContent("暂无");
+				//表示Bot生成的周报内容为空
+				reportDO.setContentId(null);
 
 				Date mon = DateUtils.getThisWeekMondayStart(new Date());
 				Date sun = DateUtils.getThisWeekSundayEnd(new Date());

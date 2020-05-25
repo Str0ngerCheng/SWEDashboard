@@ -1,8 +1,8 @@
 package com.bio.sys.service.impl;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,8 @@ import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
 import com.bio.sys.service.DeptService;
 import com.bio.sys.service.ReportService;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 
@@ -26,7 +28,8 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 
 	@Autowired
 	private DeptService deptService;
-	
+
+
 	@Override
 	public ReportDO getLatestReport(Long authorid, Date rToDate) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -58,4 +61,40 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 		}
 		return reportCountDOs;
 	}
+
+	@Override
+	public  List<ReportDO> getReportsByDepName(String depName){
+		return baseMapper.getReportsByDepName(depName);
+	}
+
+	@Override
+	public List<ReportDO> getReportsQuery(Date fromDate, Date toDate, Integer status) {
+		return baseMapper.getReportsQuery(fromDate,  toDate,  status);
+	}
+
+	@Override
+	public ReportDO getReportsByContentId(String contentId) {
+		return baseMapper.getReportsByContentId(contentId);
+	}
+
+	@Override
+	public List<ReportDO> getReportsByAutName(String AutName) {
+		return baseMapper.getReportsByAutName(AutName);
+	}
+
+	public List<ReportDO> getReportsAll(){
+		return baseMapper.getReportsAll();
+	}
+
+	@Override
+	public List<ReportDO> getReportsByMonth(int date,Integer status) {
+		return baseMapper.getReportsByMonth(date,status);
+	}
+
+	@Override
+	public ReportDO getReportsByTitle(String title) {
+		return baseMapper.getReportsByTitle(title);
+	}
+
+
 }

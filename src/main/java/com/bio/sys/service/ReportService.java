@@ -7,6 +7,8 @@ import com.bio.common.base.CoreService;
 import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * 
  * <pre>
@@ -24,5 +26,18 @@ public interface ReportService extends CoreService<ReportDO> {
 	
 	public List<ReportCountDO> getReportsCount(Date fromDate, Date toDate, Integer status);
 
-	
+	List<ReportDO> getReportsByDepName(String depName);
+
+	List<ReportDO> getReportsQuery(Date fromDate, Date toDate, Integer status);
+
+	ReportDO getReportsByContentId(String contentId);
+
+	List<ReportDO> getReportsByAutName(String AutName);
+
+	List<ReportDO> getReportsAll();
+
+	List<ReportDO> getReportsByMonth(int date,Integer status);
+
+	ReportDO getReportsByTitle(String title);
+
 }

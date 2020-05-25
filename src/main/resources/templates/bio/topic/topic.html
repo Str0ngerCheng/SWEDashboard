@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html>
 <meta charset="utf-8">
 <link href="/css/plugins/bootstrap-table/extensions/bootstrap-table-reorder-rows.css" th:href="@{/css/plugins/bootstrap-table/extensions/bootstrap-table-reorder-rows.css}"
       rel="stylesheet">
@@ -25,6 +24,9 @@
                         </div>
                         <button type="button" class="btn btn-primary">
                             批量下载附件</span>
+                        </button>
+                        <button shiro:hasPermission="bio:topic:btnExcelSubject" type="button" class="btn btn-primary">
+                            下载专题汇总表格</span>
                         </button>
                     </div>
                     <div class="columns pull-right">

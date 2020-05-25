@@ -281,6 +281,23 @@
             <artifactId>lombok</artifactId>
             <version>1.16.22</version>
         </dependency>
+        <dependency>
+            <groupId>com.openhtmltopdf</groupId>
+            <artifactId>openhtmltopdf-core</artifactId>
+            <version>0.0.1-RC9</version>
+        </dependency>
+		<!-- pagehelper :分页插件 -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>5.1.2</version>
+		</dependency>
+		<!-- pagehelper的依赖包:jsqlparser -->
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>0.9.5</version>
+		</dependency>
 
 
         <!--部署成war包时开启↓↓↓↓ -->

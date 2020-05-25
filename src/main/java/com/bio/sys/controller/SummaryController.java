@@ -126,7 +126,7 @@ public class SummaryController {
 			
 			for (ReportDO reportDO : reportDOs) {
 				
-				if(reportDO.getStatus() == 0) { //未填写
+				if(reportDO.getStatusMod() == 0) { //未填写
 					notFinishedStaffNumberDept++;
 					notFinishedStaffNamesDept.add(reportDO.getAuthorName());
 					

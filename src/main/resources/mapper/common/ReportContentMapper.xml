@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bio.sys.dao.ReportContentDao">
+    <update id="updateByUUID" parameterType="com.bio.sys.domain.ReportContentDO">
+		update report_content
+		<trim prefix="set" suffixOverrides=",">
+			<if test="reportContent.id!=null">id=#{reportContent.id},</if>
+			<if test="reportContent.uuid!=null">uuid=#{reportContent.uuid},</if>
+			<if test="reportContent.lastPlan!=null">last_plan=#{reportContent.lastPlan},</if>
+			<if test="reportContent.summary!=null">summary=#{reportContent.summary},</if>
+			<if test="reportContent.nextPlan!=null">next_plan=#{reportContent.nextPlan},</if>
+			<if test="reportContent.problem!=null">problem=#{reportContent.problem},</if>
+			<if test="reportContent.other!=null">other=#{reportContent.other},</if>
+		</trim>
+		where uuid = #{reportContent.uuid}
+  </update>
+
+	<select id="getByUUID" resultType="com.bio.sys.domain.ReportContentDO">
+		SELECT
+		*
+		FROM
+		report_content
+		WHERE
+		uuid = #{uuid}
+	</select>
+
+	<select id="getSearchKey" resultType="com.bio.sys.domain.ReportContentDO">
+		select * from report_content where concat (last_plan,summary,next_plan,problem) like concat('%',#{searchKey},'%')
+	</select>
+</mapper>

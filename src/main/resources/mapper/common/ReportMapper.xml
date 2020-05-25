@@ -31,7 +31,7 @@
 		WHERE
 		r_from_date = #{fromdate}
 		AND r_to_date = #{todate}
-		AND status = #{status}
+		AND status_mod = #{status}
 	</select>
 
 
@@ -45,7 +45,45 @@
 		AND r_to_date = #{todate}
 		AND status = #{status} GROUP BY dept_id
 	</select>
+	<select id="getReportsByTitle" resultType="com.bio.sys.domain.ReportDO">
+		select * from report where title = #{title}
+	</select>
 
+	<select id="getReportsByDepName" resultType="com.bio.sys.domain.ReportDO">
+		select * from report where dept_name = #{depName} order by author_name,r_from_date
+	</select>
 
+	<select id="getReportsQuery" resultType="com.bio.sys.domain.ReportDO">
+		SELECT
+		*
+		FROM
+		report
+		<where>
+		    <if test="fromdate!=null">
+				 r_from_date &gt;= #{fromdate}
+	     	</if>
+			<if test="todate!=null">
+		       AND r_to_date &lt;= #{todate}
+			</if>
+		AND status_mod = #{status}
+		</where>
+		order by dept_name,author_name, r_from_date
+	</select>
+
+	<select id="getReportsByContentId" resultType="com.bio.sys.domain.ReportDO">
+		select * from report where content_id=#{contentId}
+	</select>
+
+	<select id="getReportsByAutName" resultType="com.bio.sys.domain.ReportDO">
+		select * from report where author_name = #{AutName}
+	</select>
+
+	<select id="getReportsAll" resultType="com.bio.sys.domain.ReportDO">
+		select * from report order by dept_name,author_name, r_from_date
+	</select>
+	
+	<select id="getReportsByMonth" resultType="com.bio.sys.domain.ReportDO">
+		select * from report where (month(r_from_date)=#{date} or month(r_to_date)=#{date}) and status_mod = #{status} order by dept_name,author_name, r_from_date
+	</select>
 
 </mapper>
