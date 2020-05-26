@@ -65,7 +65,7 @@ function load() {
 						align : 'center',
 					}
 				],
-				onPostBody:function(){
+				onLoadSuccess:function(){
 					$('#summaryTable').bootstrapTable('checkAll');
 				}
 

@@ -16,11 +16,13 @@
 						</button>
 					</div>
 					<div class="columns pull-right">
-						<button class="btn btn-success" onclick="searchByKey()">查询</button>
-					</div>
-					<div class="columns pull-right col-md-2 nopadding">
-						<input id="searchName" type="text" class="form-control"
-							   placeholder="周报内容关键词">
+						<form class="form-inline" role="form">
+							<div class="form-group">
+								<input id="searchName" type="text" class="col-md-2 form-control"
+									   placeholder="周报内容关键词">
+							</div>
+							<button class="btn btn-primary" onclick="searchByKey()">查询</button>
+						</form>
 					</div>
 				</div>
 				<table id="exampleTable" data-mobile-responsive="true">

@@ -94,7 +94,7 @@ function load() {
                             return e + d ;
                         }
                     } ],
-                onPostBody:function(){
+                onLoadSuccess:function(){
                     $('#topicTable').bootstrapTable('checkAll');
                 }
             });
