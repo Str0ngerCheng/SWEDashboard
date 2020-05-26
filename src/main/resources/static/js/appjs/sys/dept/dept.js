@@ -64,7 +64,7 @@ function load() {
 							var f = '<a class="btn btn-success btn-sm＂ href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
 								+ item.id
 								+ '\')"><i class="fa fa-key"></i></a> ';
-							return e + a + d;
+							return e + d;
 						}
 					} ]
 			});

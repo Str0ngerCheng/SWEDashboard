@@ -40,5 +40,8 @@
 	<script src="/js/content.js?v=1.0.0" th:src="@{/js/content.js?v=1.0.0}"></script>
 	<script>
 		$('.ibox-content').css("min-height",$(document.body).height()-40)
+		$(window).resize(function () {
+			$('.ibox-content').css("min-height",$(document.body).height()-40)
+		});
 	</script>
 </div>

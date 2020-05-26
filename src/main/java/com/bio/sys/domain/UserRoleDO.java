@@ -1,12 +1,17 @@
 package com.bio.sys.domain;
 
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+
 /**
  * <pre>
  * </pre>
  * <small> 2018年3月23日 | Aron</small>
  */
-public class UserRoleDO {
-	
+@TableName("sys_user_role")
+public class UserRoleDO implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Long id;
     
     private Long userId;

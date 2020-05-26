@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
+<style>
+	.table-hover>tbody>tr:hover {
+		background-color: white!important;
+	}
+</style>
 <head th:include="include :: header"></head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
 	<div class="ibox-content">
 					<h3 th:utext=${title} style="text-align: center;margin-bottom: -3px"></h3>
-					<table id="reportsTable" data-mobile-responsive="true"  >
+					<table id="reportsTable" data-mobile-responsive="true" style="background-color:white" >
 					</table>
 				</div>
 </div>

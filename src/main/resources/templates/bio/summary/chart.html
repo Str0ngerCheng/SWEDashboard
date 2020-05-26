@@ -1,59 +1,237 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
+<style>
+	.myTable-container{
+		height: 400px;
+		width: 100%
+	}
+</style>
 <head th:include="include :: header"></head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
 	<div class="ibox-content">
-		<div class="fixed-table-toolbar">
-			<div class="columns pull-left">
-				<button shiro:hasPermission="bio:summary:add" type="button" class="btn  btn-primary" onclick="add()">
-					<i class="fa fa-plus" aria-hidden="true"></i>添加
-				</button>
-				<button shiro:hasPermission="bio:summary:batchRemove" type="button" class="btn  btn-danger"
-						onclick="batchRemove()">
-					<i class="fa fa-trash" aria-hidden="true"></i>删除
-				</button>
-				<div class="btn-group">
-					<a class="btn btn-default btn-outline" type="button" name="refresh" title="刷新表格" onclick="reLoad()">
-						<i class="glyphicon glyphicon-refresh icon-refresh"></i>
-					</a>
-					<a class="btn btn-default btn-outline" type="button" name="toggle" title="小组周报详情" onclick="getSummaryView()">
-						<i class="glyphicon glyphicon-list-alt icon-list-alt"></i>
-					</a>
-					<a class="btn btn-default btn-outline" type="button" name="toggle" title="批量下载附件">
-						<i class="glyphicon  glyphicon-download-alt icon-download-alt"></i>
-					</a>
-				</div>
+		<ul id="myTab" class="nav nav-tabs">
+			<li class="active"><a href="#tab1" data-toggle="tab">Tab1</a></li>
+			<li><a href="#tab2" data-toggle="tab">Tab2</a></li>
+			<li><a href="#tab3" data-toggle="tab">Tab3</a></li>
+		</ul>
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane  active" id="tab1">
+				<div id="tab1-container" class="myTable-container"></div>
 			</div>
-			<div class="columns pull-right">
-				<button type="button" class="btn btn-primary" onclick="submit()">提交</span>
-				</button>
+			<div class="tab-pane " id="tab2">
+				<div id="tab2-container" class="myTable-container"></div>
+			</div>
+			<div class="tab-pane " id="tab3">
+				<div id="tab3-container" class="myTable-container"></div>
 			</div>
 		</div>
-		<table id="summaryTable" data-mobile-responsive="true">
-		</table>
+
 	</div>
 </div>
-<!--shiro控制bootstraptable行内按钮看见性 -->
-<div>
-	<script type="text/javascript">
-		var s_edit_h = 'hidden';
-		var s_remove_h = 'hidden';
-	</script>
-</div>
-<div shiro:hasPermission="bio:summary:edit">
-	<script type="text/javascript">
-		s_edit_h = '';
-	</script>
-</div>
-<div shiro:hasPermission="bio:summary:remove">
-	<script type="text/javascript">
-		var s_remove_h = '';
-	</script>
-</div>
-</div>
+<script src="/js/plugins/echarts/echarts.min.js" th:src="@{/js/plugins/echarts/echarts.min.js}"></script>
 <div th:include="include :: footer"></div>
 <script type="text/javascript" src="/js/appjs/bio/summary/summary.js" th:src="@{/js/appjs/bio/summary/summary.js}"></script>
+<script>
+	var prefix = document.getElementsByTagName('meta')['ctx'].content + "/bio/summary"
+	var $tab1 = document.getElementById('tab1-container');
+	var $tab2 = document.getElementById('tab2-container');
+	var $tab3 = document.getElementById('tab3-container');
+
+	/* 柱图  */
+	var tabScoreOption = {
+		grid: {
+			y: "20%", // y 偏移量
+		},
+		title : {
+			text : '本月工作评分',
+			subtext : '从月初到现在每周工作评分（组长打分）的平均值',
+			x : 'center',
+			top:10
+		},
+		tooltip : {
+			trigger : 'item',
+			formatter : "{a} <br/>{b} : {c} (分)"
+		},
+		toolbox: { //可视化的工具箱
+			show: true,
+			feature: {
+				dataView: { //数据视图
+					show: true
+				},
+				restore: { //重置
+					show: true
+				},
+				saveAsImage: {//保存图片
+					show: true
+				},
+				magicType: {//动态类型切换
+					type: ['bar', 'line']
+				}
+			}
+		},
+		dataZoom: [
+			{
+				id: 'dataZoomX',
+				type: 'slider',
+				xAxisIndex: [0],
+				filterMode: 'filter'
+			}
+		],
+		xAxis : {
+			type : 'category',
+			data : [],
+			axisLabel:{
+				interval: 0,
+				formatter:function(value){
+					return value.split("").join("\n");
+				}
+			},
+			axisTick:{ //y轴刻度线
+				show:false
+			}
+
+		},
+		yAxis : {
+			type : 'value',
+			axisLabel: {
+				margin: 10,
+				textStyle: {
+					fontSize: 14
+				}
+			},
+		},
+		series : {
+			name: '分数',
+			data : [],
+			type : 'bar',
+			barWidth:15,
+			itemStyle: {
+				normal: {
+					label: {
+						show: true, //开启显示
+						position: 'top', //在上方显示
+						textStyle: { //数值样式
+							color: 'black',
+							fontSize: 14
+						}
+					}
+				}
+			},
+
+
+		}
+	};
+
+	/* 饼图 */
+	var tab2Option = {
+		title : {
+			text : '某站点用户访问来源',
+			subtext : '纯属虚构',
+			x : 'center'
+		},
+		tooltip : {
+			trigger : 'item',
+			formatter : "{a} <br/>{b} : {c} ({d}%)"
+		},
+		legend : {
+			orient : 'vertical',
+			left : 'left',
+			data : [ '直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎' ]
+		},
+		series : [ {
+			name : '访问来源',
+			type : 'pie',
+			radius : '55%',
+			center : [ '50%', '60%' ],
+			data : [ {
+				value : 335,
+				name : '直接访问'
+			}, {
+				value : 310,
+				name : '邮件营销'
+			}, {
+				value : 234,
+				name : '联盟广告'
+			}, {
+				value : 135,
+				name : '视频广告'
+			}, {
+				value : 1548,
+				name : '搜索引擎'
+			} ],
+			itemStyle : {
+				emphasis : {
+					shadowBlur : 10,
+					shadowOffsetX : 0,
+					shadowColor : 'rgba(0, 0, 0, 0.5)'
+				}
+			}
+		} ]
+	};
+
+	/* 柱图  */
+	var tab3Option = {
+		xAxis : {
+			type : 'category',
+			data : [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ]
+		},
+		yAxis : {
+			type : 'value'
+		},
+		series : [ {
+			data : [ 120, 200, 150, 80, 70, 110, 130 ],
+			type : 'line'
+		} ]
+	};
+
+	$.ajax({
+		cache : true,
+		type : "GET",
+		url : prefix + "/scoreChart",
+		async : false,
+		error : function(request) {
+			parent.layer.alert("Connection error");
+		},
+		success : function(res) {
+			var data=res.data;
+			for(var i=0;i<data.length;i++){
+				tabScoreOption.xAxis.data.push(data[i].authorName);
+				tabScoreOption.series.data.push(Number(data[i].score).toFixed(1));
+			}
+		}
+	});
+	/* 初始化tab1的 */
+	var tab1Table = echarts.init($tab1);
+	tab1Table.setOption(tabScoreOption);
+
+	/* shown.bs.tab为tab选项卡高亮 */
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+		/* 获取已激活的标签页的名称 */
+		/* hash 属性是一个可读可写的字符串，该字符串是 URL 从 # 号开始的部分 */
+		var activeTab = $(e.target)[0].hash;
+		/* 当相应的标签被点击时，进行对应的图表渲染 */
+		if (activeTab == "#tab1") {
+			/* 释放图表实例，使实例不可用,不加上这个，会报错： */
+			/* there is a chart instance     already initialized on the dom */
+			echarts.dispose($tab1);
+			var tab2Table = echarts.init($tab1);
+			tab2Table.setOption(tabScoreOption);
+		}
+		else if (activeTab == "#tab2") {
+			/* 释放图表实例，使实例不可用,不加上这个，会报错： */
+			/* there is a chart instance     already initialized on the dom */
+			echarts.dispose($tab2);
+			var tab2Table = echarts.init($tab2);
+			tab2Table.setOption(tab2Option);
+		} else if (activeTab == "#tab3") {
+			echarts.dispose($tab3);
+			var tab3Table = echarts.init($tab3);
+			tab3Table.setOption(tab3Option);
+		}
+	});
+
+</script>
 </body>
 </html>

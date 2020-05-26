@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.bio.sys.vo.ReportScoreVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -106,5 +107,10 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 	@Override
 	public Boolean updateBatch(List<ReportDO> reportDOList) {
 		return baseMapper.updateBatch(reportDOList);
+	}
+
+	@Override
+	public List<ReportScoreVO> getMonthAVGReportScore() {
+		return baseMapper.getMonthAVGReportScore();
 	}
 }

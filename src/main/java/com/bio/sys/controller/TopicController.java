@@ -152,9 +152,7 @@ public class TopicController {
             userService.updatePersonal(user);
         }
         //生成专题周报汇总
-        Map<String, Object> columnMap = new HashMap<>();
-        columnMap.put("dept_id", userDO.getDeptId());
-        if(summaryService.selectByMap(columnMap).size()==0) {
+        if(!summaryService.getThisWeekSummaryByDeptId(userDO.getDeptId())) {
             SummaryDO summaryDO = new SummaryDO();
             Date mon = DateUtils.getThisWeekMondayStart(new Date());
             Date sun = DateUtils.getThisWeekSundayEnd(new Date());
@@ -169,8 +167,10 @@ public class TopicController {
             String title = sdf.format(mon) + "-" + sdf.format(sun) + "-" + deptName + " 周报";
             summaryDO.setTitle(title);
             summaryService.insert(summaryDO);
+            return Result.ok();
         }
+        else return Result.fail();
 
-        return Result.ok();
+
     }
 }

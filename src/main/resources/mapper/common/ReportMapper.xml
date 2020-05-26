@@ -66,6 +66,22 @@
 		AND YEARWEEK(date_format(r_to_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
 	</select>
 
+	<select id="getMonthAVGReportScore" resultType="com.bio.sys.vo.ReportScoreVO">
+		SELECT
+        author_id,
+        ANY_VALUE(author_name) as author_name,
+        ANY_VALUE(dept_id) as dept_id,
+        ANY_VALUE(dept_name) as dept_name,
+        AVG(score) as score
+        FROM
+        report
+        WHERE
+        status_l_sub=1
+        And (date_format(r_from_date,'%Y-%m')=date_format(now(),'%Y-%m')
+        OR date_format(r_to_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+        group by author_id;
+	</select>
+
 	<update id="updateBatch" parameterType="java.util.List" >
 		<foreach collection="reportDOList" item="item" index="index" open="" close="" separator=";">
 			update report

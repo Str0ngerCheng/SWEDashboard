@@ -18,13 +18,10 @@ function load() {
                 toolbar : '#toolbar',
                 striped : true, // 设置为true会有隔行变色效果
                 dataType : "json", // 服务器返回的数据类型
-                pagination : true, // 设置为true会在底部显示分页条
+                pagination : false, // 设置为true会在底部显示分页条
                 singleSelect : false, // 设置为true将禁止多选
-                pageSize : 10, // 如果设置了分页，每页数据条数
-                pageNumber : 1, // 如果设置了分布，首页页码
                 //search : true, // 是否显示搜索框
                 showColumns : false, // 是否显示内容下拉框（选择显示的列）
-                sidePagination : "client", // 设置在哪里进行分页，可选值为"client" 或者 "server"
                 queryParamsType : "",
                 // //设置为limit则会发送符合RESTFull格式的参数
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -35,8 +32,9 @@ function load() {
                 // 返回false将会终止请求
                 columns : [
                     {
-                        checkbox : true
+                        checkbox : true,
                     },
+
                     {
                         field : 'authorName',
                         title : '姓名',
@@ -95,7 +93,10 @@ function load() {
                                 + '\')"><i class="fa fa-download"></i></a> ';
                             return e + d ;
                         }
-                    } ]
+                    } ],
+                onPostBody:function(){
+                    $('#topicTable').bootstrapTable('checkAll');
+                }
             });
 }
 function reLoad() {
@@ -142,6 +143,7 @@ function getTopicView(){
     //layer.full(index)
 }
 function  submit(){
+
     var loadIndex=layer.load(1,{
         shade: [0.2,'#fff'] //0.1透明度的白色背景
     });
@@ -173,6 +175,7 @@ function  submit(){
                     }
                 }
                 if(unLSubList.length>0) {
+                    layer.close(loadIndex)
                     layer.alert('专题内<label style="color:red">'+unLSubUsers+'</label>本周的周报还未审阅，请完成审阅再提交！', {icon: 2})
                 }
                 else if(unMSubList.length>0){
@@ -182,6 +185,14 @@ function  submit(){
                         yes: function(index){
                             layer.close(index);
                             resetUserOrder(loadIndex);
+                        },
+                        btn2: function(index){
+                            layer.close(loadIndex);
+                            layer.close(index);
+                        },
+                        cancel: function(index){
+                            layer.close(loadIndex);
+                            layer.close(index);
                         }
                     })
                 }
@@ -217,7 +228,7 @@ function  resetUserOrder(loadIndex) {
                 layer.alert("已提交",{icon:1})
 
             } else {
-                layer.alert(data.msg)
+                layer.alert("您已提交本周专题周报汇总，不要重复提交！",{icon:2})
             }
         }
     });

@@ -53,7 +53,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">角色</label>
 							<div class="col-sm-8">
-								<label th:each="role:${roles}" class="checkbox-inline">
+								<label th:each="role:${roles}" class="radio-inline">
 									<input name="roleId" type="radio" th:value="${role.id}"
 										   th:text="${role.roleName}">
 								</label>

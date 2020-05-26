@@ -6,6 +6,7 @@ import java.util.List;
 import com.bio.common.base.CoreService;
 import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
+import com.bio.sys.vo.ReportScoreVO;
 
 
 /**
@@ -34,5 +35,6 @@ public interface ReportService extends CoreService<ReportDO> {
 	public  List<ReportDO> getThisWeekReportByDeptAndStatusMSub(Long deptId,Integer status);
 
 	public Boolean updateBatch(List<ReportDO> reportDOList);
+	public List<ReportScoreVO> getMonthAVGReportScore();
 	
 }

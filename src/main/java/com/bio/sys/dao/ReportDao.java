@@ -2,6 +2,7 @@ package com.bio.sys.dao;
 
 import java.util.List;
 
+import com.bio.sys.vo.ReportScoreVO;
 import org.apache.ibatis.annotations.Param;
 
 import com.bio.common.base.BaseDao;
@@ -30,4 +31,6 @@ public interface ReportDao extends BaseDao<ReportDO> {
 	public ReportDO getThisWeekReportByAuthorId(@Param("authorId") Long authorId);
 
 	public Boolean updateBatch(@Param("reportDOList") List<ReportDO> reportDOList);
+
+	public List<ReportScoreVO> getMonthAVGReportScore();
 }

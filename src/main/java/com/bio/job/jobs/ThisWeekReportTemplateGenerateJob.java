@@ -115,6 +115,7 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 
 				reportDO.setParentDeptId(0L);
 				reportDO.setTitle(title);
+				reportDO.setScore("90");
 				reportDOs.add(reportDO);
 			}
 

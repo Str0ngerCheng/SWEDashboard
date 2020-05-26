@@ -18,15 +18,12 @@ function load() {
 				toolbar : '#exampleToolbar',
 				striped : true, // 设置为true会有隔行变色效果
 				dataType : "json", // 服务器返回的数据类型
-				pagination : true, // 设置为true会在底部显示分页条
+				pagination : false, // 设置为true会在底部显示分页条
 				singleSelect : false, // 设置为true将禁止多选
 				// contentType : "application/x-www-form-urlencoded",
 				// //发送到服务器的数据编码类型
-				pageSize : 10, // 如果设置了分页，每页数据条数
-				pageNumber : 1, // 如果设置了分布，首页页码
 				//search : true, // 是否显示搜索框
 				showColumns : false, // 是否显示内容下拉框（选择显示的列）
-				sidePagination : "client", // 设置在哪里进行分页，可选值为"client" 或者 "server"
 				queryParamsType : "",
 				// //设置为limit则会发送符合RESTFull格式的参数
 				// //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -67,7 +64,11 @@ function load() {
 						title : '提交时间' ,
 						align : 'center',
 					}
-				]
+				],
+				onPostBody:function(){
+					$('#summaryTable').bootstrapTable('checkAll');
+				}
+
 			});
 }
 function reLoad() {
@@ -179,15 +180,34 @@ function getSummaryView() {
 }
 
 function submit() {
+	var loadIndex=layer.load(1,{
+		content: "等待中…",
+		shade: [0.3,'#fff'],
+		success: function (layero) {
+			layero.find('.layui-layer-content').css({
+				'padding-top': '40px',
+				'width': '60px',
+				'font-weight': 'bold'
+			});
+		}
+	});
 	$.ajax({
 		type : 'GET',
 		url : prefix + '/bio/summary/submit',
+		error : function(request) {
+		    layer.close(loadIndex)
+			layer.alert("Connection error");
+		},
 		success : function(r) {
+		 layer.close(loadIndex)
 			if (r.code == 0) {
-				layer.alert("已提交",{icon:1})
-			} else {
-				layer.msg(r.msg);
+				layer.alert("已提交",{icon:1});
+			} else if(r.code == 1) {
+				layer.alert('组内<label style="color:red">'+r.data+'</label>本周的周报汇总还未提交，请等待小组所有专题的周报汇总均提交后再尝试！', {icon: 2})
+			} else if(r.code == 2){
+				layer.alert("您已提交本周小组周报汇总（含附件），不要重复提交！", {icon: 2})
 			}
+			else layer.alert(+r.msg, {icon: 2})
 		}
 	});
 }

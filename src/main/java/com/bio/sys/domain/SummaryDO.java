@@ -39,6 +39,8 @@ public class SummaryDO implements Serializable {
     /** 创建时间 */
     private Date rCreateDate;
 
+    private  Integer status;
+
     /**
      * 设置：ID
      */
@@ -134,5 +136,13 @@ public class SummaryDO implements Serializable {
      */
     public Date getRCreateDate() {
         return rCreateDate;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
