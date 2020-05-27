@@ -45,53 +45,49 @@
 <head th:include="include :: header"></head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-content" id="myContent">
-                    <h3 style="text-align: center" th:utext="${report.title}"></h3>
-                    <div class="form-group">
-                        <span>
-                            <a id="upload" onclick="downlandFiles()" type="" class="btn btn-primary" style="float: right"><i class="fa fa-cloud"></i>下载附件</a>
-                            <h3>上周计划</h3>
-
+    <div class="ibox-content" id="myContent">
+                <h3 style="text-align: center" th:utext="${report.title}"></h3>
+                <div class="form-group">
+                         <span>
+                            <a id="upload" onclick="downlandFiles()" type="" class="btn-sm btn-primary" style="float: right"><i class="fa fa-cloud"></i>下载附件</a>
+                            <h3>本月目标</h3>
                         </span>
-
-                        <textarea class="col-sm-12 form-control"  rows="3" readonly="readonly" id="lastPlan" th:text="${reportContent.lastPlan}"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <h3>本周总结</h3>
-                        <textarea class="col-sm-12 form-control" rows="5"  readonly="readonly" id="summary"  th:text="${reportContent.summary}"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <h3>下周计划</h3>
-                        <textarea class="col-sm-12 form-control" rows="3"  readonly="readonly" id="nextPlan" th:text="${reportContent.nextPlan}"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <h3>问题反馈</h3>
-                        <textarea class="col-sm-12 form-control" rows="3" readonly="readonly" id="problem" th:text="${reportContent.problem}"></textarea>
-                    </div>
-                    <div class="form-group" id="form-comment">
-                        <h3><label style="color: red">*</label>
-                            请给出评价
-                            <label style="color: red">（必须填写，否则无法提交）</label>
-                        </h3>
-                        <textarea class="col-sm-12 form-control" rows="3" id="comment" th:text="${report.comment}"></textarea>
-                    </div>
-                    <div class="form-group" style='display:block' id="form-score">
-                        <h3 style="padding-bottom: 10px">请给这周表现打分 <label style="color: red">（默认是90分）</label></h3>
-                        <span>
+                    <textarea class="col-sm-12 form-control" rows="5" id="monthPlan" readonly="readonly" th:text="${reportContent.monthPlan}"></textarea>
+                </div>
+                <div class="form-group">
+                    <h3>上周计划</h3>
+                    <textarea class="col-sm-12 form-control"  rows="5" readonly="readonly" id="lastPlan" th:text="${reportContent.lastPlan}"></textarea>
+                </div>
+                <div class="form-group">
+                    <h3>本周总结</h3>
+                    <textarea class="col-sm-12 form-control" rows="5"  readonly="readonly" id="summary"  th:text="${reportContent.summary}"></textarea>
+                </div>
+                <div class="form-group">
+                    <h3>问题反馈</h3>
+                    <textarea class="col-sm-12 form-control" rows="5" readonly="readonly" id="problem" th:text="${reportContent.problem}"></textarea>
+                </div>
+                <div class="form-group">
+                    <h3>下周计划</h3>
+                    <textarea class="col-sm-12 form-control" rows="5"  readonly="readonly" id="nextPlan" th:text="${reportContent.nextPlan}"></textarea>
+                </div>
+                <div class="form-group" id="form-comment">
+                    <h3><label style="color: red">*</label>
+                        请给出评价
+                        <label style="color: red">（必须填写，否则无法提交）</label>
+                    </h3>
+                    <textarea class="col-sm-12 form-control" rows="3" id="comment" th:text="${report.comment}"></textarea>
+                </div>
+                <div class="form-group" style='display:block' id="form-score">
+                    <h3 style="padding-bottom: 10px">请给这周表现打分 <label style="color: red">（默认是90分）</label></h3>
+                    <span>
                              <button  type="button" class="btn btn-primary" style="float: right" onclick="submitContent()">完成</button>
                         <input type="text" oninput="getVal(this.value)"  th:value="${report.score}"
                                class="form-control" id="result" style="width: 40px;float: left;margin-right: 20px;padding: 6px 6px;font-weight: bold;border-radius: 5px">
                         <input type="range" id="score"  min="0" max="100" step="1" class="slider2" th:value="${report.score}">
                         </span>
-                    </div>
-
                 </div>
+
             </div>
-        </div>
-    </div>
 </div>
 <div th:include="include :: footer"></div>
 <script type="text/javascript" src="/js/appjs/bio/report/reportContent.js" th:src="@{/js/appjs/bio/report/reportContent.js}"></script>
@@ -99,7 +95,7 @@
     var report=[[${report}]]
     var mark=[[${mark}]]
     if(!mark){
-       $('#form-comment').css("display","none")
+        $('#form-comment').css("display","none")
         $('#form-score').css("display","none")
     }
 </script>

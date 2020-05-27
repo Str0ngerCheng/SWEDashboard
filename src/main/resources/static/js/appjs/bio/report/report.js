@@ -63,11 +63,21 @@ function load() {
 						field : 'comment',
 						title : '组长评价' ,
 						align : 'center',
+						formatter:function(value,row,index){
+							if(value=="")
+								value="-";
+							return value;
+						}
 					},
 					{
 						field : 'suggest',
 						title : '老师意见' ,
 						align : 'center',
+						formatter:function(value,row,index){
+							if(value=="")
+								value="-";
+							return value;
+						}
 					},
 					{
 						field : 'rchgDate',

@@ -1,8 +1,8 @@
 var prefix = document.getElementsByTagName('meta')['ctx'].content + "/bio/report"
 
 $().ready(function() {
-	setSummaryContent()
-	validateRule();
+	validateContent();
+	setSummaryStyle();
 });
 
 
@@ -12,47 +12,20 @@ $.validator.setDefaults({
 	}
 });
 
-
-	
-	
-function update() {
-	$.ajax({
-		cache : true,
-		type : "POST",
-		url : prefix + "/update",
-		data : $('#reportForm').serialize(),// 你的formid
-		async : false,
-		error : function(request) {
-			parent.layer.alert("Connection error");
-		},
-		success : function(data) {
-			if (data.code == 0) {
-				parent.layer.msg("操作成功");
-				parent.reLoad();
-				var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
-				parent.layer.close(index);
-
-			} else {
-				parent.layer.alert(data.msg)
-			}
-		}
-	});
-
-}
-function validateRule() {
-	var icon = "<i class='fa fa-times-circle'></i> ";
-	$("#signupForm").validate({
-		rules : {
-			name : {
-				required : true
-			}
-		},
-		messages : {
-			name : {
-				required : icon + "请输入名字"
-			}
-		}
-	})
+function validateContent() {
+	if($('#summary').val()=="")
+		$('#summary').val("（以下内容为默认模板）\n" +
+			"1. 针对***，做了***，取得了***；\n" +
+			"2. 为了***，开展了***工作，形成了***；\n" +
+			"3. 在前期**基础上，对***，获取了***。")
+	if($('#nextPlan').val()=="")
+		$('#nextPlan').val("（以下内容为默认模板）\n" +
+			"1. 在***方面，计划开展***，拟取得***；\n" +
+			"2. 因为***，所以在下周将***，计划完成***\n" +
+			"3. 按照***计划，将继续完成***，形成***")
+	if($('#problem').val()=="")
+		$('#problem').val("（以下内容为默认模板）\n" +
+			"1. 由于***，所以存在***问题，需要***")
 }
 
 function getLastReport(){
@@ -64,11 +37,10 @@ function clearAll(){
 	$('#summary').val('')
 	$('#nextPlan').val('')
 	$('#problem').val('')
-	$('#other').val('')
 }
 
 $('#summary').on('input propertychange', function () {
-	setSummaryContent()
+	setSummaryStyle()
 });
 function saveReport() {
 	var loadIndex=layer.load(1,{
@@ -147,7 +119,7 @@ function submitReport() {
 
 
 }
-function setSummaryContent(){
+function setSummaryStyle(){
     var len=getSummaryLength();
 	if(len<50)
 		$('#summary').css("border-color","red")

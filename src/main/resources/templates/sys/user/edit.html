@@ -4,9 +4,7 @@
 <head th:include="include :: header"></head>
 <body class="gray-bg">
 	<div class="wrapper wrapper-content animated fadeInRight">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="ibox-content">
+		<div class="ibox-content">
 					<form class="form-horizontal m-t" id="signupForm">
 						<input id="id" name="id" th:value="${user.id}"
 							type="hidden">
@@ -55,7 +53,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">角色</label>
 							<div class="col-sm-8">
-								<label th:each="role:${roles}" class="checkbox-inline">
+								<label th:each="role:${roles}" class="radio-inline">
 									<input name="roleId" type="radio" th:value="${role.id}"
 										   th:text="${role.roleName}">
 								</label>
@@ -68,8 +66,6 @@
 						</div>
 					</form>
 				</div>
-			</div>
-		</div>
 	</div>
 	<div th:include="include::footer"></div>
 	<script type="text/javascript" src="/js/appjs/sys/user/edit.js" th:src="@{/js/appjs/sys/user/edit.js}">

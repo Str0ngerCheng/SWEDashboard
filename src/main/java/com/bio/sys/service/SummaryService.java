@@ -37,7 +37,11 @@ public interface SummaryService extends CoreService<SummaryDO> {
 
 	public List<SummaryDO> getThisWeekSummary();
 
+
 	List<SummaryDO> selectList(Date fromDate, Date toDate);
 	List<SummaryDO> getReportsByMonth1(int date);
+
+	public Boolean getThisWeekSummaryByDeptId(Long deptId);
+
 	
 }

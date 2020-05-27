@@ -56,7 +56,7 @@ public class QueryController {
     }
 
     @GetMapping("/userSelect")
-    /*@RequiresPermissions("bio:query:query")*/
+    @RequiresPermissions("bio:query:query")
     public String userSelect() {
         return "bio/query/userSelect";
     }
@@ -64,7 +64,6 @@ public class QueryController {
 
     @ResponseBody
     @GetMapping("/list")
-   /* @RequiresPermissions("bio:report:report")*/
     public Result<Page<QueryDO>> list(Integer pageNumber, Integer pageSize,ReportDO reportDTO) {
         UserDO userDO = contextService.getCurrentLoginUser(SecurityUtils.getSubject());
         List<ReportDO> mylist=new ArrayList<>();
@@ -88,7 +87,6 @@ public class QueryController {
 
     @ResponseBody
     @GetMapping("/list1")
-   /* @RequiresPermissions("bio:summary:summary")*/
     public Result<List<SummaryVO>> list(){
         List<SummaryDO> summaryDOList=summaryService.getThisWeekSummary();
         List<SummaryVO> summaryVOList=new ArrayList<>();
@@ -99,6 +97,7 @@ public class QueryController {
                     List<ReportDO> mylist=new ArrayList<>();
                     mylist= reportService.getReportsQuery(summaryDO.getRFromDate(), summaryDO.getRToDate(), 1,deptDO.getId());
                     excelreport.put(deptDO.getId(), mylist);
+                    weekly=0;
             }
         return Result.ok(summaryVOList);
     }
@@ -106,7 +105,6 @@ public class QueryController {
 
     @ResponseBody
     @GetMapping("/queryReport")
-    /*@RequiresPermissions("bio:report:report")*/
     public Result<Page<QueryDO>> queryReport(Integer pageNumber, Integer pageSize, String userName, String datetimepicker1, String datetimepicker2, Integer WeekMonth) throws ParseException {
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date startDate=sdf.parse(datetimepicker1);
@@ -137,7 +135,6 @@ public class QueryController {
 
     @ResponseBody
     @GetMapping("/queryDepReport")
-    /*@RequiresPermissions("bio:report:report")*/
     public Result<Page<SummaryVO>> queryDepReport(Integer pageNumber, Integer pageSize, String topicName, String datetimepicker_t1, String datetimepicker_t2, Integer WeekMonth1) throws ParseException {
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date startDate=sdf.parse(datetimepicker_t1);
@@ -188,7 +185,6 @@ public class QueryController {
 
     //获取本周的专题周报信息
     @GetMapping("/weekInfo/{deptId}")
-   /* @RequiresPermissions("bio:topic:topic")*/
     public String getWeekInfo(@PathVariable("deptId")Long deptId,Model model) throws ParseException {
         List<ReportDO> mSubmitReportList=new ArrayList<>();
         mSubmitReportList=excelreport.get(deptId);
@@ -228,7 +224,6 @@ public class QueryController {
 
     @ResponseBody
     @GetMapping("/searchKey")
-   /* @RequiresPermissions("bio:report:report")*/
     public Result<Page<ReportContentDO>> findByPageNo(Integer pageNumber, Integer pageSize, String searchKey){
         List<ReportContentDO> mylist=reportContentService.getSearchKey(searchKey);
         List<ReportDO> thereport=new ArrayList<>();
@@ -246,7 +241,6 @@ public class QueryController {
 
     @ResponseBody
     @GetMapping("/batchExport")
-    /*@RequiresPermissions("bio:report:report")*/
     public void BatchExport(@RequestParam(value="ids") String ids, HttpServletResponse response) {
         String filename ="E:\\Test\\汇总表";
         List<TopicDao> topics= new ArrayList<>();
@@ -265,7 +259,6 @@ public class QueryController {
 
     @ResponseBody
     @GetMapping("/batchExport1")
-    /*@RequiresPermissions("bio:report:report")*/
     public void BatchExport1(@RequestParam(value="ids") String ids, HttpServletResponse response) {
         String filename ="E:\\Test\\汇总表";
         List<TopicDao> topics= new ArrayList<>();

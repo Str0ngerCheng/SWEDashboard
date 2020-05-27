@@ -1,50 +1,67 @@
 <!DOCTYPE html>
 <html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
-	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <meta charset="utf-8">
+<style>
+	.my-ibox-content {
+		background-color: #ffffff;
+		color: inherit;
+		padding: 15px 20px 20px 20px;
+		border-color: #e7eaec;
+		-webkit-border-image: none;
+		-o-border-image: none;
+		border-image: none;
+		border-style: solid solid none;
+		border-width: 1px 0px;
+	}
+</style>
 <head th:include="include :: header"></head>
 <body class="gray-bg">
-	<div class="wrapper wrapper-content ">
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="ibox ibox-body">
-					<div class="ibox-title">
-						<h5>选择专题</h5>
-					</div>
-					<div class="ibox-content">
-						<div id="jstree"></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-8">
-				<div class="ibox">
-					<div class="ibox-body">
-						<div class="fixed-table-toolbar">
-							<div class="columns pull-left">
-								<button shiro:hasPermission="sys:user:add" type="button"
-									class="btn  btn-primary" onclick="add()">
-									<i class="fa fa-plus hidden" aria-hidden="true"></i>添加
-								</button>
-								<button shiro:hasPermission="sys:user:batchRemove" type="button"
-									class="btn  btn-danger" onclick="batchRemove()">
-									<i class="fa fa-trash hidden" aria-hidden="true"></i>删除
-								</button>
+<div class="wrapper wrapper-content ">
+	<div class="row">
+		<div class="col-sm-12">
+				<div class="ibox-content" style="display: flex">
+					<div class="col-sm-3">
+						<div class="ibox-body">
+							<div class="ibox-title">
+								<h5>选择专题</h5>
 							</div>
-							<div class="columns pull-right">
-								<button class="btn btn-success" onclick="reLoad()">查询</button>
-							</div>
-
-							<div class="columns pull-right col-md-2 nopadding">
-								<input id="searchName" type="text" class="form-control"
-									placeholder="姓名">
+							<div class="my-ibox-content">
+								<div id="jstree"></div>
 							</div>
 						</div>
-						<table id="exampleTable" data-mobile-responsive="true">
-						</table>
+					</div>
+					<div class="col-sm-9">
+						<div class="ibox-body">
+							<div class="fixed-table-toolbar">
+								<div class="columns pull-left">
+									<button shiro:hasPermission="sys:user:add" type="button"
+											class="btn  btn-primary" onclick="add()">
+										<i class="fa fa-plus hidden" aria-hidden="true"></i>添加
+									</button>
+									<button shiro:hasPermission="sys:user:batchRemove" type="button"
+											class="btn  btn-danger" onclick="batchRemove()">
+										<i class="fa fa-trash hidden" aria-hidden="true"></i>删除
+									</button>
+								</div>
+								<div class="columns pull-right">
+									<div class="form-inline">
+										<div class="form-group">
+											<input id="searchName" type="text" class="form-control"
+												   placeholder="姓名">
+										</div>
+										<button class="btn btn-success" onclick="reLoad()">查询</button>
+									</div>
+								</div>
+							</div>
+							<table id="exampleTable" data-mobile-responsive="true">
+							</table>
+						</div>
 					</div>
 				</div>
-			</div>
 		</div>
+	</div>
+
 		<!--shiro控制bootstraptable行内按钮看见性 -->
 		<div>
 			<script type="text/javascript">

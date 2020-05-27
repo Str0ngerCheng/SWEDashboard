@@ -188,10 +188,9 @@ public class ReportController {
 		return Result.ok();
 	}
 	/**
-	 * 显示周报内容
+	 * 仅显示周报内容
 	 */
 	@GetMapping("/reportContent/{id}")
-	/*@RequiresPermissions("bio:report:report")*/
 	String getReportContent(@PathVariable("id") Integer id,Model model){
 		ReportDO report = reportService.selectById(id);
 		ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
@@ -202,7 +201,7 @@ public class ReportController {
 	}
 
 	/**
-	 * 显示周报内容
+	 * 显示周报内容,同时显示打分和评价模块（专题组长专用）
 	 */
 	@GetMapping("/markReportContent/{id}")
 	@RequiresPermissions("bio:report:report")

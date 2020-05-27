@@ -4,18 +4,9 @@
 <head th:include="include :: header"></head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
-	<div class="col-sm-12">
-		<div class="ibox">
-			<div class="ibox-body">
+	<div class="ibox-content">
 				<div class="fixed-table-toolbar">
 					<div class="columns pull-left">
-						<button shiro:hasPermission="bio:summary:add" type="button" class="btn  btn-primary" onclick="add()">
-							<i class="fa fa-plus" aria-hidden="true"></i>添加
-						</button>
-						<button shiro:hasPermission="bio:summary:batchRemove" type="button" class="btn  btn-danger"
-								onclick="batchRemove()">
-							<i class="fa fa-trash" aria-hidden="true"></i>删除
-						</button>
 						<div class="btn-group">
 							<a class="btn btn-default btn-outline" type="button" name="refresh" title="刷新表格" onclick="reLoad()">
 								<i class="glyphicon glyphicon-refresh icon-refresh"></i>
@@ -29,32 +20,13 @@
 						</div>
 					</div>
 					<div class="columns pull-right">
-						<button type="button" class="btn btn-primary" onclick="submit()">提交</span>
+						<button type="button" id="summarySubmit" class="btn btn-primary" onclick="submit()">提交</span>
 						</button>
 					</div>
 				</div>
 				<table id="summaryTable" data-mobile-responsive="true">
 				</table>
 			</div>
-		</div>
-	</div>
-</div>
-<!--shiro控制bootstraptable行内按钮看见性 -->
-<div>
-	<script type="text/javascript">
-		var s_edit_h = 'hidden';
-		var s_remove_h = 'hidden';
-	</script>
-</div>
-<div shiro:hasPermission="bio:summary:edit">
-	<script type="text/javascript">
-		s_edit_h = '';
-	</script>
-</div>
-<div shiro:hasPermission="bio:summary:remove">
-	<script type="text/javascript">
-		var s_remove_h = '';
-	</script>
 </div>
 </div>
 <div th:include="include :: footer"></div>

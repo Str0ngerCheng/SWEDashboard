@@ -4,134 +4,69 @@
 <head th:include="include :: header"></head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="ibox float-e-margins">
-				<div class="ibox-content">
-					<form class="form-horizontal m-t" id="signupForm">
-						<!-- 		<div class="form-group">
-                            <label class="col-sm-3 control-label">作者ID：</label>
-                            <div class="col-sm-8">
-                                <input id="authorId" name="authorId" th:value="${report.authorId}" class="form-control" type="text">
-                            </div>
-                        </div>
-                                                    <div class="form-group">
-                            <label class="col-sm-3 control-label">作者姓名：</label>
-                            <div class="col-sm-8">
-                                <input id="authorName" name="authorName" th:value="${report.authorName}" class="form-control" type="text">
-                            </div>
-                        </div>
-                                                    <div class="form-group">
-                            <label class="col-sm-3 control-label">上级部门 ID：</label>
-                            <div class="col-sm-8">
-                                <input id="parentDeptId" name="parentDeptId" th:value="${report.parentDeptId}" class="form-control" type="text">
-                            </div>
-                        </div>
-                                                    <div class="form-group">
-                            <label class="col-sm-3 control-label">部门ID：</label>
-                            <div class="col-sm-8">
-                                <input id="deptId" name="deptId" th:value="${report.deptId}" class="form-control" type="text">
-                            </div>
-                        </div>
-                                                    <div class="form-group">
-                            <label class="col-sm-3 control-label">部门名称：</label>
-                            <div class="col-sm-8">
-                                <input id="deptName" name="deptName" th:value="${report.deptName}" class="form-control" type="text">
-                            </div>
-                        </div>
-                                                    <div class="form-group">
-                            <label class="col-sm-3 control-label">起始时间：</label>
-                            <div class="col-sm-8">
-                                <input id="rFromDate" name="rFromDate" th:value="${report.rFromDate}" class="form-control" type="text">
-                            </div>
-                        </div>
-                                                    <div class="form-group">
-                            <label class="col-sm-3 control-label">终止时间：</label>
-                            <div class="col-sm-8">
-                                <input id="rToDate" name="rToDate" th:value="${report.rToDate}" class="form-control" type="text">
-                            </div>
-                        </div> -->
-						<div class="form-group">
-							<div class="col-sm-12">
-								<h3 style="text-align: center">
-									<span th:text="${report.title}"></span>
-								</h3>
+	<div class="col-sm-12">
+			<div class="ibox-content">
+				<form class="form-horizontal m-t" id="reportForm">
+					<input id="reportId" type="hidden" th:value="${report.Id}">
+					<div class="form-group">
+						<div class="col-sm-12">
+							<h3 style="text-align: center">
+								<span th:text="${report.title}"></span>
+							</h3>
+						</div>
+					</div>
+					<div class="form-group" style="margin:20px">
+						<label class="control-label" style="float: left">快捷初始化：</label>
+						<button  type="button" class="btn btn-info" onclick="getLastReport()">加载最近周周报</button>
+						<button class="btn  btn-success" onclick="clearAll()" type="button">清空</button>
+						<button id="upload" onclick="uploadFiles()" type="" class="btn btn-default" style="float: right"><i class="fa fa-cloud"></i>上传附件</button>
+					</div>
+					<div class="form-group" style="margin:20px">
+						<h3>本月目标</h3>
+						<textarea class="col-sm-12 form-control" rows="5" id="monthPlan" readonly="readonly" th:text="${reportContent.monthPlan}"></textarea>
+					</div>
+					<div class="form-group" style="margin:20px">
+						<h3>上周计划</h3>
+						<textarea class="col-sm-12 form-control" rows="5" id="lastPlan" th:text="${reportContent.lastPlan}"></textarea>
+					</div>
+					<div class="form-group" style="margin:20px">
+						<h3>本周总结（简明扼要且全面地总结本周工作内容，<label style="color:red;">不少于50字</label>）</h3>
+						<textarea class="col-sm-12 form-control" rows="5" id="summary"  th:text="${reportContent.summary}"></textarea>
+						<span id="textarea-tip" style="float: right;padding-top: 5px"></span>
+					</div>
+					<div class="form-group" style="margin:20px">
+						<h3>问题反馈（提出需要讨论的问题或需要帮助的地方）</h3>
+						<textarea class="col-sm-12 form-control" rows="5" id="problem" th:text="${reportContent.problem}"></textarea>
+					</div>
+					<div class="form-group" style="margin:20px">
+						<h3>下周计划（简明扼要地计划下周工作内容）</h3>
+						<textarea class="col-sm-12 form-control" rows="5" id="nextPlan" th:text="${reportContent.nextPlan}"></textarea>
+					</div>
+					<div class="form-group" style="margin:20px">
+						<div class="col-sm-6" style="float: right">
+							<div class="columns pull-right">
+								<button class="btn  btn-success" onclick="saveReport()" type="button">
+									保存
+								</button>
+								<button class="btn  btn-primary" onclick="submitReport()" type="button">
+									提交
+								</button>
 							</div>
 						</div>
-						<div class="form-group" style="margin:20px">
-							<label class="control-label" style="float: left">快捷初始化：</label>
-							<div class="col-sm-3">
-								<button id="usepreviousweek" type="button" class="btn btn-info">加载最近周周报</button>
-							</div>
-							<button class="btn  btn-success" onclick="clearAll()" type="button">清空
-							</button>
-							<button id="upload" onclick="uploadFiles()" type="" class="btn btn-default" style="float: right"><i class="fa fa-cloud"></i>上传附件</button>
-						</div>
+					</div>
 
-						<div class="form-group" style="margin:20px">
-							<h3>上周计划</h3>
-							<textarea class="col-sm-12 form-control" rows="3" id="lastPlan"></textarea>
-						</div>
-						<div class="form-group" style="margin:20px">
-							<h3>上周总结</h3>
-							<textarea class="col-sm-12 form-control" rows="3" id="lastSummary"></textarea>
-						</div>
-						<div class="form-group" style="margin:20px">
-							<h3>本周计划</h3>
-							<textarea class="col-sm-12 form-control" rows="3" id="cunrrentPlan"></textarea>
-						</div>
-						<div class="form-group" style="margin:20px">
-							<h3>其他情况</h3>
-							<textarea class="col-sm-12 form-control" rows="3" id="other"></textarea>
-						</div>
-
-						<div class="form-group" style="margin:20px">
-							<div class="col-sm-6" style="float: right">
-								<div class="columns pull-right">
-									<button class="btn  btn-primary" onclick="submit()" type="button">
-										提交
-									</button>
-								</div>
-							</div>
-						</div>
-
-					</form>
-				</div>
+				</form>
 			</div>
 		</div>
-	</div>
 </div>
 <div th:include="include::footer"></div>
-<script type="text/javascript" src="/js/appjs/bio/report/edit.js" th:src="@{/js/appjs/bio/report/edit.js}">
+
+<script type="text/javascript" src="/js/appjs/bio/report/edit.js" th:src="@{/js/appjs/bio/report/edit.js}" >
 
 </script>
-
-
 <script th:inline="javascript">
 	var prefix = document.getElementsByTagName('meta')['ctx'].content + "/bio/report"
-	$(document).ready(function() {
-						//使用最近周报
-						$('#usepreviousweek').on('click', function(e){
-							var markupStr = $("#summernote").val();
-
-							$.ajax({
-								url : prefix + "/latest/" + $("#id").val(),
-								type : "get",
-								success : function(r) {
-									if (r.code == 0) {
-										$('#summernote').summernote('code', markupStr + r.data.content );
-										layer.msg("获取到周报内容，并初始化成功！");
-									} else {
-										layer.msg("没有获取到对应的历史周报信息！");
-									}
-								}
-							});
-
-
-						});
-						//$('#summernote').summernote('code', [[${report.content}]]);
-
-					});
+	//console.log([[${report}]])
 </script>
 
 </body>

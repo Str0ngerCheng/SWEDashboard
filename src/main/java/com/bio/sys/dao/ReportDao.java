@@ -3,6 +3,7 @@ package com.bio.sys.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.bio.sys.vo.ReportScoreVO;
 import org.apache.ibatis.annotations.Param;
 
 import com.bio.common.base.BaseDao;
@@ -19,7 +20,7 @@ import org.joda.time.DateTime;
  */
 public interface ReportDao extends BaseDao<ReportDO> {
 
-	public  ReportDO getLatestReport(@Param("authorid") Long authorid, @Param("rfromdate") String rToDate);
+	public  ReportDO getLatestReport(@Param("authorid") Long authorid, @Param("rfromdate") String rfromdate);
 
 	public Integer getReportCountByTitle(String title);
 	
@@ -43,9 +44,15 @@ public interface ReportDao extends BaseDao<ReportDO> {
 
 	public  List<ReportDO> getThisWeekReportByDept(@Param("deptId") Long deptId);
 
+	public ReportDO getThisWeekReportByAuthorId(@Param("authorId") Long authorId);
+
 	public Boolean updateBatch(@Param("reportDOList") List<ReportDO> reportDOList);
+
 
 	List<ReportDO> getReportsQuery1(@Param("fromdate") Date fromDate, @Param("todate") Date toDate, @Param("status") Integer status);
 
 	List<ReportDO>getReportsByMonth1(@Param("date") int date);
+
+	public List<ReportScoreVO> getMonthAVGReportScore();
+
 }

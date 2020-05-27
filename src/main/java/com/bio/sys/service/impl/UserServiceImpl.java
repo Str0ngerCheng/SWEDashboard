@@ -268,4 +268,18 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserDO> implements Use
 		return result;
 	}
 
+	@Override
+	public List<UserDO> getUsersByRoleId(Long roleId) {
+		List<UserDO> userDOList=new ArrayList<>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("role_id", roleId);
+		List<UserRoleDO>userRoleDOList=userRoleMapper.selectByMap(map);
+		for(UserRoleDO userRoleDO:userRoleDOList){
+			UserDO userDO=baseMapper.selectById(userRoleDO.getUserId());
+			if(userDO!=null)
+				userDOList.add(userDO);
+		}
+		return userDOList;
+	}
+
 }

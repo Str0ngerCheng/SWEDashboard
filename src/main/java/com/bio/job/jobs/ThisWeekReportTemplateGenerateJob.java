@@ -3,7 +3,7 @@ package com.bio.job.jobs;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import com.bio.sys.domain.ReportContentDO;
+import com.bio.sys.domain.*;
 import com.bio.sys.service.*;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -17,9 +17,6 @@ import org.springframework.stereotype.Component;
 import com.bio.common.domain.MailBean;
 import com.bio.common.utils.DateUtils;
 import com.bio.common.utils.ThreadPool;
-import com.bio.sys.domain.ReportDO;
-import com.bio.sys.domain.SummaryDO;
-import com.bio.sys.domain.UserDO;
 
 /**
  * 
@@ -53,6 +50,8 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 
 	@Autowired
 	private SummaryService summaryService;
+	@Autowired
+	private UserPlanService userPlanService;
 	
 	@Autowired
 	private MailService mailService;
@@ -61,7 +60,6 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		Map<String, Object> columnMap = new HashMap<>();
 		columnMap.put("status", "1"); // 正常用户
-
 		List<UserDO> users = userService.selectByMap(columnMap);
 
 		List<ReportDO> reportDOs = new ArrayList<ReportDO>();
@@ -72,22 +70,29 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 		for (UserDO userDO : users) {
 			Long roleDOs = userRoleService.findRoleIdByUserId(userDO.getId());
 
-			if (null != roleDOs && (roleDOs.intValue() !=1)) { // 除管理员，陈老师外其他人都需要填写周报
-
+			if (null != roleDOs && (roleDOs.intValue()!=1&&roleDOs.intValue()!=5)) { // 除管理员，陈老师外其他人都需要填写周报
 				ReportDO reportDO = new ReportDO();
-
 				reportDO.setAuthorId(userDO.getId());
 				reportDO.setStatusMod(0); // 标识 Bot 生成的
-
 				reportDO.setAuthorName(userDO.getName());
+
+				//获取上周的计划(属于上周周报内容里的下周计划)
+				String lastPlan="";
+				ReportDO lastReportDO = reportService.getLatestReport(userDO.getId(),new Date());
+				if(lastReportDO!=null)
+					lastPlan=reportContentService.getByUUID(lastReportDO.getContentId()).getNextPlan();
+
 
 				//表示Bot生成的周报内容为空
 				String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
-				ReportContentDO reportContent = new ReportContentDO(uuid, "", "", "", "");
+				ReportContentDO reportContent = new ReportContentDO(uuid, lastPlan , "", "", "");
+
+				UserPlanDO userPlan=userPlanService.getByAuthorId(userDO.getId());
+				if(userPlan==null)
+					userPlan=new UserPlanDO();
+				reportContent.setMonthPlan(userPlan.getMonthPlan());
 				reportContentDOS.add(reportContent);
 				reportDO.setContentId(uuid);
-
-
 				Date mon = DateUtils.getThisWeekMondayStart(new Date());
 				Date sun = DateUtils.getThisWeekSundayEnd(new Date());
 				String deptName = deptService.selectById(userDO.getDeptId()).getName();
@@ -105,11 +110,10 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 				reportDO.setDeptId(userDO.getDeptId());
 
 				reportDO.setDeptName(deptName);
-				//Long deptId = deptService.getParentDept(userDO.getDeptId()).getId();
+
 				reportDO.setParentDeptId(0L);
-
 				reportDO.setTitle(title);
-
+				reportDO.setScore("90");
 				reportDOs.add(reportDO);
 			}
 

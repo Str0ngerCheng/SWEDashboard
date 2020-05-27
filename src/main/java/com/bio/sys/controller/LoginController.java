@@ -1,7 +1,14 @@
 package com.bio.sys.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.bio.common.service.ContextService;
+import com.bio.sys.domain.UserDO;
+import com.bio.sys.domain.UserPlanDO;
+import com.bio.sys.service.RoleService;
+import com.bio.sys.service.UserPlanService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -37,6 +44,12 @@ public class LoginController extends BaseController {
     MenuService menuService;
     @Autowired
     FileService fileService;
+    @Autowired
+    private UserPlanService userPlanService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private ContextService contextService;
 
     @GetMapping({ "/", "" })
     String welcome(Model model) {
@@ -82,8 +95,24 @@ public class LoginController extends BaseController {
     }
 
     @GetMapping("/main")
-    String main() {
+    String main(Model model) {
+        UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
+        UserPlanDO userPlan=userPlanService.getByAuthorId(userDO.getId());
+
+        if(userPlan==null) userPlan=new UserPlanDO();
+        model.addAttribute("username", userDO.getName());
+        model.addAttribute("userPlan", userPlan);
+
+        Long roleId = roleService.findRoleIdByUserId(userDO.getId());
+        if(roleId==5||roleId==1)//陈老师和管理员登录首页不显示目标
+            model.addAttribute("haveUserPlan", false);
+        else model.addAttribute("haveUserPlan", true);
         return "main";
+    }
+
+    @GetMapping("/about")
+    String about() {
+        return "about";
     }
 
     @GetMapping("/403")

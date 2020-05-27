@@ -22,7 +22,7 @@ function load() {
                 // //发送到服务器的数据编码类型
                 //search : true, // 是否显示搜索框
                 queryParamsType : "",
-                height: 450,
+                height: $(window).height()-95,
                 // //设置为limit则会发送符合RESTFull格式的参数
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
                 // queryParamsType = 'limit' ,返回参数必须包含
@@ -52,60 +52,58 @@ function load() {
                     {
                         field : 'monthPlan',
                         title : '本月目标',
+                        width: 150,
                         align : 'center',
                         formatter:function(value,row,index){
-                            return '<textarea class="col-sm-7 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
+                            return '<textarea style="background:white" class="col-sm-7 form-control" rows="9"  readonly="readonly">'+value+'</textarea>';
                         }
                     },
                     {
-                        field : 'summary',
-                        title : '本周总结',
+                        field : 'summaryAndPlan',
+                        title : '本周总结 & 下周计划',
                         align : 'center',
                         formatter:function(value,row,index){
-                            return '<textarea class="col-sm-7 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
+                            return '<textarea style="background:white" class="col-sm-7 form-control" rows="9"  readonly="readonly">'
+                                +'【本周总结】'+"&#10;"
+                                +row.summary+"&#10;"
+                                +"&#10;"
+                                +'【下周计划】'+"&#10;"
+                                +row.nextPlan+'</textarea>';
                         }
                     },
                     {
-                        field : 'nextPlan',
-                        title : '下周计划',
+                        field : 'problemAndComment',
+                        title : '问题反馈 & 组长评价',
                         align : 'center',
                         formatter:function(value,row,index){
-                            return '<textarea class="col-sm-5 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
-                        }
-                    },
-                    {
-                        field : 'problem',
-                        title : '问题反馈',
-                        align : 'center',
-                        formatter:function(value,row,index){
-                            return '<textarea class="col-sm-5 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
-                        }
-                    },
-                    {
-                        field : 'comment',
-                        title : '组长评价',
-                        align : 'center',
-                        formatter:function(value,row,index){
-                            return '<textarea class="col-sm-5 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
+                            return '<textarea style="background:white" class="col-sm-7 form-control" rows="9"  readonly="readonly">'
+                                +'【问题反馈】'+"&#10;"
+                                +row.problem+"&#10;"
+                                +"&#10;"
+                                +'【组长评价】'+"&#10;"
+                                +row.comment+'</textarea>';
                         }
                     },
                     {
                         field : 'suggest',
                         title : '老师意见',
+                        width:200,
                         align : 'center',
                         formatter:function(value,row,index){
                             if(value==null)
                                 value=""
-                            return '<textarea id="suggest' +index+ '" class="col-sm-5 form-control" rows="4">'+value+'</textarea>';
+                            return '<textarea id="suggest' +index+ '" class="col-sm-5 form-control" rows="9">'+value+'</textarea>';
                         }
                     }
 
                 ],
                 onPostBody:function(){
                     mergeCells(topicReportDetailsList, "deptName",1, $("#reportsTable"))
+                    $('#reportsTable').bootstrapTable('resetView',{height:$(window).height()-95});
                 }
             });
     $('#reportsTable').bootstrapTable('load',topicReportDetailsList);
+
 }
 /**
  * 合并行
@@ -116,7 +114,6 @@ function load() {
  */
 function mergeCells(data, fieldName, colspan, target) {
     if (data.length == 0) {
-        alert("不能传入空数据");
         return;
     }
     var numArr = [];

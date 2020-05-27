@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 
+import com.bio.sys.vo.ReportScoreVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -99,6 +100,11 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 	}
 
 
+
+	public ReportDO getThisWeekReportByAuthorId(Long authorId) {
+		return baseMapper.getThisWeekReportByAuthorId(authorId);
+	}
+
 	public List<ReportDO> getThisWeekReportByDept(Long deptId) {
 		return baseMapper.getThisWeekReportByDept(deptId);
 	}
@@ -151,5 +157,9 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 		return baseMapper.getReportsByMonth1(date);
 	}
 
+
+	public List<ReportScoreVO> getMonthAVGReportScore() {
+		return baseMapper.getMonthAVGReportScore();
+	}
 
 }

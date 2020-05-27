@@ -7,44 +7,38 @@
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
-    <div class="col-sm-12">
-        <div class="ibox">
-            <div class="ibox-body">
-                <div class="fixed-table-toolbar">
-                    <div class="columns pull-left">
-                        <div class="btn-group">
-                            <button type="button" id="status_read" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                全部 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                            </button>
-                            <ul class="dropdown-menu" style="left: 0">
-                                <li><a href="#" onclick="selectStatus(-1)">全部</a></li>
-                                <li><a href="#" onclick="selectStatus(0)">未阅</a></li>
-                                <li><a href="#" onclick="selectStatus(1)">已阅</a></li>
-                            </ul>
-                        </div>
-                        <div class="btn-group">
-                            <a class="btn btn-default btn-outline" type="button" name="refresh" title="刷新表格" onclick="reLoad()">
-                                <i class="glyphicon glyphicon-refresh icon-refresh"></i>
-                            </a>
-                            <a class="btn btn-default btn-outline" type="button" name="toggle" title="专题周报详情" onclick="getTopicView()">
-                                <i class="glyphicon glyphicon-list-alt icon-list-alt"></i>
-                            </a>
-                            <a class="btn btn-default btn-outline" type="button" name="toggle" title="批量下载附件" onclick="batchExport()">
-                                <i class="glyphicon  glyphicon-download-alt icon-download-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="columns pull-right">
-                        <button type="button" class="btn btn-primary" onclick="submit()">提交</span>
-                        </button>
-                    </div>
+    <div class="ibox-content">
+        <div class="fixed-table-toolbar">
+            <div class="columns pull-left">
+                <div class="btn-group">
+                    <button type="button" id="status_read" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        全部 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                    </button>
+                    <ul class="dropdown-menu" style="left: 0">
+                        <li><a href="#" onclick="selectStatus(-1)">全部</a></li>
+                        <li><a href="#" onclick="selectStatus(0)">未阅</a></li>
+                        <li><a href="#" onclick="selectStatus(1)">已阅</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <a class="btn btn-default btn-outline" type="button" name="refresh" title="刷新表格" onclick="reLoad()">
+                        <i class="glyphicon glyphicon-refresh icon-refresh"></i>
+                    </a>
+                    <a class="btn btn-default btn-outline" type="button" name="toggle" title="专题周报详情" onclick="getTopicView()">
+                        <i class="glyphicon glyphicon-list-alt icon-list-alt"></i>
+                    </a>
+                    <a class="btn btn-default btn-outline" type="button" name="toggle" title="批量下载附件" onclick="batchExport()">
+                        <i class="glyphicon  glyphicon-download-alt icon-download-alt"></i>
+                    </a>
                 </div>
             </div>
-            <div class="row" style="margin: 0">
-                <table id="topicTable" data-mobile-responsive="true">
-                </table>
+            <div class="columns pull-right">
+                <button type="button" class="btn btn-primary" onclick="submit()">提交</span>
+                </button>
             </div>
         </div>
+        <table id="topicTable" data-mobile-responsive="true">
+        </table>
     </div>
 </div>
 </div>

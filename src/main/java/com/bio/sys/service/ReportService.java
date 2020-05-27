@@ -6,6 +6,8 @@ import java.util.List;
 import com.bio.common.base.CoreService;
 import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
+import com.bio.sys.vo.ReportScoreVO;
+
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -40,6 +42,8 @@ public interface ReportService extends CoreService<ReportDO> {
 
 	ReportDO getReportsByTitle(String title);
 
+	public ReportDO getThisWeekReportByAuthorId(Long authorId);
+
 	public  List<ReportDO> getThisWeekReportByDept(Long deptId);
 
 	public  List<ReportDO> getThisWeekReportByDeptAndStatusLSub(Long deptId,Integer status);
@@ -48,8 +52,12 @@ public interface ReportService extends CoreService<ReportDO> {
 
 	public Boolean updateBatch(List<ReportDO> reportDOList);
 
+
 	List<ReportDO> getReportsQuery1(Date fromDate, Date toDate, Integer status);
 
 	List<ReportDO> getReportsByMonth1(int date);
+
+
+	public List<ReportScoreVO> getMonthAVGReportScore();
 
 }

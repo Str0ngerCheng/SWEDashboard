@@ -2,5 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bio.sys.dao.UserPlanDao">
-
+    <select id="getByAuthorId" resultType="com.bio.sys.domain.UserPlanDO">
+		SELECT
+		*
+		FROM
+		user_plan
+		WHERE
+		author_id = #{authorId}
+	</select>
 </mapper>

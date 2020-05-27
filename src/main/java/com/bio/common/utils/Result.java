@@ -37,6 +37,9 @@ public class Result<T> {
         return new Result<T>(CODE_SUCCESS, MSG_SUCCESS, null);
     }
 
+    public static <T> Result<T> fail(T data) {
+        return new Result<T>(CODE_FAIL, MSG_FAIL, data);
+    }
     public static <T> Result<T> fail() {
         return new Result<T>(CODE_FAIL, MSG_FAIL, null);
     }

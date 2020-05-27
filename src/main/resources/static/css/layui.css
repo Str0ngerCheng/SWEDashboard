@@ -22,11 +22,11 @@ pre{white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; w
 
 /** 图标字体 **/
 @font-face {font-family: 'layui-icon';
-  src: url('../font/iconfont.eot?v=213');
-  src: url('../font/iconfont.eot?v=213#iefix') format('embedded-opentype'),
-  url('../font/iconfont.svg?v=213#iconfont') format('svg'),
-  url('../font/iconfont.woff?v=213') format('woff'),
-  url('../font/iconfont.ttf?v=213') format('truetype');
+  src: url('../css/plugins/layui/font/iconfont.eot?v=213');
+  src: url('../css/plugins/layui/font/iconfont.eot?v=213#iefix') format('embedded-opentype'),
+  url('../css/plugins/layui/font/iconfont.svg?v=213#iconfont') format('svg'),
+  url('../css/plugins/layui/font/iconfont.woff?v=213') format('woff'),
+  url('../css/plugins/layui/font/iconfont.ttf?v=213') format('truetype');
 }
                     
 .layui-icon{

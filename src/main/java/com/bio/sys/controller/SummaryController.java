@@ -14,10 +14,7 @@ import com.bio.common.utils.excel.ExcelHeaderInfo;
 import com.bio.sys.dao.DeptDao;
 import com.bio.sys.domain.*;
 import com.bio.sys.service.*;
-import com.bio.sys.vo.ReportVO;
-import com.bio.sys.vo.SummaryVO;
-import com.bio.sys.vo.TopicReportDetailsVO;
-import com.bio.sys.vo.TopicReportStatisticVO;
+import com.bio.sys.vo.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -113,9 +110,7 @@ public class SummaryController {
 				topicReportStatistic.setDeptName(deptName);
 				topicReportStatistic.setOrderNum(deptOrder);
 				//查看该专题周报汇总是否提交
-				Map<String, Object> columnMap = new HashMap<>();
-				columnMap.put("dept_id", deptId);
-				if(summaryService.selectByMap(columnMap).size()==0) {
+				if(!summaryService.getThisWeekSummaryByDeptId(deptId)) {
 					topicReportStatistic.setIsLSubmit(0);
 				}
 				else {
@@ -147,7 +142,7 @@ public class SummaryController {
 
 						topicReportDetails.setAuthorName(report.getAuthorName());
 						ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
-						topicReportDetails.setMonthPlan("");
+						topicReportDetails.setMonthPlan(reportContent.getMonthPlan());
 						topicReportDetails.setSummary(reportContent.getSummary());
 						topicReportDetails.setNextPlan(reportContent.getNextPlan());
 						topicReportDetails.setProblem(reportContent.getProblem());
@@ -238,26 +233,53 @@ public class SummaryController {
 	@GetMapping("/submit")
 	@RequiresPermissions("bio:summary:summary")
 	public Result<String> submit(){
-
-		try {
-			MailBean mailBean = new MailBean();
-
-			UserDO userDO=userService.selectById(1);
-			String recipient=  userDO.getEmail();
-			mailBean.setSubject("【SWEDashboard】本周的swe小组周报已提交！");
-			mailBean.setRecipient(recipient);
-
-			Map<String, Object> parameters = new HashMap<>();
-			parameters.put("name", userDO.getName());
-			parameters.put("url", url);
-			mailService.sendAttachmentMail(mailBean, "summaryreport.html", parameters);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("邮件发送失败", e.getMessage());
+		List<DeptDO> deptDOList=deptService.selectList(null);
+		//判断是否已经提交给小组负责人过
+		List<SummaryDO>summaryDOList=summaryService.getThisWeekSummary();
+		for(SummaryDO summaryDO:summaryDOList) {
+			if (summaryDO.getStatus() == 1)
+				return Result.build(2, "小组周报汇总已提交");
 		}
+		//查找是否有专题还未上交
+		String unSubmitTopicList="";
+		for(DeptDO deptDO:deptDOList) {
+			if (deptDO.getId() != 0) {//根节点排除
+				Long deptId = deptDO.getId();
+				String deptName = deptDO.getName();
+				if (!summaryService.getThisWeekSummaryByDeptId(deptId))
+					unSubmitTopicList += deptName + "，";
+			}
+		}
+		if(unSubmitTopicList=="")
+			return Result.build(1,"有专题未提交周报汇总",unSubmitTopicList);
+		else {
+			MailBean mailBean = new MailBean();
+			List<UserDO> userDOList = userService.getUsersByRoleId(5L);
+			try {
+				for(UserDO userDO:userDOList) {
+					String recipient = userDO.getEmail();
+					mailBean.setSubject("【SWEDashboard】本周的swe小组周报已提交！");
+					mailBean.setRecipient(recipient);
+					Map<String, Object> parameters = new HashMap<>();
+					parameters.put("name", userDO.getName());
+					parameters.put("url", url);
+					mailService.sendAttachmentMail(mailBean, "summaryreport.html", parameters);
+				}
 
-		return Result.ok();
+				//将专题汇总周报状态设置为1
+				List<SummaryDO>summaryDOList1=new ArrayList<>();
+				for(SummaryDO summaryDO:summaryDOList) {
+					summaryDO.setStatus(1);
+					summaryDOList1.add(summaryDO);
+				}
+				summaryService.updateBatchById(summaryDOList1);
+			} catch (Exception e) {
+				e.printStackTrace();
+				logger.error("邮件发送失败", e.getMessage());
+				return Result.build(3,"邮件发送失败："+e.getMessage());
+			}
+			return Result.ok();
+		}
 	}
 
 
@@ -271,16 +293,12 @@ public class SummaryController {
 				Long deptId = deptDO.getId();
 				String deptName = deptDO.getName();
 				Integer deptOrder=deptDO.getOrderNum();
-				TopicReportStatisticVO topicReportStatistic = new TopicReportStatisticVO();
-				topicReportStatistic.setDeptName(deptName);
-				topicReportStatistic.setOrderNum(deptOrder);
+
 				//查看该专题周报汇总是否提交
-				Map<String, Object> columnMap = new HashMap<>();
-				columnMap.put("dept_id", deptId);
-				if(summaryService.selectByMap(columnMap).size()>0) {
-					List<ReportDO> lSubmitReportList = reportService.getThisWeekReportByDeptAndStatusLSub(deptId, 1);
+				if(summaryService.getThisWeekSummaryByDeptId(deptId)) {
+					List<ReportDO> reportList = reportService.getThisWeekReportByDeptAndStatusMSub(deptId, 1);
 					/*获取专题周报详细信息*/
-					for (ReportDO report:lSubmitReportList) {
+					for (ReportDO report:reportList) {
 						TopicReportDetailsVO topicReportDetails = new TopicReportDetailsVO();
 						topicReportDetails.setReportId(report.getId());
 						topicReportDetails.setDeptName(deptName);
@@ -288,8 +306,9 @@ public class SummaryController {
 						topicReportDetails.setDeptOrder(deptOrder);
 						topicReportDetails.setUserOrder(userService.selectById(report.getAuthorId()).getOrderNum());
 						topicReportDetails.setAuthorName(report.getAuthorName());
+
 						ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
-						topicReportDetails.setMonthPlan("");
+						topicReportDetails.setMonthPlan(reportContent.getMonthPlan());
 						topicReportDetails.setSummary(reportContent.getSummary());
 						topicReportDetails.setNextPlan(reportContent.getNextPlan());
 						topicReportDetails.setProblem(reportContent.getProblem());
@@ -326,6 +345,7 @@ public class SummaryController {
 		reportService.updateBatch(reportDOList);
 		return Result.ok();
 	}
+
 
     @ResponseBody
     @GetMapping("/batchExport1")
@@ -372,5 +392,20 @@ public class SummaryController {
         return format;
     }
 
+
+	@RequiresPermissions("bio:summary:chart")
+	@GetMapping("/chart")
+	String chart() {
+		return "bio/summary/chart";
+	}
+
+	@ResponseBody
+	@RequiresPermissions("bio:summary:chart")
+	@GetMapping("/scoreChart")
+	Result<List<ReportScoreVO>> scoreChart() {
+		List<ReportScoreVO> reportScoreVOList=reportService.getMonthAVGReportScore();
+		Collections.sort(reportScoreVOList);
+		return Result.ok(reportScoreVOList);
+	}
 
 }

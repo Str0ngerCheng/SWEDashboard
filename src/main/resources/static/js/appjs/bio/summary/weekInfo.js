@@ -8,7 +8,6 @@ function load() {
     $('#statisticsTable')
         .bootstrapTable(
             {
-                striped: true,
                 useRowAttrFunc: true,
                 //	showRefresh : true,
                 //	showToggle : true,
@@ -20,7 +19,7 @@ function load() {
                 singleSelect : false, // 设置为true将禁止多选
                 // contentType : "application/x-www-form-urlencoded",
                 // //发送到服务器的数据编码类型
-                pageSize : 5, // 如果设置了分页，每页数据条数
+                pageSize : 25, // 如果设置了分页，每页数据条数
                 pageNumber : 1, // 如果设置了分布，首页页码
                 //search : true, // 是否显示搜索框
                 showColumns : false, // 是否显示内容下拉框（选择显示的列）
@@ -79,25 +78,18 @@ function load() {
     $('#reportsTable')
         .bootstrapTable(
             {
-
-                striped: true,
                 useRowAttrFunc: true,
                 /* showRefresh : true,
                  showToggle : true,
                  showColumns : true,*/
-                cardView: true,                    //是否显示详细视图
                 iconSize : 'outline',
                 toolbar : '#toolbar',
-                striped : true, // 设置为true会有隔行变色效果
                 dataType : "json", // 服务器返回的数据类型
-                pagination : true, // 设置为true会在底部显示分页条
+                pagination : false, // 设置为true会在底部显示分页条
                 singleSelect : false, // 设置为true将禁止多选
                 // contentType : "application/x-www-form-urlencoded",
                 // //发送到服务器的数据编码类型
-                pageSize : 5, // 如果设置了分页，每页数据条数
-                pageNumber : 1, // 如果设置了分布，首页页码
                 //search : true, // 是否显示搜索框
-                sidePagination : "client", // 设置在哪里进行分页，可选值为"client" 或者 "server"
                 queryParamsType : "",
                 // //设置为limit则会发送符合RESTFull格式的参数
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -111,7 +103,7 @@ function load() {
                         {
                             "title": "周报详情表",
                             "align":"center",
-                            "colspan": 7
+                            "colspan": 5
                         }
                     ],
                     [{
@@ -133,43 +125,39 @@ function load() {
                         {
                             field : 'monthPlan',
                             title : '本月目标',
+                            width: 150,
                             align : 'center',
                             formatter:function(value,row,index){
-                                return '<textarea class="col-sm-7 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
+                                return '<textarea style="background:white" class="col-sm-7 form-control" rows="9"  readonly="readonly">'+value+'</textarea>';
                             }
                         },
                         {
-                            field : 'summary',
-                            title : '本周总结',
+                            field : 'summaryAndPlan',
+                            title : '本周总结 & 下周计划',
                             align : 'center',
                             formatter:function(value,row,index){
-                                return '<textarea class="col-sm-7 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
+                                return '<textarea style="background:white" class="col-sm-7 form-control" rows="9"  readonly="readonly">'
+                                    +'【本周总结】'+"&#10;"
+                                    +row.summary+"&#10;"
+                                    +"&#10;"
+                                    +'【下周计划】'+"&#10;"
+                                    +row.nextPlan+'</textarea>';
                             }
                         },
                         {
-                            field : 'nextPlan',
-                            title : '下周计划',
+                            field : 'problemAndComment',
+                            title : '问题反馈 & 组长评价',
                             align : 'center',
                             formatter:function(value,row,index){
-                                return '<textarea class="col-sm-5 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
+                                return '<textarea style="background:white" class="col-sm-7 form-control" rows="9"  readonly="readonly">'
+                                    +'【问题反馈】'+"&#10;"
+                                    +row.problem+"&#10;"
+                                    +"&#10;"
+                                    +'【组长评价】'+"&#10;"
+                                    +row.comment+'</textarea>';
                             }
                         },
-                        {
-                            field : 'problem',
-                            title : '问题反馈',
-                            align : 'center',
-                            formatter:function(value,row,index){
-                                return '<textarea class="col-sm-5 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
-                            }
-                        },
-                        {
-                            field : 'comment',
-                            title : '组长评价',
-                            align : 'center',
-                            formatter:function(value,row,index){
-                                return '<textarea class="col-sm-5 form-control" rows="4"  readonly="readonly">'+value+'</textarea>';
-                            }
-                        }
+
                     ]
 
                 ],
@@ -191,7 +179,6 @@ function load() {
  */
 function mergeCells(data, fieldName, colspan, target) {
     if (data.length == 0) {
-        alert("不能传入空数据");
         return;
     }
     var numArr = [];

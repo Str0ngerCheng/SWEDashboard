@@ -1,5 +1,6 @@
 package com.bio.sys.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -51,4 +52,6 @@ public interface UserService extends IService<UserDO> {
      * @throws Exception
      */
     Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, Long userId) throws Exception;
+
+    List<UserDO> getUsersByRoleId(Long roleId);
 }
