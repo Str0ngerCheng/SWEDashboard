@@ -35,5 +35,7 @@ public interface DeptService extends IService<DeptDO> {
 	DeptDO getParentDept(Long deptId);
 	
 	List<DeptDO> getSubDepts(Long deptId);
+
+	DeptDO getDeptByName(String Name);
 	
 }

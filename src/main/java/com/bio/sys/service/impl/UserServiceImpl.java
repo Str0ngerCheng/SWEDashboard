@@ -187,15 +187,12 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserDO> implements Use
 			if (!ArrayUtils.contains(allDepts, dept.getId())) {
 				continue;
 			}
-			
 //			//FIXME:只显示自己的 dept 
 //			UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
 //			if(userDO.getroleId().intValue() == 2) { // PI，只显示PI负责的下属dept 的报告
 //				if(dept.getId() != userDO.getDeptId() )
 //					continue;
 //			}
-			
-			
 			Tree<DeptDO> tree = new Tree<DeptDO>();
 			tree.setId(dept.getId().toString());
 			tree.setParentId(dept.getParentId().toString());

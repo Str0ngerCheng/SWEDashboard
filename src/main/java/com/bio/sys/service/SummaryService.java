@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.bio.common.base.CoreService;
+import com.bio.sys.dao.SummaryDao;
 import com.bio.sys.domain.ReportDO;
 import com.bio.sys.domain.SummaryDO;
 
@@ -34,5 +35,9 @@ public interface SummaryService extends CoreService<SummaryDO> {
 	 */
 	public  Integer getSummaryCountByTitle(String title);
 
+	public List<SummaryDO> getThisWeekSummary();
+
+	List<SummaryDO> selectList(Date fromDate, Date toDate);
+	List<SummaryDO> getReportsByMonth1(int date);
 	
 }

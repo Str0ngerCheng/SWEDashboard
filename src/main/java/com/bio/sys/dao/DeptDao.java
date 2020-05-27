@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bio.common.base.BaseDao;
 import com.bio.sys.domain.DeptDO;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 部门查询 Dao
@@ -21,4 +22,6 @@ public interface DeptDao extends BaseDao<DeptDO> {
 	DeptDO getParentDept(Long deptId);
 	
 	List<DeptDO> getSubDepts(Long deptId);
+
+	DeptDO getDeptByName(@Param("Name") String Name);
 }

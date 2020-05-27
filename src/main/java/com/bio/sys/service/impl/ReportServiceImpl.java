@@ -1,7 +1,9 @@
 package com.bio.sys.service.impl;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +70,8 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 	}
 
 	@Override
-	public List<ReportDO> getReportsQuery(Date fromDate, Date toDate, Integer status) {
-		return baseMapper.getReportsQuery(fromDate,  toDate,  status);
+	public List<ReportDO> getReportsQuery(Date fromDate, Date toDate, Integer status,long deptId) {
+		return baseMapper.getReportsQuery(fromDate,  toDate,  status,deptId);
 	}
 
 	@Override
@@ -87,13 +89,66 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 	}
 
 	@Override
-	public List<ReportDO> getReportsByMonth(int date,Integer status) {
-		return baseMapper.getReportsByMonth(date,status);
+	public List<ReportDO> getReportsByMonth(int date,long deptId) {
+		return baseMapper.getReportsByMonth(date,deptId);
 	}
 
 	@Override
 	public ReportDO getReportsByTitle(String title) {
 		return baseMapper.getReportsByTitle(title);
+	}
+
+
+	public List<ReportDO> getThisWeekReportByDept(Long deptId) {
+		return baseMapper.getThisWeekReportByDept(deptId);
+	}
+
+
+	@Override
+	public List<ReportDO> getThisWeekReportByDeptAndStatusLSub(Long deptId,Integer status) {
+		List<ReportDO> reportListAll=baseMapper.getThisWeekReportByDept(deptId);
+		//-1表示获取上周所有提交的的专题内的周报,0表示提交了但专题组长未审阅的周报，1表示已审阅的周报
+		List<ReportDO> reportList=new ArrayList<>();
+		for (int i = 0; i < reportListAll.size(); i++) {
+			ReportDO report=reportListAll.get(i);
+			if(report.getStatusMSub()==1){//表示学生已提交周报
+				if(status==-1)//获取所有
+					reportList.add(report);
+				else  if (report.getStatusLSub() == status)
+					reportList.add(report);
+			}
+		}
+		return reportList;
+	}
+
+	@Override
+	public List<ReportDO> getThisWeekReportByDeptAndStatusMSub(Long deptId, Integer status) {
+		//获取专题内所有的本周周报
+		List<ReportDO> reportListAll=baseMapper.getThisWeekReportByDept(deptId);
+		//status：0表示未提交，1表示已提交
+		List<ReportDO> reportList=new ArrayList<>();
+		for (int i = 0; i < reportListAll.size(); i++) {
+			ReportDO report=reportListAll.get(i);
+			if(report.getStatusMSub()==status){
+				reportList.add(report);
+			}
+		}
+		return reportList;
+	}
+
+	@Override
+	public Boolean updateBatch(List<ReportDO> reportDOList) {
+		return baseMapper.updateBatch(reportDOList);
+	}
+
+	@Override
+	public List<ReportDO> getReportsQuery1(Date fromDate, Date toDate, Integer status) {
+		return baseMapper.getReportsQuery1(fromDate,toDate,status);
+	}
+
+	@Override
+	public List<ReportDO> getReportsByMonth1(int date) {
+		return baseMapper.getReportsByMonth1(date);
 	}
 
 

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="ibox" style="margin-bottom: 0">
+				<div class="ibox-content">
+					<h3 th:utext=${title} style="text-align: center;margin-bottom: -3px"></h3>
+					<table id="reportsTable" data-mobile-responsive="true"  >
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/bio/summary/meet.js" th:src="@{/js/appjs/bio/summary/meet.js}"></script>
+<script th:inline="javascript">
+	var topicReportDetailsList=[[${topicReportDetailsList}]]
+</script>
+</body>
+
+</html>

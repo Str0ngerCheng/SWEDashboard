@@ -29,7 +29,7 @@ function load() {
 					},
 					{
 						field : 'name',
-						title : '部门名称'
+						title : '专题名称'
 					},
 					{
 						field : 'orderNum',

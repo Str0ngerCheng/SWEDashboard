@@ -11,7 +11,6 @@
 			<if test="reportContent.summary!=null">summary=#{reportContent.summary},</if>
 			<if test="reportContent.nextPlan!=null">next_plan=#{reportContent.nextPlan},</if>
 			<if test="reportContent.problem!=null">problem=#{reportContent.problem},</if>
-			<if test="reportContent.other!=null">other=#{reportContent.other},</if>
 		</trim>
 		where uuid = #{reportContent.uuid}
   </update>
@@ -25,7 +24,9 @@
 		uuid = #{uuid}
 	</select>
 
+
 	<select id="getSearchKey" resultType="com.bio.sys.domain.ReportContentDO">
 		select * from report_content where concat (last_plan,summary,next_plan,problem) like concat('%',#{searchKey},'%')
 	</select>
+
 </mapper>

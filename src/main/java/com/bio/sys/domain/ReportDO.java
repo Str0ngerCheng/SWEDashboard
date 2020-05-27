@@ -41,9 +41,20 @@ public class ReportDO implements Serializable {
     private String title;
     /** 周报内容 */
     private String contentId;
+
+    /** 评价 */
+    private String comment;
+
+    /** 分数*/
+    private String score;
+
+    /** 意见*/
+    private String suggest;
+
     /** 创建时间 */
     private Date rCreateDate;
     /** 修改时间 */
+
     private Date rChgDate;
     /** 状态0: 系统生成, 1:人工修改 */
     private Integer statusMod;
@@ -157,6 +168,30 @@ public class ReportDO implements Serializable {
         this.contentId = contentId;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public String getSuggest() {
+        return suggest;
+    }
+
+    public void setSuggest(String suggest) {
+        this.suggest = suggest;
+    }
+
     /**
      * 设置：创建时间
      */
@@ -204,5 +239,21 @@ public class ReportDO implements Serializable {
 
     public void setStatusLSub(Integer statusLSub) {
         this.statusLSub = statusLSub;
+    }
+
+
+    @Override
+    public String toString() {
+        return "ReportDO{" +
+                "ide='" + id + '\'' +
+                "authorName='" + authorName + '\'' +
+                ", deptName='" + deptName + '\'' +
+                ", title='" + title + '\'' +
+                ", contentId='" + contentId + '\'' +
+                ", score='" + score + '\'' +
+                ", statusMod=" + statusMod +
+                ", statusMSub=" + statusMSub +
+                ", statusLSub=" + statusLSub +
+                '}';
     }
 }

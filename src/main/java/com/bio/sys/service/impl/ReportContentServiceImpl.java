@@ -4,10 +4,11 @@ import com.bio.common.base.CoreServiceImpl;
 import com.bio.sys.dao.ReportContentDao;
 import com.bio.sys.domain.ReportContentDO;
 import com.bio.sys.service.ReportContentService;
-import com.github.pagehelper.PageInfo;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 
 @Service
@@ -27,6 +28,5 @@ public class ReportContentServiceImpl extends CoreServiceImpl<ReportContentDao, 
     public List<ReportContentDO> getSearchKey(String searchKey) {
         return baseMapper.getSearchKey(searchKey);
     }
-
 
 }

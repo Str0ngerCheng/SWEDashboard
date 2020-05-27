@@ -3,6 +3,7 @@ package com.bio.sys.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.omg.CORBA.BAD_CONTEXT;
 import org.springframework.stereotype.Service;
 
 import com.bio.common.base.CoreServiceImpl;
@@ -11,13 +12,6 @@ import com.bio.sys.domain.ReportDO;
 import com.bio.sys.domain.SummaryDO;
 import com.bio.sys.service.SummaryService;
 
-/**
- * 
- * <pre>
- * 周报汇总
- * </pre>
- * <small> 2019-12-18 15:03:07 | chenx</small>
- */
 @Service
 public class SummaryServiceImpl extends CoreServiceImpl<SummaryDao, SummaryDO> implements SummaryService {
 
@@ -33,6 +27,21 @@ public class SummaryServiceImpl extends CoreServiceImpl<SummaryDao, SummaryDO> i
 		
 		return baseMapper.getSummaryCountByTitle(title);
 	
+	}
+
+	@Override
+	public List<SummaryDO> getThisWeekSummary() {
+		return baseMapper.getThisWeekSummary();
+	}
+
+	@Override
+	public List<SummaryDO> selectList( Date fromDate, Date toDate) {
+		return baseMapper.selectList(fromDate,toDate);
+	}
+
+	@Override
+	public List<SummaryDO> getReportsByMonth1(int date) {
+		return baseMapper.getReportsByMonth1(date);
 	}
 
 }

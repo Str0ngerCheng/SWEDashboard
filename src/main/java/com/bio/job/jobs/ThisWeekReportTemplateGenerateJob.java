@@ -1,12 +1,10 @@
 package com.bio.job.jobs;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.bio.sys.domain.ReportContentDO;
+import com.bio.sys.service.*;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -22,12 +20,6 @@ import com.bio.common.utils.ThreadPool;
 import com.bio.sys.domain.ReportDO;
 import com.bio.sys.domain.SummaryDO;
 import com.bio.sys.domain.UserDO;
-import com.bio.sys.service.DeptService;
-import com.bio.sys.service.MailService;
-import com.bio.sys.service.ReportService;
-import com.bio.sys.service.RoleService;
-import com.bio.sys.service.SummaryService;
-import com.bio.sys.service.UserService;
 
 /**
  * 
@@ -57,6 +49,9 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 	private ReportService reportService;
 
 	@Autowired
+	private ReportContentService reportContentService;
+
+	@Autowired
 	private SummaryService summaryService;
 	
 	@Autowired
@@ -70,13 +65,14 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 		List<UserDO> users = userService.selectByMap(columnMap);
 
 		List<ReportDO> reportDOs = new ArrayList<ReportDO>();
+		List<ReportContentDO> reportContentDOS = new ArrayList<>();
 		List<SummaryDO> summaryDOs = new ArrayList<SummaryDO>();
 
 		// Step 0，准备数据
 		for (UserDO userDO : users) {
 			Long roleDOs = userRoleService.findRoleIdByUserId(userDO.getId());
 
-			if (null != roleDOs && roleDOs.intValue() == 3) { // 学生
+			if (null != roleDOs && (roleDOs.intValue() !=1)) { // 除管理员，陈老师外其他人都需要填写周报
 
 				ReportDO reportDO = new ReportDO();
 
@@ -84,8 +80,13 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 				reportDO.setStatusMod(0); // 标识 Bot 生成的
 
 				reportDO.setAuthorName(userDO.getName());
+
 				//表示Bot生成的周报内容为空
-				reportDO.setContentId(null);
+				String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+				ReportContentDO reportContent = new ReportContentDO(uuid, "", "", "", "");
+				reportContentDOS.add(reportContent);
+				reportDO.setContentId(uuid);
+
 
 				Date mon = DateUtils.getThisWeekMondayStart(new Date());
 				Date sun = DateUtils.getThisWeekSundayEnd(new Date());
@@ -112,8 +113,8 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 				reportDOs.add(reportDO);
 			}
 
-			if (null != roleDOs && roleDOs.intValue() == 2) { // PI
-				SummaryDO summaryDO = new SummaryDO();
+			if (null != roleDOs && roleDOs.intValue() == 2) { // 专题组长
+				/*SummaryDO summaryDO = new SummaryDO();
 
 				Date mon = DateUtils.getThisWeekMondayStart(new Date());
 				Date sun = DateUtils.getThisWeekSundayEnd(new Date());
@@ -134,13 +135,14 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 				}
 				summaryDO.setTitle(title);
 
-				summaryDOs.add(summaryDO);
+				summaryDOs.add(summaryDO);*/
 			}
 		}
 		// Step 1, 批量插入周报
 		if (reportDOs.size() > 0) {
 			boolean b = reportService.insertBatch(reportDOs);
-			if (b) {
+			boolean c = reportContentService.insertBatch(reportContentDOS);
+			if (b&&c) {
 				for (ReportDO reportDO : reportDOs) {
 					ThreadPool.getThreadPool().addRunnable(new ThreadPool.Runnable() {
 						@Override
@@ -168,9 +170,9 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 			}
 
 			// Step 2,批量插入周报Summary
-			if (summaryDOs.size() > 0) {
+		/*	if (summaryDOs.size() > 0) {
 				summaryService.insertBatch(summaryDOs);
-			}
+			}*/
 
 			System.out.println("生成周报任务及周报汇总任务执行 | " + DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN_19));
 		}

@@ -50,7 +50,7 @@
 	</select>
 
 	<select id="getReportsByDepName" resultType="com.bio.sys.domain.ReportDO">
-		select * from report where dept_name = #{depName} order by author_name,r_from_date
+		select * from report where dept_name = #{depName} and status_mod=1 and status_m_sub=1 and status_l_sub=1 order by author_name,r_from_date
 	</select>
 
 	<select id="getReportsQuery" resultType="com.bio.sys.domain.ReportDO">
@@ -66,24 +66,122 @@
 		       AND r_to_date &lt;= #{todate}
 			</if>
 		AND status_mod = #{status}
+		AND dept_id=#{deptId}
 		</where>
-		order by dept_name,author_name, r_from_date
+		order by author_name, r_from_date
 	</select>
+
 
 	<select id="getReportsByContentId" resultType="com.bio.sys.domain.ReportDO">
 		select * from report where content_id=#{contentId}
 	</select>
+
+	<select id="getThisWeekReportByDept" resultType="com.bio.sys.domain.ReportDO">
+		SELECT *
+		FROM
+		report
+		WHERE
+		dept_id = #{deptId}
+		AND YEARWEEK(date_format(r_from_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
+		AND YEARWEEK(date_format(r_to_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
+	</select>
+
+	<update id="updateBatch" parameterType="java.util.List" >
+		<foreach collection="reportDOList" item="item" index="index" open="" close="" separator=";">
+			update report
+			<set >
+				<if test="item.authorId != null" >
+					author_id = #{item.authorId},
+				</if>
+				<if test="item.authorName != null" >
+					author_name = #{item.authorName},
+				</if>
+				<if test="item.deptId != null" >
+					dept_id = #{item.deptId},
+				</if>
+				<if test="item.deptName != null" >
+					dept_name = #{item.deptName},
+				</if>
+				<if test="item.parentDeptId != null" >
+					parent_dept_id = #{item.parentDeptId},
+			</if>
+				<if test="item.rFromDate != null" >
+					r_from_date = #{item.rFromDate},
+				</if>
+				<if test="item.rToDate != null" >
+					r_to_date = #{item.rToDate},
+				</if>
+
+				<if test="item.title != null" >
+					title = #{item.title},
+				</if>
+				<if test="item.contentId != null" >
+					content_id = #{item.contentId},
+				</if>
+				<if test="item.comment != null" >
+					comment = #{item.comment},
+				</if>
+				<if test="item.score != null" >
+					score = #{item.score},
+				</if>
+
+				<if test="item.suggest != null" >
+					suggest = #{item.suggest},
+				</if>
+				<if test="item.rCreateDate != null" >
+					r_create_date = #{item.rCreateDate},
+				</if>
+				<if test="item.rChgDate != null" >
+					r_chg_date = #{item.rChgDate},
+				</if>
+
+				<if test="item.statusMod != null" >
+					status_mod = #{item.statusMod},
+				</if>
+				<if test="item.statusMSub != null" >
+					status_m_sub = #{item.statusMSub},
+				</if>
+				<if test="item.statusLSub != null" >
+					status_l_sub = #{item.statusLSub},
+				</if>
+			</set>
+			where id = #{item.id}
+		</foreach>
+	</update>
+
+
 
 	<select id="getReportsByAutName" resultType="com.bio.sys.domain.ReportDO">
 		select * from report where author_name = #{AutName}
 	</select>
 
 	<select id="getReportsAll" resultType="com.bio.sys.domain.ReportDO">
-		select * from report order by dept_name,author_name, r_from_date
+		select * from report where status_mod=1 and status_m_sub=1 and status_l_sub=1 order by dept_name,author_name, r_from_date
 	</select>
 	
 	<select id="getReportsByMonth" resultType="com.bio.sys.domain.ReportDO">
-		select * from report where (month(r_from_date)=#{date} or month(r_to_date)=#{date}) and status_mod = #{status} order by dept_name,author_name, r_from_date
+		select * from report where (month(r_from_date)=#{date} or month(r_to_date)=#{date}) and dept_id=#{deptId} and status_mod=1 and status_m_sub=1 and status_l_sub=1 order by author_name, r_from_date
+	</select>
+
+	<select id="getReportsByMonth1" resultType="com.bio.sys.domain.ReportDO">
+		select * from report where (month(r_from_date)=#{date} or month(r_to_date)=#{date})  and status_mod=1 and status_m_sub=1 and status_l_sub=1 order by dept_name,author_name, r_from_date
+	</select>
+
+	<select id="getReportsQuery1" resultType="com.bio.sys.domain.ReportDO">
+		SELECT
+		*
+		FROM
+		report
+		<where>
+			<if test="fromdate!=null">
+				r_from_date &gt;= #{fromdate}
+			</if>
+			<if test="todate!=null">
+				AND r_to_date &lt;= #{todate}
+			</if>
+			AND status_mod = #{status}
+		</where>
+		order by dept_name,author_name, r_from_date
 	</select>
 
 </mapper>

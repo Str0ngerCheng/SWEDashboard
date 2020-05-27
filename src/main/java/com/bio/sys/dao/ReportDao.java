@@ -24,12 +24,12 @@ public interface ReportDao extends BaseDao<ReportDO> {
 	public Integer getReportCountByTitle(String title);
 	
 	public List<ReportDO>getReports(@Param("fromdate") String fromDate,@Param("todate") String toDate, @Param("status") Integer status);
-	
+
 	 List<ReportCountDO> getReportsCount(@Param("fromdate") String fromDate,@Param("todate") String toDate, @Param("status") Integer status);
 
 	 List<ReportDO> getReportsByDepName(@Param("depName") String depName);
 
-	List<ReportDO> getReportsQuery(@Param("fromdate") Date fromDate, @Param("todate") Date toDate, @Param("status") Integer status);
+	List<ReportDO> getReportsQuery(@Param("fromdate") Date fromDate, @Param("todate") Date toDate, @Param("status") Integer status, @Param("deptId")long deptId);
 
 	ReportDO getReportsByContentId(@Param("contentId")String contentId);
 
@@ -37,8 +37,15 @@ public interface ReportDao extends BaseDao<ReportDO> {
 
 	List<ReportDO> getReportsAll();
 
-	List<ReportDO>getReportsByMonth(@Param("date") int date, @Param("status") Integer status);
+	List<ReportDO>getReportsByMonth(@Param("date") int date,@Param("deptId")long deptId);
 
 	ReportDO getReportsByTitle(@Param("title")String title);
 
+	public  List<ReportDO> getThisWeekReportByDept(@Param("deptId") Long deptId);
+
+	public Boolean updateBatch(@Param("reportDOList") List<ReportDO> reportDOList);
+
+	List<ReportDO> getReportsQuery1(@Param("fromdate") Date fromDate, @Param("todate") Date toDate, @Param("status") Integer status);
+
+	List<ReportDO>getReportsByMonth1(@Param("date") int date);
 }

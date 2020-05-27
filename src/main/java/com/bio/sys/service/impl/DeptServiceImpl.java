@@ -69,4 +69,9 @@ public class DeptServiceImpl extends ServiceImpl<DeptDao, DeptDO> implements Dep
 		return baseMapper.getSubDepts(deptId);
 	}
 
+	@Override
+	public DeptDO getDeptByName(String Name) {
+		return baseMapper.getDeptByName(Name);
+	}
+
 }

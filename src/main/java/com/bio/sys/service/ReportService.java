@@ -28,7 +28,7 @@ public interface ReportService extends CoreService<ReportDO> {
 
 	List<ReportDO> getReportsByDepName(String depName);
 
-	List<ReportDO> getReportsQuery(Date fromDate, Date toDate, Integer status);
+	List<ReportDO> getReportsQuery(Date fromDate, Date toDate, Integer status,long deptId);
 
 	ReportDO getReportsByContentId(String contentId);
 
@@ -36,8 +36,20 @@ public interface ReportService extends CoreService<ReportDO> {
 
 	List<ReportDO> getReportsAll();
 
-	List<ReportDO> getReportsByMonth(int date,Integer status);
+	List<ReportDO> getReportsByMonth(int date,long deptId);
 
 	ReportDO getReportsByTitle(String title);
+
+	public  List<ReportDO> getThisWeekReportByDept(Long deptId);
+
+	public  List<ReportDO> getThisWeekReportByDeptAndStatusLSub(Long deptId,Integer status);
+
+	public  List<ReportDO> getThisWeekReportByDeptAndStatusMSub(Long deptId,Integer status);
+
+	public Boolean updateBatch(List<ReportDO> reportDOList);
+
+	List<ReportDO> getReportsQuery1(Date fromDate, Date toDate, Integer status);
+
+	List<ReportDO> getReportsByMonth1(int date);
 
 }

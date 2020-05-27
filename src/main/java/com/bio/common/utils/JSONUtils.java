@@ -16,6 +16,7 @@ public class JSONUtils {
 	 * @return
 	 */
 	public static String beanToJson(Object object, String dataFormatString) {
+
 		if (object != null) {
 			if (StringUtils.isEmpty(dataFormatString)) {
 				return JSONObject.toJSONString(object);

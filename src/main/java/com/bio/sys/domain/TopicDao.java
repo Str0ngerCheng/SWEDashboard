@@ -9,16 +9,20 @@ public class TopicDao implements Serializable {
     private String title;
     private String summary;
     private String problam;
-
     private String nextPlan;
+    private String comment;
+    private String suggest;
 
-    public TopicDao(String deptName,String authorName,String title,String summary,String problam,String nextPlan) {
+
+    public TopicDao(String deptName,String authorName,String title,String summary,String problam,String nextPlan,String comment,String suggest) {
         this.deptName=deptName;
         this.authorName=authorName;
         this.title=title;
         this.summary=summary;
         this.problam=problam;
         this.nextPlan=nextPlan;
+        this.comment=comment;
+        this.suggest=suggest;
     }
 
 
@@ -68,5 +72,21 @@ public class TopicDao implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getSuggest() {
+        return suggest;
+    }
+
+    public void setSuggest(String suggest) {
+        this.suggest = suggest;
     }
 }

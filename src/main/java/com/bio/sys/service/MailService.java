@@ -1,6 +1,7 @@
 package com.bio.sys.service;
 
 
+import java.io.File;
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -101,29 +103,33 @@ public class MailService {
 //        }
 //    }
 //
-//    /**
-//     * 发送带附件格式的邮件
-//     *
-//     * @param mailBean
-//     */
-//    public void sendAttachmentMail(MailBean mailBean) {
-//        MimeMessage mimeMailMessage = null;
-//        try {
-//            mimeMailMessage = javaMailSender.createMimeMessage();
-//            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
-//            mimeMessageHelper.setFrom(MAIL_SENDER);
-//            mimeMessageHelper.setTo(mailBean.getRecipient());
-//            mimeMessageHelper.setSubject(mailBean.getSubject());
-//            mimeMessageHelper.setText(mailBean.getContent());
-//            //文件路径
-//            FileSystemResource file = new FileSystemResource(new File("src/main/resources/static/image/mail.png"));
-//            mimeMessageHelper.addAttachment("mail.png", file);
-//
-//            javaMailSender.send(mimeMailMessage);
-//        } catch (Exception e) {
-//            logger.error("邮件发送失败", e.getMessage());
-//        }
-//    }
+    /**
+     * 发送带附件格式的邮件
+     *
+     * @param mailBean
+     */
+    public void sendAttachmentMail(MailBean mailBean, String templateName,  Map<String, Object> model) {
+        MimeMessage mimeMailMessage = null;
+        try {
+            mimeMailMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
+            mimeMessageHelper.setFrom(new InternetAddress(MAIL_SENDER,"noreply@swedashboard.com"));
+            mimeMessageHelper.setTo(mailBean.getRecipient());
+            mimeMessageHelper.setSubject(mailBean.getSubject());
+
+            Template template = configuration.getTemplate(templateName);
+            String text = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
+            mimeMessageHelper.setText(text, true);
+            //文件路径
+            FileSystemResource file = new FileSystemResource(new File("C:\\Users\\cheng\\Desktop\\【4】CityI3Sensing系统设计开发组程博文程博文05.11-05.16周历周报.rar"));
+            mimeMessageHelper.addAttachment("swe小组周报汇总.rar", file);
+            javaMailSender.send(mimeMailMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("邮件发送失败", e.getMessage());
+        }
+
+    }
 //
 //    /**
 //     * 发送带静态资源的邮件
@@ -159,7 +165,7 @@ public class MailService {
         try {
             mimeMailMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
-            mimeMessageHelper.setFrom(new InternetAddress(MAIL_SENDER,"noreply@biodashboard.com"));
+            mimeMessageHelper.setFrom(new InternetAddress(MAIL_SENDER,"noreply@swe.com"));
             mimeMessageHelper.setTo(mailBean.getRecipient());
             mimeMessageHelper.setSubject(mailBean.getSubject());
 

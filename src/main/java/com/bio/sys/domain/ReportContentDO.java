@@ -31,16 +31,13 @@ public class ReportContentDO implements Serializable {
     /** 问题反馈*/
     private String problem;
 
-    /** 其他情况 */
-    private String other;
 
-    public ReportContentDO(String uuid, String lastPlan, String summary, String nextPlan, String problem, String other) {
+    public ReportContentDO(String uuid, String lastPlan, String summary, String nextPlan, String problem) {
         this.uuid = uuid;
         this.lastPlan = lastPlan;
         this.summary = summary;
         this.nextPlan = nextPlan;
         this.problem = problem;
-        this.other = other;
     }
 
     public ReportContentDO(){}
@@ -93,14 +90,6 @@ public class ReportContentDO implements Serializable {
         this.problem = problem;
     }
 
-    public String getOther() {
-        return other;
-    }
-
-    public void setOther(String other) {
-        this.other = other;
-    }
-
     @Override
     public String toString() {
         return "ReportContentDO{" +
@@ -108,7 +97,6 @@ public class ReportContentDO implements Serializable {
                 ", summary='" + summary + '\'' +
                 ", nextPlan='" + nextPlan + '\'' +
                 ", problem='" + problem + '\'' +
-                ", other='" + other + '\'' +
                 '}';
     }
 }

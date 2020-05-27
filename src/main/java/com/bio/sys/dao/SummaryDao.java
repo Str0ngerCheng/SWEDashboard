@@ -21,5 +21,8 @@ public interface SummaryDao extends BaseDao<SummaryDO> {
 	List<ReportDO> selectListReportDOs(@Param("deptId") Long deptId, @Param("fromDate") Date fromDate, @Param("toDate") Date toDate); 
 
 	public Integer getSummaryCountByTitle(String title);
+	public List<SummaryDO> getThisWeekSummary();
+	List<SummaryDO> selectList(@Param("fromDate") Date fromDate, @Param("toDate") Date toDate);
+	List<SummaryDO>getReportsByMonth1(@Param("date") int date);
 
 }

@@ -55,6 +55,9 @@ public class UserDO implements Serializable {
     private Integer statusGraduate;
 
 
+    private Integer orderNum;
+
+
 
     /**
      * 设置：用户名
@@ -208,10 +211,16 @@ public class UserDO implements Serializable {
         return statusGraduate;
     }
 
+
     public void setStatusGraduate(Integer statusGraduate) {
         this.statusGraduate = statusGraduate;
     }
 
+    public Integer getOrderNum() {
+        return orderNum;
+    }
 
-    
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
+    }
 }

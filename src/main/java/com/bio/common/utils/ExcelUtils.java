@@ -14,7 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -37,7 +39,7 @@ public class ExcelUtils {
     private Map<String, ExcelFormat> formatInfo;
 
     private static int send=-1;
-    private static  int scount=2;
+    private static  int scount=1;
 
 
 
@@ -111,14 +113,18 @@ public class ExcelUtils {
     private void createContent(Row row, CellStyle style, String[][] content, int i, Field[] fields,Sheet sheet,int send,int scount) {
         List<String> columnNames = getBeanProperty(fields);
         for (int j = 0; j < columnNames.size(); j++) {
-            if (i!=0 && content[i-1][j].equals(content[i][j])) {
+            if(null==content[i][j] || "".equals(content[i][j].trim())){
+                row.createCell(j).setCellValue("无");
+                continue;
+            }
+            if (i!=0 && content[i][j].equals(content[i-1][j])) {
                  scount++;
                  send=j;
             } else {
                 if(i!=0 && send==j && send!=-1){
-                CellRangeAddress range = new CellRangeAddress(i-scount+2, i, j, j);
+                CellRangeAddress range = new CellRangeAddress(i-scount+1, i, j, j);
                 sheet.addMergedRegion(range);
-                scount=2;
+                scount=1;
                 send=-1;
                 }
                 // 如果格式化Map为空，默认为字符串格式
@@ -228,18 +234,22 @@ public class ExcelUtils {
     }
 
     // 发送响应结果
-    public void sendHttpResponse(HttpServletResponse response, String fileName, Workbook workbook) {
+    public void sendHttpResponse(HttpServletResponse response,String fileName, Workbook workbook) {
         try {
+           /* String filepath="E:\\Test\\";*/
             fileName += ".xlsx";
-            fileName = new String(fileName.getBytes(), "ISO8859-1");
+            fileName = new String(fileName.getBytes(), "UTF-8");
             response.setContentType("application/octet-stream;charset=ISO8859-1");
             response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
             response.addHeader("Pargam", "no-cache");
             response.addHeader("Cache-Control", "no-cache");
-            OutputStream os = response.getOutputStream();
+            FileOutputStream fileOutputStream=new FileOutputStream(fileName);
+            workbook.write(fileOutputStream);
+            fileOutputStream.close();
+            /*OutputStream os = response.getOutputStream();
             workbook.write(os);
             os.flush();
-            os.close();
+            os.close();*/
         } catch (Exception e) {
             e.printStackTrace();
         }
