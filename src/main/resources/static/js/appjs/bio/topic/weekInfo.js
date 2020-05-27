@@ -115,10 +115,10 @@ function load() {
                             align : 'center',
                             formatter:function(value,row,index){
                                 return '<textarea style="background:white" class="col-sm-7 form-control" rows="9"  readonly="readonly">'
-                                    +'本周总结'+"&#10;"
+                                    +'【本周总结】'+"&#10;"
                                     +row.summary+"&#10;"
                                     +"&#10;"
-                                    +'下周计划'+"&#10;"
+                                    +'【下周计划】'+"&#10;"
                                     +row.nextPlan+'</textarea>';
                             }
                         },
@@ -128,10 +128,10 @@ function load() {
                             align : 'center',
                             formatter:function(value,row,index){
                                 return '<textarea style="background:white" class="col-sm-7 form-control" rows="9"  readonly="readonly">'
-                                    +'问题反馈'+"&#10;"
+                                    +'【问题反馈】'+"&#10;"
                                     +row.problem+"&#10;"
                                     +"&#10;"
-                                    +'组长评价'+"&#10;"
+                                    +'【组长评价】'+"&#10;"
                                     +row.comment+'</textarea>';
                             }
                         }

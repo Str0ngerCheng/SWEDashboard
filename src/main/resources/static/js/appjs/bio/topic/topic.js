@@ -128,6 +128,7 @@ function selectStatus(status){
         url: prefix + "/bio/topic/weekList/"+status,
         success : function(res) {
             $("#topicTable").bootstrapTable('load', res.data);
+            $('#topicTable').bootstrapTable('checkAll');
         }
     });
 }
