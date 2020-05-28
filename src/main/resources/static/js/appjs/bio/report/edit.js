@@ -42,6 +42,8 @@ function clearAll(){
 $('#summary').on('input propertychange', function () {
 	setSummaryStyle()
 });
+
+
 function saveReport() {
 	var loadIndex=layer.load(1,{
 		shade: [0.2,'#fff'] //0.1透明度的白色背景
@@ -138,4 +140,112 @@ function getSummaryLength() {
 			len = len + 1;
 
 	return len;
+}
+
+function handleFiles() {
+	//获取文件对象
+	var input = document.getElementById('reportfile');
+	console.log("file",input);
+	var fileObj = input.files[0];
+	if (fileObj == null) {
+		alert("请选择zip或rar文件");
+		return;
+	}
+	var filename = fileObj.name;
+	var index = filename.lastIndexOf(".");
+	var ext = filename.substr(index + 1);
+	console.log(ext);
+	if (ext != "zip" && ext != "rar") {
+		alert("请上传zip或rar文件");
+		input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");
+		return;
+	}
+	var newfilename = document.getElementById('reportTitle').innerText.replace(/\//g,'-') + "附件.zip";
+	//更改label的名字
+
+	document.getElementById('filelabel').innerHTML = newfilename;
+}
+
+function clearFile() {
+	var input = document.getElementById('reportfile');
+	input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");
+	document.getElementById('filelabel').innerHTML = "请点击此处选择文件";
+}
+function checkFile() {
+	var input = document.getElementById('reportfile');
+	var fileObj = input.files[0];
+	if(fileObj==null){
+		alert("请先选择文件！");
+		return;
+	}
+	//var newfile = new File([fileObj], $('#reportTitle').text().replace('/','-') + ".zip");
+	var newfile=new Blob([fileObj],{type:"application/zip"})
+	var link = document.createElement('a');
+	link.href = window.URL.createObjectURL(newfile);
+	console.log($('#reportTitle').text());
+	link.download = $('#reportTitle').text().replace(/\//g,'-')+ "附件.zip";
+	link.click();
+	window.URL.revokeObjectURL(link.href);
+}
+
+//上传文件
+function uploadFiles() {
+
+	//获取文件对象
+	var input = document.getElementById('reportfile');
+	var fileObj = input.files[0];
+	if (fileObj == null) {
+		alert("请选择zip或rar文件");
+		return;
+	}
+	var filename = fileObj.name;
+	var index = filename.lastIndexOf(".");
+	var ext = filename.substr(index + 1);
+	console.log(ext);
+	if (ext != "zip" && ext != "rar") {
+		alert("请上传zip或rar文件");
+		input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");
+		return;
+	}
+	var form = new FormData();
+	//创建新文件对象（实现更名）
+
+	var newfile = new File([fileObj], $('#reportTitle').text().replace(/\//g,'-') + "附件.zip");
+	form.append("file", newfile);
+
+	$.ajax({
+		xhr: function () {
+			var xhr = $.ajaxSettings.xhr();
+			xhr.upload.addEventListener('progress', handleProgress);
+			return xhr;
+		},
+		type: 'POST',
+		url: document.getElementsByTagName('meta')['ctx'].content + "/reportfile/uploadfile",   //submit to UploadFileServlet
+		data: form,
+		cache: false,
+		processData: false,
+		contentType: false,
+		success: function (ret) {
+			alert(ret);
+			input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");
+			document.getElementById('progressBar').value = 0;
+			document.getElementById('filelabel').innerHTML = "文件已上传，点击重新上传";
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			alert("上传失败,错误信息：" + textStatus);
+			console.log(jqXHR);
+			document.getElementById('progressBar').value = 0;
+			input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");
+			document.getElementById('filelabel').innerHTML = "请点击此处选择文件";
+		}
+	})
+}
+
+//文件进度条
+function handleProgress(e) {
+	var progressBar = document.getElementById("progressBar");
+	if (e.lengthComputable) {
+		progressBar.max = e.total;
+		progressBar.value = e.loaded;
+	}
 }

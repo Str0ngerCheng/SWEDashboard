@@ -4,17 +4,20 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.bio.common.annotation.Log;
 import com.bio.common.domain.MailBean;
 import com.bio.common.utils.DateUtils;
 import com.bio.common.utils.ExcelUtils;
+import com.bio.common.utils.ZipUtils;
 import com.bio.common.utils.excel.ExcelFormat;
 import com.bio.common.utils.excel.ExcelHeaderInfo;
 import com.bio.sys.dao.DeptDao;
 import com.bio.sys.domain.*;
 import com.bio.sys.service.*;
 import com.bio.sys.vo.*;
+import org.apache.commons.io.FileUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
@@ -68,7 +71,7 @@ public class SummaryController {
 	@Autowired
 	private MailService mailService;
 
-    private static  HashMap<Long,List<ReportDO>> excelreport=new HashMap<>();
+    private static ConcurrentHashMap<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
 
 	@GetMapping()
 	@RequiresPermissions("bio:summary:summary")
@@ -236,6 +239,7 @@ public class SummaryController {
 		List<DeptDO> deptDOList=deptService.selectList(null);
 		//判断是否已经提交给小组负责人过
 		List<SummaryDO>summaryDOList=summaryService.getThisWeekSummary();
+		Long []deptIds=new Long[summaryDOList.size()];
 		for(SummaryDO summaryDO:summaryDOList) {
 			if (summaryDO.getStatus() == 1)
 				return Result.build(2, "小组周报汇总已提交");
@@ -250,11 +254,18 @@ public class SummaryController {
 					unSubmitTopicList += deptName + "，";
 			}
 		}
-		if(unSubmitTopicList=="")
+		if(!unSubmitTopicList.equals(""))
 			return Result.build(1,"有专题未提交周报汇总",unSubmitTopicList);
 		else {
 			MailBean mailBean = new MailBean();
 			List<UserDO> userDOList = userService.getUsersByRoleId(5L);
+			//导出周报汇总表并压缩发送
+			for(int i=0;i<summaryDOList.size();i++){
+				deptIds[i]=summaryDOList.get(i).getDeptId();
+			}
+			String directory="E:\\Test\\";
+			String filename ="小组周报汇总";
+			submitHelper(deptIds,directory,filename);
 			try {
 				for(UserDO userDO:userDOList) {
 					String recipient = userDO.getEmail();
@@ -263,7 +274,9 @@ public class SummaryController {
 					Map<String, Object> parameters = new HashMap<>();
 					parameters.put("name", userDO.getName());
 					parameters.put("url", url);
-					mailService.sendAttachmentMail(mailBean, "summaryreport.html", parameters);
+					//发送周报附件加周报汇总表
+					String filepathname=directory+filename+".zip";
+					mailService.sendAttachmentMail(mailBean, "summaryreport.html",filepathname,filename+".zip", parameters);
 				}
 
 				//将专题汇总周报状态设置为1
@@ -277,11 +290,43 @@ public class SummaryController {
 				e.printStackTrace();
 				logger.error("邮件发送失败", e.getMessage());
 				return Result.build(3,"邮件发送失败："+e.getMessage());
+			}finally {
+				ZipUtils.deleteFile(directory+filename+".zip");
+				ZipUtils.deleteFile(directory+filename+"表.xlsx");
 			}
 			return Result.ok();
 		}
 	}
-
+	//生成本周周报汇总表，并将所有的附件一起打包
+	//filename 生成的zip全路径
+	//ids 部门id
+	private void submitHelper(Long[] deptIds, String directory,String filename){
+//		String directory="E:\\Test\\";
+//		String filename ="周报汇总表.xlsx";
+		List<String> zipnames=new ArrayList<>();//需要压缩的文件名
+		List<TopicDao> topics= new ArrayList<>();
+		for(Long id:deptIds){
+			if(excelreport.containsKey(id)){
+				List<ReportDO> mSubmitReportList=excelreport.get(id);
+				for(ReportDO reportDO:mSubmitReportList){
+					ReportContentDO reportContentDO=reportContentService.getByUUID(reportDO.getContentId());
+					topics.add(new TopicDao(reportDO.getDeptName(),reportDO.getAuthorName(),reportDO.getTitle(),
+							reportContentDO.getSummary(),reportContentDO.getProblem(),reportContentDO.getNextPlan(),
+							reportDO.getComment(),reportDO.getSuggest()));
+					//需要导出的附件名称
+					String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
+					zipnames.add(fujianname);
+				}
+			}
+		}
+		ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
+		excelUtils.SaveExcelFile(directory+filename+"表.xlsx",excelUtils.getWorkbook());
+		//打包下载文件
+		zipnames.add(filename+"表.xlsx");
+		String[] names=new String[zipnames.size()];
+		zipnames.toArray(names);
+		ZipUtils.ZipAllFilebyNames(directory,filename+".zip",names);
+	}
 
 	@GetMapping("/meet")
 	@RequiresPermissions("bio:summary:meet")
@@ -351,7 +396,9 @@ public class SummaryController {
     @GetMapping("/batchExport1")
     @RequiresPermissions("bio:report:report")
     public void BatchExport1(@RequestParam(value="ids") String ids, HttpServletResponse response) {
-        String filename ="E:\\Test\\汇总表";
+		String directory="E:\\Test\\";
+		String filename ="周报汇总表.xlsx";
+		List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
         String[] myids=ids.split(",");
         List<String> mylist=Arrays.asList(myids);
@@ -363,11 +410,21 @@ public class SummaryController {
                     topics.add(new TopicDao(reportDO.getDeptName(),reportDO.getAuthorName(),reportDO.getTitle(),
                             reportContentDO.getSummary(),reportContentDO.getProblem(),reportContentDO.getNextPlan(),
                             reportDO.getComment(),reportDO.getSuggest()));
+					//需要导出的附件名称
+					String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
+					zipnames.add(fujianname);
                 }
             }
         }
         ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
-        excelUtils.sendHttpResponse(response,filename, excelUtils.getWorkbook());
+		excelUtils.SaveExcelFile(directory+filename,excelUtils.getWorkbook());
+		//打包下载文件
+		zipnames.add(filename);
+		String[] names=new String[zipnames.size()];
+		zipnames.toArray(names);
+		ZipUtils.downloadAllFilebyNames(response,directory,names);
+		//删除生成的汇总表
+		ZipUtils.deleteFile(directory+filename);
     }
 
 

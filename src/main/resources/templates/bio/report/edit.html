@@ -19,7 +19,6 @@
 						<label class="control-label" style="float: left">快捷初始化：</label>
 						<button  type="button" class="btn btn-info" onclick="getLastReport()">加载最近周周报</button>
 						<button class="btn  btn-success" onclick="clearAll()" type="button">清空</button>
-						<button id="upload" onclick="uploadFiles()" type="" class="btn btn-default" style="float: right"><i class="fa fa-cloud"></i>上传附件</button>
 					</div>
 					<div class="form-group" style="margin:20px">
 						<h3>本月目标</h3>
@@ -54,7 +53,25 @@
 							</div>
 						</div>
 					</div>
-
+                    <div class="form-group" style="margin:20px">
+                        <h3>附件上传</h3>
+                        <!--<form id="upload-form" enctype="multipart/form-data">-->
+                        <div class="form-group">
+                            <label id ="filelabel" class="btn ui_button ui_button_primary" for="reportfile">请点击此处选择文件</label>
+                            <form><input type="file" id="reportfile" style="position:absolute;clip:rect(0 0 0 0);" onchange="handleFiles()"></form>
+                            <label id ="filelabelname" class="ui_button ui_button_primary"></label>
+                            <!--<input type="file" name="file" id="file" class="form-control" />-->
+                        </div>
+                        <button type="button" id="upload" class="btn btn-info" onclick="uploadFiles()">
+                            <i class="fa fa-cloud"></i>上传附件</button>
+                        <button type="button" id="clearfile" class="btn btn-warning" onclick="clearFile()">清空附件</button>
+                        <button type="button" id="check" class="btn btn-info" onclick="checkFile()">下载已选择的附件</button>
+                        <progress id="progressBar" value="0" max="100"></progress>
+                        <!--</form>-->
+                        <!--<button id="upload" onclick="uploadFiles()" type="" class="btn btn-default" style="float: right">-->
+                        <!--<i class="fa fa-cloud"></i>上传附件-->
+                        <!--</button>-->
+                    </div>
 				</form>
 			</div>
 		</div>

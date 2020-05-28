@@ -13,6 +13,7 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
+import com.bio.common.utils.*;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +25,6 @@ import com.bio.common.domain.Tree;
 import com.bio.common.exception.DashboardException;
 import com.bio.common.service.ContextService;
 import com.bio.common.type.EnumErrorCode;
-import com.bio.common.utils.BuildTree;
-import com.bio.common.utils.FileType;
-import com.bio.common.utils.FileUtil;
-import com.bio.common.utils.ImageUtils;
-import com.bio.common.utils.MD5Utils;
 import com.bio.oss.domain.FileDO;
 import com.bio.oss.service.FileService;
 import com.bio.sys.dao.DeptDao;

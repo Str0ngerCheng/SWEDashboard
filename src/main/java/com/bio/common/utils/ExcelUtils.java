@@ -6,10 +6,14 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
 import org.apache.commons.beanutils.locale.converters.DateLocaleConverter;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +43,7 @@ public class ExcelUtils {
     private Map<String, ExcelFormat> formatInfo;
 
     private static int send=-1;
-    private static  int scount=1;
+    private static int scount=1;
 
 
 
@@ -79,8 +83,8 @@ public class ExcelUtils {
             }
             // 创建内容
             Row row = sheet.createRow(pageRowNum++);
-
             createContent(row, style, datas, i, fields,sheet,send,scount);
+
         }
         LOGGER.info("处理文本耗时" + (System.currentTimeMillis() - startTime) + "ms");
         return workbook;
@@ -105,7 +109,8 @@ public class ExcelUtils {
             // 赋值单元格
             cell.setCellValue(excelHeaderInfo.getTitle());
             cell.setCellStyle(style);
-            sheet.setColumnWidth(firstCol, sheet.getColumnWidth(firstCol) * 17 / 12);
+            /*sheet.setColumnWidth(firstCol, sheet.getColumnWidth(firstCol) * 17 / 12);*/
+            sheet.setColumnWidth(firstCol,cell.getStringCellValue().getBytes().length*2*256);
         }
     }
 
@@ -113,37 +118,37 @@ public class ExcelUtils {
     private void createContent(Row row, CellStyle style, String[][] content, int i, Field[] fields,Sheet sheet,int send,int scount) {
         List<String> columnNames = getBeanProperty(fields);
         for (int j = 0; j < columnNames.size(); j++) {
+            Cell cell = row.createCell(j);
+            cell.setCellStyle(style);
             if(null==content[i][j] || "".equals(content[i][j].trim())){
                 row.createCell(j).setCellValue("无");
                 continue;
             }
             if (i!=0 && content[i][j].equals(content[i-1][j])) {
-                 scount++;
-                 send=j;
+                scount++;
+                send=j;
             } else {
                 if(i!=0 && send==j && send!=-1){
-                CellRangeAddress range = new CellRangeAddress(i-scount+1, i, j, j);
-                sheet.addMergedRegion(range);
-                scount=1;
-                send=-1;
+                    CellRangeAddress range = new CellRangeAddress(i-scount+1, i, j, j);
+                    sheet.addMergedRegion(range);
+                    scount=1;
+                    send=-1;
                 }
                 // 如果格式化Map为空，默认为字符串格式
                 if (formatInfo == null) {
-                    row.createCell(j).setCellValue(content[i][j]);
+                    cell.setCellValue(content[i][j]);
                     continue;
                 }
-                if (formatInfo.containsKey(columnNames.get(j))) {
+                if (formatInfo.containsKey(columnNames.get(j))) { ;
                     switch (formatInfo.get(columnNames.get(j)).getValue()) {
                         case "DOUBLE":
-                            row.createCell(j).setCellValue(Double.parseDouble(content[i][j]));
+                            cell.setCellValue(Double.parseDouble(content[i][j]));
                             break;
                         case "INTEGER":
-                            row.createCell(j).setCellValue(Integer.parseInt(content[i][j]));
+                            cell.setCellValue(Integer.parseInt(content[i][j]));
                             break;
                         case "PERCENT":
                             style.setDataFormat(HSSFDataFormat.getBuiltinFormat("0.00%"));
-                            Cell cell = row.createCell(j);
-                            cell.setCellStyle(style);
                             cell.setCellValue(Double.parseDouble(content[i][j]));
                             break;
                         case "DATE":
@@ -153,7 +158,7 @@ public class ExcelUtils {
                             row.createCell(j).setCellValue(this.parseDate(content[i][j]));
                     }
                 } else {
-                    row.createCell(j).setCellValue(content[i][j]);
+                    cell.setCellValue(content[i][j]);
                 }
             }
         }
@@ -215,7 +220,8 @@ public class ExcelUtils {
     // 设置总体表格样式
     private static CellStyle setCellStyle(Workbook workbook) {
         CellStyle style = workbook.createCellStyle();
-       // style.setAlignment(HorizontalAlignment.CENTER);
+        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
         style.setWrapText(true);
         return style;
     }
@@ -236,13 +242,34 @@ public class ExcelUtils {
     // 发送响应结果
     public void sendHttpResponse(HttpServletResponse response,String fileName, Workbook workbook) {
         try {
-           /* String filepath="E:\\Test\\";*/
+            /* String filepath="E:\\Test\\";*/
             fileName += ".xlsx";
             fileName = new String(fileName.getBytes(), "UTF-8");
             response.setContentType("application/octet-stream;charset=ISO8859-1");
             response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
             response.addHeader("Pargam", "no-cache");
             response.addHeader("Cache-Control", "no-cache");
+            FileOutputStream fileOutputStream=new FileOutputStream(fileName);
+            workbook.write(fileOutputStream);
+            fileOutputStream.close();
+            /*OutputStream os = response.getOutputStream();
+            workbook.write(os);
+            os.flush();
+            os.close();*/
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //写入本地文件夹
+    public void SaveExcelFile(String fileName, Workbook workbook) {
+        try {
+//            /* String filepath="E:\\Test\\";*/
+//            fileName += ".xlsx";
+            fileName = new String(fileName.getBytes(), "UTF-8");
+//            response.setContentType("application/octet-stream;charset=ISO8859-1");
+//            response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+//            response.addHeader("Pargam", "no-cache");
+//            response.addHeader("Cache-Control", "no-cache");
             FileOutputStream fileOutputStream=new FileOutputStream(fileName);
             workbook.write(fileOutputStream);
             fileOutputStream.close();

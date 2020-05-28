@@ -41,7 +41,8 @@
 	<script>
 		$('.ibox-content').css("min-height",$(document.body).height()-40)
 		$(window).resize(function () {
-			$('.ibox-content').css("min-height",$(document.body).height()-40)
+			$('.ibox-content').css("min-height",$(document.body).height()-40);
+            $(".layui-layer-maxmin").parents(".layui-layer").width($(window).width()).height($(window).height());
 		});
 	</script>
 </div>

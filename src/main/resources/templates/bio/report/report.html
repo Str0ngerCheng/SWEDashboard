@@ -15,12 +15,20 @@
 							<i class="fa fa-trash" aria-hidden="true"></i>删除
 						</button>
 					</div>
-					<div id="searchKey">
-						<div class="columns pull-right">
-							<button class="btn btn-success" onclick="searchByKey()">查询</button>
-						</div>
-						<div class="columns pull-right col-md-2 nopadding">
-							<input id="searchName" type="text" class="form-control" placeholder="周报内容关键词">
+					<div class="columns pull-right">
+						<div class="form-inline" id="searchKey">
+							<div class="form-group">
+								<input id="searchName" type="text" class="form-control"
+									   placeholder="周报内容关键词">
+							</div>
+							<div class="btn-group">
+								<a class="btn btn-primary" type="button" name="refresh" title="刷新" onclick="refresh()">
+									<i class="glyphicon glyphicon-refresh icon-refresh"></i>
+								</a>
+								<a class="btn btn-primary" type="button" name="search" title="查询" style="margin-left:1px" onclick="searchByKey()">
+									<i class="glyphicon glyphicon-search icon-search"></i>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>

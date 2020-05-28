@@ -66,12 +66,12 @@ public class ExcelHeaderInfo {
         this.title = title;
     }
 
-   /* public ExcelHeaderInfo(int firstRow,int lastRow, int firstCol,int lastCol,String title){
-        this.lastRow=lastRow;
-        this.firstRow=firstRow;
-        this.lastCol=lastCol;
-        this.firstCol=firstCol;
-        this.title=title;
-    }*/
+//   public ExcelHeaderInfo(int firstRow,int lastRow, int firstCol,int lastCol,String title){
+//        this.lastRow=lastRow;
+//        this.firstRow=firstRow;
+//        this.lastCol=lastCol;
+//        this.firstCol=firstCol;
+//        this.title=title;
+//    }
 
 }
