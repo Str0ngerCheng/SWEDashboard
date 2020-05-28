@@ -572,17 +572,31 @@ function batchExport() {
             // 按钮
         }, function() {
          /*   window.location.href = prefix + '/batchExport?ids=' + overAllIds_per;*/
-            $.ajax({
-                url:prefix + '/batchExport?ids=' + overAllIds_per,
-                success : function(r) {
-                    if (r.code == 0) {
-                        layer.msg(r.msg);
-                        reLoad();
-                    } else {
-                        layer.msg(r.msg);
-                    }
-                }
-            });
+            var url = prefix + '/batchExport?ids=' + overAllIds_per;
+            try{
+                var elemIF = document.createElement('iframe');
+                elemIF.src = url;
+                elemIF.style.display = 'none';
+                document.body.appendChild(elemIF);
+                // 防止下载两次
+                // setTimeout(function() {
+                //     document.body.removeChild(elemIF)
+                // }, 10000);
+
+            }catch(e){
+                console.log(e);
+            }
+            // $.ajax({
+            //     url:prefix + '/batchExport?ids=' + overAllIds_per,
+            //     success : function(r) {
+            //         if (r.code == 0) {
+            //             layer.msg(r.msg);
+            //             reLoad();
+            //         } else {
+            //             layer.msg(r.msg);
+            //         }
+            //     }
+            // });
         }, function() {
         })
     }
@@ -614,18 +628,31 @@ function batchExport1() {
                 btn: ['确定', '取消']
                 // 按钮
             }, function () {
-                /*window.location.href = prefix + '/batchExport?ids=' + ids;*/
-               $.ajax({
-                   url:prefix + '/batchExport1?ids=' + ids,
-                    success: function (r) {
-                        if (r.code == 0) {
-                            layer.msg(r.msg);
-                            reLoad();
-                        } else {
-                            layer.msg(r.msg);
-                        }
-                    }
-                });
+                var url = prefix + '/batchExport1?ids=' + ids;
+                try{
+                    var elemIF = document.createElement('iframe');
+                    elemIF.src = url;
+                    elemIF.style.display = 'none';
+                    document.body.appendChild(elemIF);
+                    // 防止下载两次
+                    setTimeout(function() {
+                        document.body.removeChild(elemIF)
+                    }, 10000);
+
+                }catch(e){
+                    console.log(e);
+                }
+               // $.ajax({
+               //     url:prefix + '/batchExport1?ids=' + ids,
+               //      success: function (r) {
+               //          if (r.code == 0) {
+               //              layer.msg(r.msg);
+               //              reLoad();
+               //          } else {
+               //              layer.msg(r.msg);
+               //          }
+               //      }
+               //  });
             }, function () {
             });
         }

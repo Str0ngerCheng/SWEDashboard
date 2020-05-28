@@ -108,7 +108,7 @@ public class MailService {
      *
      * @param mailBean
      */
-    public void sendAttachmentMail(MailBean mailBean, String templateName,  Map<String, Object> model) {
+    public void sendAttachmentMail(MailBean mailBean, String templateName, String filepath,String filename, Map<String, Object> model) {
         MimeMessage mimeMailMessage = null;
         try {
             mimeMailMessage = javaMailSender.createMimeMessage();
@@ -121,8 +121,9 @@ public class MailService {
             String text = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
             mimeMessageHelper.setText(text, true);
             //文件路径
-            FileSystemResource file = new FileSystemResource(new File("C:\\Users\\cheng\\Desktop\\【4】CityI3Sensing系统设计开发组程博文程博文05.11-05.16周历周报.rar"));
-            mimeMessageHelper.addAttachment("swe小组周报汇总.rar", file);
+            FileSystemResource file = new FileSystemResource(new File(filepath));
+            //String attachmentfilename=new String( filename.getBytes("UTF-8"), "ISO8859-1" );
+            mimeMessageHelper.addAttachment(filename, file);
             javaMailSender.send(mimeMailMessage);
         } catch (Exception e) {
             e.printStackTrace();

@@ -205,7 +205,7 @@ function submit() {
 		type : 'GET',
 		url : prefix + '/bio/summary/submit',
 		error : function(request) {
-		    layer.close(loadIndex)
+		    layer.close(loadIndex);
 			layer.alert("Connection error");
 		},
 		success : function(r) {
@@ -246,19 +246,45 @@ function batchExport1() {
 		layer.confirm("确认要导出选中的'" + ids.length + "'条数据吗?", {
 			btn: ['确定', '取消']
 			// 按钮
-		}, function () {
-			/*window.location.href = prefix + '/batchExport?ids=' + ids;*/
-			$.ajax({
-				url:prefix + '/bio/summary/batchExport1?ids=' + ids,
-				success: function (r) {
-					if (r.code == 0) {
-						layer.msg(r.msg);
-						reLoad();
-					} else {
-						layer.msg(r.msg);
-					}
-				}
-			});
+		}, function (index) {
+			// var loadIndex=layer.load(1,{
+			// 	content: "等待中…",
+			// 	shade: [0.3,'#fff'],
+			// 	success: function (layero) {
+			// 		layero.find('.layui-layer-content').css({
+			// 			'padding-top': '40px',
+			// 			'width': '60px',
+			// 			'font-weight': 'bold'
+			// 		});
+			// 	}
+			// });
+			var url=prefix + '/bio/summary/batchExport1?ids=' + ids;
+			try{
+				var elemIF = document.createElement('iframe');
+				elemIF.src = url;
+				elemIF.style.display = 'none';
+				document.body.appendChild(elemIF);
+				//layer.close(loadIndex);
+				// 防止下载两次
+				// setTimeout(function() {
+				// 	document.body.removeChild(elemIF)
+				// }, 10000);
+				layer.close(index);
+			}catch(e){
+				console.log(e);
+			}
+			// /*window.location.href = prefix + '/batchExport?ids=' + ids;*/
+			// $.ajax({
+			// 	url:prefix + '/bio/summary/batchExport1?ids=' + ids,
+			// 	success: function (r) {
+			// 		if (r.code == 0) {
+			// 			layer.msg(r.msg);
+			// 			reLoad();
+			// 		} else {
+			// 			layer.msg(r.msg);
+			// 		}
+			// 	}
+			// });
 		}, function () {
 		});
 	}

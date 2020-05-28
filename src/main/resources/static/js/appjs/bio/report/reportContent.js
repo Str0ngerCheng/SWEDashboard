@@ -44,3 +44,26 @@ function submitContent() {
 	}
 
 }
+function downloadFile() {
+	// var list = $(".activecheck");
+	var NameList = $('#reporttitle').text().replace(/\//g,'-')+"附件.zip";
+	console.log("reporttitle:",NameList)
+	var name = encodeURI(encodeURI(NameList));
+	//将名称传入后台
+	//window.location.href = document.getElementsByTagName('meta')['ctx'].content+"/reportfile/test";
+	//window.location.href = document.getElementsByTagName('meta')['ctx'].content+"/reportfile/downloadreportfile?filename="+ name;
+	var url= document.getElementsByTagName('meta')['ctx'].content+"/reportfile/downloadreportfile?filename="+ name;
+	try{
+		var elemIF = document.createElement('iframe');
+		elemIF.src = url;
+		elemIF.style.display = 'none';
+		document.body.appendChild(elemIF);
+		// 防止下载两次
+		setTimeout(function() {
+			document.body.removeChild(elemIF)
+		}, 1000);
+
+	}catch(e){
+		console.log(e);
+	}
+}

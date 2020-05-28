@@ -2,9 +2,7 @@ package com.bio.sys.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.bio.common.service.ContextService;
-import com.bio.common.utils.DateUtils;
-import com.bio.common.utils.ExcelUtils;
-import com.bio.common.utils.Result;
+import com.bio.common.utils.*;
 import com.bio.common.utils.excel.ExcelFormat;
 import com.bio.common.utils.excel.ExcelHeaderInfo;
 import com.bio.sys.domain.*;
@@ -15,6 +13,7 @@ import com.bio.sys.service.SummaryService;
 import com.bio.sys.vo.SummaryVO;
 import com.bio.sys.vo.TopicReportDetailsVO;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
 @RequestMapping("/bio/query")
@@ -45,7 +45,7 @@ public class QueryController {
     @Autowired
     private DeptService deptService;
 
-    private static  HashMap<Long,List<ReportDO>> excelreport=new HashMap<>();
+    private static ConcurrentHashMap<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
     private static int weekly=0;
 
 
@@ -241,8 +241,11 @@ public class QueryController {
 
     @ResponseBody
     @GetMapping("/batchExport")
+    //@RequiresAuthentication
     public void BatchExport(@RequestParam(value="ids") String ids, HttpServletResponse response) {
-        String filename ="E:\\Test\\汇总表";
+        String directory="E:\\Test\\";
+        String filename ="周报汇总表.xlsx";
+        List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
         String[] myids=ids.split(",");
         List<String> mylist=Arrays.asList(myids);
@@ -252,15 +255,29 @@ public class QueryController {
             topics.add(new TopicDao(reportDO.getDeptName(),reportDO.getAuthorName(),reportDO.getTitle(),
                     reportContentDO.getSummary(),reportContentDO.getProblem(),reportContentDO.getNextPlan(),
                     reportDO.getComment(),reportDO.getSuggest()));
+            //需要导出的附件名称
+            String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
+            zipnames.add(fujianname);
         }
         ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
-        excelUtils.sendHttpResponse(response,filename, excelUtils.getWorkbook());
+        //存储excel
+        excelUtils.SaveExcelFile(directory+filename, excelUtils.getWorkbook());
+        //打包下载文件
+        zipnames.add(filename);
+        String[] names=new String[zipnames.size()];
+        zipnames.toArray(names);
+        ZipUtils.downloadAllFilebyNames(response,directory,names);
+        //删除生成的汇总表
+        ZipUtils.deleteFile(directory+filename);
+
     }
 
     @ResponseBody
     @GetMapping("/batchExport1")
     public void BatchExport1(@RequestParam(value="ids") String ids, HttpServletResponse response) {
-        String filename ="E:\\Test\\汇总表";
+        String directory="E:\\Test\\";
+        String filename ="周报汇总表.xlsx";
+        List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
         String[] myids=ids.split(",");
         List<String> mylist=Arrays.asList(myids);
@@ -272,11 +289,21 @@ public class QueryController {
                     topics.add(new TopicDao(reportDO.getDeptName(),reportDO.getAuthorName(),reportDO.getTitle(),
                             reportContentDO.getSummary(),reportContentDO.getProblem(),reportContentDO.getNextPlan(),
                             reportDO.getComment(),reportDO.getSuggest()));
+                    //需要导出的附件名称
+                    String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
+                    zipnames.add(fujianname);
                 }
             }
         }
         ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
-        excelUtils.sendHttpResponse(response,filename, excelUtils.getWorkbook());
+        excelUtils.SaveExcelFile(directory+filename,excelUtils.getWorkbook());
+        //打包下载文件
+        zipnames.add(filename);
+        String[] names=new String[zipnames.size()];
+        zipnames.toArray(names);
+        ZipUtils.downloadAllFilebyNames(response,directory,names);
+        //删除生成的汇总表
+        ZipUtils.deleteFile(directory+filename);
     }
 
 
