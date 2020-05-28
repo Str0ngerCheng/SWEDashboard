@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
 @RequestMapping("/bio/query")
@@ -45,7 +46,7 @@ public class QueryController {
     @Autowired
     private DeptService deptService;
 
-    private static  HashMap<Long,List<ReportDO>> excelreport=new HashMap<>();
+    private static  Map<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
     private static int weekly=0;
 
 

@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.bio.common.annotation.Log;
 import com.bio.common.domain.MailBean;
@@ -68,7 +69,7 @@ public class SummaryController {
 	@Autowired
 	private MailService mailService;
 
-    private static  HashMap<Long,List<ReportDO>> excelreport=new HashMap<>();
+	private static  Map<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
 
 	@GetMapping()
 	@RequiresPermissions("bio:summary:summary")
