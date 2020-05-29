@@ -148,7 +148,7 @@ function handleFiles() {
 	console.log("file",input);
 	var fileObj = input.files[0];
 	if (fileObj == null) {
-		alert("请选择zip或rar文件");
+		parent.layer.alert("请选择zip或rar文件");
 		return;
 	}
 	var filename = fileObj.name;
@@ -156,7 +156,7 @@ function handleFiles() {
 	var ext = filename.substr(index + 1);
 	console.log(ext);
 	if (ext != "zip" && ext != "rar") {
-		alert("请上传zip或rar文件");
+		parent.layer.alert("请上传zip或rar文件");
 		input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");
 		return;
 	}
@@ -175,7 +175,7 @@ function checkFile() {
 	var input = document.getElementById('reportfile');
 	var fileObj = input.files[0];
 	if(fileObj==null){
-		alert("请先选择文件！");
+		parent.layer.alert("请先选择文件！");
 		return;
 	}
 	//var newfile = new File([fileObj], $('#reportTitle').text().replace('/','-') + ".zip");
@@ -195,7 +195,7 @@ function uploadFiles() {
 	var input = document.getElementById('reportfile');
 	var fileObj = input.files[0];
 	if (fileObj == null) {
-		alert("请选择zip或rar文件");
+		parent.layer.alert("请选择zip或rar文件");
 		return;
 	}
 	var filename = fileObj.name;
@@ -203,7 +203,7 @@ function uploadFiles() {
 	var ext = filename.substr(index + 1);
 	console.log(ext);
 	if (ext != "zip" && ext != "rar") {
-		alert("请上传zip或rar文件");
+		parent.layer.alert("请上传zip或rar文件");
 		input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");
 		return;
 	}
@@ -226,13 +226,13 @@ function uploadFiles() {
 		processData: false,
 		contentType: false,
 		success: function (ret) {
-			alert(ret);
+			parent.layer.alert(ret);
 			input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");
 			document.getElementById('progressBar').value = 0;
 			document.getElementById('filelabel').innerHTML = "文件已上传，点击重新上传";
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
-			alert("上传失败,错误信息：" + textStatus);
+			parent.layer.alert("上传失败,错误信息：" + textStatus);
 			console.log(jqXHR);
 			document.getElementById('progressBar').value = 0;
 			input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");

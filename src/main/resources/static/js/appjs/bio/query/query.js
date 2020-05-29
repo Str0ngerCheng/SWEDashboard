@@ -528,10 +528,10 @@ function batchExport1() {
                     elemIF.src = url;
                     elemIF.style.display = 'none';
                     document.body.appendChild(elemIF);
-                    // 防止下载两次
-                    setTimeout(function() {
-                        document.body.removeChild(elemIF)
-                    }, 10000);
+                    // // 防止下载两次
+                    // setTimeout(function() {
+                    //     document.body.removeChild(elemIF)
+                    // }, 10000);
                     layer.close(index);
                 }catch(e){
                     console.log(e);

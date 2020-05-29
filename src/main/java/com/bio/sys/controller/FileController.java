@@ -1,9 +1,11 @@
 package com.bio.sys.controller;
 
 
+import com.bio.common.utils.Result;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +20,7 @@ import java.util.zip.ZipOutputStream;
 @RequestMapping("/reportfile")
 public class FileController {
     //存放--服务器上zip文件的目录
-    private String directory = "D:\\test\\";
+    private String directory = "E:\\Test\\";
 
 
     @GetMapping("/test")
@@ -203,8 +205,24 @@ public class FileController {
         }
     }
 
-    //下载单个附件
+    @GetMapping(value = "/ifFileExist" )
+    @RequiresAuthentication
+    @ResponseBody
+    public Result<String> isFileExist(String[] filenames){
+        //String filenamedecode=java.net.URLDecoder.decode(filename);
 
+        for(String filename:filenames){
+        File file = new File(directory+filename);
+        // 如果文件路径所对应的文件存在,则返回ok
+        if (file.exists()){
+            return Result.ok();
+        }
+        }
+        return Result.fail("文件不存在！");
+    }
+
+
+    //下载单个附件
     @GetMapping("/downloadreportfile")
     @RequiresAuthentication
     public void downReportFile(HttpServletResponse response, String filename){
