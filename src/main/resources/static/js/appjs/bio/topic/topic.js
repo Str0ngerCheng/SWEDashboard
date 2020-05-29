@@ -307,7 +307,7 @@ function batchExport() {
         layer.confirm("确认要导出选中的'" + overAllIds_per.length + "'条数据吗?", {
             btn : [ '确定', '取消' ]
             // 按钮
-        }, function() {
+        }, function(index) {
             //window.location.herf=prefix_query + '/batchExport?ids=' + overAllIds_per;
             //window.event.returnValue = false;
             var url=prefix_query + '/batchExport?ids=' + overAllIds_per;
@@ -321,7 +321,7 @@ function batchExport() {
                 // setTimeout(function() {
                 //     document.body.removeChild(elemIF)
                 // }, 5000);
-
+                layer.close(index);
             }catch(e){
                 console.log(e);
             }
@@ -383,20 +383,39 @@ function downloadSingleFile(title){
     var name = encodeURI(encodeURI(title));
     //将名称传入后台
     //window.location.href = document.getElementsByTagName('meta')['ctx'].content+"/reportfile/test";
-    var url= document.getElementsByTagName('meta')['ctx'].content+"/reportfile/downloadreportfile?filename="+ name;
-    try{
-        var elemIF = document.createElement('iframe');
-        elemIF.src = url;
-        elemIF.style.display = 'none';
-        document.body.appendChild(elemIF);
-        // 防止下载两次
-        setTimeout(function() {
-            document.body.removeChild(elemIF)
-        }, 1000);
+    $.ajax({
+        cache : false,
+        type : "GET",
+        url : document.getElementsByTagName('meta')['ctx'].content + "/reportfile/ifFileExist/",
+        async : false,
+        dataType: 'json',
+        contentType : 'application/json',
+        data:{filenames:title},
+        error : function(request) {
+            parent.layer.alert("Connection error");
+        },
+        success : function(data) {
+            if (data.code == 0) {
+                var url= document.getElementsByTagName('meta')['ctx'].content+"/reportfile/downloadreportfile?filename="+ name;
+                try{
+                    var elemIF = document.createElement('iframe');
+                    elemIF.src = url;
+                    elemIF.style.display = 'none';
+                    document.body.appendChild(elemIF);
+                    // 防止下载两次
+                    // setTimeout(function() {
+                    //     document.body.removeChild(elemIF)
+                    // }, 1000);
 
-    }catch(e){
-        console.log(e);
-    }
+                }catch(e){
+                    console.log(e);
+                }
+            } else {
+                parent.layer.alert(data.msg+"："+data.data);
+            }
+        }
+    });
+
 }
 function downloadAllFiles(){
     // 返回所有选择的行，当没有选择的记录时，返回一个空数组

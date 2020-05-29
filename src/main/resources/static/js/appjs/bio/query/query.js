@@ -435,7 +435,7 @@ function batchExport() {
         layer.confirm("确认要导出选中的'" + overAllIds_per.length + "'条数据吗?", {
             btn : [ '确定', '取消' ]
             // 按钮
-        }, function() {
+        }, function(index) {
          /*   window.location.href = prefix + '/batchExport?ids=' + overAllIds_per;*/
             var url = prefix + '/batchExport?ids=' + overAllIds_per;
             try{
@@ -447,7 +447,7 @@ function batchExport() {
                 // setTimeout(function() {
                 //     document.body.removeChild(elemIF)
                 // }, 10000);
-
+                layer.close(index);
             }catch(e){
                 console.log(e);
             }
@@ -492,18 +492,18 @@ function batchExport1() {
             layer.confirm("确认要导出选中的'" + ids.length + "'条数据吗?", {
                 btn: ['确定', '取消']
                 // 按钮
-            }, function () {
+            }, function (index) {
                 var url = prefix + '/batchExport1?ids=' + ids;
                 try{
                     var elemIF = document.createElement('iframe');
                     elemIF.src = url;
                     elemIF.style.display = 'none';
                     document.body.appendChild(elemIF);
-                    // 防止下载两次
-                    setTimeout(function() {
-                        document.body.removeChild(elemIF)
-                    }, 10000);
-
+                    // // 防止下载两次
+                    // setTimeout(function() {
+                    //     document.body.removeChild(elemIF)
+                    // }, 10000);
+                    layer.close(index);
                 }catch(e){
                     console.log(e);
                 }
