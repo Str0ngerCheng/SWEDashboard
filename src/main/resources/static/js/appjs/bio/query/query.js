@@ -426,7 +426,7 @@ function examine(type, datas) {
     }
 }
 
-function batchExport() {
+function batchExport(exportmode) {
     //绑定选中事件、取消事件、全部选中、全部取消
     if (overAllIds_per.length == 0) {
         layer.msg("请选择要导出的数据");
@@ -437,7 +437,7 @@ function batchExport() {
             // 按钮
         }, function(index) {
          /*   window.location.href = prefix + '/batchExport?ids=' + overAllIds_per;*/
-            var url = prefix + '/batchExport?ids=' + overAllIds_per;
+            var url = prefix + '/batchExport?ids=' + overAllIds_per+'&mode='+exportmode;
             try{
                 var elemIF = document.createElement('iframe');
                 elemIF.src = url;
@@ -451,17 +451,6 @@ function batchExport() {
             }catch(e){
                 console.log(e);
             }
-            // $.ajax({
-            //     url:prefix + '/batchExport?ids=' + overAllIds_per,
-            //     success : function(r) {
-            //         if (r.code == 0) {
-            //             layer.msg(r.msg);
-            //             reLoad();
-            //         } else {
-            //             layer.msg(r.msg);
-            //         }
-            //     }
-            // });
         }, function() {
         })
     }
@@ -481,7 +470,7 @@ function examine1(type, datas) {
 }
 
 
-function batchExport1() {
+function batchExport1(exportmode) {
     //绑定选中事件、取消事件、全部选中、全部取消
     var ids = new Array();
     ids=overAllIds_dep;
@@ -493,7 +482,8 @@ function batchExport1() {
                 btn: ['确定', '取消']
                 // 按钮
             }, function (index) {
-                var url = prefix + '/batchExport1?ids=' + ids;
+
+                var url = prefix + '/batchExport1?ids=' + ids+'&mode='+exportmode;
                 try{
                     var elemIF = document.createElement('iframe');
                     elemIF.src = url;

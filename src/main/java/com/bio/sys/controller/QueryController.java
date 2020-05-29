@@ -241,8 +241,9 @@ public class QueryController {
 
     @ResponseBody
     @GetMapping("/batchExport")
-    //@RequiresAuthentication
-    public void BatchExport(@RequestParam(value="ids") String ids, HttpServletResponse response) {
+    @RequiresAuthentication
+    //根据reportid批量导出，mode={1：汇总表+附件，2：汇总表，3：仅导出附件}
+    public void BatchExport(@RequestParam(value="ids") String ids,@RequestParam(value="mode") Integer mode, HttpServletResponse response) {
         String directory="E:\\Test\\";
         String filename ="周报汇总表.xlsx";
         List<String> zipnames=new ArrayList<>();//需要压缩的文件名
@@ -259,22 +260,36 @@ public class QueryController {
             String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
             zipnames.add(fujianname);
         }
-        ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
-        //存储excel
-        excelUtils.SaveExcelFile(directory+filename, excelUtils.getWorkbook());
-        //打包下载文件
-        zipnames.add(filename);
-        String[] names=new String[zipnames.size()];
-        zipnames.toArray(names);
-        ZipUtils.downloadAllFilebyNames(response,directory,names);
-        //删除生成的汇总表
-        ZipUtils.deleteFile(directory+filename);
 
+        if(mode==1){
+            ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
+            excelUtils.SaveExcelFile(directory+filename, excelUtils.getWorkbook());
+            //打包下载文件
+            zipnames.add(filename);
+            String[] names=new String[zipnames.size()];
+            zipnames.toArray(names);
+            ZipUtils.downloadAllFilebyNames(response,directory,names);
+            //删除生成的汇总表
+            ZipUtils.deleteFile(directory+filename);
+            return;
+        }
+        if(mode==2){
+            ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
+            excelUtils.sendHttpResponse(response,filename, excelUtils.getWorkbook());
+            return;
+        }
+        if(mode==3){
+            String[] names=new String[zipnames.size()];
+            zipnames.toArray(names);
+            ZipUtils.downloadAllFilebyNames(response,directory,names);
+            return;
+        }
     }
 
     @ResponseBody
     @GetMapping("/batchExport1")
-    public void BatchExport1(@RequestParam(value="ids") String ids, HttpServletResponse response) {
+    @RequiresAuthentication
+    public void BatchExport1(@RequestParam(value="ids") String ids, @RequestParam(value="mode") Integer mode, HttpServletResponse response) {
         String directory="E:\\Test\\";
         String filename ="周报汇总表.xlsx";
         List<String> zipnames=new ArrayList<>();//需要压缩的文件名
@@ -295,15 +310,39 @@ public class QueryController {
                 }
             }
         }
-        ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
-        excelUtils.SaveExcelFile(directory+filename,excelUtils.getWorkbook());
-        //打包下载文件
-        zipnames.add(filename);
-        String[] names=new String[zipnames.size()];
-        zipnames.toArray(names);
-        ZipUtils.downloadAllFilebyNames(response,directory,names);
-        //删除生成的汇总表
-        ZipUtils.deleteFile(directory+filename);
+
+        if(mode==1){
+            ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
+            excelUtils.SaveExcelFile(directory+filename, excelUtils.getWorkbook());
+            //打包下载文件
+            zipnames.add(filename);
+            String[] names=new String[zipnames.size()];
+            zipnames.toArray(names);
+            ZipUtils.downloadAllFilebyNames(response,directory,names);
+            //删除生成的汇总表
+            ZipUtils.deleteFile(directory+filename);
+            return;
+        }
+        if(mode==2){
+            ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
+            excelUtils.sendHttpResponse(response,filename, excelUtils.getWorkbook());
+            return;
+        }
+        if(mode==3){
+            String[] names=new String[zipnames.size()];
+            zipnames.toArray(names);
+            ZipUtils.downloadAllFilebyNames(response,directory,names);
+            return;
+        }
+//        ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
+//        excelUtils.SaveExcelFile(directory+filename,excelUtils.getWorkbook());
+//        //打包下载文件
+//        zipnames.add(filename);
+//        String[] names=new String[zipnames.size()];
+//        zipnames.toArray(names);
+//        ZipUtils.downloadAllFilebyNames(response,directory,names);
+//        //删除生成的汇总表
+//        ZipUtils.deleteFile(directory+filename);
     }
 
 

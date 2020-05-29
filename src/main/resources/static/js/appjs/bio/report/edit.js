@@ -84,40 +84,124 @@ function submitReport() {
 		layer.alert('总结字数不能少于50字哦', {
 			icon:0,
 			});
-	else
-		layer.alert('周报提交后无法修改，确定提交吗？', {
-			icon:3,
-			btn: ['确定', '取消']
-			,yes: function(){
-				$.ajax({
-					cache : true,
-					type : "POST",
-					url : prefix + "/saveContent",
-					data : {reportId:$('#reportId').val(),
-						statusMSub:1,//表示已提交
-						lastPlan:$('#lastPlan').val(),
-						summary:$('#summary').val(),
-						nextPlan:$('#nextPlan').val(),
-						problem:$('#problem').val()},
-					async : false,
-					error : function(request) {
-						parent.layer.alert("Connection error");
-					},
-					success : function(data) {
-						if (data.code == 0) {
-							parent.layer.msg("提交成功",{icon: 1});
-							parent.reLoad();
-							var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
-							parent.layer.close(index);
+	else{
+		//判断是否已经提交了附件，如果没有提交就提示
+		var filename = document.getElementById('reportTitle').innerText.replace(/\//g,'-') + "附件.zip";
+		$.ajax({
+			cache : false,
+			type : "GET",
+			url : document.getElementsByTagName('meta')['ctx'].content + "/reportfile/ifFileExist/",
+			async : false,
+			dataType: 'json',
+			contentType : 'application/json',
+			data:{filenames:filename},
+			error : function(errormsg) {
+				console.log("/reportfile/ifFileExist/: Connection error",errormsg);
+				layer.alert('周报提交后无法修改，确定提交吗？', {
+					icon:3,
+					btn: ['确定', '取消']
+					,yes: function(){
+						$.ajax({
+							cache : true,
+							type : "POST",
+							url : prefix + "/saveContent",
+							data : {reportId:$('#reportId').val(),
+								statusMSub:1,//表示已提交
+								lastPlan:$('#lastPlan').val(),
+								summary:$('#summary').val(),
+								nextPlan:$('#nextPlan').val(),
+								problem:$('#problem').val()},
+							async : false,
+							error : function(request) {
+								parent.layer.alert("Connection error");
+							},
+							success : function(data) {
+								if (data.code == 0) {
+									parent.layer.msg("提交成功",{icon: 1});
+									parent.reLoad();
+									var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+									parent.layer.close(index);
 
-						} else {
-							parent.layer.alert(data.msg)
-						}
+								} else {
+									parent.layer.alert(data.msg)
+								}
+							}
+						});
 					}
 				});
+			},
+			success : function(data) {
+				if (data.code == 0) {
+					layer.alert('周报提交后无法修改，确定提交吗？', {
+						icon:3,
+						btn: ['确定', '取消']
+						,yes: function(){
+							$.ajax({
+								cache : true,
+								type : "POST",
+								url : prefix + "/saveContent",
+								data : {reportId:$('#reportId').val(),
+									statusMSub:1,//表示已提交
+									lastPlan:$('#lastPlan').val(),
+									summary:$('#summary').val(),
+									nextPlan:$('#nextPlan').val(),
+									problem:$('#problem').val()},
+								async : false,
+								error : function(request) {
+									parent.layer.alert("Connection error");
+								},
+								success : function(data) {
+									if (data.code == 0) {
+										parent.layer.msg("提交成功",{icon: 1});
+										parent.reLoad();
+										var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+										parent.layer.close(index);
 
+									} else {
+										parent.layer.alert(data.msg)
+									}
+								}
+							});
+						}
+					});
+				} else {
+					layer.alert('你还没有上传本周附件，且周报提交后无法修改，确定提交吗？', {
+						icon:3,
+						btn: ['确定', '取消']
+						,yes: function(){
+							$.ajax({
+								cache : true,
+								type : "POST",
+								url : prefix + "/saveContent",
+								data : {reportId:$('#reportId').val(),
+									statusMSub:1,//表示已提交
+									lastPlan:$('#lastPlan').val(),
+									summary:$('#summary').val(),
+									nextPlan:$('#nextPlan').val(),
+									problem:$('#problem').val()},
+								async : false,
+								error : function(request) {
+									parent.layer.alert("Connection error");
+								},
+								success : function(data) {
+									if (data.code == 0) {
+										parent.layer.msg("提交成功",{icon: 1});
+										parent.reLoad();
+										var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
+										parent.layer.close(index);
+
+									} else {
+										parent.layer.alert(data.msg)
+									}
+								}
+							});
+						}
+					});
+				}
 			}
 		});
+
+	}
 
 
 }

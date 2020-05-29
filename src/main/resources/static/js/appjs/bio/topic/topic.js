@@ -310,7 +310,7 @@ function batchExport() {
         }, function(index) {
             //window.location.herf=prefix_query + '/batchExport?ids=' + overAllIds_per;
             //window.event.returnValue = false;
-            var url=prefix_query + '/batchExport?ids=' + overAllIds_per;
+            var url=prefix_query + '/batchExport?ids=' + overAllIds_per+'&mode=1';
             console.log(url);
             try{
                 var elemIF = document.createElement('iframe');
@@ -417,31 +417,31 @@ function downloadSingleFile(title){
     });
 
 }
-function downloadAllFiles(){
-    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
-    var selectedrows = $('#topicTable').bootstrapTable('getSelections');
-    var titles=new Array();
-    var len=selectedrows.length;
-    if(len<1){
-        layer.alert("请先勾选需要批量导出附件的周报！",{icon:1})
-        return;}
-    for(i=0;i<len;i++){
-        var title=selectedrows[i].title;
-        titles.push(title.replace(/\//g,'-')+"附件.zip");
-    }
-    var names = encodeURI(encodeURI(titles));
-    var url= document.getElementsByTagName('meta')['ctx'].content+"/reportfile/downloadbynamestopic?names="+ names
-    try{
-        var elemIF = document.createElement('iframe');
-        elemIF.src = url;
-        elemIF.style.display = 'none';
-        document.body.appendChild(elemIF);
-        // 防止下载两次
-        setTimeout(function() {
-            document.body.removeChild(elemIF)
-        }, 1000);s
-
-    }catch(e){
-        console.log(e);
-    }
-}
+// function downloadAllFiles(){
+//     // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+//     var selectedrows = $('#topicTable').bootstrapTable('getSelections');
+//     var titles=new Array();
+//     var len=selectedrows.length;
+//     if(len<1){
+//         layer.alert("请先勾选需要批量导出附件的周报！",{icon:1})
+//         return;}
+//     for(i=0;i<len;i++){
+//         var title=selectedrows[i].title;
+//         titles.push(title.replace(/\//g,'-')+"附件.zip");
+//     }
+//     var names = encodeURI(encodeURI(titles));
+//     var url= document.getElementsByTagName('meta')['ctx'].content+"/reportfile/downloadbynamestopic?names="+ names
+//     try{
+//         var elemIF = document.createElement('iframe');
+//         elemIF.src = url;
+//         elemIF.style.display = 'none';
+//         document.body.appendChild(elemIF);
+//         // 防止下载两次
+//         setTimeout(function() {
+//             document.body.removeChild(elemIF)
+//         }, 1000);s
+//
+//     }catch(e){
+//         console.log(e);
+//     }
+// }
