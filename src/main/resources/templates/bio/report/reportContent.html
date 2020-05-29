@@ -46,10 +46,11 @@
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
     <div class="ibox-content" id="myContent">
-                <h3 style="text-align: center" th:utext="${report.title}"></h3>
+                <h3 id="reporttitle" style="text-align: center" th:utext="${report.title}"></h3>
                 <div class="form-group">
                          <span>
-                            <a id="upload" onclick="downlandFiles()" type="" class="btn-sm btn-primary" style="float: right"><i class="fa fa-cloud"></i>下载附件</a>
+                            <button id="downloadfiles" onclick="downloadFile()" type="button"  class="btn btn-primary" style="float: right">
+                                <i class="fa fa-cloud"></i>下载附件</button>
                             <h3>本月目标</h3>
                         </span>
                     <textarea class="col-sm-12 form-control" rows="5" id="monthPlan" readonly="readonly" th:text="${reportContent.monthPlan}"></textarea>

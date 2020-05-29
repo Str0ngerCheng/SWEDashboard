@@ -109,7 +109,6 @@ public class ExcelUtils {
             // 赋值单元格
             cell.setCellValue(excelHeaderInfo.getTitle());
             cell.setCellStyle(style);
-           /*sheet.setColumnWidth(firstCol, sheet.getColumnWidth(firstCol) * 17 / 12);*/
             sheet.setColumnWidth(firstCol,cell.getStringCellValue().getBytes().length*2*256);
         }
     }
@@ -125,14 +124,14 @@ public class ExcelUtils {
                 continue;
             }
             if (i!=0 && content[i][j].equals(content[i-1][j])) {
-                 scount++;
-                 send=j;
+                scount++;
+                send=j;
             } else {
                 if(i!=0 && send==j && send!=-1){
-                CellRangeAddress range = new CellRangeAddress(i-scount+1, i, j, j);
-                sheet.addMergedRegion(range);
-                scount=1;
-                send=-1;
+                    CellRangeAddress range = new CellRangeAddress(i-scount+1, i, j, j);
+                    sheet.addMergedRegion(range);
+                    scount=1;
+                    send=-1;
                 }
                 // 如果格式化Map为空，默认为字符串格式
                 if (formatInfo == null) {
@@ -242,13 +241,34 @@ public class ExcelUtils {
     // 发送响应结果
     public void sendHttpResponse(HttpServletResponse response,String fileName, Workbook workbook) {
         try {
-           /* String filepath="E:\\Test\\";*/
+            /* String filepath="E:\\Test\\";*/
             fileName += ".xlsx";
             fileName = new String(fileName.getBytes(), "UTF-8");
             response.setContentType("application/octet-stream;charset=ISO8859-1");
             response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
             response.addHeader("Pargam", "no-cache");
             response.addHeader("Cache-Control", "no-cache");
+            FileOutputStream fileOutputStream=new FileOutputStream(fileName);
+            workbook.write(fileOutputStream);
+            fileOutputStream.close();
+            /*OutputStream os = response.getOutputStream();
+            workbook.write(os);
+            os.flush();
+            os.close();*/
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //写入本地文件夹
+    public void SaveExcelFile(String fileName, Workbook workbook) {
+        try {
+//            /* String filepath="E:\\Test\\";*/
+//            fileName += ".xlsx";
+            fileName = new String(fileName.getBytes(), "UTF-8");
+//            response.setContentType("application/octet-stream;charset=ISO8859-1");
+//            response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+//            response.addHeader("Pargam", "no-cache");
+//            response.addHeader("Cache-Control", "no-cache");
             FileOutputStream fileOutputStream=new FileOutputStream(fileName);
             workbook.write(fileOutputStream);
             fileOutputStream.close();

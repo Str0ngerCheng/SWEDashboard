@@ -127,4 +127,5 @@ public class TopicReportDetailsVO implements Serializable,Comparable<TopicReport
             else return  0;
         }
     }
+
 }

@@ -2,9 +2,7 @@ package com.bio.sys.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.bio.common.service.ContextService;
-import com.bio.common.utils.DateUtils;
-import com.bio.common.utils.ExcelUtils;
-import com.bio.common.utils.Result;
+import com.bio.common.utils.*;
 import com.bio.common.utils.excel.ExcelFormat;
 import com.bio.common.utils.excel.ExcelHeaderInfo;
 import com.bio.sys.domain.*;
@@ -36,7 +34,6 @@ public class QueryController {
     @Autowired
     private ReportService reportService;
 
-
     @Autowired
     private ReportContentService reportContentService;
 
@@ -46,7 +43,7 @@ public class QueryController {
     @Autowired
     private DeptService deptService;
 
-    private static  Map<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
     private static int weekly=0;
 
 
@@ -107,6 +104,8 @@ public class QueryController {
     @ResponseBody
     @GetMapping("/queryReport")
     public Result<Page<QueryDO>> queryReport(Integer pageNumber, Integer pageSize, String userName, String datetimepicker1, String datetimepicker2, Integer WeekMonth) throws ParseException {
+        datetimepicker1=datetimepicker1+" 00:00:00";
+        datetimepicker2=datetimepicker2+" 23:59:59";
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date startDate=sdf.parse(datetimepicker1);
         Date endDate=sdf.parse(datetimepicker2);
@@ -137,6 +136,8 @@ public class QueryController {
     @ResponseBody
     @GetMapping("/queryDepReport")
     public Result<Page<SummaryVO>> queryDepReport(Integer pageNumber, Integer pageSize, String topicName, String datetimepicker_t1, String datetimepicker_t2, Integer WeekMonth1) throws ParseException {
+        datetimepicker_t1=datetimepicker_t1+" 00:00:00";
+        datetimepicker_t2=datetimepicker_t2+" 23:59:59";
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date startDate=sdf.parse(datetimepicker_t1);
         Date endDate=sdf.parse(datetimepicker_t2);
@@ -242,8 +243,11 @@ public class QueryController {
 
     @ResponseBody
     @GetMapping("/batchExport")
+    //@RequiresAuthentication
     public void BatchExport(@RequestParam(value="ids") String ids, HttpServletResponse response) {
-        String filename ="E:\\Test\\汇总表";
+        String directory="E:\\Test\\";
+        String filename ="周报汇总表.xlsx";
+        List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
         String[] myids=ids.split(",");
         List<String> mylist=Arrays.asList(myids);
@@ -253,15 +257,29 @@ public class QueryController {
             topics.add(new TopicDao(reportDO.getDeptName(),reportDO.getAuthorName(),reportDO.getTitle(),
                     reportContentDO.getSummary(),reportContentDO.getProblem(),reportContentDO.getNextPlan(),
                     reportDO.getComment(),reportDO.getSuggest()));
+            //需要导出的附件名称
+            String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
+            zipnames.add(fujianname);
         }
         ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
-        excelUtils.sendHttpResponse(response,filename, excelUtils.getWorkbook());
+        //存储excel
+        excelUtils.SaveExcelFile(directory+filename, excelUtils.getWorkbook());
+        //打包下载文件
+        zipnames.add(filename);
+        String[] names=new String[zipnames.size()];
+        zipnames.toArray(names);
+        ZipUtils.downloadAllFilebyNames(response,directory,names);
+        //删除生成的汇总表
+        ZipUtils.deleteFile(directory+filename);
+
     }
 
     @ResponseBody
     @GetMapping("/batchExport1")
     public void BatchExport1(@RequestParam(value="ids") String ids, HttpServletResponse response) {
-        String filename ="E:\\Test\\汇总表";
+        String directory="E:\\Test\\";
+        String filename ="周报汇总表.xlsx";
+        List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
         String[] myids=ids.split(",");
         List<String> mylist=Arrays.asList(myids);
@@ -273,11 +291,21 @@ public class QueryController {
                     topics.add(new TopicDao(reportDO.getDeptName(),reportDO.getAuthorName(),reportDO.getTitle(),
                             reportContentDO.getSummary(),reportContentDO.getProblem(),reportContentDO.getNextPlan(),
                             reportDO.getComment(),reportDO.getSuggest()));
+                    //需要导出的附件名称
+                    String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
+                    zipnames.add(fujianname);
                 }
             }
         }
         ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
-        excelUtils.sendHttpResponse(response,filename, excelUtils.getWorkbook());
+        excelUtils.SaveExcelFile(directory+filename,excelUtils.getWorkbook());
+        //打包下载文件
+        zipnames.add(filename);
+        String[] names=new String[zipnames.size()];
+        zipnames.toArray(names);
+        ZipUtils.downloadAllFilebyNames(response,directory,names);
+        //删除生成的汇总表
+        ZipUtils.deleteFile(directory+filename);
     }
 
 

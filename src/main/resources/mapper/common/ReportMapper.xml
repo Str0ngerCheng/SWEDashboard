@@ -45,12 +45,13 @@
 		AND r_to_date = #{todate}
 		AND status = #{status} GROUP BY dept_id
 	</select>
+
 	<select id="getReportsByTitle" resultType="com.bio.sys.domain.ReportDO">
 		select * from report where title = #{title}
 	</select>
 
 	<select id="getReportsByDepName" resultType="com.bio.sys.domain.ReportDO">
-		select * from report where dept_name = #{depName} and status_mod=1 and status_m_sub=1 and status_l_sub=1 order by author_name,r_from_date
+		select * from report where dept_name = #{depName} and  status_l_sub=1 order by author_name,r_from_date
 	</select>
 
 	<select id="getReportsQuery" resultType="com.bio.sys.domain.ReportDO">
@@ -65,7 +66,7 @@
 			<if test="todate!=null">
 		       AND r_to_date &lt;= #{todate}
 			</if>
-		AND status_mod = #{status}
+		AND status_l_sub = #{status}
 		AND dept_id=#{deptId}
 		</where>
 		order by author_name, r_from_date
@@ -182,15 +183,15 @@
 	</select>
 
 	<select id="getReportsAll" resultType="com.bio.sys.domain.ReportDO">
-		select * from report where status_mod=1 and status_m_sub=1 and status_l_sub=1 order by dept_name,author_name, r_from_date
+		select * from report where status_l_sub=1 order by dept_name,author_name, r_from_date
 	</select>
 	
 	<select id="getReportsByMonth" resultType="com.bio.sys.domain.ReportDO">
-		select * from report where (month(r_from_date)=#{date} or month(r_to_date)=#{date}) and dept_id=#{deptId} and status_mod=1 and status_m_sub=1 and status_l_sub=1 order by author_name, r_from_date
+		select * from report where (month(r_from_date)=#{date} or month(r_to_date)=#{date}) and dept_id=#{deptId} and status_l_sub=1 order by author_name, r_from_date
 	</select>
 
 	<select id="getReportsByMonth1" resultType="com.bio.sys.domain.ReportDO">
-		select * from report where (month(r_from_date)=#{date} or month(r_to_date)=#{date})  and status_mod=1 and status_m_sub=1 and status_l_sub=1 order by dept_name,author_name, r_from_date
+		select * from report where (month(r_from_date)=#{date} or month(r_to_date)=#{date})  and status_l_sub=1 order by dept_name,author_name, r_from_date
 	</select>
 
 	<select id="getReportsQuery1" resultType="com.bio.sys.domain.ReportDO">
@@ -205,7 +206,7 @@
 			<if test="todate!=null">
 				AND r_to_date &lt;= #{todate}
 			</if>
-			AND status_mod = #{status}
+			AND status_l_sub = #{status}
 		</where>
 		order by dept_name,author_name, r_from_date
 	</select>

@@ -99,8 +99,8 @@ function load() {
                             var e = '<a class="btn btn-success btn-sm '+'" href="#" mce_href="#" title="详细信息" onclick="getReportContent(\''
                                 + row.id
                                 + '\')"><i class="fa fa-info-circle"></i></a> ';
-                            var d = '<a class="btn btn-primary btn-sm '+'" href="#" title="下载附件"  mce_href="#" onclick="Myexport(\''
-                                + row.id
+                            var d = '<a class="btn btn-primary btn-sm '+'" href="#" title="下载附件"  mce_href="#" onclick="downloadSingleFile(\''
+                                + row.title
                                 + '\')"><i class="fa fa-download"></i></a> ';
                             return e + d ;
                         }
@@ -308,17 +308,34 @@ function batchExport() {
             btn : [ '确定', '取消' ]
             // 按钮
         }, function() {
-            $.ajax({
-                url:prefix_query + '/batchExport?ids=' + overAllIds_per,
-                success : function(r) {
-                    if (r.code == 0) {
-                        layer.msg(r.msg);
-                        reLoad();
-                    } else {
-                        layer.msg(r.msg);
-                    }
-                }
-            });
+            //window.location.herf=prefix_query + '/batchExport?ids=' + overAllIds_per;
+            //window.event.returnValue = false;
+            var url=prefix_query + '/batchExport?ids=' + overAllIds_per;
+            console.log(url);
+            try{
+                var elemIF = document.createElement('iframe');
+                elemIF.src = url;
+                elemIF.style.display = 'none';
+                document.body.appendChild(elemIF);
+                // 防止下载两次
+                // setTimeout(function() {
+                //     document.body.removeChild(elemIF)
+                // }, 5000);
+
+            }catch(e){
+                console.log(e);
+            }
+            // $.ajax({
+            //     url:prefix_query + '/batchExport?ids=' + overAllIds_per,
+            //     success : function(r) {
+            //         if (r.code == 0) {
+            //             layer.msg(r.msg);
+            //             reLoad();
+            //         } else {
+            //             layer.msg(r.msg);
+            //         }
+            //     }
+            // });
         }, function() {
         })
     }
@@ -330,18 +347,82 @@ function Myexport(id) {
         btn : [ '确定', '取消' ]
         // 按钮
     }, function() {
-        $.ajax({
-            url:prefix_query + '/batchExport?ids=' + overAllIds_per,
-            success : function(r) {
-                if (r.code == 0) {
-                    layer.msg(r.msg);
-                    reLoad();
-                } else {
-                    layer.msg(r.msg);
-                }
-            }
-        });
+        window.location.herf=prefix_query + '/batchExport?ids=' + overAllIds_per;
+        window.event.returnValue = false;
+        // try{
+        //     var elemIF = document.createElement('iframe');
+        //     elemIF.src = url;
+        //     elemIF.style.display = 'none';
+        //     document.body.appendChild(elemIF);
+        //     // 防止下载两次
+        //     setTimeout(function() {
+        //         document.body.removeChild(elemIF)
+        //     }, 1000);
+        //
+        // }catch(e){
+        //     console.log(e);
+        // }
+        // $.ajax({
+        //     url:prefix_query + '/batchExport?ids=' + overAllIds_per,
+        //     success : function(r) {
+        //         if (r.code == 0) {
+        //             layer.msg(r.msg);
+        //             reLoad();
+        //         } else {
+        //             layer.msg(r.msg);
+        //         }
+        //     }
+        // });
     }, function() {
     })
 }
 
+function downloadSingleFile(title){
+    title = title.replace(/\//g,'-')+"附件.zip";
+    console.log("reporttitle:",title)
+    var name = encodeURI(encodeURI(title));
+    //将名称传入后台
+    //window.location.href = document.getElementsByTagName('meta')['ctx'].content+"/reportfile/test";
+    var url= document.getElementsByTagName('meta')['ctx'].content+"/reportfile/downloadreportfile?filename="+ name;
+    try{
+        var elemIF = document.createElement('iframe');
+        elemIF.src = url;
+        elemIF.style.display = 'none';
+        document.body.appendChild(elemIF);
+        // 防止下载两次
+        setTimeout(function() {
+            document.body.removeChild(elemIF)
+        }, 1000);
+
+    }catch(e){
+        console.log(e);
+    }
+}
+function downloadAllFiles(){
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var selectedrows = $('#topicTable').bootstrapTable('getSelections');
+    var titles=new Array();
+    var len=selectedrows.length;
+    if(len<1){
+        layer.alert("请先勾选需要批量导出附件的周报！",{icon:1})
+        return;}
+    for(i=0;i<len;i++){
+        var title=selectedrows[i].title;
+        titles.push(title.replace(/\//g,'-')+"附件.zip");
+    }
+    var names = encodeURI(encodeURI(titles));
+    var url= document.getElementsByTagName('meta')['ctx'].content+"/reportfile/downloadbynamestopic?names="+ names
+    try{
+        var elemIF = document.createElement('iframe');
+        elemIF.src = url;
+        elemIF.style.display = 'none';
+        document.body.appendChild(elemIF);
+        // 防止下载两次
+        setTimeout(function() {
+            document.body.removeChild(elemIF)
+        }, 1000);s
+
+    }catch(e){
+        console.log(e);
+    }
+}

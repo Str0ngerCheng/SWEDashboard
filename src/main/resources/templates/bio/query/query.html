@@ -33,8 +33,8 @@
                             <!--指定 date标记-->
                             <div class='input-group date' id='datetimepicker1'>
                                 <input type='text' class="form-control" />
-                                <span class="input-group-addon btn-default btn-outline">
-                                    <span class="glyphicon glyphicon-time"></span>
+                                <span class="input-group-addon btn-default btn-outline" >
+                                    <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             <div class='input-group date' id='datetimepicker2'>
                                 <input type='text' class="form-control" />
                                 <span class="input-group-addon btn-default btn-outline">
-                                    <span class="glyphicon glyphicon-time"></span>
+                                    <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                             </div>
                         </div>
@@ -83,8 +83,9 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row" style="margin: 0">
-                    <table id="queryTable" data-mobile-responsive="true" class="text-nowrap">
+                    <table id="queryTable" data-mobile-responsive="true" style="word-break:break-all;table-layout:fixed">
                     </table>
                 </div>
             </div>
@@ -109,7 +110,7 @@
                             <div class='input-group date' id='datetimepicker_t1'>
                                 <input type='text' class="form-control" />
                                 <span class="input-group-addon btn-default btn-outline">
-                                    <span class="glyphicon glyphicon-time"></span>
+                                    <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                             </div>
                         </div>
@@ -122,7 +123,7 @@
                             <div class='input-group date' id='datetimepicker_t2'>
                                 <input type='text' class="form-control" />
                                 <span class="input-group-addon btn-default btn-outline">
-                                    <span class="glyphicon glyphicon-time"></span>
+                                    <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                             </div>
                         </div>
@@ -149,7 +150,7 @@
                     <h4>此处导出的是专题（或整个小组）的周报汇总表</h4>
                 </blockquote>
                 <div class="row" style="margin: 0">
-                    <table id="queryTable_t" data-mobile-responsive="true" class="text-nowrap">
+                    <table id="queryTable_t" data-mobile-responsive="true" style="word-break:break-all;table-layout:fixed">
                     </table>
                 </div>
             </div>
@@ -160,32 +161,44 @@
 <div th:include="include :: footer"></div>
 <script src="https://cdn.bootcss.com/moment.js/2.22.0/moment-with-locales.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script src="/js/bootstrap-datetimepicker.js" th:src=" @{/js/bootstrap-datetimepicker.js}"charset="UTF-8"></script>
+<script src="/js/bootstrap-datetimepicker.zh-CN.js" th:src=" @{/js/bootstrap-datetimepicker.zh-CN.js}" charset="UTF-8"></script>
+<script src="/js/bootstrap-datetimepicker.fr.js" th:src=" @{/js/bootstrap-datetimepicker.fr.js}" charset="UTF-8"></script>
 <script type="text/javascript" src="/js/appjs/bio/query/query.js" th:src="@{/js/appjs/bio/query/query.js}"></script>
 <script type="text/javascript">
     $('#datetimepicker1').datetimepicker({
-        format: 'YYYY-MM-DD 00:00:00',
-        locale:moment.locale('zh-cn')
+        minView:"month",
+        format: 'yyyy-mm-dd',
+        autoclose:true,
+        weekStart:1,
+        language:'zh-CN'
     }).on("click",function () {
         $('#datetimepicker1').datetimepicker("setEndDate", $("datetimepicker2").val() )
     });
      $('#datetimepicker2').datetimepicker({
-        format: 'YYYY-MM-DD 23:59:59',
-        locale:moment.locale('zh-cn')
+         minView:"month",
+         format: 'yyyy-mm-dd',
+         autoclose:true,
+         weekStart:1,
+         language:'zh-CN'
     }).on("click",function () {
         $('#datetimepicker2').datetimepicker("setStartDate", $("datetimepicker1").val() )
     });
     $('#datetimepicker_t1').datetimepicker({
-        format: 'YYYY-MM-DD 00:00:00',
-        locale:moment.locale('zh-cn')
+        minView:"month",
+        format: 'yyyy-mm-dd',
+        autoclose:true,
+        weekStart:1,
+        language:'zh-CN'
     }).on("click",function () {
         $('#datetimepicker_t1').datetimepicker("setEndDate", $("datetimepicker_t2").val() )
     });
    $('#datetimepicker_t2').datetimepicker({
-        format: 'YYYY-MM-DD 23:59:59',
-        locale:moment.locale('zh-cn')
+        minView:"month",
+        format: 'yyyy-mm-dd',
+        autoclose:true,
+        weekStart:1,
+        language:'zh-CN'
     }).on("click",function () {
         $('#datetimepicker_t2').datetimepicker("setStartDate", $("datetimepicker_t1").val() )
     });
