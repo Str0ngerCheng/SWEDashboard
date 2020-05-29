@@ -11,6 +11,7 @@
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#person" data-toggle="tab">个人</a></li>
             <li role="presentation"><a href="#topic" data-toggle="tab">专题</a></li>
+            <li role="presentation"><a href="#keyword" data-toggle="tab">关键字</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade in active" id="person" style="padding: 15px 0px 0px 0px">
@@ -23,7 +24,7 @@
                                         <button class="btn btn-default btn-outline" onclick="selectUser()" type="button">
                                             <i class="glyphicon glyphicon-th icon-th"></i>
                                         </button>
-                                    </span>
+                            </span>
                         </div>
                     </div>
 
@@ -32,7 +33,7 @@
                             <label>开始日期：</label>
                             <!--指定 date标记-->
                             <div class='input-group date' id='datetimepicker1'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="Mon"/>
                                 <span class="input-group-addon btn-default btn-outline" >
                                     <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -45,7 +46,7 @@
                             <label class="form-inline">结束日期：</label>
                             <!--指定 date标记-->
                             <div class='input-group date' id='datetimepicker2'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="Sat" />
                                 <span class="input-group-addon btn-default btn-outline">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -61,29 +62,21 @@
                     </div>
                     <div class="col-sm-3" style="padding-top: 22px">
                         <div class="columns pull-left">
+                            <a class="btn btn-default btn-outline" onclick="reLoad1()" type="button">
+                                <i aria-hidden="true" class="fa fa-refresh"></i>
+                            </a>
                             <button class="btn  btn-success" onclick="query()" type="button">
                                 <i aria-hidden="true" class="fa fa-search"></i>查询
                             </button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row" >
-                    <div class="colums pull-left">
-                        <button class="btn  btn-primary" onclick="batchExport()" type="button">
-                            <i aria-hidden="true" class="fa fa-download"></i>批量导出
-                        </button>
-                    </div>
-                    <div  id="searchKey" >
-                        <div class="columns pull-right">
-                            <button class="btn btn-success" onclick="Keyquery()">搜索</button>
-                        </div>
-                        <div class="columns pull-right col-md-2 nopadding">
-                            <input id="searchName" type="text" class="form-control" placeholder="请输入关键字">
+                            <button class="btn  btn-primary" onclick="batchExport()" type="button">
+                                <i aria-hidden="true" class="fa fa-download"></i>批量导出
+                            </button>
                         </div>
                     </div>
                 </div>
-
+                <blockquote style="background: #f2f2f2;margin: 10px 0 10px 0;border-left:5px solid #009688">
+                    <h4>开始日期和结束日期必填</h4>
+                </blockquote>
                 <div class="row" style="margin: 0">
                     <table id="queryTable" data-mobile-responsive="true" style="word-break:break-all;table-layout:fixed">
                     </table>
@@ -108,7 +101,7 @@
                             <label>开始日期：</label>
                             <!--指定 date标记-->
                             <div class='input-group date' id='datetimepicker_t1'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="Mon1"/>
                                 <span class="input-group-addon btn-default btn-outline">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -121,7 +114,7 @@
                             <label class="form-inline">结束日期：</label>
                             <!--指定 date标记-->
                             <div class='input-group date' id='datetimepicker_t2'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="Sat1"/>
                                 <span class="input-group-addon btn-default btn-outline">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -137,6 +130,9 @@
                     </div>
                     <div class="col-sm-3" style="padding-top: 22px">
                         <div class="columns pull-left">
+                            <a class="btn btn-default btn-outline" onclick="reLoad2()" type="button">
+                                <i aria-hidden="true" class="fa fa-refresh"></i>
+                            </a>
                             <button class="btn  btn-success" onclick="query1()" type="button">
                                 <i aria-hidden="true" class="fa fa-search" style="padding-right: 5px"></i>查询
                             </button>
@@ -146,11 +142,44 @@
                         </div>
                     </div>
                 </div>
-                <blockquote style="background: #d2e4e8;margin: 10px 0 10px 0">
+                <blockquote  style="background: #f2f2f2;margin: 10px 0 10px 0;border-left:5px solid #009688">
                     <h4>此处导出的是专题（或整个小组）的周报汇总表</h4>
                 </blockquote>
                 <div class="row" style="margin: 0">
                     <table id="queryTable_t" data-mobile-responsive="true" style="word-break:break-all;table-layout:fixed">
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="keyword" style="padding: 15px 0px 0px 0px">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label >关键字：</label>
+                        <div class="input-group" style="margin-bottom:15px">
+                            <input id="searchName" type="text" class="form-control" placeholder="请输入关键字">
+
+                        </div>
+                    </div>
+                    <div class="col-sm-3" style="padding-top: 22px">
+                        <div class="columns pull-left">
+                            <a class="btn btn-default btn-outline" onclick="reLoad3()" type="button">
+                                <i aria-hidden="true" class="fa fa-refresh"></i>
+                            </a>
+                            <button class="btn  btn-success" onclick="Keyquery()" type="button">
+                                <i aria-hidden="true" class="fa fa-search"></i>查询
+                            </button>
+                            <button class="btn  btn-primary" onclick="batchExport()" type="button">
+                                <i aria-hidden="true" class="fa fa-download"></i>批量导出
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <blockquote style="background: #f2f2f2;margin: 10px 0 10px 0;border-left:5px solid #009688">
+                    <h4>匹配周报内容包含关键词的周报（不支持月报）</h4>
+                </blockquote>
+                <div class="row" style="margin: 0">
+                    <table id="keyWordTable" data-mobile-responsive="true">
                     </table>
                 </div>
             </div>
@@ -160,7 +189,7 @@
 </div>
 <div th:include="include :: footer"></div>
 <script src="https://cdn.bootcss.com/moment.js/2.22.0/moment-with-locales.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/js/bootstrap-datetimepicker.min.js" th:src=" @{/js/bootstrap-datetimepicker.min.js}"></script>
 <script src="/js/bootstrap-datetimepicker.js" th:src=" @{/js/bootstrap-datetimepicker.js}"charset="UTF-8"></script>
 <script src="/js/bootstrap-datetimepicker.zh-CN.js" th:src=" @{/js/bootstrap-datetimepicker.zh-CN.js}" charset="UTF-8"></script>
 <script src="/js/bootstrap-datetimepicker.fr.js" th:src=" @{/js/bootstrap-datetimepicker.fr.js}" charset="UTF-8"></script>
@@ -202,6 +231,50 @@
     }).on("click",function () {
         $('#datetimepicker_t2').datetimepicker("setStartDate", $("datetimepicker_t1").val() )
     });
+   function getDates() {
+           //按周日为一周的最后一天计算
+           var date = new Date();
+           //今天是这周的第几天
+           var today = date.getDay();
+           //上周日距离今天的天数（负数表示）
+           var stepSunDay = -today + 1;
+           // 如果今天是周日
+           if (today == 0) {
+               stepSunDay = -7;
+           }
+           // 周一距离今天的天数（负数表示）
+           var stepMonday = 7 - today;
+           var time = date.getTime();
+           var monday = new Date(time + stepSunDay * 24 * 3600 * 1000);
+           var sunday = new Date(time + stepMonday * 24 * 3600 * 1000);
+           //本周一的日期 （起始日期）
+           var startDate = transferDate(monday); // 日期变换
+           //本周日的日期 （结束日期）
+           var endDate = transferDate(sunday); // 日期变换
+       var WeekDate=[startDate,endDate];
+       return WeekDate;
+   }
+    function transferDate(date) {
+        // 年
+        var year = date.getFullYear();
+        // 月
+        var month = date.getMonth() + 1;
+        // 日
+        var day = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (day >= 0 && day <= 9) {
+            day = "0" + day;
+        }
+        var dateString = year + '-' + month + '-' + day;
+        return dateString;
+    }
+    var WeekDate=getDates();
+    document.getElementById("Mon").value=WeekDate[0];
+    document.getElementById("Sat").value=WeekDate[1];
+    document.getElementById("Mon1").value=WeekDate[0];
+    document.getElementById("Sat1").value=WeekDate[1];
 </script>
 </body>
 </html>
