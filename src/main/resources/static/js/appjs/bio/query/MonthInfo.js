@@ -32,13 +32,13 @@ function load() {
                         {
                             "title": "周报详情表",
                             "align":"center",
-                            "colspan": 5
+                            "colspan": 6
                         }
                     ],
                     [{
                         field : 'deptName',
                         title : '专题名称',
-                        width: 80,
+                        width: 60,
                         align : 'center',
                         formatter:function(value,row,index){
                             return '<label>'+value+'</label>';
@@ -48,7 +48,16 @@ function load() {
                         {
                             field : 'authorName',
                             title : '姓名',
-                            width: 80,
+                            width: 60,
+                            align : 'center',
+                            formatter:function(value,row,index){
+                                return '<label>'+value+'</label>';
+                            }
+                        },
+                        {
+                            field : 'weekDay',
+                            title : '日期',
+                            width: 120,
                             align : 'center',
                         },
                         {
@@ -91,11 +100,12 @@ function load() {
 
                 ],
                 onPostBody:function(){
-                    mergeCells(topicReportDetailsList, "deptName",1, $("#reportsTable"))
+                    mergeCells(MonthReportDetailsList, "deptName",1, $("#reportsTable"));
+                    mergeCells(MonthReportDetailsList, "authorName",1, $("#reportsTable"));
                 }
             });
 
-    $('#reportsTable').bootstrapTable('load',topicReportDetailsList);
+    $('#reportsTable').bootstrapTable('load',MonthReportDetailsList);
 }
 
 

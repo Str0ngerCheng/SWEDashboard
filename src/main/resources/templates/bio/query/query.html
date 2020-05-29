@@ -33,9 +33,9 @@
                             <label>开始日期：</label>
                             <!--指定 date标记-->
                             <div class='input-group date' id='datetimepicker1'>
-                                <input type='text' class="form-control" />
-                                <span class="input-group-addon btn-default btn-outline">
-                                    <span class="glyphicon glyphicon-time"></span>
+                                <input type='text' class="form-control" id="Mon"/>
+                                <span class="input-group-addon btn-default btn-outline" >
+                                    <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                             </div>
                         </div>
@@ -46,9 +46,9 @@
                             <label class="form-inline">结束日期：</label>
                             <!--指定 date标记-->
                             <div class='input-group date' id='datetimepicker2'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="Sat" />
                                 <span class="input-group-addon btn-default btn-outline">
-                                    <span class="glyphicon glyphicon-time"></span>
+                                    <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                     <h4>开始日期和结束日期必填</h4>
                 </blockquote>
                 <div class="row" style="margin: 0">
-                    <table id="queryTable" data-mobile-responsive="true">
+                    <table id="queryTable" data-mobile-responsive="true" style="word-break:break-all;table-layout:fixed">
                     </table>
                 </div>
             </div>
@@ -108,9 +108,9 @@
                             <label>开始日期：</label>
                             <!--指定 date标记-->
                             <div class='input-group date' id='datetimepicker_t1'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="Mon1"/>
                                 <span class="input-group-addon btn-default btn-outline">
-                                    <span class="glyphicon glyphicon-time"></span>
+                                    <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                             </div>
                         </div>
@@ -121,9 +121,9 @@
                             <label class="form-inline">结束日期：</label>
                             <!--指定 date标记-->
                             <div class='input-group date' id='datetimepicker_t2'>
-                                <input type='text' class="form-control" />
+                                <input type='text' class="form-control" id="Sat1"/>
                                 <span class="input-group-addon btn-default btn-outline">
-                                    <span class="glyphicon glyphicon-time"></span>
+                                    <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                             </div>
                         </div>
@@ -160,7 +160,7 @@
                     <h4>此处导出的是专题（或整个小组）的周报汇总表</h4>
                 </blockquote>
                 <div class="row" style="margin: 0">
-                    <table id="queryTable_t" data-mobile-responsive="true">
+                    <table id="queryTable_t" data-mobile-responsive="true" style="word-break:break-all;table-layout:fixed">
                     </table>
                 </div>
             </div>
@@ -210,36 +210,92 @@
 </div>
 <div th:include="include :: footer"></div>
 <script src="https://cdn.bootcss.com/moment.js/2.22.0/moment-with-locales.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
-<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script src="/js/bootstrap-datetimepicker.min.js" th:src=" @{/js/bootstrap-datetimepicker.min.js}"></script>
+<script src="/js/bootstrap-datetimepicker.js" th:src=" @{/js/bootstrap-datetimepicker.js}"charset="UTF-8"></script>
+<script src="/js/bootstrap-datetimepicker.zh-CN.js" th:src=" @{/js/bootstrap-datetimepicker.zh-CN.js}" charset="UTF-8"></script>
+<script src="/js/bootstrap-datetimepicker.fr.js" th:src=" @{/js/bootstrap-datetimepicker.fr.js}" charset="UTF-8"></script>
 <script type="text/javascript" src="/js/appjs/bio/query/query.js" th:src="@{/js/appjs/bio/query/query.js}"></script>
 <script type="text/javascript">
     $('#datetimepicker1').datetimepicker({
-        format: 'YYYY-MM-DD 00:00:00',
-        locale:moment.locale('zh-cn')
+        minView:"month",
+        format: 'yyyy-mm-dd',
+        autoclose:true,
+        weekStart:1,
+        language:'zh-CN'
     }).on("click",function () {
         $('#datetimepicker1').datetimepicker("setEndDate", $("datetimepicker2").val() )
     });
      $('#datetimepicker2').datetimepicker({
-        format: 'YYYY-MM-DD 23:59:59',
-        locale:moment.locale('zh-cn')
+         minView:"month",
+         format: 'yyyy-mm-dd',
+         autoclose:true,
+         weekStart:1,
+         language:'zh-CN'
     }).on("click",function () {
         $('#datetimepicker2').datetimepicker("setStartDate", $("datetimepicker1").val() )
     });
     $('#datetimepicker_t1').datetimepicker({
-        format: 'YYYY-MM-DD 00:00:00',
-        locale:moment.locale('zh-cn')
+        minView:"month",
+        format: 'yyyy-mm-dd',
+        autoclose:true,
+        weekStart:1,
+        language:'zh-CN'
     }).on("click",function () {
         $('#datetimepicker_t1').datetimepicker("setEndDate", $("datetimepicker_t2").val() )
     });
    $('#datetimepicker_t2').datetimepicker({
-        format: 'YYYY-MM-DD 23:59:59',
-        locale:moment.locale('zh-cn')
+        minView:"month",
+        format: 'yyyy-mm-dd',
+        autoclose:true,
+        weekStart:1,
+        language:'zh-CN'
     }).on("click",function () {
         $('#datetimepicker_t2').datetimepicker("setStartDate", $("datetimepicker_t1").val() )
     });
+   function getDates() {
+           //按周日为一周的最后一天计算
+           var date = new Date();
+           //今天是这周的第几天
+           var today = date.getDay();
+           //上周日距离今天的天数（负数表示）
+           var stepSunDay = -today + 1;
+           // 如果今天是周日
+           if (today == 0) {
+               stepSunDay = -7;
+           }
+           // 周一距离今天的天数（负数表示）
+           var stepMonday = 7 - today;
+           var time = date.getTime();
+           var monday = new Date(time + stepSunDay * 24 * 3600 * 1000);
+           var sunday = new Date(time + stepMonday * 24 * 3600 * 1000);
+           //本周一的日期 （起始日期）
+           var startDate = transferDate(monday); // 日期变换
+           //本周日的日期 （结束日期）
+           var endDate = transferDate(sunday); // 日期变换
+       var WeekDate=[startDate,endDate];
+       return WeekDate;
+   }
+    function transferDate(date) {
+        // 年
+        var year = date.getFullYear();
+        // 月
+        var month = date.getMonth() + 1;
+        // 日
+        var day = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (day >= 0 && day <= 9) {
+            day = "0" + day;
+        }
+        var dateString = year + '-' + month + '-' + day;
+        return dateString;
+    }
+    var WeekDate=getDates();
+    document.getElementById("Mon").value=WeekDate[0];
+    document.getElementById("Sat").value=WeekDate[1];
+    document.getElementById("Mon1").value=WeekDate[0];
+    document.getElementById("Sat1").value=WeekDate[1];
 </script>
 </body>
 </html>

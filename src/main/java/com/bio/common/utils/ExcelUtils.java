@@ -110,7 +110,6 @@ public class ExcelUtils {
             // 赋值单元格
             cell.setCellValue(excelHeaderInfo.getTitle());
             cell.setCellStyle(style);
-            /*sheet.setColumnWidth(firstCol, sheet.getColumnWidth(firstCol) * 17 / 12);*/
             sheet.setColumnWidth(firstCol,cell.getStringCellValue().getBytes().length*2*256);
         }
     }

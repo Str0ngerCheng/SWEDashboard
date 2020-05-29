@@ -1,10 +1,8 @@
 package com.bio.sys.vo;
 
-
 import java.io.Serializable;
 
-public class TopicReportDetailsVO implements Serializable,Comparable<TopicReportDetailsVO> {
-
+public class MonthReportDetailsVO implements Serializable,Comparable<MonthReportDetailsVO> {
     private static final long serialVersionUID = 1L;
 
     private Long reportId;
@@ -28,6 +26,8 @@ public class TopicReportDetailsVO implements Serializable,Comparable<TopicReport
     private Integer deptOrder;
 
     private Integer userOrder;
+
+    private String WeekDay;
 
     public Long getReportId() {
         return reportId;
@@ -117,8 +117,16 @@ public class TopicReportDetailsVO implements Serializable,Comparable<TopicReport
         this.userOrder = userOrder;
     }
 
+    public String getWeekDay() {
+        return WeekDay;
+    }
+
+    public void setWeekDay(String weekDay) {
+        WeekDay = weekDay;
+    }
+
     @Override
-    public int compareTo(TopicReportDetailsVO o) {
+    public int compareTo(MonthReportDetailsVO o) {
         if(this.deptOrder>o.deptOrder) return 1;
         else if(this.deptOrder<o.deptOrder) return  -1;
         else {
@@ -127,5 +135,4 @@ public class TopicReportDetailsVO implements Serializable,Comparable<TopicReport
             else return  0;
         }
     }
-
 }
