@@ -72,6 +72,8 @@ public class SummaryController {
 	private MailService mailService;
 
     private static ConcurrentHashMap<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
+	private String directory = "E:\\Test\\";
+
 
 	@GetMapping()
 	@RequiresPermissions("bio:summary:summary")
@@ -263,7 +265,7 @@ public class SummaryController {
 			for(int i=0;i<summaryDOList.size();i++){
 				deptIds[i]=summaryDOList.get(i).getDeptId();
 			}
-			String directory="E:\\Test\\";
+			//String directory="E:\\Test\\";
 			String filename ="小组周报汇总";
 			submitHelper(deptIds,directory,filename);
 			try {
@@ -395,9 +397,10 @@ public class SummaryController {
     @ResponseBody
     @GetMapping("/batchExport1")
     @RequiresPermissions("bio:report:report")
-    public void BatchExport1(@RequestParam(value="ids") String ids, HttpServletResponse response) {
-		String directory="E:\\Test\\";
-		String filename ="周报汇总表.xlsx";
+    public void BatchExport1(@RequestParam(value="ids") String ids, HttpServletResponse response,String downloadfilename) {
+		//String directory="E:\\Test\\";
+		String filename =downloadfilename+".xlsx";
+		String downloadzipname=downloadfilename+".zip";
 		List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
         String[] myids=ids.split(",");
@@ -422,7 +425,7 @@ public class SummaryController {
 		zipnames.add(filename);
 		String[] names=new String[zipnames.size()];
 		zipnames.toArray(names);
-		ZipUtils.downloadAllFilebyNames(response,directory,names);
+		ZipUtils.downloadAllFilebyNames(response,directory,names,downloadzipname);
 		//删除生成的汇总表
 		ZipUtils.deleteFile(directory+filename);
     }

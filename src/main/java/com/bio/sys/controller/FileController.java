@@ -208,7 +208,7 @@ public class FileController {
     @GetMapping(value = "/ifFileExist" )
     @RequiresAuthentication
     @ResponseBody
-    public Result<String> isFileExist(String[] filenames){
+    public Result<String> ifFileExist(String[] filenames){
         //String filenamedecode=java.net.URLDecoder.decode(filename);
 
         for(String filename:filenames){

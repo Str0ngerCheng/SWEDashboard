@@ -59,6 +59,7 @@ function load() {
                 // //发送到服务器的数据编码类型
                 pageSize : 10, // 如果设置了分页，每页数据条数
                 pageNumber : 1, // 如果设置了分布，首页页码
+                pageList:[10,20,50,100],
                 //search : true, // 是否显示搜索框
                 showColumns : false, // 是否显示内容下拉框（选择显示的列）
                 sidePagination : "server", // 设置在哪里进行分页，可选值为"client" 或者 "server"
@@ -145,9 +146,10 @@ function load() {
                 // //发送到服务器的数据编码类型
                 pageSize : 10, // 如果设置了分页，每页数据条数
                 pageNumber : 1, // 如果设置了分布，首页页码
+                pageList:[10,20,50,100],
                 //search : true, // 是否显示搜索框
                 showColumns : false, // 是否显示内容下拉框（选择显示的列）
-                sidePagination : "client", // 设置在哪里进行分页，可选值为"client" 或者 "server"
+                sidePagination : "server", // 设置在哪里进行分页，可选值为"client" 或者 "server"
                 queryParamsType : "",
                 // //设置为limit则会发送符合RESTFull格式的参数
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -160,6 +162,28 @@ function load() {
                 //排序方式
                 sortOrder: "asc",//排序
                 sortName: 'orderNum',
+                queryParams : function(params) {
+                    return {
+                        //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
+                        pageNumber : params.pageNumber,
+                        pageSize : params.pageSize
+                        // name:$('#searchName').val(),
+                        // username:$('#searchName').val()
+                    };
+                },
+                // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
+                // queryParamsType = 'limit' ,返回参数必须包含
+                // limit, offset, search, sort, order 否则, 需要包含:
+                // pageSize, pageNumber, searchText, sortName,
+                // sortOrder.
+                // 返回false将会终止请求
+                responseHandler : function(res){
+                    console.log(res);
+                    return {
+                        "total": res.data.total,//总数
+                        "rows": res.data.records   //数据
+                    };
+                },
                 columns : [
                     {
                         checkbox : true,
@@ -204,6 +228,7 @@ function load() {
 
     $('#keyWordTable')
         .bootstrapTable(
+
             {
                 iconSize : 'outline',
                 toolbar : '#exampleToolbar',
@@ -255,6 +280,7 @@ function load() {
                         width: 150
                     }]
             });
+
     $('#keyWordTable').on('uncheck.bs.table check.bs.table check-all.bs.table uncheck-all.bs.table', function (e, rows) {
         var datas=$.isArray(rows)?rows:[rows];
         examine(e.type,datas);
@@ -316,12 +342,13 @@ function query1() {
         type: "get",
         url: prefix + "/queryDepReport",
         data: {
-            pageNumber :  $("#queryTable_t").bootstrapTable("getOptions").pageNumber,
+            pageNumber : $("#queryTable_t").bootstrapTable("getOptions").pageNumber,
             pageSize : $("#queryTable_t").bootstrapTable("getOptions").pageSize,
             topicName: $('#topicName').val(),
             WeekMonth1: $('#WeekMonth1 option:selected').val(),
             datetimepicker_t1: $('#datetimepicker_t1').find("input").val(),
-            datetimepicker_t2: $('#datetimepicker_t2').find("input").val()},
+            datetimepicker_t2: $('#datetimepicker_t2').find("input").val()
+        },
         success : function(res) {
             $("#queryTable_t").bootstrapTable('load',{
                 "total": res.data.total,//总数
@@ -347,6 +374,8 @@ function Keyquery() {
         }
     });
 }
+
+
 function getReportContent(id) {
     layer.open({
         type: 2,
