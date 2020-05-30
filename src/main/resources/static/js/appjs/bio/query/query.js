@@ -455,6 +455,23 @@ function examine(type, datas) {
     }
 }
 
+Date.prototype.Format = function (fmt) { // 事件处理函数
+    var o = {
+        "M+": this.getMonth() + 1, // 月份
+        "d+": this.getDate(), // 日
+        "h+": this.getHours(), // 小时
+        "m+": this.getMinutes(), // 分
+        "s+": this.getSeconds(), // 秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+        "S": this.getMilliseconds() // 毫秒
+    };
+    if (/(y+)/.test(fmt))
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
+
 function batchExport(exportmode) {
     //绑定选中事件、取消事件、全部选中、全部取消
     if (overAllIds_per.length == 0) {
@@ -466,19 +483,67 @@ function batchExport(exportmode) {
             // 按钮
         }, function(index) {
          /*   window.location.href = prefix + '/batchExport?ids=' + overAllIds_per;*/
-            var url = prefix + '/batchExport?ids=' + overAllIds_per+'&mode='+exportmode;
-            try{
-                var elemIF = document.createElement('iframe');
-                elemIF.src = url;
-                elemIF.style.display = 'none';
-                document.body.appendChild(elemIF);
-                // 防止下载两次
-                // setTimeout(function() {
-                //     document.body.removeChild(elemIF)
-                // }, 10000);
-                layer.close(index);
-            }catch(e){
-                console.log(e);
+            // var rows=$('#queryTable').bootstrapTable('getSelections');
+            // var titlesplit=rows[0].title.split('-');
+            // var downloadfilename=titlesplit[0].replace(/\//g,'-') +'-'+titlesplit[1].replace(/\//g,'-')  +'-'+titlesplit[2] +'-'+"周报汇总";
+            layer.close(index);
+            var loadIndex=layer.load(1,{
+                shade: [0.2,'#fff'] //0.1透明度的白色背景
+            });
+            var time = new Date().Format("yyyy-MM-dd");
+            var downloadfilename="周报汇总-"+time;
+            console.log("downloadfilename",downloadfilename);
+            if(exportmode==3) {
+                //仅导出附件的时候需要判断附件是否存在
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: prefix + "/ifMutilFileExist?reportids="+overAllIds_per,
+                    async: false,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    error: function (request) {
+                        layer.close(loadIndex);
+                        layer.alert("Connection error");
+                    },
+                    success: function (data) {
+                        if (data.code == 0) {
+                            var url = prefix + '/batchExport?ids=' + overAllIds_per+'&mode='+exportmode+'&downloadfilename='+downloadfilename;
+                            try{
+                                var elemIF = document.createElement('iframe');
+                                elemIF.src = url;
+                                elemIF.style.display = 'none';
+                                document.body.appendChild(elemIF);
+                                // 防止下载两次
+                                // setTimeout(function() {
+                                //     document.body.removeChild(elemIF)
+                                // }, 10000);
+                                layer.close(loadIndex);
+                            }catch(e){
+                                console.log(e);
+                            }
+                        } else {
+                            layer.close(loadIndex);
+                            layer.alert(data.msg + "：" + data.data);
+                        }
+                    }
+                });
+            }
+            else {
+                var url = prefix + '/batchExport?ids=' + overAllIds_per+'&mode='+exportmode+'&downloadfilename='+downloadfilename;
+                try{
+                    var elemIF = document.createElement('iframe');
+                    elemIF.src = url;
+                    elemIF.style.display = 'none';
+                    document.body.appendChild(elemIF);
+                    // 防止下载两次
+                    // setTimeout(function() {
+                    //     document.body.removeChild(elemIF)
+                    // }, 10000);
+                    layer.close(loadIndex);
+                }catch(e){
+                    console.log(e);
+                }
             }
         }, function() {
         })
@@ -511,8 +576,52 @@ function batchExport1(exportmode) {
                 btn: ['确定', '取消']
                 // 按钮
             }, function (index) {
+                layer.close(index);
+                var loadIndex=layer.load(1,{
+                    shade: [0.2,'#fff'] //0.1透明度的白色背景
+                });
+                var time = new Date().Format("yyyy-MM-dd");
+                var downloadfilename="周报汇总-"+time;
+                console.log("downloadfilename",downloadfilename);
+                if(exportmode==3){
+                    //仅导出附件的时候需要判断附件是否存在
+                    $.ajax({
+                        cache : false,
+                        type : "GET",
+                        url : prefix + "/ifTopicFileExist?deptids"+ids,
+                        async : false,
+                        dataType: 'json',
+                        contentType : 'application/json',
+                        error : function(request) {
+                            layer.close(loadIndex);
+                            layer.alert("Connection error");
+                        },
+                        success : function(data) {
+                            if (data.code == 0) {
+                                var url = prefix + '/batchExport1?ids=' + ids+'&mode='+exportmode+'&downloadfilename='+downloadfilename;
+                                try{
+                                    var elemIF = document.createElement('iframe');
+                                    elemIF.src = url;
+                                    elemIF.style.display = 'none';
+                                    document.body.appendChild(elemIF);
+                                    // // 防止下载两次
+                                    // setTimeout(function() {
+                                    //     document.body.removeChild(elemIF)
+                                    // }, 10000);
+                                    layer.close(loadIndex);
+                                }catch(e){
+                                    console.log(e);
+                                }
+                            } else {
+                                layer.close(loadIndex);
+                                layer.alert(data.msg+"："+data.data);
 
-                var url = prefix + '/batchExport1?ids=' + ids+'&mode='+exportmode;
+                            }
+                        }
+                    });
+                }
+                else{
+                var url = prefix + '/batchExport1?ids=' + ids+'&mode='+exportmode+'&downloadfilename='+downloadfilename;
                 try{
                     var elemIF = document.createElement('iframe');
                     elemIF.src = url;
@@ -522,9 +631,10 @@ function batchExport1(exportmode) {
                     // setTimeout(function() {
                     //     document.body.removeChild(elemIF)
                     // }, 10000);
-                    layer.close(index);
+                    layer.close(loadIndex);
                 }catch(e){
                     console.log(e);
+                }
                 }
             }, function () {
             });

@@ -250,41 +250,41 @@ function  resetUserOrder(loadIndex) {
     });
 
 }
-
-function btnExcelSubject() {
-    var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
-    if (rows.length == 0) {
-        layer.msg("请选择要删除的数据");
-        return;
-    }
-    layer.confirm("确认要删除选中的'" + rows.length + "'条数据吗?", {
-        btn : [ '确定', '取消' ]
-        // 按钮
-    }, function() {
-        var ids = new Array();
-        // 遍历所有选择的行数据，取每条数据对应的ID
-        $.each(rows, function(i, row) {
-            ids[i] = row['id'];
-        });
-        $.ajax({
-            type : 'POST',
-            data : {
-                "ids" : ids
-            },
-            url : prefix + '/batchRemove',
-            success : function(r) {
-                if (r.code == 0) {
-                    layer.msg(r.msg);
-                    reLoad();
-                } else {
-                    layer.msg(r.msg);
-                }
-            }
-        });
-    }, function() {
-
-    });
-}
+//
+// function btnExcelSubject() {
+//     var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+//     if (rows.length == 0) {
+//         layer.msg("请选择要删除的数据");
+//         return;
+//     }
+//     layer.confirm("确认要删除选中的'" + rows.length + "'条数据吗?", {
+//         btn : [ '确定', '取消' ]
+//         // 按钮
+//     }, function() {
+//         var ids = new Array();
+//         // 遍历所有选择的行数据，取每条数据对应的ID
+//         $.each(rows, function(i, row) {
+//             ids[i] = row['id'];
+//         });
+//         $.ajax({
+//             type : 'POST',
+//             data : {
+//                 "ids" : ids
+//             },
+//             url : prefix + '/batchRemove',
+//             success : function(r) {
+//                 if (r.code == 0) {
+//                     layer.msg(r.msg);
+//                     reLoad();
+//                 } else {
+//                     layer.msg(r.msg);
+//                 }
+//             }
+//         });
+//     }, function() {
+//
+//     });
+// }
 
 function examine(type, datas) {
     if(type.indexOf('uncheck')==-1){
@@ -298,32 +298,83 @@ function examine(type, datas) {
     }
 }
 
-function batchExport() {
-    //绑定选中事件、取消事件、全部选中、全部取消
-    if (overAllIds_per.length == 0) {
+function batchExport(exportmode) {
+    var ids = new Array();
+    ids=overAllIds_per;
+
+    if (ids.length == 0) {
         layer.msg("请选择要导出的数据");
         return;
     }else{
-        layer.confirm("确认要导出选中的'" + overAllIds_per.length + "'条数据吗?", {
+        layer.confirm("确认要导出选中的'" + ids.length + "'条数据吗?", {
             btn : [ '确定', '取消' ]
             // 按钮
         }, function(index) {
             //window.location.herf=prefix_query + '/batchExport?ids=' + overAllIds_per;
             //window.event.returnValue = false;
-            var url=prefix_query + '/batchExport?ids=' + overAllIds_per+'&mode=1';
-            console.log(url);
-            try{
-                var elemIF = document.createElement('iframe');
-                elemIF.src = url;
-                elemIF.style.display = 'none';
-                document.body.appendChild(elemIF);
-                // 防止下载两次
-                // setTimeout(function() {
-                //     document.body.removeChild(elemIF)
-                // }, 5000);
-                layer.close(index);
-            }catch(e){
-                console.log(e);
+            layer.close(index);
+            var loadIndex=layer.load(1,{
+                shade: [0.2,'#fff'] //0.1透明度的白色背景
+            });
+            var rows=$('#topicTable').bootstrapTable('getSelections');
+            var titlesplit=rows[0].title.split('-');
+            var downloadfilename=titlesplit[0].replace(/\//g,'-') +'-'+titlesplit[1].replace(/\//g,'-')  +'-'+titlesplit[2] +'-'+"周报汇总";
+            console.log("downloadfilename",titlesplit);
+            if(exportmode==3) {
+                //仅导出附件的时候需要判断附件是否存在
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: prefix_query + "/ifMutilFileExist?reportids="+ids,
+                    async: false,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    error: function (request) {
+                        layer.close(loadIndex);
+                        layer.alert("Connection error");
+                    },
+                    success: function (data) {
+                        if (data.code == 0) {
+                            var url = prefix_query + '/batchExport?ids=' + ids + '&mode='+exportmode+'&downloadfilename='+downloadfilename;
+                            console.log("url:",url);
+                            try {
+                                var elemIF = document.createElement('iframe');
+                                elemIF.src = url;
+                                elemIF.style.display = 'none';
+                                document.body.appendChild(elemIF);
+                                // 防止下载两次
+                                // setTimeout(function() {
+                                //     document.body.removeChild(elemIF)
+                                // }, 5000);
+                                layer.close(loadIndex);
+                                //layer.close(index);
+                            } catch (e) {
+                                console.log(e);
+                            }
+                        } else {
+                            layer.close(loadIndex);
+                            layer.alert(data.msg + "：" + data.data);
+
+                        }
+                    }
+                });
+            }
+            else {
+                var url = prefix_query + '/batchExport?ids=' + ids+'&mode='+exportmode+'&downloadfilename='+downloadfilename;
+                console.log("url:",url);
+                try{
+                    var elemIF = document.createElement('iframe');
+                    elemIF.src = url;
+                    elemIF.style.display = 'none';
+                    document.body.appendChild(elemIF);
+                    // // 防止下载两次
+                    // setTimeout(function() {
+                    //     document.body.removeChild(elemIF)
+                    // }, 10000);
+                    layer.close(loadIndex);
+                }catch(e){
+                    console.log(e);
+                }
             }
             // $.ajax({
             //     url:prefix_query + '/batchExport?ids=' + overAllIds_per,
@@ -341,41 +392,41 @@ function batchExport() {
     }
 
 }
-
-function Myexport(id) {
-    layer.confirm("确认要导出选中的1 条数据吗?", {
-        btn : [ '确定', '取消' ]
-        // 按钮
-    }, function() {
-        window.location.herf=prefix_query + '/batchExport?ids=' + overAllIds_per;
-        window.event.returnValue = false;
-        // try{
-        //     var elemIF = document.createElement('iframe');
-        //     elemIF.src = url;
-        //     elemIF.style.display = 'none';
-        //     document.body.appendChild(elemIF);
-        //     // 防止下载两次
-        //     setTimeout(function() {
-        //         document.body.removeChild(elemIF)
-        //     }, 1000);
-        //
-        // }catch(e){
-        //     console.log(e);
-        // }
-        // $.ajax({
-        //     url:prefix_query + '/batchExport?ids=' + overAllIds_per,
-        //     success : function(r) {
-        //         if (r.code == 0) {
-        //             layer.msg(r.msg);
-        //             reLoad();
-        //         } else {
-        //             layer.msg(r.msg);
-        //         }
-        //     }
-        // });
-    }, function() {
-    })
-}
+//
+// function Myexport(id) {
+//     layer.confirm("确认要导出选中的1 条数据吗?", {
+//         btn : [ '确定', '取消' ]
+//         // 按钮
+//     }, function() {
+//         window.location.herf=prefix_query + '/batchExport?ids=' + overAllIds_per;
+//         window.event.returnValue = false;
+//         // try{
+//         //     var elemIF = document.createElement('iframe');
+//         //     elemIF.src = url;
+//         //     elemIF.style.display = 'none';
+//         //     document.body.appendChild(elemIF);
+//         //     // 防止下载两次
+//         //     setTimeout(function() {
+//         //         document.body.removeChild(elemIF)
+//         //     }, 1000);
+//         //
+//         // }catch(e){
+//         //     console.log(e);
+//         // }
+//         // $.ajax({
+//         //     url:prefix_query + '/batchExport?ids=' + overAllIds_per,
+//         //     success : function(r) {
+//         //         if (r.code == 0) {
+//         //             layer.msg(r.msg);
+//         //             reLoad();
+//         //         } else {
+//         //             layer.msg(r.msg);
+//         //         }
+//         //     }
+//         // });
+//     }, function() {
+//     })
+// }
 
 function downloadSingleFile(title){
     title = title.replace(/\//g,'-')+"附件.zip";

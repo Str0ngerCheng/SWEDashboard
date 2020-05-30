@@ -1,5 +1,6 @@
 package com.bio.sys.controller;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import com.bio.sys.service.*;
 import com.bio.sys.vo.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -397,9 +399,9 @@ public class SummaryController {
     @ResponseBody
     @GetMapping("/batchExport1")
     @RequiresPermissions("bio:report:report")
-    public void BatchExport1(@RequestParam(value="ids") String ids, HttpServletResponse response,String downloadfilename) {
+    public void BatchExport1(@RequestParam(value="ids") String ids,@RequestParam(value="mode") Integer mode,@RequestParam(value="downloadfilename")String downloadfilename, HttpServletResponse response) {
 		//String directory="E:\\Test\\";
-		String filename =downloadfilename+".xlsx";
+		String filename =downloadfilename+"表.xlsx";
 		String downloadzipname=downloadfilename+".zip";
 		List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
@@ -419,18 +421,70 @@ public class SummaryController {
                 }
             }
         }
-        ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
-		excelUtils.SaveExcelFile(directory+filename,excelUtils.getWorkbook());
-		//打包下载文件
-		zipnames.add(filename);
-		String[] names=new String[zipnames.size()];
-		zipnames.toArray(names);
-		ZipUtils.downloadAllFilebyNames(response,directory,names,downloadzipname);
-		//删除生成的汇总表
-		ZipUtils.deleteFile(directory+filename);
+		if(mode==1){
+			ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
+			excelUtils.SaveExcelFile(directory+filename, excelUtils.getWorkbook());
+			//打包下载文件
+			zipnames.add(filename);
+			String[] names=new String[zipnames.size()];
+			zipnames.toArray(names);
+			ZipUtils.downloadAllFilebyNames(response,directory,names,downloadzipname);
+			//删除生成的汇总表
+			ZipUtils.deleteFile(directory+filename);
+			return;
+		}
+		if(mode==2){
+			ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
+			excelUtils.sendHttpResponse(response,filename, excelUtils.getWorkbook());
+			return;
+		}
+		if(mode==3){
+			String[] names=new String[zipnames.size()];
+			zipnames.toArray(names);
+			downloadzipname=downloadfilename+"-附件.zip";
+			ZipUtils.downloadAllFilebyNames(response,directory,names,downloadzipname);
+			return;
+		}
+//        ExcelUtils excelUtils = new ExcelUtils(topics, getHeaderInfo(), getFormatInfo());
+//		excelUtils.SaveExcelFile(directory+filename,excelUtils.getWorkbook());
+//		//打包下载文件
+//		zipnames.add(filename);
+//		String[] names=new String[zipnames.size()];
+//		zipnames.toArray(names);
+//		ZipUtils.downloadAllFilebyNames(response,directory,names,downloadzipname);
+//		//删除生成的汇总表
+//		ZipUtils.deleteFile(directory+filename);
     }
 
-
+	@GetMapping(value = "/ifTopicFileExist" )
+	@RequiresAuthentication
+	@ResponseBody
+	public Result<String> ifFileExistTopic(@RequestParam(value="deptids") String deptids){
+		//String filenamedecode=java.net.URLDecoder.decode(filename);
+		List<String> zipnames=new ArrayList<>();//需要压缩的文件名
+		String[] myids=deptids.split(",");
+		List<String> mylist=Arrays.asList(myids);
+		for(String list:mylist){
+			if(excelreport.containsKey(Long.parseLong(list))){
+				List<ReportDO> mSubmitReportList=excelreport.get(Long.parseLong(list));
+				for(ReportDO reportDO:mSubmitReportList){
+					//需要导出的附件名称
+					String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
+					zipnames.add(fujianname);
+				}
+			}
+		}
+		String[] filenames=new String[zipnames.size()];
+		zipnames.toArray(filenames);
+		for(String filename:filenames){
+			File file = new File(directory+filename);
+			// 如果文件路径所对应的文件存在,则返回ok
+			if (file.exists()){
+				return Result.ok();
+			}
+		}
+		return Result.fail("没有可下载的附件！");
+	}
     // 获取表头信息
     private List<ExcelHeaderInfo> getHeaderInfo() {
         ExcelHeaderInfo one= new ExcelHeaderInfo(0, 0, 0, 0, "专题");

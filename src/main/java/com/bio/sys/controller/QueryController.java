@@ -14,6 +14,7 @@ import com.bio.sys.vo.MonthReportDetailsVO;
 import com.bio.sys.vo.SummaryVO;
 import com.bio.sys.vo.TopicReportDetailsVO;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -273,10 +274,10 @@ public class QueryController {
     @GetMapping("/batchExport")
     @RequiresAuthentication
     //根据reportid批量导出，mode={1：汇总表+附件，2：汇总表，3：仅导出附件}
-    public void BatchExport(@RequestParam(value="ids") String ids,@RequestParam(value="mode") Integer mode, HttpServletResponse response,String downloadfilename) {
+    public void BatchExport(@RequestParam(value="ids") String ids,@RequestParam(value="mode") Integer mode,@RequestParam(value="downloadfilename")String downloadfilename, HttpServletResponse response) {
         //String directory="E:\\Test\\";
         //String filename ="周报汇总表.xlsx";
-        String filename =downloadfilename+".xlsx";
+        String filename =downloadfilename+"表.xlsx";
         String downloadzipname=downloadfilename+".zip";
         List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
@@ -313,6 +314,7 @@ public class QueryController {
         if(mode==3){
             String[] names=new String[zipnames.size()];
             zipnames.toArray(names);
+            downloadzipname=downloadfilename+"-附件.zip";
             ZipUtils.downloadAllFilebyNames(response,directory,names,downloadzipname);
             return;
         }
@@ -321,10 +323,10 @@ public class QueryController {
     @ResponseBody
     @GetMapping("/batchExport1")
     @RequiresAuthentication
-    public void BatchExport1(@RequestParam(value="ids") String ids, @RequestParam(value="mode") Integer mode, HttpServletResponse response,String downloadfilename) {
+    public void BatchExport1(@RequestParam(value="ids") String ids,@RequestParam(value="mode") Integer mode,@RequestParam(value="downloadfilename")String downloadfilename, HttpServletResponse response) {
         //String directory="E:\\Test\\";
         //String filename ="周报汇总表.xlsx";
-        String filename =downloadfilename+".xlsx";
+        String filename =downloadfilename+"表.xlsx";
         String downloadzipname=downloadfilename+".zip";
         List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
@@ -365,6 +367,7 @@ public class QueryController {
         if(mode==3){
             String[] names=new String[zipnames.size()];
             zipnames.toArray(names);
+            downloadzipname=downloadfilename+"-附件.zip";
             ZipUtils.downloadAllFilebyNames(response,directory,names,downloadzipname);
             return;
         }
@@ -382,13 +385,13 @@ public class QueryController {
                 return Result.ok();
             }
 //        }
-        return Result.fail("文件不存在！");
+        return Result.fail("没有可下载的附件！");
     }
 
     @GetMapping(value = "/ifMutilFileExist" )
     @RequiresAuthentication
     @ResponseBody
-    public Result<String> ifMutilFileExist(@RequestParam(value="deptids") String reportids){
+    public Result<String> ifMutilFileExist(@RequestParam(value="reportids") String reportids){
         List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         String[] myids=reportids.split(",");
         List<String> mylist=Arrays.asList(myids);
@@ -407,7 +410,7 @@ public class QueryController {
                 return Result.ok();
             }
         }
-        return Result.fail("文件不存在！");
+        return Result.fail("没有可下载的附件！");
     }
 
     @GetMapping(value = "/ifTopicFileExist" )
@@ -437,7 +440,7 @@ public class QueryController {
                 return Result.ok();
             }
         }
-        return Result.fail("文件不存在！");
+        return Result.fail("没有可下载的附件！");
     }
 
     // 获取表头信息
