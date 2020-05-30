@@ -14,7 +14,6 @@ import com.bio.sys.vo.MonthReportDetailsVO;
 import com.bio.sys.vo.SummaryVO;
 import com.bio.sys.vo.TopicReportDetailsVO;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
