@@ -261,7 +261,7 @@ function batchExport1(exportmode) {
 					cache: false,
 					type: "GET",
 					url: prefix + '/bio/summary/ifTopicFileExist?deptids='+ids,
-					async: false,
+					//async: false,
 					dataType: 'json',
 					contentType: 'application/json',
 					error: function (request) {

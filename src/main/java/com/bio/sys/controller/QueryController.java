@@ -277,7 +277,7 @@ public class QueryController {
     public void BatchExport(@RequestParam(value="ids") String ids,@RequestParam(value="mode") Integer mode,@RequestParam(value="downloadfilename")String downloadfilename, HttpServletResponse response) {
         //String directory="E:\\Test\\";
         //String filename ="周报汇总表.xlsx";
-        String filename =downloadfilename+"表.xlsx";
+        String filename =downloadfilename+"-汇总表.xlsx";
         String downloadzipname=downloadfilename+".zip";
         List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
@@ -326,7 +326,7 @@ public class QueryController {
     public void BatchExport1(@RequestParam(value="ids") String ids,@RequestParam(value="mode") Integer mode,@RequestParam(value="downloadfilename")String downloadfilename, HttpServletResponse response) {
         //String directory="E:\\Test\\";
         //String filename ="周报汇总表.xlsx";
-        String filename =downloadfilename+"表.xlsx";
+        String filename =downloadfilename+"-汇总表.xlsx";
         String downloadzipname=downloadfilename+".zip";
         List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();

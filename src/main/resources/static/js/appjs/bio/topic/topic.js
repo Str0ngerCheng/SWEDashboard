@@ -326,7 +326,7 @@ function batchExport(exportmode) {
                     cache: false,
                     type: "GET",
                     url: prefix_query + "/ifMutilFileExist?reportids="+ids,
-                    async: false,
+                    //async: false,
                     dataType: 'json',
                     contentType: 'application/json',
                     error: function (request) {

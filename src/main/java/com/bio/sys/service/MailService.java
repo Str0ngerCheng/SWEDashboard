@@ -2,10 +2,12 @@ package com.bio.sys.service;
 
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -123,7 +125,9 @@ public class MailService {
             //文件路径
             FileSystemResource file = new FileSystemResource(new File(filepath));
             //String attachmentfilename=new String( filename.getBytes("UTF-8"), "ISO8859-1" );
-            mimeMessageHelper.addAttachment(filename, file);
+            //filename = URLEncoder.encode(filename,"UTF-8");
+            //System.getProperties().setProperty("mail.mime.splitlongparameters", "false");
+            mimeMessageHelper.addAttachment(MimeUtility.encodeText(filename), file);
             javaMailSender.send(mimeMailMessage);
         } catch (Exception e) {
             e.printStackTrace();
@@ -173,7 +177,6 @@ public class MailService {
             Template template = configuration.getTemplate(templateName);
             String text = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
             mimeMessageHelper.setText(text, true);
-
             javaMailSender.send(mimeMailMessage);
         } catch (Exception e) {
         	e.printStackTrace();

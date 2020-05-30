@@ -2,11 +2,13 @@ var prefix = document.getElementsByTagName('meta')['ctx'].content + "/bio/query"
 var prefix_report = document.getElementsByTagName('meta')['ctx'].content + "/bio/report"
 var overAllIds_dep=new Array();
 var overAllIds_per=new Array();
+var current_Date="";
 $(function() {
      load();
 });
 
 function load() {
+    current_Date=new Date().toLocaleDateString();
     var picker1 =$('#datetimepicker1').datetimepicker({
         format: 'YYYY-MM-DD',
         locale: moment.locale('zh-cn'),
@@ -455,23 +457,6 @@ function examine(type, datas) {
     }
 }
 
-Date.prototype.Format = function (fmt) { // 事件处理函数
-    var o = {
-        "M+": this.getMonth() + 1, // 月份
-        "d+": this.getDate(), // 日
-        "h+": this.getHours(), // 小时
-        "m+": this.getMinutes(), // 分
-        "s+": this.getSeconds(), // 秒
-        "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
-        "S": this.getMilliseconds() // 毫秒
-    };
-    if (/(y+)/.test(fmt))
-        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    for (var k in o)
-        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-    return fmt;
-}
-
 function batchExport(exportmode) {
     //绑定选中事件、取消事件、全部选中、全部取消
     if (overAllIds_per.length == 0) {
@@ -490,8 +475,8 @@ function batchExport(exportmode) {
             var loadIndex=layer.load(1,{
                 shade: [0.2,'#fff'] //0.1透明度的白色背景
             });
-            var time = new Date().Format("yyyy-MM-dd");
-            var downloadfilename="周报汇总-"+time;
+            var time = current_Date.replace(/\//g,'-');
+            var downloadfilename=time+"-周报汇总";
             console.log("downloadfilename",downloadfilename);
             if(exportmode==3) {
                 //仅导出附件的时候需要判断附件是否存在
@@ -499,7 +484,7 @@ function batchExport(exportmode) {
                     cache: false,
                     type: "GET",
                     url: prefix + "/ifMutilFileExist?reportids="+overAllIds_per,
-                    async: false,
+                    //async: false,
                     dataType: 'json',
                     contentType: 'application/json',
                     error: function (request) {
@@ -567,62 +552,62 @@ function examine1(type, datas) {
 function batchExport1(exportmode) {
     //绑定选中事件、取消事件、全部选中、全部取消
     var ids = new Array();
-    ids=overAllIds_dep;
-        if (ids.length == 0) {
-            layer.msg("请选择要导出的数据");
-            return;
-        }else{
-            layer.confirm("确认要导出选中的'" + ids.length + "'条数据吗?", {
-                btn: ['确定', '取消']
-                // 按钮
-            }, function (index) {
-                layer.close(index);
-                var loadIndex=layer.load(1,{
-                    shade: [0.2,'#fff'] //0.1透明度的白色背景
-                });
-                var time = new Date().Format("yyyy-MM-dd");
-                var downloadfilename="周报汇总-"+time;
-                console.log("downloadfilename",downloadfilename);
-                if(exportmode==3){
-                    //仅导出附件的时候需要判断附件是否存在
-                    $.ajax({
-                        cache : false,
-                        type : "GET",
-                        url : prefix + "/ifTopicFileExist?deptids"+ids,
-                        async : false,
-                        dataType: 'json',
-                        contentType : 'application/json',
-                        error : function(request) {
-                            layer.close(loadIndex);
-                            layer.alert("Connection error");
-                        },
-                        success : function(data) {
-                            if (data.code == 0) {
-                                var url = prefix + '/batchExport1?ids=' + ids+'&mode='+exportmode+'&downloadfilename='+downloadfilename;
-                                try{
-                                    var elemIF = document.createElement('iframe');
-                                    elemIF.src = url;
-                                    elemIF.style.display = 'none';
-                                    document.body.appendChild(elemIF);
-                                    // // 防止下载两次
-                                    // setTimeout(function() {
-                                    //     document.body.removeChild(elemIF)
-                                    // }, 10000);
-                                    layer.close(loadIndex);
-                                }catch(e){
-                                    console.log(e);
-                                }
-                            } else {
+    ids = overAllIds_dep;
+    if (ids.length == 0) {
+        layer.msg("请选择要导出的数据");
+        return;
+    } else {
+        layer.confirm("确认要导出选中的'" + ids.length + "'条数据吗?", {
+            btn: ['确定', '取消']
+            // 按钮
+        }, function (index) {
+            layer.close(index);
+            var loadIndex = layer.load(1, {
+                shade: [0.2, '#fff'] //0.1透明度的白色背景
+            });
+            //var time = new Date().Format("yyyy-MM-dd");
+            var time = current_Date.replace(/\//g,'-');
+            var downloadfilename = time + "-周报汇总";
+            console.log("downloadfilename", downloadfilename);
+            if (exportmode == 3) {
+                //仅导出附件的时候需要判断附件是否存在
+                $.ajax({
+                    cache: false,
+                    type: "GET",
+                    url: prefix + "/ifTopicFileExist?deptids=" + ids,
+                    //async : false,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    error: function (request) {
+                        layer.close(loadIndex);
+                        layer.alert("Connection error");
+                    },
+                    success: function (data) {
+                        if (data.code == 0) {
+                            var url = prefix + '/batchExport1?ids=' + ids + '&mode=' + exportmode + '&downloadfilename=' + downloadfilename;
+                            try {
+                                var elemIF = document.createElement('iframe');
+                                elemIF.src = url;
+                                elemIF.style.display = 'none';
+                                document.body.appendChild(elemIF);
+                                // // 防止下载两次
+                                // setTimeout(function() {
+                                //     document.body.removeChild(elemIF)
+                                // }, 10000);
                                 layer.close(loadIndex);
-                                layer.alert(data.msg+"："+data.data);
-
+                            } catch (e) {
+                                console.log(e);
                             }
+                        } else {
+                            layer.close(loadIndex);
+                            layer.alert(data.msg + "：" + data.data);
+
                         }
-                    });
-                }
-                else{
-                var url = prefix + '/batchExport1?ids=' + ids+'&mode='+exportmode+'&downloadfilename='+downloadfilename;
-                try{
+                    }
+                });
+            } else {
+                var url = prefix + '/batchExport1?ids=' + ids + '&mode=' + exportmode + '&downloadfilename=' + downloadfilename;
+                try {
                     var elemIF = document.createElement('iframe');
                     elemIF.src = url;
                     elemIF.style.display = 'none';
@@ -632,12 +617,28 @@ function batchExport1(exportmode) {
                     //     document.body.removeChild(elemIF)
                     // }, 10000);
                     layer.close(loadIndex);
-                }catch(e){
+                } catch (e) {
                     console.log(e);
                 }
-                }
-            }, function () {
-            });
-        }
+            }
+        }, function () {
+        });
+    }
 }
 
+//Date.prototype.Format = function (fmt) { // 事件处理函数
+//     var o = {
+//         "M+": this.getMonth() + 1, // 月份
+//         "d+": this.getDate(), // 日
+//         "h+": this.getHours(), // 小时
+//         "m+": this.getMinutes(), // 分
+//         "s+": this.getSeconds(), // 秒
+//         "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+//         "S": this.getMilliseconds() // 毫秒
+//     };
+//     if (/(y+)/.test(fmt))
+//         fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+//     for (var k in o)
+//         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+//     return fmt;
+// };

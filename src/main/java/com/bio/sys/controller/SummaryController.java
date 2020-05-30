@@ -267,8 +267,13 @@ public class SummaryController {
 			for(int i=0;i<summaryDOList.size();i++){
 				deptIds[i]=summaryDOList.get(i).getDeptId();
 			}
+			String timeprefix="";
+			if(summaryDOList.size()>0){//这里名字太长了后面显示不出来
+				timeprefix= summaryDOList.get(0).getTitle().split("-")[0].replace('/','-')+
+						summaryDOList.get(0).getTitle().split("-")[1].replace('/','-');
+			}
 			//String directory="E:\\Test\\";
-			String filename ="小组周报汇总";
+			String filename =timeprefix+"SWE小组周报汇总";
 			submitHelper(deptIds,directory,filename);
 			try {
 				for(UserDO userDO:userDOList) {
@@ -280,6 +285,7 @@ public class SummaryController {
 					parameters.put("url", url);
 					//发送周报附件加周报汇总表
 					String filepathname=directory+filename+".zip";
+
 					mailService.sendAttachmentMail(mailBean, "summaryreport.html",filepathname,filename+".zip", parameters);
 				}
 
@@ -401,7 +407,7 @@ public class SummaryController {
     @RequiresPermissions("bio:report:report")
     public void BatchExport1(@RequestParam(value="ids") String ids,@RequestParam(value="mode") Integer mode,@RequestParam(value="downloadfilename")String downloadfilename, HttpServletResponse response) {
 		//String directory="E:\\Test\\";
-		String filename =downloadfilename+"表.xlsx";
+		String filename =downloadfilename+"-汇总表.xlsx";
 		String downloadzipname=downloadfilename+".zip";
 		List<String> zipnames=new ArrayList<>();//需要压缩的文件名
         List<TopicDao> topics= new ArrayList<>();
