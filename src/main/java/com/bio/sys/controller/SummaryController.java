@@ -269,11 +269,11 @@ public class SummaryController {
 			}
 			String timeprefix="";
 			if(summaryDOList.size()>0){//这里名字太长了后面显示不出来
-				timeprefix= summaryDOList.get(0).getTitle().split("-")[0].replace('/','-')+
-						summaryDOList.get(0).getTitle().split("-")[1].replace('/','-');
+				timeprefix= summaryDOList.get(0).getTitle().split("-")[0].replace('/','-')
+						+"-"+summaryDOList.get(0).getTitle().split("-")[1].replace('/','-');
 			}
 			//String directory="E:\\Test\\";
-			String filename =timeprefix+"SWE小组周报汇总";
+			String filename =timeprefix+"-SWE小组周报汇总";
 			submitHelper(deptIds,directory,filename);
 			try {
 				for(UserDO userDO:userDOList) {
