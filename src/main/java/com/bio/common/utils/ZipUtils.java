@@ -29,7 +29,7 @@ public class ZipUtils {
         }
     }
     //将传入文件批量压缩成一个zip并把zip返回给response
-    public static void downloadAllFilebyNames(HttpServletResponse response, String directory,String [] names) {
+    public static void downloadAllFilebyNames(HttpServletResponse response, String directory,String [] names,String zipFileName) {
 
         File directoryFile=new File(directory);
         if(!directoryFile.isDirectory() && !directoryFile.exists()){
@@ -39,7 +39,7 @@ public class ZipUtils {
 
         //设置最终输出zip文件的目录+文件名
         SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd");
-        String zipFileName = "周报汇总"+formatter.format(new Date())+".zip";
+        //String zipFileName = "周报汇总"+formatter.format(new Date())+".zip";
         String strZipPath = directory+zipFileName;
 
         ZipOutputStream zipStream = null;

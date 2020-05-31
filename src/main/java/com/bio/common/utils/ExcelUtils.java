@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Field;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -242,19 +243,18 @@ public class ExcelUtils {
     public void sendHttpResponse(HttpServletResponse response,String fileName, Workbook workbook) {
         try {
             /* String filepath="E:\\Test\\";*/
-            fileName += ".xlsx";
-            fileName = new String(fileName.getBytes(), "UTF-8");
-            response.setContentType("application/octet-stream;charset=ISO8859-1");
+//            fileName = new String(fileName.getBytes(), "UTF-8");
+            fileName = URLEncoder.encode(fileName,"UTF-8");
+            response.setContentType("application/octet-stream;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            response.setLocale(new java.util.Locale("zh","CN"));
             response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
             response.addHeader("Pargam", "no-cache");
             response.addHeader("Cache-Control", "no-cache");
-            FileOutputStream fileOutputStream=new FileOutputStream(fileName);
-            workbook.write(fileOutputStream);
-            fileOutputStream.close();
-            /*OutputStream os = response.getOutputStream();
+            OutputStream os = response.getOutputStream();
             workbook.write(os);
             os.flush();
-            os.close();*/
+            os.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -262,20 +262,10 @@ public class ExcelUtils {
     //写入本地文件夹
     public void SaveExcelFile(String fileName, Workbook workbook) {
         try {
-//            /* String filepath="E:\\Test\\";*/
-//            fileName += ".xlsx";
             fileName = new String(fileName.getBytes(), "UTF-8");
-//            response.setContentType("application/octet-stream;charset=ISO8859-1");
-//            response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
-//            response.addHeader("Pargam", "no-cache");
-//            response.addHeader("Cache-Control", "no-cache");
             FileOutputStream fileOutputStream=new FileOutputStream(fileName);
             workbook.write(fileOutputStream);
             fileOutputStream.close();
-            /*OutputStream os = response.getOutputStream();
-            workbook.write(os);
-            os.flush();
-            os.close();*/
         } catch (Exception e) {
             e.printStackTrace();
         }

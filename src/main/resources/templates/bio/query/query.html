@@ -68,9 +68,16 @@
                             <button class="btn  btn-success" onclick="query()" type="button">
                                 <i aria-hidden="true" class="fa fa-search"></i>查询
                             </button>
-                            <button class="btn  btn-primary" onclick="batchExport()" type="button">
-                                <i aria-hidden="true" class="fa fa-download"></i>批量导出
+                            <div class="btn-group">
+                            <button type="button" id="status_read_person" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                批量导出<i class="fa fa-caret-down" aria-hidden="true"></i>
                             </button>
+                                <ul class="dropdown-menu" style="left: 0">
+                                    <li><a href="#" onclick="batchExport(1)">批量导出小组周报</a></li>
+                                    <li><a href="#" onclick="batchExport(2)">仅导出汇总表</a></li>
+                                    <li><a href="#" onclick="batchExport(3)">仅导出附件</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,9 +143,16 @@
                             <button class="btn  btn-success" onclick="query1()" type="button">
                                 <i aria-hidden="true" class="fa fa-search" style="padding-right: 5px"></i>查询
                             </button>
-                            <button class="btn  btn-primary" onclick="batchExport1()" type="button">
-                                <i aria-hidden="true" class="fa fa-download" style="padding-right: 5px"></i>批量导出
-                            </button>
+                            <div class="btn-group">
+                                <button type="button" id="status_read_topic" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    批量导出<i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
+                                <ul class="dropdown-menu" style="left: 0">
+                                    <li><a href="#" onclick="batchExport1(1)">批量导出小组周报</a></li>
+                                    <li><a href="#" onclick="batchExport1(2)">仅导出汇总表</a></li>
+                                    <li><a href="#" onclick="batchExport1(3)">仅导出附件</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -168,9 +182,16 @@
                             <button class="btn  btn-success" onclick="Keyquery()" type="button">
                                 <i aria-hidden="true" class="fa fa-search"></i>查询
                             </button>
-                            <button class="btn  btn-primary" onclick="batchExport()" type="button">
-                                <i aria-hidden="true" class="fa fa-download"></i>批量导出
-                            </button>
+                            <div class="btn-group">
+                                <button type="button" id="status_read_keyword" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    批量导出<i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
+                                <ul class="dropdown-menu" style="left: 0">
+                                    <li><a href="#" onclick="batchExport(1)">批量导出小组周报</a></li>
+                                    <li><a href="#" onclick="batchExport(2)">仅导出汇总表</a></li>
+                                    <li><a href="#" onclick="batchExport(3)">仅导出附件</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 

@@ -235,7 +235,7 @@ function examine1(type, datas) {
 }
 
 
-function batchExport1() {
+function batchExport1(exportmode) {
 	//绑定选中事件、取消事件、全部选中、全部取消
 	var ids = new Array();
 	ids=overAllIds_dep;
@@ -247,32 +247,84 @@ function batchExport1() {
 			btn: ['确定', '取消']
 			// 按钮
 		}, function (index) {
-			// var loadIndex=layer.load(1,{
-			// 	content: "等待中…",
-			// 	shade: [0.3,'#fff'],
-			// 	success: function (layero) {
-			// 		layero.find('.layui-layer-content').css({
-			// 			'padding-top': '40px',
-			// 			'width': '60px',
-			// 			'font-weight': 'bold'
-			// 		});
-			// 	}
-			// });
-			var url=prefix + '/bio/summary/batchExport1?ids=' + ids;
-			try{
-				var elemIF = document.createElement('iframe');
-				elemIF.src = url;
-				elemIF.style.display = 'none';
-				document.body.appendChild(elemIF);
-				//layer.close(loadIndex);
-				// 防止下载两次
-				// setTimeout(function() {
-				// 	document.body.removeChild(elemIF)
-				// }, 10000);
-				layer.close(index);
-			}catch(e){
-				console.log(e);
+			layer.close(index);
+			var loadIndex=layer.load(1,{
+				shade: [0.2,'#fff'] //0.1透明度的白色背景
+			});
+			var rows=$('#summaryTable').bootstrapTable('getSelections');
+			var titlesplit=rows[0].title.split('-');
+			var downloadfilename=titlesplit[0].replace(/\//g,'-') +'-'+titlesplit[1].replace(/\//g,'-') +'-'+"SWE小组周报汇总";
+			console.log("downloadfilename",titlesplit);
+			if(exportmode==3) {
+				//仅导出附件的时候需要判断附件是否存在
+				$.ajax({
+					cache: false,
+					type: "GET",
+					url: prefix + '/bio/summary/ifTopicFileExist?deptids='+ids,
+					//async: false,
+					dataType: 'json',
+					contentType: 'application/json',
+					error: function (request) {
+						layer.close(loadIndex);
+						layer.alert("Connection error");
+					},
+					success: function (data) {
+						if (data.code == 0) {
+							var url = prefix + '/bio/summary/batchExport1?ids=' + ids + '&mode='+exportmode+'&downloadfilename='+downloadfilename;
+							console.log(url);
+							try {
+								var elemIF = document.createElement('iframe');
+								elemIF.src = url;
+								elemIF.style.display = 'none';
+								document.body.appendChild(elemIF);
+								// 防止下载两次
+								// setTimeout(function() {
+								//     document.body.removeChild(elemIF)
+								// }, 5000);
+								layer.close(loadIndex);
+							} catch (e) {
+								console.log(e);
+							}
+						} else {
+							layer.close(loadIndex);
+							layer.alert(data.msg + "：" + data.data);
+						}
+					}
+				});
 			}
+			else {
+				var url = prefix + '/bio/summary/batchExport1?ids=' + ids+'&mode='+exportmode+'&downloadfilename='+downloadfilename;
+				try{
+					var elemIF = document.createElement('iframe');
+					elemIF.src = url;
+					elemIF.style.display = 'none';
+					document.body.appendChild(elemIF);
+					// // 防止下载两次
+					// setTimeout(function() {
+					//     document.body.removeChild(elemIF)
+					// }, 10000);
+					layer.close(loadIndex);
+					layer.close(index);
+				}catch(e){
+					console.log(e);
+				}
+			}
+
+			// var url=prefix + '/bio/summary/batchExport1?ids=' + ids;
+			// try{
+			// 	var elemIF = document.createElement('iframe');
+			// 	elemIF.src = url;
+			// 	elemIF.style.display = 'none';
+			// 	document.body.appendChild(elemIF);
+			// 	//layer.close(loadIndex);
+			// 	// 防止下载两次
+			// 	// setTimeout(function() {
+			// 	// 	document.body.removeChild(elemIF)
+			// 	// }, 10000);
+			// 	layer.close(index);
+			// }catch(e){
+			// 	console.log(e);
+			// }
 			// /*window.location.href = prefix + '/batchExport?ids=' + ids;*/
 			// $.ajax({
 			// 	url:prefix + '/bio/summary/batchExport1?ids=' + ids,

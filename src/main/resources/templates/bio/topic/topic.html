@@ -27,9 +27,25 @@
                     <a class="btn btn-default btn-outline" type="button" name="toggle" title="专题周报详情" onclick="getTopicView()">
                         <i class="glyphicon glyphicon-list-alt icon-list-alt"></i>
                     </a>
-                    <a class="btn btn-default btn-outline" type="button" name="toggle" title="批量导出附件及汇总表" onclick="batchExport()">
-                        <i class="glyphicon  glyphicon-download-alt icon-download-alt"></i>
-                    </a>
+                    <div class="btn-group">
+                        <button class="btn btn-outline btn-default dropdown-toggle" type="button" name="toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            批量导出<i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu" style="left: 0">
+                            <li><a href="#" onclick="batchExport(1)">批量导出小组周报</a></li>
+                            <li><a href="#" onclick="batchExport(2)">仅导出汇总表</a></li>
+                            <li><a href="#" onclick="batchExport(3)">仅导出附件</a></li>
+                        </ul>
+                    </div>
+                    <!--<a class="btn btn-default btn-outline" type="button" name="toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"-->
+                       <!--title="批量导出附件及汇总表">-->
+                        <!--<i class="glyphicon  glyphicon-download-alt icon-download-alt"></i>-->
+                        <!--<ul class="dropdown-menu" style="left: 0">-->
+                            <!--<li><a href="#" onclick="batchExport(1)">批量导出专题周报</a></li>-->
+                            <!--<li><a href="#" onclick="batchExport(2)">仅导出专题汇总表</a></li>-->
+                            <!--<li><a href="#" onclick="batchExport(3)">仅导出专题附件</a></li>-->
+                        <!--</ul>-->
+                    <!--</a>-->
                 </div>
             </div>
             <div class="columns pull-right">
