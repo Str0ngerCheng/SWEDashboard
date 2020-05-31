@@ -55,4 +55,6 @@ public interface ReportDao extends BaseDao<ReportDO> {
 
 	public List<ReportScoreVO> getMonthAVGReportScore();
 
+	List<ReportDO> getDelayPer();
+
 }

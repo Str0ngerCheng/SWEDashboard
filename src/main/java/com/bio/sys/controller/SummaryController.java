@@ -465,4 +465,14 @@ public class SummaryController {
 		return Result.ok(reportScoreVOList);
 	}
 
+	/*@ResponseBody
+	@RequiresPermissions("bio:summary:chart")
+	@GetMapping("/delayPerson")
+	Result<List<>> DelayPerson() {
+		List<ReportDO> reportList=reportService.getDelayPer();
+
+		return Result.ok();
+	}
+*/
+
 }

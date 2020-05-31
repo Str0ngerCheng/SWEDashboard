@@ -211,4 +211,8 @@
 		order by dept_name,author_name, r_from_date
 	</select>
 
+	<select id="getDelayPer" resultType="com.bio.sys.domain.ReportDO">
+		select * from report where r_chg_date > data_sub(r_to_date, interval 12 hour) where status_mod=1
+	</select>
+
 </mapper>

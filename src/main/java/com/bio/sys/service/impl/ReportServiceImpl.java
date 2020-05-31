@@ -162,4 +162,9 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 		return baseMapper.getMonthAVGReportScore();
 	}
 
+	@Override
+	public List<ReportDO> getDelayPer() {
+		return baseMapper.getDelayPer();
+	}
+
 }

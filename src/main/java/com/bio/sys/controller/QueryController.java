@@ -171,7 +171,7 @@ public class QueryController {
                    weekly=0;
                }else{
                    if(temp!=deptDO.getId()) {
-                       String name=calendar.get(calendar.YEAR)+"-"+month+"-"+summaryDO.getDeptName()+" 周报";
+                       String name=calendar.get(calendar.YEAR)+"-"+month+"-"+summaryDO.getDeptName()+" 月报";
                        SummaryVO summaryVO=new SummaryVO(summaryDO.getDeptId(),summaryDO.getDeptName(),name,temp,calendar.getTime(),deptDO.getOrderNum());
                        temp=deptDO.getId();
                        summaryVOList.add(summaryVO);

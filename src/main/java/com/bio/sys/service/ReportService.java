@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.bio.common.base.CoreService;
+import com.bio.sys.dao.ReportDao;
 import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
 import com.bio.sys.vo.ReportScoreVO;
@@ -59,5 +60,7 @@ public interface ReportService extends CoreService<ReportDO> {
 
 
 	public List<ReportScoreVO> getMonthAVGReportScore();
+
+	List<ReportDO> getDelayPer();
 
 }
