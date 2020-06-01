@@ -38,7 +38,8 @@
 	var $tab1 = document.getElementById('tab1-container');
 	var $tab2 = document.getElementById('tab2-container');
 	var $tab3 = document.getElementById('tab3-container');
-
+	var seriesdata=[];
+	var legendate=[];
 	/* 柱图  */
 	var tabScoreOption = {
 		grid: {
@@ -119,16 +120,13 @@
 					}
 				}
 			},
-
-
 		}
 	};
 
 	/* 饼图 */
 	var tab2Option = {
 		title : {
-			text : '某站点用户访问来源',
-			subtext : '纯属虚构',
+			text : '月统计未交名单TOP5',
 			x : 'center'
 		},
 		tooltip : {
@@ -138,29 +136,32 @@
 		legend : {
 			orient : 'vertical',
 			left : 'left',
-			data : [ '直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎' ]
+			data :legendate
 		},
+		toolbox: { //可视化的工具箱
+			show: true,
+			feature: {
+				dataView: { //数据视图
+					show: true
+				},
+				restore: { //重置
+					show: true
+				},
+				saveAsImage: {//保存图片
+					show: true
+				},
+				magicType: {//动态类型切换
+					type: ['pie', 'funnel']
+				}
+			}
+		},
+		calculable:true,
 		series : [ {
-			name : '访问来源',
+			name : '未交名单小计',
 			type : 'pie',
 			radius : '55%',
 			center : [ '50%', '60%' ],
-			data : [ {
-				value : 335,
-				name : '直接访问'
-			}, {
-				value : 310,
-				name : '邮件营销'
-			}, {
-				value : 234,
-				name : '联盟广告'
-			}, {
-				value : 135,
-				name : '视频广告'
-			}, {
-				value : 1548,
-				name : '搜索引擎'
-			} ],
+			data :seriesdata,
 			itemStyle : {
 				emphasis : {
 					shadowBlur : 10,
@@ -202,10 +203,40 @@
 			}
 		}
 	});
+
+	$.ajax({
+		cache : true,
+		type : "GET",
+		url : prefix + "/delayPerson",
+		async : false,
+		error : function(request) {
+			parent.layer.alert("Connection error");
+		},
+		success : function(res) {
+			var data=res.data;
+			for(var i=0;i<data.length;i++) {
+				var obj=new Object();
+				obj.name=data[i].authorName;
+				obj.value=Number(data[i].score);
+				seriesdata[i]=obj;
+				legendate[i]=obj.name;
+			}
+		}
+	});
+
 	/* 初始化tab1的 */
 	var tab1Table = echarts.init($tab1);
 	tab1Table.setOption(tabScoreOption);
 
+	var tab2Table=echarts.init($tab2);
+	tab2Table.setOption(tab2Option);
+	/*tab2Table.setOption({
+		series:[{
+			name:'未交名单小计',
+			data:tab2Option
+		}]
+	});*/
+   /* tab2Table.setOption(option);*/
 	/* shown.bs.tab为tab选项卡高亮 */
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 		/* 获取已激活的标签页的名称 */

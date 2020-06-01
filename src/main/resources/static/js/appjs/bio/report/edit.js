@@ -262,14 +262,37 @@ function checkFile() {
 		parent.layer.alert("请先选择文件！");
 		return;
 	}
-	//var newfile = new File([fileObj], $('#reportTitle').text().replace('/','-') + ".zip");
-	var newfile=new Blob([fileObj],{type:"application/zip"})
-	var link = document.createElement('a');
-	link.href = window.URL.createObjectURL(newfile);
-	console.log($('#reportTitle').text());
-	link.download = $('#reportTitle').text().replace(/\//g,'-')+ "附件.zip";
-	link.click();
-	window.URL.revokeObjectURL(link.href);
+	// //var newfile = new File([fileObj], $('#reportTitle').text().replace('/','-') + ".zip");
+	// var newfile=new Blob([fileObj],{type:"application/zip"});
+	// var link = document.createElement('a');
+	// link.href = window.URL.createObjectURL(fileObj);
+	// console.log($('#reportTitle').text());
+	//
+	// link.click();
+	// window.URL.revokeObjectURL(link.href);
+
+
+	//这里res.data是返回的blob对象
+	var newfile=new Blob([fileObj],{type:"application/zip"});
+	var name= $('#reportTitle').text().replace(/\//g,'-')+ "附件.zip";
+	var href = window.URL.createObjectURL(newfile); //创建下载的链接
+	if (window.navigator.msSaveBlob) {
+		try {
+			window.navigator.msSaveBlob(newfile, name)
+		} catch (e) {
+			console.log(e);
+		}
+	} else {
+		// 谷歌浏览器 创建a标签 添加download属性下载
+		var downloadElement = document.createElement('a');
+		downloadElement.href = href;
+		downloadElement.target = '_blank';
+		downloadElement.download = 'model.json'; //下载后文件名
+		document.body.appendChild(downloadElement);
+		downloadElement.click(); //点击下载
+		document.body.removeChild(downloadElement); //下载完成移除元素
+		window.URL.revokeObjectURL(href); //释放掉blob对象
+	}
 }
 
 //上传文件
@@ -293,9 +316,11 @@ function uploadFiles() {
 	}
 	var form = new FormData();
 	//创建新文件对象（实现更名）
-
-	var newfile = new File([fileObj], $('#reportTitle').text().replace(/\//g,'-') + "附件.zip");
-	form.append("file", newfile);
+	//var blob = new Blob([fileObj], {type : "application/zip"});
+	var fileName=$('#reportTitle').text().replace(/\//g,'-') + "附件.zip";
+	//var newfile = new File([fileObj], $('#reportTitle').text().replace(/\//g,'-') + "附件.zip");
+	//form.append("file", blob);
+	form.append('file',fileObj,fileName);
 
 	$.ajax({
 		xhr: function () {
@@ -310,13 +335,13 @@ function uploadFiles() {
 		processData: false,
 		contentType: false,
 		success: function (ret) {
-			parent.layer.alert(ret);
+			layer.alert(ret);
 			input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");
 			document.getElementById('progressBar').value = 0;
 			document.getElementById('filelabel').innerHTML = "文件已上传，点击重新上传";
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
-			parent.layer.alert("上传失败,错误信息：" + textStatus);
+			layer.alert("上传失败,错误信息：" + textStatus);
 			console.log(jqXHR);
 			document.getElementById('progressBar').value = 0;
 			input.outerHTML = input.outerHTML.replace(/(value=\").+\"/i, "$1\"");

@@ -125,7 +125,8 @@ public class QueryController {
             Calendar calendar=Calendar.getInstance();
             calendar.setTime(startDate);
             int month=calendar.get(calendar.MONTH)+1;
-            myreport = reportService.getReportsByMonth1(month);
+            int year=calendar.get(calendar.YEAR);
+            myreport = reportService.getReportsByMonth1(month,year);
         }
         for (ReportDO products : myreport) {
             if (products.getAuthorName().equals(userName)  || userName.equals("") || userName.equals("超级管理员")) {
@@ -153,13 +154,15 @@ public class QueryController {
         List<ReportDO> mSubmitReportList=new ArrayList<>();
         List<SummaryDO> summaryDOList=new ArrayList<>();
         int month=0;
+        int year=0;
         Calendar calendar=Calendar.getInstance();
         calendar.setTime(startDate);
         if (WeekMonth1== 1) {
             summaryDOList=summaryService.selectList(startDate,endDate);
         }else{
             month=calendar.get(calendar.MONTH)+1;
-            summaryDOList=summaryService.getReportsByMonth1(month);
+            year=calendar.get(calendar.YEAR);
+            summaryDOList=summaryService.getReportsByMonth1(month,year);
         }
         long temp=12;
         for(SummaryDO summaryDO:summaryDOList)
@@ -177,7 +180,8 @@ public class QueryController {
                        SummaryVO summaryVO=new SummaryVO(summaryDO.getDeptId(),summaryDO.getDeptName(),name,temp,calendar.getTime(),deptDO.getOrderNum());
                        temp=deptDO.getId();
                        summaryVOList.add(summaryVO);
-                       mSubmitReportList = reportService.getReportsByMonth(month, deptDO.getId());
+                       year=calendar.get(calendar.YEAR);
+                       mSubmitReportList = reportService.getReportsByMonth(month,year,deptDO.getId());
                        weekly=month;
                    }
                }
@@ -246,7 +250,11 @@ public class QueryController {
             }
             Collections.sort(topicReportDetailsList);//这里直接在后端排序
             model.addAttribute("MonthReportDetailsList", topicReportDetailsList);
-            String title=weekly+"月"+deptDO.getName()+"工作汇总";
+            Date mon = mSubmitReportList.get(0).getRFromDate();
+            Calendar calendar=Calendar.getInstance();
+            calendar.setTime(mon);
+            int year=calendar.get(calendar.YEAR);
+            String title=Integer.toString(year)+"年"+ weekly+"月"+deptDO.getName()+"工作汇总";
             model.addAttribute("title", title);
             return "bio/query/MonthInfo";
        }

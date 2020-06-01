@@ -9,7 +9,7 @@ $(function() {
 
 function load() {
     current_Date=new Date().toLocaleDateString();
-    var picker1 =$('#datetimepicker1').datetimepicker({
+   /* var picker1 =$('#datetimepicker1').datetimepicker({
         format: 'YYYY-MM-DD',
         locale: moment.locale('zh-cn'),
 
@@ -42,7 +42,7 @@ function load() {
     //动态设置最大值
     picker_t2.on('dp.change', function (e) {
         picker_t1.data('DateTimePicker').maxDate(e.date);
-    });
+    });*/
     $('#queryTable')
         .bootstrapTable(
             {

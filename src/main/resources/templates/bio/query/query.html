@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <head th:include="include :: header">
 </head>
-<link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<!--<link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">-->
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
     <div class="ibox-content">
@@ -210,6 +210,7 @@
 </div>
 <div th:include="include :: footer"></div>
 <script src="https://cdn.bootcss.com/moment.js/2.22.0/moment-with-locales.js"></script>
+<script src="/js/bootstrap-datetimepicker.min.css" th:src=" @{/js/bootstrap-datetimepicker.min.css}"></script>
 <script src="/js/bootstrap-datetimepicker.min.js" th:src=" @{/js/bootstrap-datetimepicker.min.js}"></script>
 <script src="/js/bootstrap-datetimepicker.js" th:src=" @{/js/bootstrap-datetimepicker.js}"charset="UTF-8"></script>
 <script src="/js/bootstrap-datetimepicker.zh-CN.js" th:src=" @{/js/bootstrap-datetimepicker.zh-CN.js}" charset="UTF-8"></script>
@@ -218,6 +219,7 @@
 <script type="text/javascript">
     $('#datetimepicker1').datetimepicker({
         minView:"month",
+        maxView:4,
         format: 'yyyy-mm-dd',
         autoclose:true,
         weekStart:1,
@@ -258,13 +260,14 @@
            //今天是这周的第几天
            var today = date.getDay();
            //上周日距离今天的天数（负数表示）
-           var stepSunDay = -today + 1;
+           var stepSunDay = -today+1;
+           var stepMonday = 7 - today;
            // 如果今天是周日
            if (today == 0) {
-               stepSunDay = -7;
+               stepSunDay = -6;
+               stepMonday=0;
            }
            // 周一距离今天的天数（负数表示）
-           var stepMonday = 7 - today;
            var time = date.getTime();
            var monday = new Date(time + stepSunDay * 24 * 3600 * 1000);
            var sunday = new Date(time + stepMonday * 24 * 3600 * 1000);

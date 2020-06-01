@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 
+import com.bio.sys.vo.ReportDelay;
 import com.bio.sys.vo.ReportScoreVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -90,8 +91,8 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 	}
 
 	@Override
-	public List<ReportDO> getReportsByMonth(int date,long deptId) {
-		return baseMapper.getReportsByMonth(date,deptId);
+	public List<ReportDO> getReportsByMonth(int date,int date1,long deptId) {
+		return baseMapper.getReportsByMonth(date,date1,deptId);
 	}
 
 	@Override
@@ -153,8 +154,8 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 	}
 
 	@Override
-	public List<ReportDO> getReportsByMonth1(int date) {
-		return baseMapper.getReportsByMonth1(date);
+	public List<ReportDO> getReportsByMonth1(int date,int date1) {
+		return baseMapper.getReportsByMonth1(date,date1);
 	}
 
 
@@ -163,7 +164,7 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 	}
 
 	@Override
-	public List<ReportDO> getDelayPer() {
+	public List<ReportScoreVO> getDelayPer() {
 		return baseMapper.getDelayPer();
 	}
 

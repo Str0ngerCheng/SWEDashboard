@@ -7,6 +7,7 @@ import com.bio.common.base.CoreService;
 import com.bio.sys.dao.ReportDao;
 import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
+import com.bio.sys.vo.ReportDelay;
 import com.bio.sys.vo.ReportScoreVO;
 
 
@@ -39,7 +40,7 @@ public interface ReportService extends CoreService<ReportDO> {
 
 	List<ReportDO> getReportsAll();
 
-	List<ReportDO> getReportsByMonth(int date,long deptId);
+	List<ReportDO> getReportsByMonth(int date,int date1,long deptId);
 
 	ReportDO getReportsByTitle(String title);
 
@@ -56,11 +57,11 @@ public interface ReportService extends CoreService<ReportDO> {
 
 	List<ReportDO> getReportsQuery1(Date fromDate, Date toDate, Integer status);
 
-	List<ReportDO> getReportsByMonth1(int date);
+	List<ReportDO> getReportsByMonth1(int date,int date1);
 
 
 	public List<ReportScoreVO> getMonthAVGReportScore();
 
-	List<ReportDO> getDelayPer();
+	List<ReportScoreVO> getDelayPer();
 
 }

@@ -3,6 +3,7 @@ package com.bio.sys.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.bio.sys.vo.ReportDelay;
 import com.bio.sys.vo.ReportScoreVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -38,7 +39,7 @@ public interface ReportDao extends BaseDao<ReportDO> {
 
 	List<ReportDO> getReportsAll();
 
-	List<ReportDO>getReportsByMonth(@Param("date") int date,@Param("deptId")long deptId);
+	List<ReportDO>getReportsByMonth(@Param("date") int date,@Param("date1") int date1,@Param("deptId")long deptId);
 
 	ReportDO getReportsByTitle(@Param("title")String title);
 
@@ -51,10 +52,10 @@ public interface ReportDao extends BaseDao<ReportDO> {
 
 	List<ReportDO> getReportsQuery1(@Param("fromdate") Date fromDate, @Param("todate") Date toDate, @Param("status") Integer status);
 
-	List<ReportDO>getReportsByMonth1(@Param("date") int date);
+	List<ReportDO>getReportsByMonth1(@Param("date") int date, @Param("date1") int date1);
 
 	public List<ReportScoreVO> getMonthAVGReportScore();
 
-	List<ReportDO> getDelayPer();
+	List<ReportScoreVO> getDelayPer();
 
 }

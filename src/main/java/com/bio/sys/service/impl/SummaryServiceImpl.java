@@ -40,8 +40,8 @@ public class SummaryServiceImpl extends CoreServiceImpl<SummaryDao, SummaryDO> i
 	}
 
 	@Override
-	public List<SummaryDO> getReportsByMonth1(int date) {
-		return baseMapper.getReportsByMonth1(date);
+	public List<SummaryDO> getReportsByMonth1(int date,int date1) {
+		return baseMapper.getReportsByMonth1(date,date1);
 	}
 
 	public Boolean getThisWeekSummaryByDeptId(Long deptId) {

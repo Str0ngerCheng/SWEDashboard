@@ -2,7 +2,7 @@ package com.bio.sys.vo;
 
 import java.io.Serializable;
 
-public class ReportScoreVO implements Serializable,Comparable<ReportScoreVO> {
+public class ReportDelay implements Serializable {
     private static final long serialVersionUID = 1L;
     /** 作者Id */
     private Long authorId;
@@ -12,10 +12,8 @@ public class ReportScoreVO implements Serializable,Comparable<ReportScoreVO> {
     private Long deptId;
     /** 专题名*/
     private String deptName;
-    /** 分数*/
-    private String score;
 
-    private Integer orderNum;
+    private Integer count;
 
     public Long getAuthorId() {
         return authorId;
@@ -49,37 +47,13 @@ public class ReportScoreVO implements Serializable,Comparable<ReportScoreVO> {
         this.deptName = deptName;
     }
 
-    public String getScore() {
-        return score;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setScore(String score) {
-        this.score = score;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
-    public Integer getOrderNum() {
-        return orderNum;
-    }
-
-    public void setOrderNum(Integer orderNum) {
-        this.orderNum = orderNum;
-    }
-
-    @Override
-    public int compareTo(ReportScoreVO o) {
-        if(this.deptId>o.deptId) return 1;
-        else if(this.deptId<o.deptId) return  -1;
-        else {
-            return this.authorName.compareTo(o.authorName);
-        }
-    }
-
-
-    public int compare(ReportScoreVO o1, ReportScoreVO o2) {
-        if(Integer.parseInt(o2.getScore())>Integer.parseInt(o1.getScore()))
-            return 1;
-        else
-            return -1;
-    }
 
 }

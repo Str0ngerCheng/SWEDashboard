@@ -121,10 +121,10 @@ public class SummaryController {
 					topicReportStatistic.setIsLSubmit(0);
 				}
 				else {
-					List<ReportDO> unMSubmitReportList = reportService.getThisWeekReportByDeptAndStatusLSub(deptId, 0);
-					List<ReportDO> mSubmitReportList = reportService.getThisWeekReportByDeptAndStatusLSub(deptId, 1);
+					List<ReportDO> unMSubmitReportList = reportService.getThisWeekReportByDeptAndStatusMSub(deptId, 0);
+					List<ReportDO> mSubmitReportList = reportService.getThisWeekReportByDeptAndStatusMSub(deptId, 1);
                     excelreport.put(deptDO.getId(), mSubmitReportList);
-                    excelreport.put(deptDO.getId(), unMSubmitReportList);
+                   /* excelreport.put(deptDO.getId(), unMSubmitReportList);*/
 					/*获取专题周报统计信息*/
 					int totalCount = unMSubmitReportList.size() + mSubmitReportList.size();
 					int unMSubmitCount = unMSubmitReportList.size();
@@ -348,7 +348,6 @@ public class SummaryController {
 				Long deptId = deptDO.getId();
 				String deptName = deptDO.getName();
 				Integer deptOrder=deptDO.getOrderNum();
-
 				//查看该专题周报汇总是否提交
 				if(summaryService.getThisWeekSummaryByDeptId(deptId)) {
 					List<ReportDO> reportList = reportService.getThisWeekReportByDeptAndStatusMSub(deptId, 1);
@@ -528,14 +527,20 @@ public class SummaryController {
 		return Result.ok(reportScoreVOList);
 	}
 
-	/*@ResponseBody
+	@ResponseBody
 	@RequiresPermissions("bio:summary:chart")
 	@GetMapping("/delayPerson")
-	Result<List<>> DelayPerson() {
-		List<ReportDO> reportList=reportService.getDelayPer();
-
-		return Result.ok();
+	Result<List<ReportScoreVO>> DelayPerson() {
+		List<ReportScoreVO> reportList=reportService.getDelayPer();
+		List<ReportScoreVO> myreport=new ArrayList<>(5);
+		int tempsize=reportList.size();
+		for(int i=0;i<Math.min(5,tempsize);i++){
+			if(Integer.parseInt(reportList.get(i).getScore())!=0){
+			   myreport.add(reportList.get(i));
+			}
+		}
+		return Result.ok(myreport);
 	}
-*/
+
 
 }
