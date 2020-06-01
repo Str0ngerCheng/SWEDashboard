@@ -11,6 +11,7 @@ function load() {
                 /* showRefresh : true,
                  showToggle : true,
                  showColumns : true,*/
+                uniqueId:'reportsTable',
                 iconSize : 'outline',
                 toolbar : '#toolbar',
                 striped: false,
@@ -92,7 +93,7 @@ function load() {
                         formatter:function(value,row,index){
                             if(value==null)
                                 value=""
-                            return '<textarea id="suggest' +index+ '" class="col-sm-5 form-control" rows="9">'+value+'</textarea>';
+                            return '<textarea id="suggest' +index+ '" class="col-sm-5 form-control" onblur="submitSuggestion()" rows="9">'+value+'</textarea>';
                         }
                     }
 
@@ -100,7 +101,18 @@ function load() {
                 onPostBody:function(){
                     mergeCells(topicReportDetailsList, "deptName",1, $("#reportsTable"))
                     $('#reportsTable').bootstrapTable('resetView',{height:$(window).height()-95});
-                }
+                },
+                // onClickCell: function(field, value, row, $element) {
+                //     $element.attr('contenteditable', true);
+                //     //元素失去焦点事件
+                //     $element.blur(function() {
+                //         //单元格修改后的的值
+                //         var tdValue = $element.html();
+                //         console.log(field);
+                //         console.log(tdValue);
+                //         console.log(row);
+                //     })
+                // }
             });
     $('#reportsTable').bootstrapTable('load',topicReportDetailsList);
 
@@ -135,12 +147,14 @@ function mergeCells(data, fieldName, colspan, target) {
         merIndex += numArr[i];
     }
 }
-$(window).unload( function () {
+
+function submitSuggestion() {
     var allTableData = $('#reportsTable').bootstrapTable('getData');
     for(var i=0;i<allTableData.length;i++){
         var id ='#'+"suggest"+i;
         allTableData[i].suggest=$(id).val();
     }
+    var msg="";
     $.ajax({
         cache : true,
         type : "POST",
@@ -148,9 +162,15 @@ $(window).unload( function () {
         dataType: 'json',
         contentType : 'application/json',
         data : JSON.stringify(allTableData),
-        async : false,
+        async : true,
+        success:function (e) {
+            msg=e.data;
+        },
+        error:function (e) {
+            msg=e.data;
+        }
     });
-});
-
-
+    return msg;
+};
+// window.addEventListener("beforeunload", unloadEvent);
 
