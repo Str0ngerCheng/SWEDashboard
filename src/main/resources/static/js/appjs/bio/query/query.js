@@ -9,40 +9,6 @@ $(function() {
 
 function load() {
     current_Date=new Date().toLocaleDateString();
-   /* var picker1 =$('#datetimepicker1').datetimepicker({
-        format: 'YYYY-MM-DD',
-        locale: moment.locale('zh-cn'),
-
-    });
-    var picker2 =$('#datetimepicker2').datetimepicker({
-        format: 'YYYY-MM-DD',
-        locale: moment.locale('zh-cn'),
-    });
-    //动态设置最小值
-    picker1.on('dp.change', function (e) {
-        picker2.data('DateTimePicker').minDate(e.date);
-        picker2.data('DateTimePicker').maxDate(new Date());
-    });
-    //动态设置最大值
-    picker2.on('dp.change', function (e) {
-        picker1.data('DateTimePicker').maxDate(e.date);
-    });
-    var picker_t1=$('#datetimepicker_t1').datetimepicker({
-        format: 'YYYY-MM-DD',
-        locale: moment.locale('zh-cn'),
-    });
-    var picker_t2=$('#datetimepicker_t2').datetimepicker({
-        format: 'YYYY-MM-DD',
-        locale: moment.locale('zh-cn'),
-    });
-    picker_t1.on('dp.change', function (e) {
-        picker_t2.data('DateTimePicker').minDate(e.date);
-        picker_t2.data('DateTimePicker').maxDate(new Date());
-    });
-    //动态设置最大值
-    picker_t2.on('dp.change', function (e) {
-        picker_t1.data('DateTimePicker').maxDate(e.date);
-    });*/
     $('#queryTable')
         .bootstrapTable(
             {

@@ -3,14 +3,12 @@ package com.bio.sys.dao;
 import java.util.Date;
 import java.util.List;
 
-import com.bio.sys.vo.ReportDelay;
 import com.bio.sys.vo.ReportScoreVO;
 import org.apache.ibatis.annotations.Param;
 
 import com.bio.common.base.BaseDao;
 import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
-import org.joda.time.DateTime;
 
 /**
  * 

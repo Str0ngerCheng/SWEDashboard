@@ -4,14 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import com.bio.common.base.CoreService;
-import com.bio.sys.dao.ReportDao;
 import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
-import com.bio.sys.vo.ReportDelay;
 import com.bio.sys.vo.ReportScoreVO;
-
-
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * 

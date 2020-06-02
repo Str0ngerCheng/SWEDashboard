@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 
-import com.bio.sys.vo.ReportDelay;
 import com.bio.sys.vo.ReportScoreVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +16,6 @@ import com.bio.sys.domain.ReportCountDO;
 import com.bio.sys.domain.ReportDO;
 import com.bio.sys.service.DeptService;
 import com.bio.sys.service.ReportService;
-
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * 

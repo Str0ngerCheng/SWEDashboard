@@ -73,6 +73,9 @@ public class SummaryController {
 	@Autowired
 	private MailService mailService;
 
+	@Autowired
+	private StatisticsService statisticsService;
+
     private static ConcurrentHashMap<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
 	private String directory = "E:\\Test\\";
 
@@ -540,6 +543,27 @@ public class SummaryController {
 			}
 		}
 		return Result.ok(myreport);
+	}
+	@ResponseBody
+	@RequiresPermissions("bio:summary:chart")
+	@GetMapping("/absenceDelay")
+	Result<List<StatisticalDO>> absenceDelay() {
+		 Calendar calendar=Calendar.getInstance();
+        int month=calendar.get(calendar.MONTH)+1;
+        int year=calendar.get(calendar.YEAR);
+        List<StatisticalDO> statisticalDOS=new ArrayList<>();
+        statisticalDOS= statisticsService.queryByDate(month,year);
+        if(statisticalDOS.size()==0)
+		{
+			if(month-1<=0) {
+				month = 12;
+				year=year-1;
+			}else{
+				month=month-1;
+			}
+			statisticalDOS=statisticsService.queryByDate(month,year);
+		}
+		return Result.ok(statisticalDOS);
 	}
 
 

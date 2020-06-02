@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bio.sys.dao.StatisticsDao">
+<insert id="insertStatistics" parameterType="com.bio.sys.domain.StatisticalDO">
+    insert into attendance(username,absence_rate,r_from_date,r_to_date) values (#{userName},#{absenceRate},#{rFromDate},#{rToDate})
+</insert>
+
+    <select id="queryByDate" resultType="com.bio.sys.domain.StatisticalDO">
+        select * from attendance where month(r_to_date)=#{date} and year(r_to_date)=#{date1}
+    </select>
+
+    <delete id="deleteByDate" >
+        delete from attendance where month(r_to_date)=#{date} and year(r_to_date)=#{date1}
+    </delete>
+</mapper>
