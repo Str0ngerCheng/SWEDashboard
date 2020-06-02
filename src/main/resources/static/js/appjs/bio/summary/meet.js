@@ -1,7 +1,39 @@
-
 var prefix = document.getElementsByTagName('meta')['ctx'].content
-$(function() {
+$(document).ready(function () {
     load();
+    // //监听浏览器异常关闭
+    // var beginTime =0;//执行onbeforeunload的开始时间
+    // var differTime = 0;//时间差
+    // window.onunload = function (){
+    //     differTime = new Date().getTime() - beginTime;
+    //     if(differTime <= 5) {
+    //         console.log("浏览器关闭")
+    //     }else{
+    //         console.log("浏览器刷新")
+    //         var xmlhttp = getXMLHttpRequest();
+    //         var allTableData = $('#reportsTable').bootstrapTable('getData');
+    //         for(var i=0;i<allTableData.length;i++){
+    //             var id ='#'+"suggest"+i;
+    //             allTableData[i].suggest=$(id).val();
+    //         }
+    //         var msg="submitSuggestion";
+    //         console.log("allTableData:",allTableData);
+    //         var url=prefix + "/bio/summary/submitSuggestion";
+    //         var data=JSON.stringify(allTableData);
+    //         xmlhttp.open('post', url, true);
+    //         xmlhttp.setRequestHeader("Content-Type", "application/json");
+    //         //xmlhttp.send(data);
+    //         var headers = { type: 'multipart/form-data' };
+    //         var blob = new Blob([data], headers);
+    //         navigator.sendBeacon(url, blob);
+    //         console.log("保存成功",xmlhttp);
+    //     }
+    //     return "";
+    // }
+    // window.onbeforeunload = function (){
+    //     beginTime = new Date().getTime();
+    //     submitSuggestion();
+    // };
 });
 
 function load() {
@@ -11,6 +43,7 @@ function load() {
                 /* showRefresh : true,
                  showToggle : true,
                  showColumns : true,*/
+                uniqueId:'reportsTable',
                 iconSize : 'outline',
                 toolbar : '#toolbar',
                 striped: false,
@@ -100,7 +133,18 @@ function load() {
                 onPostBody:function(){
                     mergeCells(topicReportDetailsList, "deptName",1, $("#reportsTable"))
                     $('#reportsTable').bootstrapTable('resetView',{height:$(window).height()-95});
-                }
+                },
+                // onClickCell: function(field, value, row, $element) {
+                //     $element.attr('contenteditable', true);
+                //     //元素失去焦点事件
+                //     $element.blur(function() {
+                //         //单元格修改后的的值
+                //         var tdValue = $element.html();
+                //         console.log(field);
+                //         console.log(tdValue);
+                //         console.log(row);
+                //     })
+                // }
             });
     $('#reportsTable').bootstrapTable('load',topicReportDetailsList);
 
@@ -135,12 +179,15 @@ function mergeCells(data, fieldName, colspan, target) {
         merIndex += numArr[i];
     }
 }
-$(window).unload( function () {
+
+window.onunload=function submitSuggestion() {
     var allTableData = $('#reportsTable').bootstrapTable('getData');
     for(var i=0;i<allTableData.length;i++){
         var id ='#'+"suggest"+i;
         allTableData[i].suggest=$(id).val();
     }
+    var msg="submitSuggestion";
+    console.log("allTableData:",allTableData);
     $.ajax({
         cache : true,
         type : "POST",
@@ -148,9 +195,35 @@ $(window).unload( function () {
         dataType: 'json',
         contentType : 'application/json',
         data : JSON.stringify(allTableData),
-        async : false,
+        async : true,
+        success:function (e) {
+            msg=e.data;
+        },
+        error:function (e) {
+            msg=e.data;
+        }
     });
-});
+};
 
-
-
+function getXMLHttpRequest() {
+    var xmlRequestObj = null;
+    try {
+        if (window.ActiveXObject) {
+            // IE浏览器下的兼容
+            try {
+                xmlRequestObj = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    xmlRequestObj = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    throw e;
+                }
+            }
+        } else if (window.XMLHttpRequest) {
+            // Firefox, Opera 8.0+, Safari 其他浏览器
+            xmlRequestObj = new window.XMLHttpRequest();
+        }
+    } catch (e) {
+    }
+    return xmlRequestObj;
+}

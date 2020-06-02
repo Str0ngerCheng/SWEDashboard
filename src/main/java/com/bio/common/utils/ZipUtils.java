@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.print.DocFlavor;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.zip.ZipEntry;
@@ -174,9 +175,10 @@ public class ZipUtils {
                 File file = new File(path);
                 if (file.exists()) {
                     //设置Headers
-                    response.setHeader("Content-Type","application/octet-stream");
+                    filename = URLEncoder.encode(filename,"UTF-8");
+                    response.setContentType("application/octet-stream;charset=UTF-8");
                     //设置下载的文件的名称-该方式已解决中文乱码问题
-                    response.setHeader("Content-Disposition","attachment;filename=" +  new String( filename.getBytes("gb2312"), "ISO8859-1" ));
+                    response.setHeader("Content-Disposition","attachment;filename=" + filename);
                     is = new FileInputStream(file);
                     bs =new BufferedInputStream(is);
                     os = response.getOutputStream();
