@@ -1,7 +1,39 @@
-
 var prefix = document.getElementsByTagName('meta')['ctx'].content
-$(function() {
+$(document).ready(function () {
     load();
+    // //监听浏览器异常关闭
+    // var beginTime =0;//执行onbeforeunload的开始时间
+    // var differTime = 0;//时间差
+    // window.onunload = function (){
+    //     differTime = new Date().getTime() - beginTime;
+    //     if(differTime <= 5) {
+    //         console.log("浏览器关闭")
+    //     }else{
+    //         console.log("浏览器刷新")
+    //         var xmlhttp = getXMLHttpRequest();
+    //         var allTableData = $('#reportsTable').bootstrapTable('getData');
+    //         for(var i=0;i<allTableData.length;i++){
+    //             var id ='#'+"suggest"+i;
+    //             allTableData[i].suggest=$(id).val();
+    //         }
+    //         var msg="submitSuggestion";
+    //         console.log("allTableData:",allTableData);
+    //         var url=prefix + "/bio/summary/submitSuggestion";
+    //         var data=JSON.stringify(allTableData);
+    //         xmlhttp.open('post', url, true);
+    //         xmlhttp.setRequestHeader("Content-Type", "application/json");
+    //         //xmlhttp.send(data);
+    //         var headers = { type: 'multipart/form-data' };
+    //         var blob = new Blob([data], headers);
+    //         navigator.sendBeacon(url, blob);
+    //         console.log("保存成功",xmlhttp);
+    //     }
+    //     return "";
+    // }
+    // window.onbeforeunload = function (){
+    //     beginTime = new Date().getTime();
+    //     submitSuggestion();
+    // };
 });
 
 function load() {
@@ -93,7 +125,7 @@ function load() {
                         formatter:function(value,row,index){
                             if(value==null)
                                 value=""
-                            return '<textarea id="suggest' +index+ '" class="col-sm-5 form-control" onblur="submitSuggestion()" rows="9">'+value+'</textarea>';
+                            return '<textarea id="suggest' +index+ '" class="col-sm-5 form-control" rows="9">'+value+'</textarea>';
                         }
                     }
 
@@ -148,13 +180,14 @@ function mergeCells(data, fieldName, colspan, target) {
     }
 }
 
-function submitSuggestion() {
+window.onunload=function submitSuggestion() {
     var allTableData = $('#reportsTable').bootstrapTable('getData');
     for(var i=0;i<allTableData.length;i++){
         var id ='#'+"suggest"+i;
         allTableData[i].suggest=$(id).val();
     }
-    var msg="";
+    var msg="submitSuggestion";
+    console.log("allTableData:",allTableData);
     $.ajax({
         cache : true,
         type : "POST",
@@ -170,7 +203,27 @@ function submitSuggestion() {
             msg=e.data;
         }
     });
-    return msg;
 };
-// window.addEventListener("beforeunload", unloadEvent);
 
+function getXMLHttpRequest() {
+    var xmlRequestObj = null;
+    try {
+        if (window.ActiveXObject) {
+            // IE浏览器下的兼容
+            try {
+                xmlRequestObj = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    xmlRequestObj = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    throw e;
+                }
+            }
+        } else if (window.XMLHttpRequest) {
+            // Firefox, Opera 8.0+, Safari 其他浏览器
+            xmlRequestObj = new window.XMLHttpRequest();
+        }
+    } catch (e) {
+    }
+    return xmlRequestObj;
+}
