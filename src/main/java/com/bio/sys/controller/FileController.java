@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -319,53 +320,53 @@ public class FileController {
 
 
 //
-//    @RequestMapping("/download")
-//    public String downloadFile(HttpServletRequest request, HttpServletResponse response) {
-//        //获得文件
-//        File file = new File("C:\\test\\demo.txt");
-//        //下载后的文件名
-//        String fileName = "demo.txt";
-//        if (file.exists()) {
-//            response.setContentType("application/force-download");// 设置强制下载不打开
-//            response.addHeader("Content-Disposition",
-//                    "attachment;fileName=" + fileName);// 设置文件名
-//            byte[] buffer = new byte[1024];
-//            FileInputStream fis = null;
-//            BufferedInputStream bis = null;
-//            try {
-//                //new一个文件输入流，用于文件的读取
-//                fis = new FileInputStream(file);
-//                //包装成缓冲流
-//                bis = new BufferedInputStream(fis);
-//                //获得reponse的输出流
-//                OutputStream os = response.getOutputStream();
-//                int i = bis.read(buffer);
-//                //开始传输
-//                while (i != -1) {
-//                    os.write(buffer, 0, i);
-//                    i = bis.read(buffer);
-//                }
-//                System.out.println("文件下载成功");
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            } finally {
-//                if (bis != null) {
-//                    try {
-//                        bis.close();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                if (fis != null) {
-//                    try {
-//                        fis.close();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }
-//
-//        return null;
-//    }
+    @RequestMapping("/download")
+    public String downloadFile(HttpServletRequest request, HttpServletResponse response) {
+        //获得文件
+        File file = new File("C:\\test\\demo.txt");
+        //下载后的文件名
+        String fileName = "demo.txt";
+        if (file.exists()) {
+            response.setContentType("application/force-download");// 设置强制下载不打开
+            response.addHeader("Content-Disposition",
+                    "attachment;fileName=" + fileName);// 设置文件名
+            byte[] buffer = new byte[1024];
+            FileInputStream fis = null;
+            BufferedInputStream bis = null;
+            try {
+                //new一个文件输入流，用于文件的读取
+                fis = new FileInputStream(file);
+                //包装成缓冲流
+                bis = new BufferedInputStream(fis);
+                //获得reponse的输出流
+                OutputStream os = response.getOutputStream();
+                int i = bis.read(buffer);
+                //开始传输
+                while (i != -1) {
+                    os.write(buffer, 0, i);
+                    i = bis.read(buffer);
+                }
+                System.out.println("文件下载成功");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (bis != null) {
+                    try {
+                        bis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (fis != null) {
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
 }
