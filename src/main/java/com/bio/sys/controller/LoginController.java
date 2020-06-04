@@ -104,7 +104,7 @@ public class LoginController extends BaseController {
         model.addAttribute("userPlan", userPlan);
 
         Long roleId = roleService.findRoleIdByUserId(userDO.getId());
-        if(roleId==5||roleId==1)//陈老师和管理员登录首页不显示目标
+        if(roleId==5||roleId==1 || roleId==61)//陈老师和管理员登录首页不显示目标
             model.addAttribute("haveUserPlan", false);
         else model.addAttribute("haveUserPlan", true);
         return "main";

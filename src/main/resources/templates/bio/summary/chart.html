@@ -173,18 +173,86 @@
 	};
 
 	/* 柱图  */
-	var tab3Option = {
+	var  tab3Option= {
+		grid: {
+			y: "20%", // y 偏移量
+		},
+		title : {
+			text : '缺勤率',
+			subtext : '当前月的缺卡率',
+			x : 'center',
+			top:10
+		},
+		tooltip : {
+			trigger : 'item',
+			formatter : "{a} <br/>{b} : {c} (分)"
+		},
+		toolbox: { //可视化的工具箱
+			show: true,
+			feature: {
+				dataView: { //数据视图
+					show: true
+				},
+				restore: { //重置
+					show: true
+				},
+				saveAsImage: {//保存图片
+					show: true
+				},
+				magicType: {//动态类型切换
+					type: ['bar', 'line']
+				}
+			}
+		},
+		dataZoom: [
+			{
+				id: 'dataZoomX',
+				type: 'slider',
+				xAxisIndex: [0],
+				filterMode: 'filter'
+			}
+		],
 		xAxis : {
 			type : 'category',
-			data : [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ]
+			data : [],
+			axisLabel:{
+				interval: 0,
+				formatter:function(value){
+					return value.split("").join("\n");
+				}
+			},
+			axisTick:{ //y轴刻度线
+				show:false
+			}
+
 		},
 		yAxis : {
-			type : 'value'
+			type : 'value',
+			axisLabel: {
+				margin: 10,
+				textStyle: {
+					fontSize: 14
+				}
+			},
 		},
-		series : [ {
-			data : [ 120, 200, 150, 80, 70, 110, 130 ],
-			type : 'line'
-		} ]
+		series : {
+			name: '缺卡率',
+			data : [],
+			type : 'bar',
+			barWidth:15,
+			itemStyle: {
+				normal: {
+					label: {
+						show: true, //开启显示
+						position: 'top', //在上方显示
+						textStyle: { //数值样式
+							color: 'black',
+							fontSize: 14
+						}
+					}
+				}
+			},
+		}
 	};
 
 	$.ajax({
@@ -224,19 +292,32 @@
 		}
 	});
 
+	$.ajax({
+		cache : true,
+		type : "GET",
+		url : prefix + "/absenceDelay",
+		async : false,
+		error : function(request) {
+			parent.layer.alert("Connection error");
+		},
+		success : function(res) {
+			var data=res.data;
+			for(var i=0;i<data.length;i++){
+				tab3Option.xAxis.data.push(data[i].userName);
+				tab3Option.series.data.push(data[i].absenceRate);
+			}
+		}
+	});
 	/* 初始化tab1的 */
 	var tab1Table = echarts.init($tab1);
 	tab1Table.setOption(tabScoreOption);
 
 	var tab2Table=echarts.init($tab2);
 	tab2Table.setOption(tab2Option);
-	/*tab2Table.setOption({
-		series:[{
-			name:'未交名单小计',
-			data:tab2Option
-		}]
-	});*/
-   /* tab2Table.setOption(option);*/
+
+	var tab3Table=echarts.init($tab3);
+	tab3Table.setOption(tab3Option);
+
 	/* shown.bs.tab为tab选项卡高亮 */
 	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 		/* 获取已激活的标签页的名称 */
