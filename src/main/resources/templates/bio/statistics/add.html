@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="ibox-content">
+    <div class="tab-content">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label>开始日期：</label>
+                    <!--指定 date标记-->
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" id="Mon"/>
+                        <span class="input-group-addon btn-default btn-outline" >
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label class="form-inline">结束日期：</label>
+                    <!--指定 date标记-->
+                    <div class='input-group date' id='datetimepicker2'>
+                        <input type='text' class="form-control" id="Sat" />
+                        <span class="input-group-addon btn-default btn-outline">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="padding-top: 22px">
+                <div class="col-sm-2" id="sum" >
+                    <input type='text' placeholder="请输入总考勤次数">
+                </div>
+                <div class="col-sm-3">
+                    <div class="columns pull-right">
+                        <button type="submit" class="btn btn-primary" id="getTableData" onclick="getData()">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <blockquote  style="background: #f2f2f2;margin: 10px 0 10px 0;border-left:5px solid #009688">
+        <h4>请填写统计的开始日期，结束日期，总考勤次数。双击可修改缺卡次数！</h4>
+    </blockquote>
+       <table id="statisticsTable" data-mobile-responsive="true">  </table>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/bio/statistics/add.js" th:src="@{/js/appjs/bio/statistics/add.js}"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.22.0/moment-with-locales.js"></script>
+<script src="/js/bootstrap-datetimepicker.min.css" th:src=" @{/js/bootstrap-datetimepicker.min.css}"></script>
+<script src="/js/bootstrap-datetimepicker.min.js" th:src=" @{/js/bootstrap-datetimepicker.min.js}"></script>
+<script src="/js/bootstrap-datetimepicker.js" th:src=" @{/js/bootstrap-datetimepicker.js}"charset="UTF-8"></script>
+<script src="/js/bootstrap-datetimepicker.zh-CN.js" th:src=" @{/js/bootstrap-datetimepicker.zh-CN.js}" charset="UTF-8"></script>
+<script src="/js/bootstrap-datetimepicker.fr.js" th:src=" @{/js/bootstrap-datetimepicker.fr.js}" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('#datetimepicker1').datetimepicker({
+        minView:"month",
+        maxView:4,
+        format: 'yyyy-mm-dd',
+        autoclose:true,
+        weekStart:1,
+        language:'zh-CN'
+    }).on("click",function () {
+        $('#datetimepicker1').datetimepicker("setEndDate", $("datetimepicker2").val() )
+    });
+    $('#datetimepicker2').datetimepicker({
+        minView:"month",
+        format: 'yyyy-mm-dd',
+        autoclose:true,
+        weekStart:1,
+        language:'zh-CN'
+    }).on("click",function () {
+        $('#datetimepicker2').datetimepicker("setStartDate", $("datetimepicker1").val() )
+    });
+    function getDates() {
+        //按周日为一周的最后一天计算
+        var date = new Date();
+        //今天是这周的第几天
+        var today = date.getDay();
+        //上周日距离今天的天数（负数表示）
+        var stepSunDay = -today+1;
+        var stepMonday = 7 - today;
+        // 如果今天是周日
+        if (today == 0) {
+            stepSunDay = -6;
+            stepMonday=0;
+        }
+        // 周一距离今天的天数（负数表示）
+        var time = date.getTime();
+        var monday = new Date(time + stepSunDay * 24 * 3600 * 1000);
+        var sunday = new Date(time + stepMonday * 24 * 3600 * 1000);
+        //本周一的日期 （起始日期）
+        var startDate = transferDate(monday); // 日期变换
+        //本周日的日期 （结束日期）
+        var endDate = transferDate(sunday); // 日期变换
+        var WeekDate=[startDate,endDate];
+        return WeekDate;
+    }
+    function transferDate(date) {
+        // 年
+        var year = date.getFullYear();
+        // 月
+        var month = date.getMonth() + 1;
+        // 日
+        var day = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (day >= 0 && day <= 9) {
+            day = "0" + day;
+        }
+        var dateString = year + '-' + month + '-' + day;
+        return dateString;
+    }
+    var WeekDate=getDates();
+    document.getElementById("Mon").value=WeekDate[0];
+    document.getElementById("Sat").value=WeekDate[1];
+</script>
+</body>
+</html>
