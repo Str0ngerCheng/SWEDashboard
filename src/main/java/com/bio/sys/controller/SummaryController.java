@@ -268,13 +268,21 @@ public class SummaryController {
 				deptIds[i]=summaryDOList.get(i).getDeptId();
 			}
 			String timeprefix="";
-			if(summaryDOList.size()>0){//这里名字太长了后面显示不出来
+			if(summaryDOList.size()>0){
 				timeprefix= summaryDOList.get(0).getTitle().split("-")[0].replace('/','-')
 						+"-"+summaryDOList.get(0).getTitle().split("-")[1].replace('/','-');
 			}
 			//String directory="E:\\Test\\";
+			//删除上周周报汇总
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			String lastweektimeprefix=sdf.format(DateUtils.getLastWeekMondayStart(new Date()))+"-"
+					+sdf.format(DateUtils.getLastWeekSundayEnd(new Date()));
+			String lastweekfilename=lastweektimeprefix+"-SWE小组周报汇总.zip";
+			FileUtil.deleteFile(directory+lastweekfilename);
+
 			String filename =timeprefix+"-SWE小组周报汇总";
 			submitHelper(deptIds,directory,filename);
+
 			try {
 				for(UserDO userDO:userDOList) {
 					String recipient = userDO.getEmail();
