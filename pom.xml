@@ -24,7 +24,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 		<mybatis.version>1.3.1</mybatis.version>
 		<mybatisplus.version>2.1.6</mybatisplus.version>
 		<mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
@@ -315,7 +315,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>biodashboard</finalName>
+		<finalName>swedashboard</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -49,7 +49,18 @@ function validateRule() {
 	$("#signupForm").validate({
 		rules : {
 			name : {
-				required : true
+				required : true,
+				minlength : 2,
+				remote : {
+					url :document.getElementsByTagName('meta')['ctx'].content + "/sys/user/exit", // 后台处理程序
+					type : "post", // 数据发送方式
+					dataType : "json", // 接受数据格式
+					data : { // 要传递的数据
+						name : function() {
+							return $("#name").val();
+						}
+					}
+				}
 			},
 			username : {
 				required : true,
@@ -87,7 +98,8 @@ function validateRule() {
 		messages : {
 
 			name : {
-				required : icon + "请输入姓名"
+				required : icon + "请输入姓名",
+				remote : icon + "姓名已经存在"
 			},
 			username : {
 				required : icon + "请输入您的用户名",

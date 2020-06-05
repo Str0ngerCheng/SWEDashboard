@@ -1,11 +1,11 @@
 bio:
   projectName: swedashboard
-  projectRootURL: http://localhost:8088/swedashboard/
+  projectRootURL: http://202.114.114.26:8088/swedashboard/
 logging:
   level:
     root: DEBUG        
     org:
-      springframework:
+      springframework: DEBUG
         security: DEBUG
         web: ERROR    
       hibernate: DEBUG        
@@ -13,16 +13,17 @@ logging:
         commons:
           dbcp2: DEBUG
     com:
-      bio: DEBUG
+      bio: DEBUG,INFO
   file: ../logs/biodashboard.log  
   
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://175.24.66.249:3306/ifast?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true
+    #202.114.114.26
+    url: jdbc:mysql://202.114.114.26:33006/ifast?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true
     username: root
-    password: swe123,./
+    password: swe123
     initialSize: 1
     minIdle: 3
     maxActive: 20
