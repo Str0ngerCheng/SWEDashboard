@@ -1,6 +1,6 @@
 bio:
-  projectName: biodashboard
-  projectRootURL: http://localhost:8088/
+  projectName: swedashboard
+  projectRootURL: http://localhost:8088/swedashboard/
 logging:
   level:
     root: DEBUG        

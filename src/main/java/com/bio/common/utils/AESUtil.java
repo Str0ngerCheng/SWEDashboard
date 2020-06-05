@@ -135,7 +135,8 @@ public class AESUtil {
 //        System.out.println("使用AES对称加密，请输入加密的规则");
 //        String encodeRules="SWE Dashboard";
 //        System.out.println("请输入要加密的内容:");
-        String content = "aaa-a-aa-aaaa aa.zip";
+        String content = "E:\\Test\\2020-06-01-2020-06-07-SWE小组周报汇总.zip";
+        System.out.println("要加密的内容:"+content);
         System.out.println("根据输入的规则"+encodeRules+"加密后的密文是:"+AESUtil.AESEncode(content));
 
         /*

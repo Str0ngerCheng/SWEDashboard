@@ -9,9 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.bio.common.annotation.Log;
 import com.bio.common.domain.MailBean;
-import com.bio.common.utils.DateUtils;
-import com.bio.common.utils.ExcelUtils;
-import com.bio.common.utils.ZipUtils;
+import com.bio.common.utils.*;
 import com.bio.common.utils.excel.ExcelFormat;
 import com.bio.common.utils.excel.ExcelHeaderInfo;
 import com.bio.sys.dao.DeptDao;
@@ -34,7 +32,6 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.bio.common.service.ContextService;
-import com.bio.common.utils.Result;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -286,10 +283,18 @@ public class SummaryController {
 					Map<String, Object> parameters = new HashMap<>();
 					parameters.put("name", userDO.getName());
 					parameters.put("url", url);
-					//发送周报附件加周报汇总表
-					String filepathname=directory+filename+".zip";
+                    //发送周报附件加周报汇总表
+                    //String filepathname=directory+filename+".zip";
+                    //将文件名用AES算法加密
+                    String filepathnameAES= AESUtil.AESEncode(filename+".zip");
+                    String filepathnameEncode= java.net.URLEncoder.encode(filepathnameAES);
 
-					mailService.sendAttachmentMail(mailBean, "summaryreport.html",filepathname,filename+".zip", parameters);
+                    //String filepathnameAES="";
+                    String downloadurl=url+"reportfile/downloadFileByURL?fileName="+filepathnameEncode;
+                    parameters.put("downloadurl", downloadurl);
+                    mailService.sendTemplateMail(mailBean,"summaryreport.html",parameters);
+                    //发送附件
+                    //mailService.sendAttachmentMail(mailBean, "summaryreport.html",filepathname,filename+".zip", parameters);
 				}
 
 				//将专题汇总周报状态设置为1
@@ -304,8 +309,8 @@ public class SummaryController {
 				logger.error("邮件发送失败", e.getMessage());
 				return Result.build(3,"邮件发送失败："+e.getMessage());
 			}finally {
-				ZipUtils.deleteFile(directory+filename+".zip");
-				ZipUtils.deleteFile(directory+filename+"表.xlsx");
+				//ZipUtils.deleteFile(directory+filename+".zip");
+
 			}
 			return Result.ok();
 		}
@@ -339,6 +344,7 @@ public class SummaryController {
 		String[] names=new String[zipnames.size()];
 		zipnames.toArray(names);
 		ZipUtils.ZipAllFilebyNames(directory,filename+".zip",names);
+		ZipUtils.deleteFile(directory+filename+"表.xlsx");
 	}
 
 	@GetMapping("/meet")
