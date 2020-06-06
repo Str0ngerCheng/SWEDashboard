@@ -240,16 +240,15 @@ public class FileController {
     @GetMapping("/downloadreportfile")
     @CrossOrigin
     @RequiresAuthentication
-    public void downReportFile(HttpServletResponse response, String filename) {
+    public void downReportFile(HttpServletResponse response, @RequestParam("filename") String filename) throws UnsupportedEncodingException {
         if (filename != null) {
             FileInputStream is = null;
             BufferedInputStream bs = null;
             OutputStream os = null;
-            String filenamedecode = java.net.URLDecoder.decode(filename);
+            String filenamedecode = java.net.URLDecoder.decode(filename,"UTF-8");
             String path = directory + filenamedecode;
-            LOGGER.info("downReportFile path:"+path);
             LOGGER.info("filename:"+filename);
-            LOGGER.info("filenamedecodedecode:"+java.net.URLDecoder.decode(filenamedecode));
+            LOGGER.info("filenamedecodedecode:"+filenamedecode);
             try {
                 File file = new File(path);
                 if (file.exists()) {
