@@ -23,6 +23,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Field;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -262,7 +263,7 @@ public class ExcelUtils {
     //写入本地文件夹
     public void SaveExcelFile(String fileName, Workbook workbook) {
         try {
-            fileName = new String(fileName.getBytes(), "UTF-8");
+            fileName = new String(fileName.getBytes(), "GBK");
             FileOutputStream fileOutputStream=new FileOutputStream(fileName);
             workbook.write(fileOutputStream);
             fileOutputStream.close();
