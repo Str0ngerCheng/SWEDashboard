@@ -94,13 +94,14 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <label >专题：</label>
-                        <select class="form-control" id="topicName">
-                            <option th:value="智慧地球"selected>智慧地球</option>
-                            <option th:value="张翔专题" >张翔专题</option>
-                            <option th:value="杜文英专题">杜文英专题</option>
-                            <option th:value="陈泽强专题">陈泽强专题</option>
-                        </select>
-
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="专题" id="topicName">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default btn-outline" onclick="selectTopic()" type="button">
+                                    <i class="glyphicon glyphicon-th icon-th"></i>
+                                </button>
+                            </span>
+                        </div>
                     </div>
 
                     <div class="col-sm-2">
