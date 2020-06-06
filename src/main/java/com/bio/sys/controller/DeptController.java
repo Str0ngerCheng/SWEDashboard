@@ -174,6 +174,8 @@ public class DeptController extends BaseController {
         return sysDeptService.getTree(0L);
     }
 
+
+
     @GetMapping("/treeView")
     String treeView() {
         return prefix + "/deptTree";

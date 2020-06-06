@@ -1,7 +1,6 @@
 
 $().ready(function() {
 	validateRule();
-	// $("#signupForm").validate();
 });
 
 $.validator.setDefaults({
@@ -9,8 +8,8 @@ $.validator.setDefaults({
 		update();
 	}
 });
+
 function update() {
-//	$("#roleIds").val(getCheckedRoles());
 	$.ajax({
 		cache : true,
 		type : "POST",
@@ -35,30 +34,6 @@ function update() {
 	});
 
 }
-//function getCheckedRoles() {
-//	var adIds = "";
-//	$("input:checkbox[name=role]:checked").each(function(i) {
-//		if (0 == i) {
-//			adIds = $(this).val();
-//		} else {
-//			adIds += ("," + $(this).val());
-//		}
-//	});
-//	return adIds;
-//}
-//function setCheckedRoles() {
-//	var roleIds = $("#roleIds").val();
-//	alert(roleIds);
-//	var adIds = "";
-//	$("input:checkbox[name=role]:checked").each(function(i) {
-//		if (0 == i) {
-//			adIds = $(this).val();
-//		} else {
-//			adIds += ("," + $(this).val());
-//		}
-//	});
-//	return adIds;
-//}
 
 function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
@@ -91,7 +66,6 @@ function validateRule() {
 			agree : "required"
 		},
 		messages : {
-
 			name : {
 				required : icon + "请输入姓名"
 			},
@@ -108,10 +82,11 @@ function validateRule() {
 				minlength : icon + "密码必须6个字符以上",
 				equalTo : icon + "两次输入的密码不一致"
 			},
-			email : icon + "请输入您的E-mail",
+			email : icon + "请输入您的E-mail"
 		}
 	})
 }
+
 var openDept = function(){
 	layer.open({
 		type:2,
@@ -120,6 +95,7 @@ var openDept = function(){
 		content:document.getElementsByTagName('meta')['ctx'].content +"/sys/dept/treeView"
 	})
 }
+
 function loadDept( deptId,deptName){
 	$("#deptId").val(deptId);
 	$("#deptName").val(deptName);

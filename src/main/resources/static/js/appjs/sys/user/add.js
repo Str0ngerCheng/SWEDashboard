@@ -96,7 +96,6 @@ function validateRule() {
 			agree : "required"
 		},
 		messages : {
-
 			name : {
 				required : icon + "请输入姓名",
 				remote : icon + "姓名已经存在"

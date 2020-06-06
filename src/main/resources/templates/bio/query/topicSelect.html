@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<style>
+    .my-ibox-content {
+        background-color: #ffffff;
+        color: inherit;
+        padding: 15px 20px 20px 20px;
+        border-color: #e7eaec;
+        -webkit-border-image: none;
+        -o-border-image: none;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 1px 0px;
+    }
+</style>
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="my-ibox-content" style="display: flex">
+        <div class="col-sm-4">
+            <div class="ibox-body">
+                <div class="ibox-title">
+                    <h5>选择专题</h5>
+                </div>
+                <div class="ibox-body">
+                    <div id="jstree"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/bio/query/topicSelect.js" th:src="@{/js/appjs/bio/query/topicSelect.js}"></script>
+</body>
+</html>

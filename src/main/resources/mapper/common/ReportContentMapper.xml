@@ -26,7 +26,7 @@
 
 
 	<select id="getSearchKey" resultType="com.bio.sys.domain.ReportContentDO">
-		select * from report_content where concat (last_plan,summary,next_plan,problem) like concat('%',#{searchKey},'%')
+		select * from report_content where concat (last_plan,summary,next_plan,problem) like concat('%',#{searchKey},'%') and status_l_sub=1
 	</select>
 
 </mapper>
