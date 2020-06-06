@@ -42,7 +42,6 @@ public class ZipUtils {
         SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd");
         //String zipFileName = "周报汇总"+formatter.format(new Date())+".zip";
         String strZipPath = directory+zipFileName;
-
         ZipOutputStream zipStream = null;
         FileInputStream zipSource = null;
         BufferedInputStream bufferStream = null;
