@@ -122,7 +122,7 @@ public class ThisYearReportTemplateGenerateJob implements Job {
 								MailBean mailBean = new MailBean();
 
 								String recipient=  userService.selectById(reportDO.getAuthorId()).getEmail();
-								mailBean.setSubject("【BioDashboard】本年年度总结草稿已经为您生成！");
+								mailBean.setSubject("【SWEDashboard】本年年度总结草稿已经为您生成！");
 								mailBean.setRecipient(recipient);
 
 								Map<String, Object> parameters = new HashMap<>();

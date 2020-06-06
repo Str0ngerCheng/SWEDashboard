@@ -119,7 +119,7 @@ public class LastWeekReportStatisticsJob implements Job {
 							MailBean mailBean = new MailBean();
 
 							String recipient = userDO.getEmail();
-							mailBean.setSubject("【BioDashboard】上周的周报统计已经为您生成！");
+							mailBean.setSubject("【SWEDashboard】上周的周报统计已经为您生成！");
 							mailBean.setRecipient(recipient);
 							
 							parameters.put("name", userDO.getName());

@@ -155,7 +155,7 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 								MailBean mailBean = new MailBean();
 
 								String recipient=  userService.selectById(reportDO.getAuthorId()).getEmail();
-								mailBean.setSubject("【BioDashboard】本周的周报草稿已经为您生成！");
+								mailBean.setSubject("【SWEDashboard】本周的周报草稿已经为您生成！");
 								mailBean.setRecipient(recipient);
 
 								Map<String, Object> parameters = new HashMap<>();

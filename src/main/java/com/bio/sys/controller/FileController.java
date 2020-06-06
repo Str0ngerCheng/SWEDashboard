@@ -220,6 +220,7 @@ public class FileController {
 
     @GetMapping(value = "/ifFileExist")
     @RequiresAuthentication
+    @CrossOrigin
     @ResponseBody
     public Result<String> ifFileExist(String[] filenames) {
         //String filenamedecode=java.net.URLDecoder.decode(filename);
@@ -237,6 +238,7 @@ public class FileController {
 
     //下载单个附件
     @GetMapping("/downloadreportfile")
+    @CrossOrigin
     @RequiresAuthentication
     public void downReportFile(HttpServletResponse response, String filename) {
         if (filename != null) {
@@ -245,6 +247,7 @@ public class FileController {
             OutputStream os = null;
             String filenamedecode = java.net.URLDecoder.decode(filename);
             String path = directory + filenamedecode;
+            LOGGER.info("downReportFile path:"+path);
             try {
                 File file = new File(path);
                 if (file.exists()) {
@@ -262,6 +265,7 @@ public class FileController {
                     }
                 } else {
                     String error = Base64.encodeBase64String("下载的文件资源不存在".getBytes());
+                    LOGGER.error("error:"+error);
                     response.sendRedirect("/error/404");
                 }
             } catch (IOException ex) {
@@ -337,6 +341,7 @@ public class FileController {
      *
      * */
     @GetMapping("/downloadFileByURL")
+    @CrossOrigin
     public ResponseEntity<Resource> downloadCacheFile(HttpServletRequest request, @RequestParam("fileName") String fileName) {
         try {
             String savePath = directory;

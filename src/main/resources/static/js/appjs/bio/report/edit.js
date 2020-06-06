@@ -287,7 +287,7 @@ function checkFile() {
 		var downloadElement = document.createElement('a');
 		downloadElement.href = href;
 		downloadElement.target = '_blank';
-		downloadElement.download = 'model.json'; //下载后文件名
+		downloadElement.download = name; //下载后文件名
 		document.body.appendChild(downloadElement);
 		downloadElement.click(); //点击下载
 		document.body.removeChild(downloadElement); //下载完成移除元素
