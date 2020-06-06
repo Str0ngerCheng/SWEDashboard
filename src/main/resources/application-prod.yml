@@ -1,6 +1,6 @@
 bio:
-  projectName: biodashboard
-  projectRootURL: http://bioinformatics.csu.edu.cn/biodashboard/
+  projectName: swedashboard
+  projectRootURL: http://202.114.114.26:8088/swedashboard/
 logging:
   level:
     root: WARN        

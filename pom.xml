@@ -8,7 +8,7 @@
 	<artifactId>biodashboard</artifactId>
 	<version>1.0.0</version>
 	<!--部署成war包时开启↓↓↓↓ -->
-	<packaging>war</packaging>
+	<!--<packaging>war</packaging>-->
 	<!--部署成war包时开启↑↑↑↑ -->
 
 	<name>biodashboard</name>
@@ -315,7 +315,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>biodashboard</finalName>
+		<finalName>swedashboard</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

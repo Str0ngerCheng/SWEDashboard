@@ -7,21 +7,19 @@ $.validator.setDefaults({
 		save();
 	}
 });
-function getCheckedRoles() {
-	var adIds = "";
-	$("input:checkbox[name=role]:checked").each(function(i) {
-		if (0 == i) {
-			adIds = $(this).val();
-	} else {
-			adIds += ("," + $(this).val());
-		}
-	});
-return adIds;
-}
-
-
+//function getCheckedRoles() {
+//	var adIds = "";
+//	$("input:checkbox[name=role]:checked").each(function(i) {
+//		if (0 == i) {
+//			adIds = $(this).val();
+//		} else {
+//			adIds += ("," + $(this).val());
+//		}
+//	});
+//	return adIds;
+//}
 function save() {
-	$("#roleIds").val(getCheckedRoles());
+//	$("#roleIds").val(getCheckedRoles());
 	$.ajax({
 		cache : true,
 		type : "POST",
@@ -52,6 +50,7 @@ function validateRule() {
 		rules : {
 			name : {
 				required : true,
+				minlength : 2,
 				remote : {
 					url :document.getElementsByTagName('meta')['ctx'].content + "/sys/user/exit", // 后台处理程序
 					type : "post", // 数据发送方式
@@ -97,9 +96,10 @@ function validateRule() {
 			agree : "required"
 		},
 		messages : {
+
 			name : {
 				required : icon + "请输入姓名",
-				remote: icon+"用户名已经存在"
+				remote : icon + "姓名已经存在"
 			},
 			username : {
 				required : icon + "请输入您的用户名",
