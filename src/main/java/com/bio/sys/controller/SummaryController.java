@@ -112,7 +112,6 @@ public class SummaryController {
 				Long deptId = deptDO.getId();
 				String deptName = deptDO.getName();
 				Integer deptOrder=deptDO.getOrderNum();
-
 				TopicReportStatisticVO topicReportStatistic = new TopicReportStatisticVO();
 				topicReportStatistic.setDeptName(deptName);
 				topicReportStatistic.setOrderNum(deptOrder);
@@ -146,7 +145,6 @@ public class SummaryController {
 						//设置排序因子
 						topicReportDetails.setDeptOrder(deptOrder);
 						topicReportDetails.setUserOrder(userService.selectById(report.getAuthorId()).getOrderNum());
-
 						topicReportDetails.setAuthorName(report.getAuthorName());
 						ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
 						topicReportDetails.setMonthPlan(reportContent.getMonthPlan());
@@ -351,7 +349,12 @@ public class SummaryController {
 		zipnames.add(filename+"表.xlsx");
 		String[] names=new String[zipnames.size()];
 		zipnames.toArray(names);
-		ZipUtils.ZipAllFilebyNames(directory,filename+".zip",names);
+		try {
+			ZipUtils.ZipAllFilebyNames(directory,filename+".zip",names);
+		} catch (UnsupportedEncodingException e) {
+			logger.error("UnsupportedEncodingException");
+			e.printStackTrace();
+		}
 		ZipUtils.deleteFile(directory+filename+"表.xlsx");
 	}
 

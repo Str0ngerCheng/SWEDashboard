@@ -29,7 +29,9 @@ function validateContent() {
 }
 
 function getLastReport(){
-
+	var index = parent.layer.getFrameIndex(window.name);
+	var id = $('#reportId').val();
+	parent.layer.iframeSrc(index, prefix + '/getLastReport/' + id);
 }
 
 function clearAll(){
