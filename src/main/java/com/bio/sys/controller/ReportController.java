@@ -116,6 +116,27 @@ public class ReportController {
 		return "bio/report/edit";
 	}
 
+	@GetMapping("/getLastReport/{id}")
+	@RequiresPermissions("bio:report:edit")
+	String getLastReport(@PathVariable("id") Integer id,Model model){
+		UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
+		ReportDO lastReport = reportService.getLastReport(userDO.getId(),new Date());
+		ReportDO report = reportService.selectById(id);
+		ReportContentDO reportContent;
+		if(lastReport!=null){
+			reportContent = reportContentService.getByUUID(lastReport.getContentId());
+			model.addAttribute("reportContent", reportContent);
+			model.addAttribute("report", report);
+		}
+		else {
+			reportContent=reportContentService.getByUUID(report.getContentId());
+			model.addAttribute("reportContent", reportContent);
+			model.addAttribute("report", report);
+		}
+
+		return "bio/report/edit";
+	}
+
 	/**
 	 * 保存
 	 */
