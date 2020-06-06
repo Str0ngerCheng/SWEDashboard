@@ -62,6 +62,12 @@ public class QueryController {
         return "bio/query/userSelect";
     }
 
+    @GetMapping("/topicSelect")
+    @RequiresPermissions("bio:query:query")
+    public String TopicSelect() {
+        return "bio/query/topicSelect";
+    }
+
 
     @ResponseBody
     @GetMapping("/list")
@@ -167,7 +173,7 @@ public class QueryController {
         long temp=12;
         for(SummaryDO summaryDO:summaryDOList)
        {
-           if (summaryDO.getDeptName().equals(topicName) || topicName.equals("智慧地球")) {
+           if (summaryDO.getDeptName().equals(topicName) || topicName.equals("智慧地球小组")) {
                DeptDO deptDO = deptService.selectById(summaryDO.getDeptId());
                if(WeekMonth1==1){
                    SummaryVO summaryVO = new SummaryVO(summaryDO, deptDO.getOrderNum());
