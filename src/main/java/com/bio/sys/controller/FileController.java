@@ -248,6 +248,8 @@ public class FileController {
             String filenamedecode = java.net.URLDecoder.decode(filename);
             String path = directory + filenamedecode;
             LOGGER.info("downReportFile path:"+path);
+            LOGGER.info("filename:"+filename);
+            LOGGER.info("filenamedecodedecode:"+java.net.URLDecoder.decode(filenamedecode));
             try {
                 File file = new File(path);
                 if (file.exists()) {

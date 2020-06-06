@@ -65,7 +65,7 @@ function downloadFile() {
 		},
 		success : function(data) {
 			if (data.code == 0) {
-				var url= document.getElementsByTagName('meta')['ctx'].content+"/reportfile/downloadreportfile?filename="+ name;
+				var url= document.getElementsByTagName('meta')['ctx'].content+"/reportfile/downloadreportfile?filename="+ encodeURI(name);
 				try{
 					var elemIF = document.createElement('iframe');
 					elemIF.src = url;

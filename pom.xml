@@ -11,8 +11,8 @@
 	<!--<packaging>war</packaging>-->
 	<!--部署成war包时开启↑↑↑↑ -->
 
-	<name>biodashboard</name>
-	<description>Bio-Dashboard for Prof Li's bioinformatics team</description>
+	<name>swedashboard</name>
+	<description>SWE-Dashboard for Prof Chen's Sensor Web Group</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
