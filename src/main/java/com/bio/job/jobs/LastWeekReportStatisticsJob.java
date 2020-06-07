@@ -89,11 +89,7 @@ public class LastWeekReportStatisticsJob implements Job {
 					if (null == reportCountDOsMap.get(deptDO.getId())) {
 						reportDONotFinishedCountsMap.put(deptDO.getName(), -1);
 					}else {
-						if(userDO.getId()==177 || userDO.getId()==204){
-							reportDONotFinishedCountsMap.put(deptDO.getName(), reportCountDOsMap.get(deptDO.getId()).getCountNumber()-1);
-						}else {
-							reportDONotFinishedCountsMap.put(deptDO.getName(), reportCountDOsMap.get(deptDO.getId()).getCountNumber());
-						}
+						reportDONotFinishedCountsMap.put(deptDO.getName(), reportCountDOsMap.get(deptDO.getId()).getCountNumber());
 					}
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
