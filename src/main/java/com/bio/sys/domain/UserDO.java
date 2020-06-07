@@ -57,6 +57,17 @@ public class UserDO implements Serializable {
 
     private Integer orderNum;
 
+    //是否写周报
+    private Integer statusWritereport;
+
+    public Integer getStatusWritereport() {
+        return statusWritereport;
+    }
+
+    public void setStatusWritereport(Integer statusWritereport) {
+        this.statusWritereport = statusWritereport;
+    }
+
 
     /**
      * 设置：用户名
