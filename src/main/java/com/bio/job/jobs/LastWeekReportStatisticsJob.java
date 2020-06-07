@@ -63,10 +63,10 @@ public class LastWeekReportStatisticsJob implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-
-
-		Date fromDate = DateUtils.getLastWeekMondayStart(new Date());
-		Date toDate = DateUtils.getLastWeekSundayEnd(new Date());
+/*		Date fromDate = DateUtils.getLastWeekMondayStart(new Date());
+		Date toDate = DateUtils.getLastWeekSundayEnd(new Date());*/
+		Date fromDate = DateUtils.getThisWeekMondayStart(new Date());
+		Date toDate = DateUtils.getThisWeekSundayEnd(new Date());
 		Map<String, Object> columnMap = new HashMap<>();
 		columnMap.put("status", "1"); // 正常用户
 
