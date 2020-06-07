@@ -349,7 +349,12 @@ public class SummaryController {
 		zipnames.add(filename+"表.xlsx");
 		String[] names=new String[zipnames.size()];
 		zipnames.toArray(names);
-		ZipUtils.ZipAllFilebyNames(directory,filename+".zip",names);
+		try {
+			ZipUtils.ZipAllFilebyNames(directory,filename+".zip",names);
+		} catch (UnsupportedEncodingException e) {
+			logger.error("UnsupportedEncodingException");
+			e.printStackTrace();
+		}
 		ZipUtils.deleteFile(directory+filename+"表.xlsx");
 	}
 

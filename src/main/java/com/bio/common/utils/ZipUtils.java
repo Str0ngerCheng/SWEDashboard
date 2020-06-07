@@ -97,7 +97,7 @@ public class ZipUtils {
     }
 
     //将传入文件批量压缩成一个zip并存在directory下面
-    public static void ZipAllFilebyNames(String directory,String filename,String [] names) {
+    public static void ZipAllFilebyNames(String directory,String filename,String [] names) throws UnsupportedEncodingException {
 
         File directoryFile=new File(directory);
         if(!directoryFile.isDirectory() && !directoryFile.exists()){
@@ -109,6 +109,8 @@ public class ZipUtils {
         SimpleDateFormat formatter  = new SimpleDateFormat("yyyy-MM-dd");
         //String zipFileName = "周报汇总"+formatter.format(new Date())+".zip";
         String strZipPath = directory+filename;
+        //win底下是默认GBK编码
+        strZipPath = new String(strZipPath.getBytes(), "GBK");
 
         ZipOutputStream zipStream = null;
         FileInputStream zipSource = null;
@@ -118,8 +120,6 @@ public class ZipUtils {
             //构造最终压缩包的输出流
             zipStream = new ZipOutputStream(new FileOutputStream(zipFile));
             for (int i = 0; i<names.length ;i++){
-//                //解码获取真实路径与文件名
-//                String realFileName = java.net.URLDecoder.decode(names[i],"UTF-8");
 
                 File file = new File(directory+names[i]);
 

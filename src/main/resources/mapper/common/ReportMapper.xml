@@ -17,6 +17,19 @@
 		LIMIT 1
 	</select>
 
+	<select id="getLastReport"
+			resultType="com.bio.sys.domain.ReportDO">
+		SELECT
+		*
+		FROM
+		report
+		WHERE
+		status_m_sub=1 and author_id = #{authorid}
+		ORDER BY
+		r_to_date DESC
+		LIMIT 1
+	</select>
+
 	<select id="getReportCountByTitle" resultType="int">
 		select count(*)
 		from report where title = #{value}

@@ -16,9 +16,11 @@ import com.bio.sys.vo.ReportScoreVO;
  * <small> 2019-12-14 21:13:15 | chenx</small>
  */
 public interface ReportService extends CoreService<ReportDO> {
-    
+    //获取最新一条周报
 	public  ReportDO getLatestReport(Long id, Date date);
-	
+	//获取上周周报，也就是倒数第二周周报
+	public  ReportDO getLastReport(Long id, Date date);
+
 	public  Integer getReportCountByTitle(String title);
 	
 	public List<ReportDO> getReports(Date fromDate, Date toDate, Integer status);

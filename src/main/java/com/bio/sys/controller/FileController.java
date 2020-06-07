@@ -220,6 +220,7 @@ public class FileController {
 
     @GetMapping(value = "/ifFileExist")
     @RequiresAuthentication
+    @CrossOrigin
     @ResponseBody
     public Result<String> ifFileExist(String[] filenames) {
         //String filenamedecode=java.net.URLDecoder.decode(filename);
@@ -237,14 +238,17 @@ public class FileController {
 
     //下载单个附件
     @GetMapping("/downloadreportfile")
+    @CrossOrigin
     @RequiresAuthentication
-    public void downReportFile(HttpServletResponse response, String filename) {
+    public void downReportFile(HttpServletResponse response, @RequestParam("filename") String filename) throws UnsupportedEncodingException {
         if (filename != null) {
             FileInputStream is = null;
             BufferedInputStream bs = null;
             OutputStream os = null;
-            String filenamedecode = java.net.URLDecoder.decode(filename);
+            String filenamedecode = java.net.URLDecoder.decode(filename,"UTF-8");
             String path = directory + filenamedecode;
+            LOGGER.info("filename:"+filename);
+            LOGGER.info("filenamedecodedecode:"+filenamedecode);
             try {
                 File file = new File(path);
                 if (file.exists()) {
@@ -262,6 +266,7 @@ public class FileController {
                     }
                 } else {
                     String error = Base64.encodeBase64String("下载的文件资源不存在".getBytes());
+                    LOGGER.error("error:"+error);
                     response.sendRedirect("/error/404");
                 }
             } catch (IOException ex) {
@@ -337,6 +342,7 @@ public class FileController {
      *
      * */
     @GetMapping("/downloadFileByURL")
+    @CrossOrigin
     public ResponseEntity<Resource> downloadCacheFile(HttpServletRequest request, @RequestParam("fileName") String fileName) {
         try {
             String savePath = directory;

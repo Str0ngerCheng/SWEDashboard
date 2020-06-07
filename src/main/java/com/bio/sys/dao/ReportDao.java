@@ -21,6 +21,8 @@ public interface ReportDao extends BaseDao<ReportDO> {
 
 	public  ReportDO getLatestReport(@Param("authorid") Long authorid, @Param("rfromdate") String rfromdate);
 
+	public  ReportDO getLastReport(@Param("authorid") Long authorid, @Param("rfromdate") String rfromdate);
+
 	public Integer getReportCountByTitle(String title);
 	
 	public List<ReportDO>getReports(@Param("fromdate") String fromDate,@Param("todate") String toDate, @Param("status") Integer status);

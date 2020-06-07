@@ -10,6 +10,7 @@ import com.bio.sys.service.*;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -147,7 +148,7 @@ public class UserController extends BaseController {
         return Result.ok();
     }
 
-    @RequiresPermissions("sys:user:edit")
+    @RequiresAuthentication
     @Log("更新用户")
     @PostMapping("/updatePeronal")
     @ResponseBody

@@ -37,6 +37,13 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 		return baseMapper.getLatestReport(authorid, sdf.format(rToDate));
 		
 	}
+	@Override
+	public ReportDO getLastReport(Long authorid, Date rToDate) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return baseMapper.getLastReport(authorid, sdf.format(rToDate));
+
+	}
+
 
 	@Override
 	public Integer getReportCountByTitle(String title) {

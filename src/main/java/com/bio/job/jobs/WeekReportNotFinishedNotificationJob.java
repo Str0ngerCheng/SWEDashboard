@@ -61,7 +61,7 @@ public class WeekReportNotFinishedNotificationJob implements Job {
 						MailBean mailBean = new MailBean();
 
 						String recipient=  userService.selectById(reportDO.getAuthorId()).getEmail();
-						mailBean.setSubject("【BioDashboard】请及时填写本周周报！");
+						mailBean.setSubject("【SWEDashboard】请及时填写本周周报！");
 						mailBean.setRecipient(recipient);
 
 						Map<String, Object> parameters = new HashMap<>();

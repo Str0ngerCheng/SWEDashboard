@@ -70,7 +70,7 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 		for (UserDO userDO : users) {
 			Long roleDOs = userRoleService.findRoleIdByUserId(userDO.getId());
 
-			if (null != roleDOs && (roleDOs.intValue()!=1&&roleDOs.intValue()!=5)) { // 除管理员，陈老师外其他人都需要填写周报
+			if (null != roleDOs && (roleDOs.intValue()!=1&&roleDOs.intValue()!=5&&roleDOs.intValue()!=61)) { // 除管理员，陈老师,刘维老师外其他人都需要填写周报
 				ReportDO reportDO = new ReportDO();
 				reportDO.setAuthorId(userDO.getId());
 				reportDO.setStatusMod(0); // 标识 Bot 生成的
@@ -155,7 +155,7 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 								MailBean mailBean = new MailBean();
 
 								String recipient=  userService.selectById(reportDO.getAuthorId()).getEmail();
-								mailBean.setSubject("【BioDashboard】本周的周报草稿已经为您生成！");
+								mailBean.setSubject("【SWEDashboard】本周的周报草稿已经为您生成！");
 								mailBean.setRecipient(recipient);
 
 								Map<String, Object> parameters = new HashMap<>();
