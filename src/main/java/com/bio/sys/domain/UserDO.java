@@ -58,7 +58,6 @@ public class UserDO implements Serializable {
     private Integer orderNum;
 
 
-
     /**
      * 设置：用户名
      */

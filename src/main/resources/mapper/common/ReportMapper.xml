@@ -189,8 +189,6 @@
 		</foreach>
 	</update>
 
-
-
 	<select id="getReportsByAutName" resultType="com.bio.sys.domain.ReportDO">
 		select * from report where author_name = #{AutName}
 	</select>

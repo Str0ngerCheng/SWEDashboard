@@ -53,20 +53,17 @@ public class WeekReportNotFinishedNotificationJob implements Job {
 		List<ReportDO> reportDOs = reportService.getReports(mon, sun, 0);
 		
 		for (ReportDO reportDO : reportDOs) {
-			
 			ThreadPool.getThreadPool().addRunnable(new ThreadPool.Runnable() {
 				@Override
 				public void run() {
 					try {
 						MailBean mailBean = new MailBean();
-
 						String recipient=  userService.selectById(reportDO.getAuthorId()).getEmail();
 						mailBean.setSubject("【SWEDashboard】请及时填写本周周报！");
 						mailBean.setRecipient(recipient);
 						Map<String, Object> parameters = new HashMap<>();
 						parameters.put("name", reportDO.getAuthorName());
 						parameters.put("url", url);
-
 						mailService.sendTemplateMail(mailBean, "pushreport.html", parameters);
 						
 					} catch (Exception e) {
