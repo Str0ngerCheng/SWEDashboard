@@ -47,6 +47,10 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/bio/summary")
 public class SummaryController {
+
+	@Value("${com.attachment.directory}")
+	private String directory;
+
 	@Value("${bio.projectRootURL}")
 	private String url;
 
@@ -74,7 +78,6 @@ public class SummaryController {
 	private StatisticsService statisticsService;
 
     private static ConcurrentHashMap<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
-	private String directory = "E:\\Test\\";
 
 
 	@GetMapping()

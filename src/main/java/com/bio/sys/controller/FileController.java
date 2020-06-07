@@ -8,6 +8,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -32,7 +33,8 @@ import java.util.zip.ZipOutputStream;
 @RequestMapping("/reportfile")
 public class FileController {
     //存放--服务器上zip文件的目录
-    private String directory = "E:\\Test\\";
+    @Value("${com.attachment.directory}")
+    private String directory;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FileController.class);
 
@@ -248,7 +250,7 @@ public class FileController {
             String filenamedecode = java.net.URLDecoder.decode(filename,"UTF-8");
             String path = directory + filenamedecode;
             LOGGER.info("filename:"+filename);
-            LOGGER.info("filenamedecodedecode:"+filenamedecode);
+            LOGGER.info("filenamedecode:"+filenamedecode);
             try {
                 File file = new File(path);
                 if (file.exists()) {
