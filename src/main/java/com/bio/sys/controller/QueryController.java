@@ -17,6 +17,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,11 @@ import java.util.concurrent.ConcurrentHashMap;
 @Controller
 @RequestMapping("/bio/query")
 public class QueryController {
+
+    //存放--服务器上zip文件的目录
+    @Value("${com.attachment.directory}")
+    private String directory;
+
     @Autowired
     private ContextService contextService;
 
@@ -48,7 +54,6 @@ public class QueryController {
 
     private static ConcurrentHashMap<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
     private static int weekly=0;
-    private String directory = "E:\\Test\\";
 
     @GetMapping()
     @RequiresPermissions("bio:query:query")
