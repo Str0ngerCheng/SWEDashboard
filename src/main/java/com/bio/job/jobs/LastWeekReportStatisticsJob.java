@@ -64,9 +64,13 @@ public class LastWeekReportStatisticsJob implements Job {
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 
-		Date fromDate = DateUtils.getLastWeekMondayStart(new Date());
-		Date toDate = DateUtils.getLastWeekSundayEnd(new Date());
-		
+
+	/*	Date fromDate = DateUtils.getLastWeekMondayStart(new Date());
+		Date toDate = DateUtils.getLastWeekSundayEnd(new Date());*/
+
+		Date fromDate = DateUtils.getThisWeekMondayStart(new Date());
+		Date toDate = DateUtils.getThisWeekSundayEnd(new Date());
+
 		Map<String, Object> columnMap = new HashMap<>();
 		columnMap.put("status", "1"); // 正常用户
 
@@ -91,16 +95,16 @@ public class LastWeekReportStatisticsJob implements Job {
 
 				HashMap<String, Integer> reportDONotFinishedCountsMap = new LinkedHashMap<String, Integer>();
 
-				List<DeptDO> deptDOs = deptService.getSubDepts(deptId);
-				
+				//List<DeptDO> deptDOs = deptService.getSubDepts(deptId);
+				DeptDO deptDO=deptService.selectById(deptId);
 				// 针对每个小组
-				for (DeptDO deptDO : deptDOs) {
+				//for (DeptDO deptDO : deptDOs) {
 					if (null == reportCountDOsMap.get(deptDO.getId())) {
 						reportDONotFinishedCountsMap.put(deptDO.getName(), -1);
 					}else {
 						reportDONotFinishedCountsMap.put(deptDO.getName(), reportCountDOsMap.get(deptDO.getId()).getCountNumber());
 					}
-				}
+				//}
 
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
@@ -121,10 +125,8 @@ public class LastWeekReportStatisticsJob implements Job {
 							String recipient = userDO.getEmail();
 							mailBean.setSubject("【BioDashboard】上周的周报统计已经为您生成！");
 							mailBean.setRecipient(recipient);
-							
 							parameters.put("name", userDO.getName());
 							parameters.put("url", url);
-
 							mailService.sendTemplateMail(mailBean, "summaryreport.html", parameters);
 
 						} catch (Exception e) {
