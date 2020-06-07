@@ -67,6 +67,7 @@ public class LastWeekReportStatisticsJob implements Job {
 		Date toDate = DateUtils.getThisWeekSundayEnd(new Date());
 		Map<String, Object> columnMap = new HashMap<>();
 		columnMap.put("status", "1"); // 正常用户
+		columnMap.put("status_writereport", "1"); // 排除不需要写周报的专题组长
 
 		List<UserDO> users = userService.selectByMap(columnMap);
 

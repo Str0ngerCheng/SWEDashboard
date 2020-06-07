@@ -60,6 +60,7 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		Map<String, Object> columnMap = new HashMap<>();
 		columnMap.put("status", "1"); // 正常用户
+		columnMap.put("status_writereport", "1"); // 排除不需要写周报的专题组长
 		List<UserDO> users = userService.selectByMap(columnMap);
 
 		List<ReportDO> reportDOs = new ArrayList<ReportDO>();
