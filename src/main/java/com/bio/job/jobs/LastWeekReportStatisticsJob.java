@@ -63,8 +63,6 @@ public class LastWeekReportStatisticsJob implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-/*		Date fromDate = DateUtils.getLastWeekMondayStart(new Date());
-		Date toDate = DateUtils.getLastWeekSundayEnd(new Date());*/
 		Date fromDate = DateUtils.getThisWeekMondayStart(new Date());
 		Date toDate = DateUtils.getThisWeekSundayEnd(new Date());
 		Map<String, Object> columnMap = new HashMap<>();
@@ -85,20 +83,18 @@ public class LastWeekReportStatisticsJob implements Job {
 				}
 
 				Long deptId = userDO.getDeptId();
-
 				HashMap<String, Integer> reportDONotFinishedCountsMap = new LinkedHashMap<String, Integer>();
-
-				//List<DeptDO> deptDOs = deptService.getSubDepts(deptId);
 				DeptDO deptDO=deptService.selectById(deptId);
 				// 针对每个小组
-				//for (DeptDO deptDO : deptDOs) {
 					if (null == reportCountDOsMap.get(deptDO.getId())) {
 						reportDONotFinishedCountsMap.put(deptDO.getName(), -1);
 					}else {
-						reportDONotFinishedCountsMap.put(deptDO.getName(), reportCountDOsMap.get(deptDO.getId()).getCountNumber());
+						if(userDO.getId()==177 || userDO.getId()==204){
+							reportDONotFinishedCountsMap.put(deptDO.getName(), reportCountDOsMap.get(deptDO.getId()).getCountNumber()-1);
+						}else {
+							reportDONotFinishedCountsMap.put(deptDO.getName(), reportCountDOsMap.get(deptDO.getId()).getCountNumber());
+						}
 					}
-				//}
-
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 				String title = sdf.format(fromDate) + "-" + sdf.format(toDate) + "-"

@@ -103,14 +103,12 @@ public class ThisWeekReportTemplateGenerateJob implements Job {
 				if (reportService.getReportCountByTitle(title) > 0) {
 					continue;
 				}
-
 				reportDO.setRFromDate(mon);
 				reportDO.setRToDate(sun);
 				reportDO.setRCreateDate(new Date());
 				reportDO.setDeptId(userDO.getDeptId());
-
 				reportDO.setDeptName(deptName);
-
+                reportDO.setRChgDate(sun);
 				reportDO.setParentDeptId(0L);
 				reportDO.setTitle(title);
 				reportDO.setScore("90");

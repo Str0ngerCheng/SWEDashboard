@@ -226,7 +226,7 @@
 
 	<select id="getDelayPer" resultType="com.bio.sys.vo.ReportScoreVO">
         select author_id,ANY_VALUE(author_name) as author_name,ANY_VALUE(dept_id) as dept_id,ANY_VALUE(dept_name) as dept_name, sum(r_chg_date > date_sub(r_to_date,INTERVAL 12 HOUR)) as score
-       from report where status_m_sub=1 and (date_format(r_from_date,'%Y-%m')=date_format(now(),'%Y-%m') or date_format(r_to_date,'%Y-%m')=date_format(now(),'%Y-%m')) group by author_id order by score desc;
+       from report where (date_format(r_from_date,'%Y-%m')=date_format(now(),'%Y-%m') or date_format(r_to_date,'%Y-%m')=date_format(now(),'%Y-%m')) group by author_id order by score desc;
 	</select>
 
 </mapper>

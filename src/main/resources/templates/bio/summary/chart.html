@@ -265,9 +265,14 @@
 		},
 		success : function(res) {
 			var data=res.data;
-			for(var i=0;i<data.length;i++){
-				tabScoreOption.xAxis.data.push(data[i].authorName);
-				tabScoreOption.series.data.push(Number(data[i].score).toFixed(1));
+			if(data.length!=0){
+				for(var i=0;i<data.length;i++){
+					tabScoreOption.xAxis.data.push(data[i].authorName);
+					tabScoreOption.series.data.push(Number(data[i].score).toFixed(1));
+				}
+			}else{
+				tabScoreOption.xAxis.data.push("暂无数据");
+				tabScoreOption.series.data.push(0);
 			}
 		}
 	});
@@ -282,12 +287,20 @@
 		},
 		success : function(res) {
 			var data=res.data;
-			for(var i=0;i<data.length;i++) {
+			if(data.length!=0){
+				for(var i=0;i<data.length;i++) {
+					var obj=new Object();
+					obj.name=data[i].authorName;
+					obj.value=Number(data[i].score);
+					seriesdata[i]=obj;
+					legendate[i]=obj.name;
+				}
+			}else{
 				var obj=new Object();
-				obj.name=data[i].authorName;
-				obj.value=Number(data[i].score);
-				seriesdata[i]=obj;
-				legendate[i]=obj.name;
+				obj.name="暂无数据";
+				obj.value=0;
+				seriesdata[0]=obj;
+				legendate[0]=obj.name;
 			}
 		}
 	});
@@ -302,9 +315,14 @@
 		},
 		success : function(res) {
 			var data=res.data;
-			for(var i=0;i<data.length;i++){
-				tab3Option.xAxis.data.push(data[i].userName);
-				tab3Option.series.data.push(data[i].absenceRate);
+			if(data.length!=0){
+				for(var i=0;i<data.length;i++){
+					tab3Option.xAxis.data.push(data[i].userName);
+					tab3Option.series.data.push(data[i].absenceRate);
+				}
+			}else{
+				tab3Option.xAxis.data.push("暂无数据");
+				tab3Option.series.data.push(0);
 			}
 		}
 	});

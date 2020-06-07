@@ -554,9 +554,10 @@ public class SummaryController {
 		List<ReportScoreVO> reportList=reportService.getDelayPer();
 		List<ReportScoreVO> myreport=new ArrayList<>(5);
 		int tempsize=reportList.size();
-		for(int i=0;i<Math.min(5,tempsize);i++){
-			if(Integer.parseInt(reportList.get(i).getScore())!=0){
-			   myreport.add(reportList.get(i));
+		for(int i=0,j=0;i<Math.min(5,tempsize) && j<tempsize;j++){
+			if(Integer.parseInt(reportList.get(j).getScore())!=0 && reportList.get(j).getAuthorId()!=177 && reportList.get(j).getAuthorId()!=204){
+			   myreport.add(reportList.get(j));
+			   i++;
 			}
 		}
 		return Result.ok(myreport);
