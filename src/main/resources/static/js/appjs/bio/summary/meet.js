@@ -179,8 +179,7 @@ function mergeCells(data, fieldName, colspan, target) {
         merIndex += numArr[i];
     }
 }
-
-window.onunload=function submitSuggestion() {
+function submitSuggestion() {
     var allTableData = $('#reportsTable').bootstrapTable('getData');
     for(var i=0;i<allTableData.length;i++){
         var id ='#'+"suggest"+i;
@@ -204,26 +203,27 @@ window.onunload=function submitSuggestion() {
         }
     });
 };
-
-function getXMLHttpRequest() {
-    var xmlRequestObj = null;
-    try {
-        if (window.ActiveXObject) {
-            // IE浏览器下的兼容
-            try {
-                xmlRequestObj = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    xmlRequestObj = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (e) {
-                    throw e;
-                }
-            }
-        } else if (window.XMLHttpRequest) {
-            // Firefox, Opera 8.0+, Safari 其他浏览器
-            xmlRequestObj = new window.XMLHttpRequest();
-        }
-    } catch (e) {
-    }
-    return xmlRequestObj;
-}
+window.onunload=submitSuggestion;
+//
+// function getXMLHttpRequest() {
+//     var xmlRequestObj = null;
+//     try {
+//         if (window.ActiveXObject) {
+//             // IE浏览器下的兼容
+//             try {
+//                 xmlRequestObj = new ActiveXObject("Msxml2.XMLHTTP");
+//             } catch (e) {
+//                 try {
+//                     xmlRequestObj = new ActiveXObject("Microsoft.XMLHTTP");
+//                 } catch (e) {
+//                     throw e;
+//                 }
+//             }
+//         } else if (window.XMLHttpRequest) {
+//             // Firefox, Opera 8.0+, Safari 其他浏览器
+//             xmlRequestObj = new window.XMLHttpRequest();
+//         }
+//     } catch (e) {
+//     }
+//     return xmlRequestObj;
+// }

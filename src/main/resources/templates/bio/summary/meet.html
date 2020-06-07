@@ -10,10 +10,12 @@
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
 	<div class="ibox-content">
-					<h3 th:utext=${title} style="text-align: center;margin-bottom: -3px"></h3>
-					<table id="reportsTable" data-mobile-responsive="true" style="background-color:white" >
-					</table>
-				</div>
+		<h3 th:utext=${title} style="text-align: center;margin-bottom: -3px"></h3>
+			<button type="button" style="float: right" class="btn btn-primary" onclick="submitSuggestion()">保存意见</span>
+			</button>
+		<table id="reportsTable" data-mobile-responsive="true" style="background-color:white" >
+		</table>
+	</div>
 </div>
 
 <div th:include="include :: footer"></div>
