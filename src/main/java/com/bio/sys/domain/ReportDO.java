@@ -256,4 +256,6 @@ public class ReportDO implements Serializable {
                 ", statusLSub=" + statusLSub +
                 '}';
     }
+
+
 }

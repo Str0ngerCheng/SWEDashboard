@@ -29,16 +29,16 @@
 	</select>
 
 	<select id="getThisWeekSummary" resultType="com.bio.sys.domain.SummaryDO">
-		SELECT *
-		FROM
-		report_summary
+		SELECT rs.* FROM report_summary rs, sys_dept sd
 		WHERE
 	 YEARWEEK(date_format(r_from_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
 		AND YEARWEEK(date_format(r_to_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
+		AND rs.dept_id=sd.id
+		ORDER BY order_num
 	</select>
 
 	<select id="getReportsByMonth1" resultType="com.bio.sys.domain.SummaryDO">
-		select * from report_summary where ((month(r_from_date)=#{date} and year(r_from_date)=#{date1})or (month(r_to_date)=#{date} and year(r_to_date)=#{date1})) and status=1  order by dept_name, r_from_date
+		select * from report_summary where ((month(r_from_date)=#{date} and year(r_from_date)=#{date1})or (month(r_to_date)=#{date} and year(r_to_date)=#{date1})) and status=1 order by dept_name, r_from_date
 	</select>
 	
 </mapper>

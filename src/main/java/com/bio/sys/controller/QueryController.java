@@ -81,12 +81,12 @@ public class QueryController {
         List<ReportDO> mylist=new ArrayList<>();
         if (userDO.getroleId().intValue() == 5 ) { // 超级管理员，默认所有的报告
             //TODO: 不做处理
-           mylist = reportService.getReportsAll();
+            mylist = reportService.getReportsAll();
         }
 
         if (userDO.getroleId().intValue() == 2 || userDO.getroleId().intValue() == 3 || userDO.getroleId().intValue() == 4 ) { // 专题组长，只显示负责的学生 的报告
-              String deptName=userDO.getDeptName();
-              mylist=reportService.getReportsByDepName(deptName);
+            String deptName=userDO.getDeptName();
+            mylist=reportService.getReportsByDepName(deptName);
         }
 
         Page page1 = new Page(pageNumber, pageSize);
@@ -102,15 +102,15 @@ public class QueryController {
     public Result<Page<SummaryVO>> list(Integer pageNumber, Integer pageSize){
         List<SummaryDO> summaryDOList=summaryService.getThisWeekSummary();
         List<SummaryVO> summaryVOList=new ArrayList<>();
-            for(SummaryDO summaryDO:summaryDOList){
-                    DeptDO deptDO=deptService.selectById(summaryDO.getDeptId());
-                    SummaryVO summaryVO=new SummaryVO(summaryDO,deptDO.getOrderNum());
-                    summaryVOList.add(summaryVO);
-                    List<ReportDO> mylist=new ArrayList<>();
-                    mylist= reportService.getReportsQuery(summaryDO.getRFromDate(), summaryDO.getRToDate(), 1,deptDO.getId());
-                    excelreport.put(deptDO.getId(), mylist);
-                    weekly=0;
-            }
+        for(SummaryDO summaryDO:summaryDOList){
+            DeptDO deptDO=deptService.selectById(summaryDO.getDeptId());
+            SummaryVO summaryVO=new SummaryVO(summaryDO,deptDO.getOrderNum());
+            summaryVOList.add(summaryVO);
+            List<ReportDO> mylist=new ArrayList<>();
+            mylist= reportService.getReportsQuery(summaryDO.getRFromDate(), summaryDO.getRToDate(), 1,deptDO.getId());
+            excelreport.put(deptDO.getId(), mylist);
+            weekly=0;
+        }
         Page page1 = new Page(pageNumber, pageSize);
         page1.setTotal(summaryVOList.size());
         int startIndex=(pageNumber-1)*pageSize;
@@ -177,28 +177,28 @@ public class QueryController {
         }
         long temp=12;
         for(SummaryDO summaryDO:summaryDOList)
-       {
-           if (summaryDO.getDeptName().equals(topicName) || topicName.equals("智慧地球小组")) {
-               DeptDO deptDO = deptService.selectById(summaryDO.getDeptId());
-               if(WeekMonth1==1){
-                   SummaryVO summaryVO = new SummaryVO(summaryDO, deptDO.getOrderNum());
-                   summaryVOList.add(summaryVO);
-                   mSubmitReportList= reportService.getReportsQuery(summaryDO.getRFromDate(),summaryDO.getRToDate(), 1,deptDO.getId());
-                   weekly=0;
-               }else{
-                   if(temp!=deptDO.getId()) {
-                       String name=calendar.get(calendar.YEAR)+"-"+month+"-"+summaryDO.getDeptName()+" 月报";
-                       SummaryVO summaryVO=new SummaryVO(summaryDO.getDeptId(),summaryDO.getDeptName(),name,temp,calendar.getTime(),deptDO.getOrderNum());
-                       temp=deptDO.getId();
-                       summaryVOList.add(summaryVO);
-                       year=calendar.get(calendar.YEAR);
-                       mSubmitReportList = reportService.getReportsByMonth(month,year,deptDO.getId());
-                       weekly=month;
-                   }
-               }
-               excelreport.put(deptDO.getId(), mSubmitReportList);
+        {
+            if (summaryDO.getDeptName().equals(topicName) || topicName.equals("智慧地球小组")) {
+                DeptDO deptDO = deptService.selectById(summaryDO.getDeptId());
+                if(WeekMonth1==1){
+                    SummaryVO summaryVO = new SummaryVO(summaryDO, deptDO.getOrderNum());
+                    summaryVOList.add(summaryVO);
+                    mSubmitReportList= reportService.getReportsQuery(summaryDO.getRFromDate(),summaryDO.getRToDate(), 1,deptDO.getId());
+                    weekly=0;
+                }else{
+                    if(temp!=deptDO.getId()) {
+                        String name=calendar.get(calendar.YEAR)+"-"+month+"-"+summaryDO.getDeptName()+" 月报";
+                        SummaryVO summaryVO=new SummaryVO(summaryDO.getDeptId(),summaryDO.getDeptName(),name,temp,calendar.getTime(),deptDO.getOrderNum());
+                        temp=deptDO.getId();
+                        summaryVOList.add(summaryVO);
+                        year=calendar.get(calendar.YEAR);
+                        mSubmitReportList = reportService.getReportsByMonth(month,year,deptDO.getId());
+                        weekly=month;
+                    }
+                }
+                excelreport.put(deptDO.getId(), mSubmitReportList);
+            }
         }
-    }
         Page page1 = new Page(pageNumber, pageSize);
         page1.setTotal(summaryVOList.size());
         int startIndex=(pageNumber-1)*pageSize;
@@ -214,7 +214,7 @@ public class QueryController {
     public String getWeekInfo(@PathVariable("deptId")Long deptId,Model model) throws ParseException {
         List<ReportDO> mSubmitReportList=new ArrayList<>();
         mSubmitReportList=excelreport.get(deptId);
-         DeptDO deptDO= deptService.selectById(deptId);
+        DeptDO deptDO= deptService.selectById(deptId);
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy/MM/dd");
         /*获取专题周报详细信息*/
         if(weekly==0) {
@@ -241,7 +241,7 @@ public class QueryController {
             String title = sdf1.format(mon) + "-" + sdf1.format(sun) + "-" + deptDO.getName() + " 工作汇总";
             model.addAttribute("title", title);
             return "bio/query/weekInfo";
-       }else {
+        }else {
             List<MonthReportDetailsVO> topicReportDetailsList=new ArrayList<>();
             for(int i=0;i<mSubmitReportList.size();i++ ){
                 MonthReportDetailsVO topicReportDetails=new MonthReportDetailsVO();
@@ -268,7 +268,7 @@ public class QueryController {
             String title=Integer.toString(year)+"年"+ weekly+"月"+deptDO.getName()+"工作汇总";
             model.addAttribute("title", title);
             return "bio/query/MonthInfo";
-       }
+        }
     }
 
 
@@ -398,11 +398,11 @@ public class QueryController {
     public Result<String> iFileExist(String filename){
         //String filenamedecode=java.net.URLDecoder.decode(filename);
 //        for(String filename:filenames){
-            File file = new File(directory+filename);
-            // 如果文件路径所对应的文件存在,则返回ok
-            if (file.exists()){
-                return Result.ok();
-            }
+        File file = new File(directory+filename);
+        // 如果文件路径所对应的文件存在,则返回ok
+        if (file.exists()){
+            return Result.ok();
+        }
 //        }
         return Result.fail("没有可下载的附件！");
     }

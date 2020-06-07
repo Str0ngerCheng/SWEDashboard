@@ -68,10 +68,7 @@
 	</select>
 
 	<select id="getReportsQuery" resultType="com.bio.sys.domain.ReportDO">
-		SELECT
-		*
-		FROM
-		report
+		SELECT * FROM report
 		<where>
 		    <if test="fromdate!=null">
 				 r_from_date &gt;= #{fromdate}
@@ -82,7 +79,6 @@
 		AND status_l_sub = #{status}
 		AND dept_id=#{deptId}
 		</where>
-		order by author_name, r_from_date
 	</select>
 
 

@@ -77,7 +77,7 @@ public class SummaryController {
 	@Autowired
 	private StatisticsService statisticsService;
 
-    private static ConcurrentHashMap<Long,List<ReportDO>> excelreport=new ConcurrentHashMap<>();
+    private static ConcurrentHashMap<Long,List<TopicReportDetailsVO>> excelreport=new ConcurrentHashMap<>();
 
 
 	@GetMapping()
@@ -97,8 +97,27 @@ public class SummaryController {
 			SummaryVO summaryVO=new SummaryVO(summaryDO,deptDO.getOrderNum());
 			summaryVOList.add(summaryVO);
             List<ReportDO> mylist=new ArrayList<>();
+			List<TopicReportDetailsVO> topicReportDetailsList = new ArrayList<>();
             mylist= reportService.getReportsQuery(summaryDO.getRFromDate(), summaryDO.getRToDate(), 1,deptDO.getId());
-            excelreport.put(deptDO.getId(), mylist);
+			for (int i = 0; i < mylist.size(); i++) {
+				TopicReportDetailsVO topicReportDetails = new TopicReportDetailsVO();
+				ReportDO report = mylist.get(i);
+				topicReportDetails.setDeptName(report.getDeptName());
+				//设置排序因子
+				topicReportDetails.setDeptOrder(deptDO.getOrderNum());
+				topicReportDetails.setUserOrder(userService.selectById(report.getAuthorId()).getOrderNum());
+				topicReportDetails.setAuthorName(report.getAuthorName());
+				ReportContentDO reportContent = reportContentService.getByUUID(report.getContentId());
+				topicReportDetails.setMonthPlan(reportContent.getMonthPlan());
+				topicReportDetails.setSummary(reportContent.getSummary());
+				topicReportDetails.setNextPlan(reportContent.getNextPlan());
+				topicReportDetails.setProblem(reportContent.getProblem());
+				topicReportDetails.setComment(report.getComment());
+				topicReportDetails.setTitle(report.getTitle());
+				topicReportDetailsList.add(topicReportDetails);
+			}
+			Collections.sort(topicReportDetailsList);
+			excelreport.put(deptDO.getId(), topicReportDetailsList);
 		}
 		return Result.ok(summaryVOList);
 	}
@@ -125,8 +144,6 @@ public class SummaryController {
 				else {
 					List<ReportDO> unMSubmitReportList = reportService.getThisWeekReportByDeptAndStatusMSub(deptId, 0);
 					List<ReportDO> mSubmitReportList = reportService.getThisWeekReportByDeptAndStatusMSub(deptId, 1);
-                    excelreport.put(deptDO.getId(), mSubmitReportList);
-                   /* excelreport.put(deptDO.getId(), unMSubmitReportList);*/
 					/*获取专题周报统计信息*/
 					int totalCount = unMSubmitReportList.size() + mSubmitReportList.size();
 					int unMSubmitCount = unMSubmitReportList.size();
@@ -155,6 +172,7 @@ public class SummaryController {
 						topicReportDetails.setNextPlan(reportContent.getNextPlan());
 						topicReportDetails.setProblem(reportContent.getProblem());
 						topicReportDetails.setComment(report.getComment());
+						topicReportDetails.setTitle(report.getTitle());
 						topicReportDetailsList.add(topicReportDetails);
 					}
 
@@ -162,6 +180,7 @@ public class SummaryController {
 				topicReportStatisticList.add(topicReportStatistic);
 				Collections.sort(topicReportStatisticList);//这里直接在后端排序
 				Collections.sort(topicReportDetailsList);//这里直接在后端排序
+				excelreport.put(deptDO.getId(), topicReportDetailsList);
 			}
 		}
 		model.addAttribute("topicReportStatisticList", topicReportStatisticList);
@@ -334,11 +353,10 @@ public class SummaryController {
 		List<TopicDao> topics= new ArrayList<>();
 		for(Long id:deptIds){
 			if(excelreport.containsKey(id)){
-				List<ReportDO> mSubmitReportList=excelreport.get(id);
-				for(ReportDO reportDO:mSubmitReportList){
-					ReportContentDO reportContentDO=reportContentService.getByUUID(reportDO.getContentId());
+				List<TopicReportDetailsVO> mSubmitReportList=excelreport.get(id);
+				for(TopicReportDetailsVO reportDO:mSubmitReportList){
 					topics.add(new TopicDao(reportDO.getDeptName(),reportDO.getAuthorName(),reportDO.getTitle(),
-							reportContentDO.getSummary(),reportContentDO.getProblem(),reportContentDO.getNextPlan(),
+							reportDO.getSummary(),reportDO.getProblem(),reportDO.getNextPlan(),
 							reportDO.getComment(),reportDO.getSuggest()));
 					//需要导出的附件名称
 					String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
@@ -437,11 +455,10 @@ public class SummaryController {
         List<String> mylist=Arrays.asList(myids);
         for(String list:mylist){
             if(excelreport.containsKey(Long.parseLong(list))){
-                List<ReportDO> mSubmitReportList=excelreport.get(Long.parseLong(list));
-                for(ReportDO reportDO:mSubmitReportList){
-                    ReportContentDO reportContentDO=reportContentService.getByUUID(reportDO.getContentId());
+                List<TopicReportDetailsVO> mSubmitReportList=excelreport.get(Long.parseLong(list));
+                for(TopicReportDetailsVO reportDO:mSubmitReportList){
                     topics.add(new TopicDao(reportDO.getDeptName(),reportDO.getAuthorName(),reportDO.getTitle(),
-                            reportContentDO.getSummary(),reportContentDO.getProblem(),reportContentDO.getNextPlan(),
+                            reportDO.getSummary(),reportDO.getProblem(),reportDO.getNextPlan(),
                             reportDO.getComment(),reportDO.getSuggest()));
 					//需要导出的附件名称
 					String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
@@ -494,8 +511,8 @@ public class SummaryController {
 		List<String> mylist=Arrays.asList(myids);
 		for(String list:mylist){
 			if(excelreport.containsKey(Long.parseLong(list))){
-				List<ReportDO> mSubmitReportList=excelreport.get(Long.parseLong(list));
-				for(ReportDO reportDO:mSubmitReportList){
+				List<TopicReportDetailsVO> mSubmitReportList=excelreport.get(Long.parseLong(list));
+				for(TopicReportDetailsVO reportDO:mSubmitReportList){
 					//需要导出的附件名称
 					String fujianname=reportDO.getTitle().replace('/','-')+ "附件.zip";
 					zipnames.add(fujianname);

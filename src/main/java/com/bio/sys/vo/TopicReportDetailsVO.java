@@ -2,6 +2,7 @@ package com.bio.sys.vo;
 
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class TopicReportDetailsVO implements Serializable,Comparable<TopicReportDetailsVO> {
 
@@ -28,6 +29,10 @@ public class TopicReportDetailsVO implements Serializable,Comparable<TopicReport
     private Integer deptOrder;
 
     private Integer userOrder;
+
+    private String title;
+
+
 
     public Long getReportId() {
         return reportId;
@@ -126,6 +131,14 @@ public class TopicReportDetailsVO implements Serializable,Comparable<TopicReport
             else if(this.userOrder<o.userOrder) return  -1;
             else return  0;
         }
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }
