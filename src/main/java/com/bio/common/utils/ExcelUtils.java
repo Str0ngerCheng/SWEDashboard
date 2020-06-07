@@ -263,6 +263,7 @@ public class ExcelUtils {
     //写入本地文件夹
     public void SaveExcelFile(String fileName, Workbook workbook) {
         try {
+            //如果是本地运行请删掉这一行或者改为utf-8编码
             fileName = new String(fileName.getBytes(), "GBK");
             FileOutputStream fileOutputStream=new FileOutputStream(fileName);
             workbook.write(fileOutputStream);
