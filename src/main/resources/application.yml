@@ -23,8 +23,8 @@ spring:
     active: prod
   http:
     multipart:
-      max-file-size: 100Mb
-      max-request-size: 100Mb
+      max-file-size: 600Mb
+      max-request-size: 600Mb
   devtools:
     restart:
       enabled: true
