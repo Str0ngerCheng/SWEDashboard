@@ -65,12 +65,8 @@ public class LastWeekReportStatisticsJob implements Job {
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 
 
-	/*	Date fromDate = DateUtils.getLastWeekMondayStart(new Date());
-		Date toDate = DateUtils.getLastWeekSundayEnd(new Date());*/
-
-		Date fromDate = DateUtils.getThisWeekMondayStart(new Date());
-		Date toDate = DateUtils.getThisWeekSundayEnd(new Date());
-
+		Date fromDate = DateUtils.getLastWeekMondayStart(new Date());
+		Date toDate = DateUtils.getLastWeekSundayEnd(new Date());
 		Map<String, Object> columnMap = new HashMap<>();
 		columnMap.put("status", "1"); // 正常用户
 
@@ -79,17 +75,14 @@ public class LastWeekReportStatisticsJob implements Job {
 		// Step 0，准备数据
 		for (UserDO userDO : users) {
 			Long roleDOs = userRoleService.findRoleIdByUserId(userDO.getId());
-
-			List<ReportCountDO> reportCountDOs = reportService.getReportsCount(fromDate, toDate, 0);
-
-			HashMap<Long, ReportCountDO> reportCountDOsMap = new HashMap<Long, ReportCountDO>();
-			if(null != reportCountDOs && !reportCountDOs.isEmpty()) {
-				for (ReportCountDO reportCountDO : reportCountDOs) {
-					reportCountDOsMap.put(reportCountDO.getDeptId(), reportCountDO);
+			if (null != roleDOs && (roleDOs.intValue() == 2 || roleDOs.intValue()==4)) { // PI,只针对 PI 发邮件
+				List<ReportCountDO> reportCountDOs = reportService.getReportsCount(fromDate, toDate, 0);
+				HashMap<Long, ReportCountDO> reportCountDOsMap = new HashMap<Long, ReportCountDO>();
+				if(null != reportCountDOs && !reportCountDOs.isEmpty()) {
+					for (ReportCountDO reportCountDO : reportCountDOs) {
+						reportCountDOsMap.put(reportCountDO.getDeptId(), reportCountDO);
+					}
 				}
-			}
-			
-			if (null != roleDOs && roleDOs.intValue() == 2) { // PI,只针对 PI 发邮件
 
 				Long deptId = userDO.getDeptId();
 
@@ -121,13 +114,12 @@ public class LastWeekReportStatisticsJob implements Job {
 					public void run() {
 						try {
 							MailBean mailBean = new MailBean();
-
 							String recipient = userDO.getEmail();
 							mailBean.setSubject("【SWEDashboard】上周的周报统计已经为您生成！");
 							mailBean.setRecipient(recipient);
 							parameters.put("name", userDO.getName());
 							parameters.put("url", url);
-							mailService.sendTemplateMail(mailBean, "summaryreport.html", parameters);
+							mailService.sendTemplateMail(mailBean, "topicreport.html", parameters);
 
 						} catch (Exception e) {
 							e.printStackTrace();
