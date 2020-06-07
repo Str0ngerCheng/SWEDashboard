@@ -56,7 +56,7 @@
 		WHERE
 		r_from_date = #{fromdate}
 		AND r_to_date = #{todate}
-		AND status = #{status} GROUP BY dept_id
+		AND status_m_sub = #{status} GROUP BY dept_id
 	</select>
 
 	<select id="getReportsByTitle" resultType="com.bio.sys.domain.ReportDO">
