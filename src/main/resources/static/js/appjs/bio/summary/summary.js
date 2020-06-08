@@ -209,7 +209,7 @@ function submit() {
 			layer.alert("Connection error");
 		},
 		success : function(r) {
-		 layer.close(loadIndex)
+		 layer.close(loadIndex);
 			if (r.code == 0) {
 				layer.alert("已提交",{icon:1});
 			} else if(r.code == 1) {
