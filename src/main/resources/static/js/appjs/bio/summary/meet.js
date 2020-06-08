@@ -187,6 +187,17 @@ function submitSuggestion() {
     }
     var msg="submitSuggestion";
     console.log("allTableData:",allTableData);
+    var loadIndex=layer.load(1,{
+        content: "保存中…",
+        shade: [0.3,'#fff'],
+        success: function (layero) {
+            layero.find('.layui-layer-content').css({
+                'padding-top': '40px',
+                'width': '60px',
+                'font-weight': 'bold'
+            });
+        }
+    });
     $.ajax({
         cache : true,
         type : "POST",
@@ -196,10 +207,16 @@ function submitSuggestion() {
         data : JSON.stringify(allTableData),
         async : true,
         success:function (e) {
-            msg=e.data;
+            layer.close(loadIndex);
+            if (e.code == 0) {
+                layer.alert("已保存",{icon:1});
+            } else {
+                layer.alert("保存失败，请重试");
+            }
         },
         error:function (e) {
-            msg=e.data;
+            layer.close(loadIndex);
+            layer.alert("保存失败，请重试");
         }
     });
 };
