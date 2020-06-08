@@ -416,8 +416,8 @@ public class SummaryController {
 			}
 		}
 		model.addAttribute("topicReportDetailsList", topicReportDetailsList);
-		Date mon = DateUtils.getThisWeekMondayStart(new Date());
-		Date sun = DateUtils.getThisWeekSundayEnd(new Date());
+		Date mon = DateUtils.getLastWeekMondayStart(new Date());
+		Date sun = DateUtils.getLastWeekSundayEnd(new Date());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String title = sdf.format(mon) + "-" + sdf.format(sun) + "-" + "SWE小组工作汇总";
 		model.addAttribute("title", title);
