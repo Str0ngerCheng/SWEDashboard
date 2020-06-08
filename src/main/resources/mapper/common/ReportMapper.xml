@@ -92,8 +92,8 @@
 		report
 		WHERE
 		dept_id = #{deptId}
-		AND YEARWEEK(date_format(r_from_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
-		AND YEARWEEK(date_format(r_to_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)
+		AND YEARWEEK(date_format(r_from_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)-1
+		AND YEARWEEK(date_format(r_to_date,'%Y-%m-%d'),1) = YEARWEEK(now(),1)-1
 	</select>
 
 	<select id="getThisWeekReportByAuthorId" resultType="com.bio.sys.domain.ReportDO">
