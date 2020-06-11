@@ -7,6 +7,7 @@ import com.bio.sys.domain.UserDO;
 
 public class ShiroUtils {
 	public static Subject getSubjct() {
+		SecurityUtils.getSubject().getSession().setTimeout(14400*1000);
 		return SecurityUtils.getSubject();
 	}
 	public static UserDO getUser() {
