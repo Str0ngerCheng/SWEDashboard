@@ -3,7 +3,8 @@ banner:
   encoding: utf-8
 server:
   context-path: /swedashboard
-  session-timeout: 1800
+#  因为要开会，所以这个时间要长一点
+  session-timeout: 14400
   tomcat:
     max-threads: 1000
     min-spare-threads: 30
