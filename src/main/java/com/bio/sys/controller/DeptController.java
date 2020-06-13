@@ -162,8 +162,10 @@ public class DeptController extends BaseController {
         
     	//FIXME:针对 PI 只返回自己下属的部门
 		UserDO userDO =  contextService.getCurrentLoginUser(SecurityUtils.getSubject());
-        
-        tree = sysDeptService.getTree(userDO.getDeptId());
+		if(userDO.getroleId()==4)
+            tree = sysDeptService.getTree(0L);
+		else
+            tree = sysDeptService.getTree(userDO.getDeptId());
         return tree;
     }
 
