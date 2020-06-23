@@ -78,6 +78,7 @@ public class StatisticsController {
             Double absenceRate=jsonObject.getDouble("absenceRate");
             Double Isum=Double.parseDouble(sum);
             Double aRate=absenceRate/(Isum*1.0);
+            aRate=(double) Math.round(aRate*1000)/1000;
             statisticsService.insertStatistics(useName,aRate,startDate,endDate);
         }
         return Result.ok();

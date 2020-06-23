@@ -581,6 +581,7 @@ public class SummaryController {
 		}
 		return Result.ok(myreport);
 	}
+
 	@ResponseBody
 	@RequiresPermissions("bio:summary:chart")
 	@GetMapping("/absenceDelay")
@@ -590,7 +591,7 @@ public class SummaryController {
         int year=calendar.get(calendar.YEAR);
         List<StatisticalDO> statisticalDOS=new ArrayList<>();
         statisticalDOS= statisticsService.queryByDate(month,year);
-        if(statisticalDOS.size()==0)
+       /* if(statisticalDOS.size()==0)
 		{
 			if(month-1<=0) {
 				month = 12;
@@ -599,7 +600,7 @@ public class SummaryController {
 				month=month-1;
 			}
 			statisticalDOS=statisticsService.queryByDate(month,year);
-		}
+		}*/
 		return Result.ok(statisticalDOS);
 	}
 

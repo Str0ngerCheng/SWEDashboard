@@ -1,0 +1,583 @@
+2020-06-15 20:33:28.156  INFO 11964 --- [main] com.bio.ApplicationExternal              : Starting ApplicationExternal v1.0.0 on DESKTOP-623SIU8 with PID 11964 (E:\系统开发\周报系统\0615\BioDashboard\target\swedashboard.jar started by admin in E:\系统开发\周报系统\0615\BioDashboard\target)
+2020-06-15 20:33:28.171 DEBUG 11964 --- [main] com.bio.ApplicationExternal              : Running with Spring Boot v1.5.6.RELEASE, Spring v4.3.10.RELEASE
+2020-06-15 20:33:28.176  INFO 11964 --- [main] com.bio.ApplicationExternal              : The following profiles are active: prod
+2020-06-15 20:33:29.328 DEBUG 11964 --- [background-preinit] o.h.v.i.e.r.DefaultTraversableResolver   : Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2020-06-15 20:33:37.255 DEBUG 11964 --- [main] o.h.v.i.e.r.DefaultTraversableResolver   : Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2020-06-15 20:33:37.302 DEBUG 11964 --- [main] o.h.v.i.e.r.DefaultTraversableResolver   : Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2020-06-15 20:33:37.313 DEBUG 11964 --- [main] o.h.v.internal.engine.ConfigurationImpl  : Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2020-06-15 20:33:37.314 DEBUG 11964 --- [main] o.h.v.internal.engine.ConfigurationImpl  : Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2020-06-15 20:33:37.318 DEBUG 11964 --- [main] o.h.v.internal.engine.ConfigurationImpl  : Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy60
+2020-06-15 20:33:37.320 DEBUG 11964 --- [main] o.h.v.internal.xml.ValidationXmlParser   : Trying to load META-INF/validation.xml for XML based Validator configuration.
+2020-06-15 20:33:37.324 DEBUG 11964 --- [main] o.h.v.internal.xml.ResourceLoaderHelper  : Trying to load META-INF/validation.xml via user class loader
+2020-06-15 20:33:37.326 DEBUG 11964 --- [main] o.h.v.internal.xml.ResourceLoaderHelper  : Trying to load META-INF/validation.xml via TCCL
+2020-06-15 20:33:37.327 DEBUG 11964 --- [main] o.h.v.internal.xml.ResourceLoaderHelper  : Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2020-06-15 20:33:37.328 DEBUG 11964 --- [main] o.h.v.internal.xml.ValidationXmlParser   : No META-INF/validation.xml found. Using annotation based configuration only.
+2020-06-15 20:33:38.438 DEBUG 11964 --- [main] o.h.v.i.e.r.DefaultTraversableResolver   : Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2020-06-15 20:33:38.444 DEBUG 11964 --- [main] o.h.v.i.e.r.DefaultTraversableResolver   : Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2020-06-15 20:33:38.446 DEBUG 11964 --- [main] o.h.v.internal.engine.ConfigurationImpl  : Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2020-06-15 20:33:38.447 DEBUG 11964 --- [main] o.h.v.internal.engine.ConfigurationImpl  : Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2020-06-15 20:33:38.451 DEBUG 11964 --- [main] o.h.v.internal.engine.ConfigurationImpl  : Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy60
+2020-06-15 20:33:38.453 DEBUG 11964 --- [main] o.h.v.internal.xml.ValidationXmlParser   : Trying to load META-INF/validation.xml for XML based Validator configuration.
+2020-06-15 20:33:38.455 DEBUG 11964 --- [main] o.h.v.internal.xml.ResourceLoaderHelper  : Trying to load META-INF/validation.xml via user class loader
+2020-06-15 20:33:38.457 DEBUG 11964 --- [main] o.h.v.internal.xml.ResourceLoaderHelper  : Trying to load META-INF/validation.xml via TCCL
+2020-06-15 20:33:38.460 DEBUG 11964 --- [main] o.h.v.internal.xml.ResourceLoaderHelper  : Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2020-06-15 20:33:38.462 DEBUG 11964 --- [main] o.h.v.internal.xml.ValidationXmlParser   : No META-INF/validation.xml found. Using annotation based configuration only.
+2020-06-15 20:33:40.770 DEBUG 11964 --- [localhost-startStop-1] com.bio.sys.filter.XssFilter             : xss filter init~~~~~~~~~~~~
+2020-06-15 20:33:57.738 DEBUG 11964 --- [main] eGlobalAuthenticationAutowiredConfigurer : Eagerly initializing {org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration=org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration$$EnhancerBySpringCGLIB$$aab33ec0@66971f6b}
+2020-06-15 20:33:57.973  INFO 11964 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/css/**'], Ant [pattern='/js/**'], Ant [pattern='/images/**'], Ant [pattern='/webjars/**'], Ant [pattern='/**/favicon.ico'], Ant [pattern='/error']]], []
+2020-06-15 20:33:58.214  INFO 11964 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration$ApplicationNoWebSecurityConfigurerAdapter$1@21ec5d87, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@25f9407e, org.springframework.security.web.context.SecurityContextPersistenceFilter@60cf80e7, org.springframework.security.web.header.HeaderWriterFilter@1133ec6e, org.springframework.security.web.csrf.CsrfFilter@782a4fff, org.springframework.security.web.authentication.logout.LogoutFilter@2f2bf0e2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@770d0ea6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b11ef33, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@552518c3, org.springframework.security.web.session.SessionManagementFilter@54709809, org.springframework.security.web.access.ExceptionTranslationFilter@2fd1731c]
+2020-06-15 20:33:59.387  INFO 11964 --- [main] com.bio.ApplicationExternal              : Started ApplicationExternal in 32.666 seconds (JVM running for 33.785)
+2020-06-15 20:34:18.023 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:18.026 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/css/**'
+2020-06-15 20:34:18.027 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:18.043 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/js/**'
+2020-06-15 20:34:18.047 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:18.064 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/images/**'
+2020-06-15 20:34:18.066 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:18.068 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/webjars/**'
+2020-06-15 20:34:18.071 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:18.073 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/**/favicon.ico'
+2020-06-15 20:34:18.075 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:18.077 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/error'
+2020-06-15 20:34:18.081 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:18.082 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.security.web.FilterChainProxy        : / has no matching filters
+2020-06-15 20:34:18.083 DEBUG 11964 --- [http-nio-8088-exec-30] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:18.656 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:18.657 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/css/**'
+2020-06-15 20:34:18.658 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:18.658 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/js/**'
+2020-06-15 20:34:18.659 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:18.660 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/images/**'
+2020-06-15 20:34:18.662 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:18.663 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/webjars/**'
+2020-06-15 20:34:18.664 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:18.665 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/**/favicon.ico'
+2020-06-15 20:34:18.666 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:18.668 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/error'
+2020-06-15 20:34:18.669 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:18.671 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.security.web.FilterChainProxy        : /login has no matching filters
+2020-06-15 20:34:18.672 DEBUG 11964 --- [http-nio-8088-exec-29] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:21.592 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:21.594 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/css/**'
+2020-06-15 20:34:21.595 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:21.596 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/js/**'
+2020-06-15 20:34:21.598 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:21.599 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/images/**'
+2020-06-15 20:34:21.600 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:21.601 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/webjars/**'
+2020-06-15 20:34:21.602 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:21.602 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/**/favicon.ico'
+2020-06-15 20:34:21.603 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:21.603 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/error'
+2020-06-15 20:34:21.604 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:21.606 DEBUG 11964 --- [http-nio-8088-exec-24] o.s.security.web.FilterChainProxy        : /login has no matching filters
+2020-06-15 20:34:21.606 DEBUG 11964 --- [http-nio-8088-exec-24] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:22.242 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:22.242 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/css/**'
+2020-06-15 20:34:22.243 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:22.244 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/js/**'
+2020-06-15 20:34:22.244 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:22.245 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/images/**'
+2020-06-15 20:34:22.245 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:22.246 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/webjars/**'
+2020-06-15 20:34:22.247 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:22.247 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/**/favicon.ico'
+2020-06-15 20:34:22.248 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:22.248 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/error'
+2020-06-15 20:34:22.249 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:22.249 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.security.web.FilterChainProxy        : /index has no matching filters
+2020-06-15 20:34:22.249 DEBUG 11964 --- [http-nio-8088-exec-26] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:22.789 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:22.791 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/css/**'
+2020-06-15 20:34:22.789 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:22.794 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/css/**'
+2020-06-15 20:34:22.793 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:22.795 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:22.795 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/js/**'
+2020-06-15 20:34:22.797 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:22.796 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/js/**'
+2020-06-15 20:34:22.798 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:22.798 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/images/**'
+2020-06-15 20:34:22.798 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:22.799 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/webjars/**'
+2020-06-15 20:34:22.799 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:22.800 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/**/favicon.ico'
+2020-06-15 20:34:22.800 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:22.800 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/error'
+2020-06-15 20:34:22.801 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:22.797 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/images/**'
+2020-06-15 20:34:22.802 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:22.802 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/webjars/**'
+2020-06-15 20:34:22.803 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:22.802 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.security.web.FilterChainProxy        : /about has no matching filters
+2020-06-15 20:34:22.804 DEBUG 11964 --- [http-nio-8088-exec-23] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:22.803 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/**/favicon.ico'
+2020-06-15 20:34:22.805 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:22.808 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/error'
+2020-06-15 20:34:22.809 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:22.810 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.security.web.FilterChainProxy        : /main has no matching filters
+2020-06-15 20:34:22.810 DEBUG 11964 --- [http-nio-8088-exec-25] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:22.970 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:22.970 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:22.971 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/css/**'
+2020-06-15 20:34:22.971 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:22.972 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/js/**'
+2020-06-15 20:34:22.970 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/css/**'
+2020-06-15 20:34:22.975 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:22.976 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:22.977 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/js/**'
+2020-06-15 20:34:22.976 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/images/**'
+2020-06-15 20:34:22.978 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:22.978 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:22.979 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/webjars/**'
+2020-06-15 20:34:22.980 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:22.980 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/**/favicon.ico'
+2020-06-15 20:34:22.979 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/images/**'
+2020-06-15 20:34:22.981 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:22.981 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/webjars/**'
+2020-06-15 20:34:22.980 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:22.981 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:22.982 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/error'
+2020-06-15 20:34:22.982 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:22.983 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.security.web.FilterChainProxy        : /main has no matching filters
+2020-06-15 20:34:22.983 DEBUG 11964 --- [http-nio-8088-exec-4] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:22.982 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/**/favicon.ico'
+2020-06-15 20:34:22.984 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:22.986 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/error'
+2020-06-15 20:34:22.986 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:22.987 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.security.web.FilterChainProxy        : /about has no matching filters
+2020-06-15 20:34:22.987 DEBUG 11964 --- [http-nio-8088-exec-22] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:23.617 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:23.619 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/css/modules/layer/default/layer.css'; against '/css/**'
+2020-06-15 20:34:23.620 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:23.620 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/css/modules/layer/default/layer.css'; against '/js/**'
+2020-06-15 20:34:23.621 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.web.util.matcher.OrRequestMatcher  : matched
+2020-06-15 20:34:23.622 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.security.web.FilterChainProxy        : /js/css/modules/layer/default/layer.css?v=3.1.0 has an empty filter list
+2020-06-15 20:34:23.623 DEBUG 11964 --- [http-nio-8088-exec-20] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:25.324 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:25.325 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/chart'; against '/css/**'
+2020-06-15 20:34:25.326 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:25.327 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/chart'; against '/js/**'
+2020-06-15 20:34:25.328 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:25.328 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/chart'; against '/images/**'
+2020-06-15 20:34:25.328 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:25.329 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/chart'; against '/webjars/**'
+2020-06-15 20:34:25.329 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:25.329 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/chart'; against '/**/favicon.ico'
+2020-06-15 20:34:25.330 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:25.332 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/chart'; against '/error'
+2020-06-15 20:34:25.333 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:25.334 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.security.web.FilterChainProxy        : /bio/summary/chart has no matching filters
+2020-06-15 20:34:25.334 DEBUG 11964 --- [http-nio-8088-exec-19] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:25.638 DEBUG 11964 --- [http-nio-8088-exec-18] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:25.639 DEBUG 11964 --- [http-nio-8088-exec-18] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/plugins/echarts/echarts.min.js'; against '/css/**'
+2020-06-15 20:34:25.641 DEBUG 11964 --- [http-nio-8088-exec-18] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:25.641 DEBUG 11964 --- [http-nio-8088-exec-18] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/plugins/echarts/echarts.min.js'; against '/js/**'
+2020-06-15 20:34:25.642 DEBUG 11964 --- [http-nio-8088-exec-18] o.s.s.web.util.matcher.OrRequestMatcher  : matched
+2020-06-15 20:34:25.642 DEBUG 11964 --- [http-nio-8088-exec-18] o.s.security.web.FilterChainProxy        : /js/plugins/echarts/echarts.min.js has an empty filter list
+2020-06-15 20:34:25.642 DEBUG 11964 --- [http-nio-8088-exec-18] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:25.819 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:25.820 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/scoreChart'; against '/css/**'
+2020-06-15 20:34:25.821 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:25.822 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/scoreChart'; against '/js/**'
+2020-06-15 20:34:25.822 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:25.822 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/scoreChart'; against '/images/**'
+2020-06-15 20:34:25.822 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:25.823 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/scoreChart'; against '/webjars/**'
+2020-06-15 20:34:25.823 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:25.823 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/scoreChart'; against '/**/favicon.ico'
+2020-06-15 20:34:25.824 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:25.824 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/scoreChart'; against '/error'
+2020-06-15 20:34:25.825 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:25.825 DEBUG 11964 --- [http-nio-8088-exec-17] o.s.security.web.FilterChainProxy        : /bio/summary/scoreChart has no matching filters
+2020-06-15 20:34:25.826 DEBUG 11964 --- [http-nio-8088-exec-17] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:25.896 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:25.896 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/delayPerson'; against '/css/**'
+2020-06-15 20:34:25.897 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:25.897 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/delayPerson'; against '/js/**'
+2020-06-15 20:34:25.898 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:25.898 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/delayPerson'; against '/images/**'
+2020-06-15 20:34:25.899 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:25.900 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/delayPerson'; against '/webjars/**'
+2020-06-15 20:34:25.900 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:25.900 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/delayPerson'; against '/**/favicon.ico'
+2020-06-15 20:34:25.901 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:25.901 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/delayPerson'; against '/error'
+2020-06-15 20:34:25.901 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:25.902 DEBUG 11964 --- [http-nio-8088-exec-16] o.s.security.web.FilterChainProxy        : /bio/summary/delayPerson has no matching filters
+2020-06-15 20:34:25.902 DEBUG 11964 --- [http-nio-8088-exec-16] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:25.965 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:25.965 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/absenceDelay'; against '/css/**'
+2020-06-15 20:34:25.966 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:25.967 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/absenceDelay'; against '/js/**'
+2020-06-15 20:34:25.967 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:25.968 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/absenceDelay'; against '/images/**'
+2020-06-15 20:34:25.968 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:25.969 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/absenceDelay'; against '/webjars/**'
+2020-06-15 20:34:25.970 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:25.971 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/absenceDelay'; against '/**/favicon.ico'
+2020-06-15 20:34:25.972 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:25.972 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/summary/absenceDelay'; against '/error'
+2020-06-15 20:34:25.973 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:25.974 DEBUG 11964 --- [http-nio-8088-exec-15] o.s.security.web.FilterChainProxy        : /bio/summary/absenceDelay has no matching filters
+2020-06-15 20:34:25.974 DEBUG 11964 --- [http-nio-8088-exec-15] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:41.323 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:41.324 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/css/**'
+2020-06-15 20:34:41.325 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:41.326 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/js/**'
+2020-06-15 20:34:41.326 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:41.327 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/images/**'
+2020-06-15 20:34:41.328 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:41.328 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/webjars/**'
+2020-06-15 20:34:41.329 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:41.330 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/**/favicon.ico'
+2020-06-15 20:34:41.330 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:41.331 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/error'
+2020-06-15 20:34:41.331 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:41.332 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.security.web.FilterChainProxy        : /logout has no matching filters
+2020-06-15 20:34:41.332 DEBUG 11964 --- [http-nio-8088-exec-13] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:41.346 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:41.346 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/css/**'
+2020-06-15 20:34:41.347 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:41.347 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/js/**'
+2020-06-15 20:34:41.348 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:41.348 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/images/**'
+2020-06-15 20:34:41.348 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:41.349 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/webjars/**'
+2020-06-15 20:34:41.350 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:41.350 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/**/favicon.ico'
+2020-06-15 20:34:41.351 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:41.351 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/error'
+2020-06-15 20:34:41.352 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:41.352 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.security.web.FilterChainProxy        : / has no matching filters
+2020-06-15 20:34:41.353 DEBUG 11964 --- [http-nio-8088-exec-12] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:41.363 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:41.363 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/css/**'
+2020-06-15 20:34:41.363 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:41.364 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/js/**'
+2020-06-15 20:34:41.366 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:41.366 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/images/**'
+2020-06-15 20:34:41.368 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:41.368 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/webjars/**'
+2020-06-15 20:34:41.369 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:41.369 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/**/favicon.ico'
+2020-06-15 20:34:41.370 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:41.370 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/error'
+2020-06-15 20:34:41.371 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:41.373 DEBUG 11964 --- [http-nio-8088-exec-11] o.s.security.web.FilterChainProxy        : /login has no matching filters
+2020-06-15 20:34:41.374 DEBUG 11964 --- [http-nio-8088-exec-11] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:45.857 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:45.858 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/css/**'
+2020-06-15 20:34:45.859 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:45.859 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/js/**'
+2020-06-15 20:34:45.860 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:45.860 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/images/**'
+2020-06-15 20:34:45.861 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:45.861 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/webjars/**'
+2020-06-15 20:34:45.861 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:45.862 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/**/favicon.ico'
+2020-06-15 20:34:45.862 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:45.862 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/error'
+2020-06-15 20:34:45.862 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:45.863 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.security.web.FilterChainProxy        : /login has no matching filters
+2020-06-15 20:34:45.864 DEBUG 11964 --- [http-nio-8088-exec-8] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:46.085 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:46.085 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/css/**'
+2020-06-15 20:34:46.086 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:46.087 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/js/**'
+2020-06-15 20:34:46.087 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:46.088 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/images/**'
+2020-06-15 20:34:46.088 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:46.091 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/webjars/**'
+2020-06-15 20:34:46.092 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:46.093 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/**/favicon.ico'
+2020-06-15 20:34:46.094 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:46.094 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/index'; against '/error'
+2020-06-15 20:34:46.094 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:46.095 DEBUG 11964 --- [http-nio-8088-exec-7] o.s.security.web.FilterChainProxy        : /index has no matching filters
+2020-06-15 20:34:46.095 DEBUG 11964 --- [http-nio-8088-exec-7] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:46.449 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:46.449 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/css/**'
+2020-06-15 20:34:46.451 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:46.450 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:46.454 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/js/**'
+2020-06-15 20:34:46.455 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:46.455 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/css/**'
+2020-06-15 20:34:46.456 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/images/**'
+2020-06-15 20:34:46.456 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:46.456 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:46.457 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/webjars/**'
+2020-06-15 20:34:46.457 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/js/**'
+2020-06-15 20:34:46.458 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:46.458 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/images/**'
+2020-06-15 20:34:46.458 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:46.459 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/webjars/**'
+2020-06-15 20:34:46.460 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:46.461 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/**/favicon.ico'
+2020-06-15 20:34:46.461 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:46.461 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/error'
+2020-06-15 20:34:46.462 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:46.463 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.security.web.FilterChainProxy        : /about has no matching filters
+2020-06-15 20:34:46.458 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:46.465 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/**/favicon.ico'
+2020-06-15 20:34:46.466 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:46.465 DEBUG 11964 --- [http-nio-8088-exec-5] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:46.469 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/error'
+2020-06-15 20:34:46.471 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:46.472 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.security.web.FilterChainProxy        : /main has no matching filters
+2020-06-15 20:34:46.473 DEBUG 11964 --- [http-nio-8088-exec-6] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:46.575 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:46.575 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:46.577 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/css/**'
+2020-06-15 20:34:46.578 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:46.576 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/css/**'
+2020-06-15 20:34:46.579 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/js/**'
+2020-06-15 20:34:46.580 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:46.579 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:46.581 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/js/**'
+2020-06-15 20:34:46.582 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:46.581 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/images/**'
+2020-06-15 20:34:46.585 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:46.587 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/webjars/**'
+2020-06-15 20:34:46.588 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:46.588 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/**/favicon.ico'
+2020-06-15 20:34:46.589 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:46.590 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/about'; against '/error'
+2020-06-15 20:34:46.585 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/images/**'
+2020-06-15 20:34:46.595 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:46.595 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/webjars/**'
+2020-06-15 20:34:46.595 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:46.597 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/**/favicon.ico'
+2020-06-15 20:34:46.594 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:46.599 DEBUG 11964 --- [http-nio-8088-exec-1] o.s.security.web.FilterChainProxy        : /about has no matching filters
+2020-06-15 20:34:46.600 DEBUG 11964 --- [http-nio-8088-exec-1] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:46.598 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:46.606 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/main'; against '/error'
+2020-06-15 20:34:46.606 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:46.607 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.security.web.FilterChainProxy        : /main has no matching filters
+2020-06-15 20:34:46.614 DEBUG 11964 --- [http-nio-8088-exec-3] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:46.941 DEBUG 11964 --- [http-nio-8088-exec-2] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:46.942 DEBUG 11964 --- [http-nio-8088-exec-2] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/css/modules/layer/default/layer.css'; against '/css/**'
+2020-06-15 20:34:46.943 DEBUG 11964 --- [http-nio-8088-exec-2] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:46.943 DEBUG 11964 --- [http-nio-8088-exec-2] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/css/modules/layer/default/layer.css'; against '/js/**'
+2020-06-15 20:34:46.943 DEBUG 11964 --- [http-nio-8088-exec-2] o.s.s.web.util.matcher.OrRequestMatcher  : matched
+2020-06-15 20:34:46.944 DEBUG 11964 --- [http-nio-8088-exec-2] o.s.security.web.FilterChainProxy        : /js/css/modules/layer/default/layer.css?v=3.1.0 has an empty filter list
+2020-06-15 20:34:46.944 DEBUG 11964 --- [http-nio-8088-exec-2] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:48.431 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:48.432 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/'; against '/css/**'
+2020-06-15 20:34:48.433 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:48.433 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/'; against '/js/**'
+2020-06-15 20:34:48.434 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:48.434 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/'; against '/images/**'
+2020-06-15 20:34:48.435 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:48.436 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/'; against '/webjars/**'
+2020-06-15 20:34:48.436 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:48.437 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/'; against '/**/favicon.ico'
+2020-06-15 20:34:48.438 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:48.438 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/'; against '/error'
+2020-06-15 20:34:48.439 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:48.440 DEBUG 11964 --- [http-nio-8088-exec-28] o.s.security.web.FilterChainProxy        : /bio/report/ has no matching filters
+2020-06-15 20:34:48.441 DEBUG 11964 --- [http-nio-8088-exec-28] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:48.832 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:48.834 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/appjs/bio/report/report.js'; against '/css/**'
+2020-06-15 20:34:48.834 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:48.835 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/appjs/bio/report/report.js'; against '/js/**'
+2020-06-15 20:34:48.835 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.s.web.util.matcher.OrRequestMatcher  : matched
+2020-06-15 20:34:48.837 DEBUG 11964 --- [http-nio-8088-exec-30] o.s.security.web.FilterChainProxy        : /js/appjs/bio/report/report.js has an empty filter list
+2020-06-15 20:34:48.838 DEBUG 11964 --- [http-nio-8088-exec-30] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:34:48.946 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:34:48.946 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/list'; against '/css/**'
+2020-06-15 20:34:48.948 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:34:48.948 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/list'; against '/js/**'
+2020-06-15 20:34:48.948 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:34:48.949 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/list'; against '/images/**'
+2020-06-15 20:34:48.949 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:34:48.950 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/list'; against '/webjars/**'
+2020-06-15 20:34:48.951 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:34:48.951 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/list'; against '/**/favicon.ico'
+2020-06-15 20:34:48.951 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:34:48.952 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/report/list'; against '/error'
+2020-06-15 20:34:48.952 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:34:48.953 DEBUG 11964 --- [http-nio-8088-exec-29] o.s.security.web.FilterChainProxy        : /bio/report/list?pageNumber=1&pageSize=10 has no matching filters
+2020-06-15 20:34:48.953 DEBUG 11964 --- [http-nio-8088-exec-29] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:05.344 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:05.345 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query'; against '/css/**'
+2020-06-15 20:35:05.346 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:05.346 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query'; against '/js/**'
+2020-06-15 20:35:05.346 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:35:05.347 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query'; against '/images/**'
+2020-06-15 20:35:05.348 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:35:05.351 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query'; against '/webjars/**'
+2020-06-15 20:35:05.352 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:35:05.354 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query'; against '/**/favicon.ico'
+2020-06-15 20:35:05.354 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:35:05.355 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query'; against '/error'
+2020-06-15 20:35:05.355 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:35:05.355 DEBUG 11964 --- [http-nio-8088-exec-26] o.s.security.web.FilterChainProxy        : /bio/query has no matching filters
+2020-06-15 20:35:05.356 DEBUG 11964 --- [http-nio-8088-exec-26] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:05.543 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:05.546 DEBUG 11964 --- [http-nio-8088-exec-21] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:05.547 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:05.549 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:05.549 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/bootstrap-datetimepicker.min.css'; against '/css/**'
+2020-06-15 20:35:05.552 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:05.552 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/bootstrap-datetimepicker.min.css'; against '/js/**'
+2020-06-15 20:35:05.552 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.s.web.util.matcher.OrRequestMatcher  : matched
+2020-06-15 20:35:05.550 DEBUG 11964 --- [http-nio-8088-exec-21] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/bootstrap-datetimepicker.zh-CN.js'; against '/css/**'
+2020-06-15 20:35:05.553 DEBUG 11964 --- [http-nio-8088-exec-21] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:05.551 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/bootstrap-datetimepicker.js'; against '/css/**'
+2020-06-15 20:35:05.551 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/bootstrap-datetimepicker.fr.js'; against '/css/**'
+2020-06-15 20:35:05.553 DEBUG 11964 --- [http-nio-8088-exec-23] o.s.security.web.FilterChainProxy        : /js/bootstrap-datetimepicker.min.css has an empty filter list
+2020-06-15 20:35:05.553 DEBUG 11964 --- [http-nio-8088-exec-21] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/bootstrap-datetimepicker.zh-CN.js'; against '/js/**'
+2020-06-15 20:35:05.556 DEBUG 11964 --- [http-nio-8088-exec-21] o.s.s.web.util.matcher.OrRequestMatcher  : matched
+2020-06-15 20:35:05.553 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:05.554 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:05.554 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:05.555 DEBUG 11964 --- [http-nio-8088-exec-23] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:05.556 DEBUG 11964 --- [http-nio-8088-exec-21] o.s.security.web.FilterChainProxy        : /js/bootstrap-datetimepicker.zh-CN.js has an empty filter list
+2020-06-15 20:35:05.558 DEBUG 11964 --- [http-nio-8088-exec-21] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:05.556 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/appjs/bio/query/query.js'; against '/css/**'
+2020-06-15 20:35:05.563 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:05.568 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/appjs/bio/query/query.js'; against '/js/**'
+2020-06-15 20:35:05.572 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.s.web.util.matcher.OrRequestMatcher  : matched
+2020-06-15 20:35:05.557 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/bootstrap-datetimepicker.js'; against '/js/**'
+2020-06-15 20:35:05.574 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.s.web.util.matcher.OrRequestMatcher  : matched
+2020-06-15 20:35:05.557 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/bootstrap-datetimepicker.fr.js'; against '/js/**'
+2020-06-15 20:35:05.573 DEBUG 11964 --- [http-nio-8088-exec-4] o.s.security.web.FilterChainProxy        : /js/appjs/bio/query/query.js has an empty filter list
+2020-06-15 20:35:05.574 DEBUG 11964 --- [http-nio-8088-exec-22] o.s.security.web.FilterChainProxy        : /js/bootstrap-datetimepicker.js has an empty filter list
+2020-06-15 20:35:05.576 DEBUG 11964 --- [http-nio-8088-exec-22] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:05.575 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.s.web.util.matcher.OrRequestMatcher  : matched
+2020-06-15 20:35:05.578 DEBUG 11964 --- [http-nio-8088-exec-25] o.s.security.web.FilterChainProxy        : /js/bootstrap-datetimepicker.fr.js has an empty filter list
+2020-06-15 20:35:05.576 DEBUG 11964 --- [http-nio-8088-exec-4] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:05.579 DEBUG 11964 --- [http-nio-8088-exec-25] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:05.900 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:05.901 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list'; against '/css/**'
+2020-06-15 20:35:05.901 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:05.902 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list'; against '/js/**'
+2020-06-15 20:35:05.902 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:35:05.902 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list'; against '/images/**'
+2020-06-15 20:35:05.903 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:35:05.903 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list'; against '/webjars/**'
+2020-06-15 20:35:05.904 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:35:05.905 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list'; against '/**/favicon.ico'
+2020-06-15 20:35:05.905 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:35:05.905 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list'; against '/error'
+2020-06-15 20:35:05.906 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:35:05.906 DEBUG 11964 --- [http-nio-8088-exec-20] o.s.security.web.FilterChainProxy        : /bio/query/list?pageNumber=1&pageSize=10 has no matching filters
+2020-06-15 20:35:05.906 DEBUG 11964 --- [http-nio-8088-exec-20] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:05.919 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:05.920 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list1'; against '/css/**'
+2020-06-15 20:35:05.920 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:05.921 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list1'; against '/js/**'
+2020-06-15 20:35:05.921 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:35:05.921 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list1'; against '/images/**'
+2020-06-15 20:35:05.922 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:35:05.922 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list1'; against '/webjars/**'
+2020-06-15 20:35:05.923 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:35:05.923 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list1'; against '/**/favicon.ico'
+2020-06-15 20:35:05.924 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:35:05.924 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/list1'; against '/error'
+2020-06-15 20:35:05.924 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:35:05.925 DEBUG 11964 --- [http-nio-8088-exec-19] o.s.security.web.FilterChainProxy        : /bio/query/list1?pageNumber=1&pageSize=10 has no matching filters
+2020-06-15 20:35:05.925 DEBUG 11964 --- [http-nio-8088-exec-19] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:21.420 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:21.420 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/weekInfo/24'; against '/css/**'
+2020-06-15 20:35:21.423 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:21.424 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/weekInfo/24'; against '/js/**'
+2020-06-15 20:35:21.425 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:35:21.427 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/weekInfo/24'; against '/images/**'
+2020-06-15 20:35:21.427 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:35:21.427 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/weekInfo/24'; against '/webjars/**'
+2020-06-15 20:35:21.428 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:35:21.429 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/weekInfo/24'; against '/**/favicon.ico'
+2020-06-15 20:35:21.430 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:35:21.442 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/weekInfo/24'; against '/error'
+2020-06-15 20:35:21.453 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:35:21.454 DEBUG 11964 --- [http-nio-8088-exec-13] o.s.security.web.FilterChainProxy        : /bio/query/weekInfo/24 has no matching filters
+2020-06-15 20:35:21.456 DEBUG 11964 --- [http-nio-8088-exec-13] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:21.830 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:21.834 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/appjs/bio/query/weekInfo.js'; against '/css/**'
+2020-06-15 20:35:21.836 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:21.837 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/js/appjs/bio/query/weekInfo.js'; against '/js/**'
+2020-06-15 20:35:21.838 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.s.web.util.matcher.OrRequestMatcher  : matched
+2020-06-15 20:35:21.848 DEBUG 11964 --- [http-nio-8088-exec-12] o.s.security.web.FilterChainProxy        : /js/appjs/bio/query/weekInfo.js has an empty filter list
+2020-06-15 20:35:21.851 DEBUG 11964 --- [http-nio-8088-exec-12] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:35.741 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:35.742 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/css/**'
+2020-06-15 20:35:35.743 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:35.743 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/js/**'
+2020-06-15 20:35:35.743 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:35:35.744 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/images/**'
+2020-06-15 20:35:35.744 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:35:35.744 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/webjars/**'
+2020-06-15 20:35:35.745 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:35:35.745 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/**/favicon.ico'
+2020-06-15 20:35:35.746 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:35:35.746 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/error'
+2020-06-15 20:35:35.746 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:35:35.747 DEBUG 11964 --- [http-nio-8088-exec-10] o.s.security.web.FilterChainProxy        : /bio/query/batchExport1?ids=24&mode=1&downloadfilename=2020-6-15-%E5%91%A8%E6%8A%A5%E6%B1%87%E6%80%BB has no matching filters
+2020-06-15 20:35:35.747 DEBUG 11964 --- [http-nio-8088-exec-10] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:36.647  INFO 11964 --- [http-nio-8088-exec-10] com.bio.common.utils.ExcelUtils          : 开始处理excel文件。。。
+2020-06-15 20:35:37.091  INFO 11964 --- [http-nio-8088-exec-10] com.bio.common.utils.ExcelUtils          : 处理文本耗时444ms
+2020-06-15 20:35:52.423 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:35:52.424 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/css/**'
+2020-06-15 20:35:52.426 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:35:52.426 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/js/**'
+2020-06-15 20:35:52.426 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:35:52.427 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/images/**'
+2020-06-15 20:35:52.427 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:35:52.427 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/webjars/**'
+2020-06-15 20:35:52.428 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:35:52.428 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/**/favicon.ico'
+2020-06-15 20:35:52.429 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:35:52.429 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/bio/query/batchExport1'; against '/error'
+2020-06-15 20:35:52.429 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:35:52.430 DEBUG 11964 --- [http-nio-8088-exec-8] o.s.security.web.FilterChainProxy        : /bio/query/batchExport1?ids=24&mode=2&downloadfilename=2020-6-15-%E5%91%A8%E6%8A%A5%E6%B1%87%E6%80%BB has no matching filters
+2020-06-15 20:35:52.430 DEBUG 11964 --- [http-nio-8088-exec-8] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:35:52.593  INFO 11964 --- [http-nio-8088-exec-8] com.bio.common.utils.ExcelUtils          : 开始处理excel文件。。。
+2020-06-15 20:35:52.603  INFO 11964 --- [http-nio-8088-exec-8] com.bio.common.utils.ExcelUtils          : 处理文本耗时10ms
+2020-06-15 20:36:23.299 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:36:23.300 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/css/**'
+2020-06-15 20:36:23.300 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:36:23.301 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/js/**'
+2020-06-15 20:36:23.301 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:36:23.301 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/images/**'
+2020-06-15 20:36:23.302 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:36:23.302 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/webjars/**'
+2020-06-15 20:36:23.302 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:36:23.302 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/**/favicon.ico'
+2020-06-15 20:36:23.303 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:36:23.303 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/logout'; against '/error'
+2020-06-15 20:36:23.304 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:36:23.304 DEBUG 11964 --- [http-nio-8088-exec-5] o.s.security.web.FilterChainProxy        : /logout has no matching filters
+2020-06-15 20:36:23.304 DEBUG 11964 --- [http-nio-8088-exec-5] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:36:23.313 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:36:23.313 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/css/**'
+2020-06-15 20:36:23.313 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:36:23.314 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/js/**'
+2020-06-15 20:36:23.314 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:36:23.314 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/images/**'
+2020-06-15 20:36:23.315 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:36:23.315 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/webjars/**'
+2020-06-15 20:36:23.315 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:36:23.316 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/**/favicon.ico'
+2020-06-15 20:36:23.316 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:36:23.316 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/'; against '/error'
+2020-06-15 20:36:23.317 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:36:23.317 DEBUG 11964 --- [http-nio-8088-exec-6] o.s.security.web.FilterChainProxy        : / has no matching filters
+2020-06-15 20:36:23.317 DEBUG 11964 --- [http-nio-8088-exec-6] com.bio.sys.filter.XssFilter             : xss filter is open
+2020-06-15 20:36:23.325 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/css/**']
+2020-06-15 20:36:23.325 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/css/**'
+2020-06-15 20:36:23.326 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/js/**']
+2020-06-15 20:36:23.326 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/js/**'
+2020-06-15 20:36:23.326 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/images/**']
+2020-06-15 20:36:23.326 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/images/**'
+2020-06-15 20:36:23.327 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/webjars/**']
+2020-06-15 20:36:23.327 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/webjars/**'
+2020-06-15 20:36:23.328 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/**/favicon.ico']
+2020-06-15 20:36:23.329 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/**/favicon.ico'
+2020-06-15 20:36:23.329 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : Trying to match using Ant [pattern='/error']
+2020-06-15 20:36:23.330 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.w.u.matcher.AntPathRequestMatcher  : Checking match of request : '/login'; against '/error'
+2020-06-15 20:36:23.330 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.s.web.util.matcher.OrRequestMatcher  : No matches found
+2020-06-15 20:36:23.330 DEBUG 11964 --- [http-nio-8088-exec-3] o.s.security.web.FilterChainProxy        : /login has no matching filters
+2020-06-15 20:36:23.331 DEBUG 11964 --- [http-nio-8088-exec-3] com.bio.sys.filter.XssFilter             : xss filter is open
