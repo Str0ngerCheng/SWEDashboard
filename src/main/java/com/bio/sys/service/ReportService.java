@@ -29,6 +29,8 @@ public interface ReportService extends CoreService<ReportDO> {
 
 	List<ReportDO> getReportsByDepName(String depName);
 
+	List<ReportDO> getReportsByUseName(String useName);
+
 	List<ReportDO> getReportsQuery(Date fromDate, Date toDate, Integer status,long deptId);
 
 	ReportDO getReportsByContentId(String contentId);

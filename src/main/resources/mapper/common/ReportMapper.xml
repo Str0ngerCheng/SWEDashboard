@@ -67,6 +67,10 @@
 		select * from report where dept_name = #{depName} and  status_l_sub=1 order by author_name,r_from_date
 	</select>
 
+	<select id="getReportsByUseName" resultType="com.bio.sys.domain.ReportDO">
+		select * from report where author_name = #{useName} and  status_l_sub=1 order by r_from_date desc limit 7
+	</select>
+
 	<select id="getReportsQuery" resultType="com.bio.sys.domain.ReportDO">
 		SELECT * FROM report
 		<where>
@@ -190,7 +194,7 @@
 	</select>
 
 	<select id="getReportsAll" resultType="com.bio.sys.domain.ReportDO">
-		select * from report where status_l_sub=1 order by dept_name,author_name, r_from_date
+		select * from report where status_l_sub=1 order by dept_name,r_from_date,author_name
 	</select>
 	
 	<select id="getReportsByMonth" resultType="com.bio.sys.domain.ReportDO">

@@ -76,6 +76,11 @@ public class ReportServiceImpl extends CoreServiceImpl<ReportDao, ReportDO> impl
 	}
 
 	@Override
+	public List<ReportDO> getReportsByUseName(String useName) {
+		return baseMapper.getReportsByUseName(useName);
+	}
+
+	@Override
 	public List<ReportDO> getReportsQuery(Date fromDate, Date toDate, Integer status,long deptId) {
 		return baseMapper.getReportsQuery(fromDate,  toDate,  status,deptId);
 	}

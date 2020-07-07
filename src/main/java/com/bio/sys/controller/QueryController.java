@@ -81,12 +81,11 @@ public class QueryController {
         List<ReportDO> mylist=new ArrayList<>();
         if (userDO.getroleId().intValue() == 5 ) { // 超级管理员，默认所有的报告
             //TODO: 不做处理
-            mylist = reportService.getReportsAll();
+           // mylist = reportService.getReportsAll();
         }
 
         if (userDO.getroleId().intValue() == 2 || userDO.getroleId().intValue() == 3 || userDO.getroleId().intValue() == 4 ) { // 专题组长，只显示负责的学生 的报告
-            String deptName=userDO.getDeptName();
-            mylist=reportService.getReportsByDepName(deptName);
+            mylist=reportService.getReportsByUseName(userDO.getName());
         }
 
         Page page1 = new Page(pageNumber, pageSize);

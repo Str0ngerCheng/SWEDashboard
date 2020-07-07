@@ -31,6 +31,8 @@ public interface ReportDao extends BaseDao<ReportDO> {
 
 	 List<ReportDO> getReportsByDepName(@Param("depName") String depName);
 
+	List<ReportDO> getReportsByUseName(@Param("useName") String useName);
+
 	List<ReportDO> getReportsQuery(@Param("fromdate") Date fromDate, @Param("todate") Date toDate, @Param("status") Integer status, @Param("deptId")long deptId);
 
 	ReportDO getReportsByContentId(@Param("contentId")String contentId);
