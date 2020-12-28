@@ -33,7 +33,7 @@
 		WHERE
 	 YEARWEEK(date_format(r_from_date,'%Y-%m-%d'),1) = YEARWEEK(DATE_SUB(curdate(),INTERVAL 3 DAY) ,1)
 		AND YEARWEEK(date_format(r_to_date,'%Y-%m-%d'),1) = YEARWEEK(DATE_SUB(curdate(),INTERVAL 3 DAY) ,1)
-		AND rs.dept_id=sd.id
+		AND rs.dept_id=sd.id AND sd.del_flag= 1
 		ORDER BY order_num
 	</select>
 
